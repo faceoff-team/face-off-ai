@@ -42,7 +42,7 @@ jobs:
       #   run: docker images ls -a
 
       - name: build backend image
-        run: docker build -t face-off-ai-backend .
+        run: docker image build -t face-off-ai-backend .
 
       - name: docker images ls -a
         run: docker images ls -a

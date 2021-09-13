@@ -29,16 +29,22 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      - name: build all images
-        run: docker-compose build
+      # - name: build all images
+      #   run: docker-compose build
 
-      - name: docker-compose up
-        run: docker-compose up -d
+      # - name: docker-compose up
+      #   run: docker-compose up -d
 
-      - name: List all containers
-        run: docker ps -a
+      # - name: List all containers
+      #   run: docker ps -a
 
-      - name: List images
+      # - name: List images
+      #   run: docker images ls -a
+
+      - name: build backend image
+        run: docker build -t face-off-ai-backend .
+
+      - name: docker images ls -a
         run: docker images ls -a
 
       # Runs a set of commands using the runners shell

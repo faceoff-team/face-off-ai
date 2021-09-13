@@ -29,6 +29,9 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
+      - name: build all images
+        run: docker-compose build
+
       - name: docker-compose up
         run: docker-compose up -d
 

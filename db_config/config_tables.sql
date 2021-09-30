@@ -18,9 +18,9 @@ DROP TABLE IF EXISTS leaderboard;
 
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    PRIMARY KEY(userID) DEFAULT NULL,
     username            VARCHAR(255) NOT NULL,
-    password            VARCHAR(64) NOT NULL
+    password            VARCHAR(64) NOT NULL,
+    PRIMARY KEY(userID)
 );
 
 -- ALTER TABLE user ADD CONSTRAINT user_pk PRIMARY KEY ( userID );

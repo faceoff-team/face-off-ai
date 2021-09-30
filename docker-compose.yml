@@ -1,6 +1,21 @@
 version: '3.7'
 
 services:
+  db: 
+    image: mysql
+    container_name: faceoff-db
+    ports: 
+      - 3306:3306
+      - 33060:33060
+    volumes:
+      - /db_data/:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: FaceoffAIRocks
+      MYSQL_DATABASE: faceoff
+      MYSQL_USER: faceoff
+      MYSQL_PASSWORD: FaceoffAIRocks
+
   backend:
     build: ./backend 
     container_name: faceoff-backend

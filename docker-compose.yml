@@ -19,6 +19,7 @@ services:
   backend:
     build: ./backend 
     container_name: faceoff-backend
+    command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
     ports: 
       - 8080:8080
     depends_on:

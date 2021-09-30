@@ -18,8 +18,8 @@ DROP TABLE IF EXISTS leaderboard;
 
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT,
-    username            VARCHAR2(255) NOT NULL,
-    password            VARCHAR2(64) NOT NULL,
+    username            VARCHAR(255) NOT NULL,
+    password            VARCHAR(64) NOT NULL,
     
 );
 

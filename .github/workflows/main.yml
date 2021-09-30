@@ -25,30 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       - name: build all images
         run: docker-compose build
 
-      - name: docker-compose up
+      - name: spin docker-compose down.
+        run: docker-compose down
+
+      - name: spin docker-compose up.
         run: docker-compose up -d
-
-      # - name: List all containers
-      #   run: docker ps -a
-
-      # - name: List images
-      #   run: docker images ls -a
-
-      # - name: build backend image
-      #   run: docker image build -t face-off-ai-backend ./backend
-
-      # - name: docker images ls -a
-      #   run: docker images ls -a
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.

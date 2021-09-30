@@ -1,16 +1,20 @@
---Nic Ballesteros
---Ashton Statz
+-- Nic Ballesteros
+-- Ashton Statz
 
---Dropping Tables
+-- Choose faceoff database.
 
-DROP TABLE IF EXISTS user CASCADE CONSTRAINTS;
-DROP TABLE IF EXISTS user_game CASCADE CONSTRAINTS;
-DROP TABLE IF EXISTS game CASCADE CONSTRAINTS;
-DROP TABLE IF EXISTS challenge CASCADE CONSTRAINTS;
-DROP TABLE IF EXISTS video CASCADE CONSTRAINTS;
-DROP TABLE IF EXISTS leaderboard CASCADE CONSTRAINTS;
+USE faceoff;
 
---Creating Tables
+-- Dropping Tables
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS user_game;
+DROP TABLE IF EXISTS game;
+DROP TABLE IF EXISTS challenge;
+DROP TABLE IF EXISTS video;
+DROP TABLE IF EXISTS leaderboard;
+
+-- Creating Tables
 
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT,

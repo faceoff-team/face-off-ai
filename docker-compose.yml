@@ -9,7 +9,7 @@ services:
       - 33060:33060
     volumes:
       - /home/faceoff/db_data/:/var/lib/mysql
-      - /home/faceoff/db_scripts:/usr/src/
+      - /home/faceoff/db_config/:/usr/src/
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: FaceoffAIRocks

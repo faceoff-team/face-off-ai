@@ -38,4 +38,4 @@ CREATE TABLE challenge (
     difficulty          INT(10),
     averageRating       INT(10),
     highScore           INT(10)
-)
+);

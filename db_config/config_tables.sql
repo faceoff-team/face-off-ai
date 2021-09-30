@@ -1,11 +1,11 @@
---Nic Ballesteros
---Ashton Statz
+-- Nic Ballesteros
+-- Ashton Statz
 
---Choose faceoff database.
+-- Choose faceoff database.
 
 USE faceoff;
 
---Dropping Tables
+-- Dropping Tables
 
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS user_game;
@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS challenge;
 DROP TABLE IF EXISTS video;
 DROP TABLE IF EXISTS leaderboard;
 
---Creating Tables
+-- Creating Tables
 
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT,

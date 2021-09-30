@@ -37,5 +37,5 @@ CREATE TABLE challenge (
     challengeName       VARCHAR(255),
     difficulty          INT(10),
     averageRating       INT(10),
-    highScore           INT(10),
+    highScore           INT(10)
 )

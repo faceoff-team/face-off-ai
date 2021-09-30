@@ -18,12 +18,16 @@ DROP TABLE IF EXISTS leaderboard;
 
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username            VARCHAR2(255) NOT NULL,
-    password            VARCHAR2(64) NOT NULL
+    username            VARCHAR(255) NOT NULL,
+    password            VARCHAR(64) NOT NULL,
+    email               VARCHAR(64),
+    image               LONGBLOB,
+    worldRank           INT(10) NOT NULL,
+    bestScore           INT(10) NOT NULL
 );
 
 CREATE TABLE game (
     gameID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    winnerSore          NUMBER(10, 0),
+    winnerSore          INT(10),
     gameDate            DATE
 );

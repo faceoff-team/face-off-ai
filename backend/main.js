@@ -12,14 +12,17 @@ var connection = mysql.createConnection({
     database : 'faceoff'
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-
-    console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
-});
+setInterval(() => {
+    connection.connect((err) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+    
+        console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
+        clearInterval();
+    });
+}, 100);
 
 app.get('/', (req, res) => {
     res.send('hello world');

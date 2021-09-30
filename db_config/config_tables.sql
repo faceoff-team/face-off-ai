@@ -17,10 +17,10 @@ DROP TABLE IF EXISTS leaderboard;
 -- Creating Tables
 
 CREATE TABLE user (
-    userID              INT(10) NOT NULL AUTO_INCREMENT,
+    userID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    PRIMARY KEY(userID) DEFAULT NULL,
     username            VARCHAR(255) NOT NULL,
     password            VARCHAR(64) NOT NULL
-    
 );
 
-ALTER TABLE user ADD CONSTRAINT user_pk PRIMARY KEY ( userID );
+-- ALTER TABLE user ADD CONSTRAINT user_pk PRIMARY KEY ( userID );

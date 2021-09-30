@@ -20,3 +20,9 @@ CREATE TABLE user (
 );
 
 ALTER TABLE user ADD CONSTRAINT user_pk PRIMARY KEY ( userID );
+
+CREATE TABLE game (
+    gameID              INT(10) NOT NULL AUTO_INCREMENT,
+    winnerSore          NUMBER(10, 0),
+    gameDate            DATETIME
+);

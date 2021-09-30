@@ -25,6 +25,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: copy config files before build.
+        run: cp db_config /home/faceoff/db_scripts
+
       - name: build all images
         run: docker-compose build
 

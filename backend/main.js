@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 var connection = mysql.createConnection({
     host     : 'faceoff-db',
@@ -12,16 +12,14 @@ var connection = mysql.createConnection({
     database : 'faceoff'
 });
 
-setTimeout(() => {
-    connection.connect((err) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-    
-        console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
-    });
-}, 5000);
+connection.connect((err) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
+});
 
 app.get('/', (req, res) => {
     res.send('hello world');

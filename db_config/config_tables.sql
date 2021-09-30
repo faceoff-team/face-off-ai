@@ -31,3 +31,11 @@ CREATE TABLE game (
     winnerSore          INT(10),
     gameDate            DATE
 );
+
+CREATE TABLE challenge (
+    challengeID         INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    challengeName       VARCHAR(255),
+    difficulty          INT(10),
+    averageRating       INT(10),
+    highScore           INT(10),
+)

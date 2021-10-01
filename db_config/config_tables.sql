@@ -39,3 +39,7 @@ CREATE TABLE challenge (
     averageRating       INT(10),
     highScore           INT(10)
 );
+
+CREATE TABLE video (
+    videoURL            VARCHAR(255) NOT NULL AUTO_INCREMENT PRIMARY KEY
+);

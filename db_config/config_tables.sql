@@ -12,9 +12,11 @@ DROP TABLE IF EXISTS user_game;
 DROP TABLE IF EXISTS game;
 DROP TABLE IF EXISTS challenge;
 DROP TABLE IF EXISTS video;
-DROP TABLE IF EXISTS leaderboard;
+DROP TABLE IF EXISTS emotion;
 
 -- Creating Tables
+
+-- TODO: Add necessary relationship columns to each table, especially for user_game
 
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -43,3 +45,8 @@ CREATE TABLE challenge (
 CREATE TABLE video (
     videoURL            VARCHAR(255) NOT NULL AUTO_INCREMENT PRIMARY KEY
 );
+
+CREATE TABLE emotion (
+    emotionID           INT(1) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    emotionName         VARCHAR(64)
+)

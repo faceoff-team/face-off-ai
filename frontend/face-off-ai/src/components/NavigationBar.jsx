@@ -24,6 +24,15 @@ function NavigationBar(props) {
                                 </Link>
                             </li>
                             <li
+                                class={`nav-item ${props.location.pathname === "/Leaderboards" ? "active" : ""
+                                    }`}
+                            >
+                                <Link class="nav-link" to="/Leaderboards">
+                                    Leaderboards
+                                    <span class="sr-only">(current)</span>
+                                </Link>
+                            </li>
+                            <li
                                 class={`nav-item ${props.location.pathname === "/About" ? "active" : ""
                                     }`}
                             >

@@ -42,22 +42,22 @@ function NavigationBar(props) {
                                 </Link>
                             </li>
                             <li
-                                class={`nav-item ${props.location.pathname === "/Settings" ? "active" : ""
+                                class={`nav-item ${props.location.pathname === "/Profile" ? "active" : ""
                                     }`}
                             >
-                                <Link class="nav-link" to="/Settings">
-                                    <span class="material-icons-outlined">
-                                        settings
+                                <Link class="nav-link" to="/Profile">
+                                    <span class="material-icons md-18">
+                                        account_circle
                                     </span>
                                     <span class="sr-only">(current)</span>
                                 </Link>
                             </li>
                             <li
-                                class={`nav-item ${props.location.pathname === "/Profile" ? "active" : ""
+                                class={`nav-item ${props.location.pathname === "/Settings" ? "active" : ""
                                     }`}
                             >
-                                <Link class="nav-link" to="/Profile">
-                                    Profile
+                                <Link class="nav-link" to="/Settings">
+                                    <span class="material-icons md-18">settings</span>
                                     <span class="sr-only">(current)</span>
                                 </Link>
                             </li>

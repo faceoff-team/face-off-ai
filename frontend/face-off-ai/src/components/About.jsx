@@ -15,7 +15,7 @@ function About() {
                         </p>
                         <p class="about-desc">
                             This project was created by Nic Ballesteros, Dominic Miller, Sripranav Potturu, and Ashton Statz
-                            for CS 30700, Software Engineering I, at Purdue University.
+                            for CS 30700: Software Engineering I at Purdue University.
                         </p>
                     </div>
                 </div>

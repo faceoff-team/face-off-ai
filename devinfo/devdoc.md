@@ -1,12 +1,19 @@
-# Setup Environment
-First, install Git
-Next, download the GitHub repo
+# Enviroment Setup
 
-# Dependecies
-First, get Node.js
-Then install npm
+## Preliminary Programs
+1. Install Git to your machine (https://git-scm.com/)
 
-Next, get Python
-Then install pip
+2. Install Node.js and NPM to your machine (https://nodejs.org/en/download/)
 
-Run npm install to get all the libraries to install to local environment
+3. Install Python and pip to your machine (https://www.python.org/downloads/)
+
+## Preliminary Programs
+1. First, create a folder on your device to hold repo
+
+2. Next, go to the project repo in GitHub
+
+3. Click the `Code` button and copy the HTTPS web URL
+
+4. Open a terminal to the folder and run command `git clone <HTTPS web URL>`
+
+5. Ensure that all files are now in your folder

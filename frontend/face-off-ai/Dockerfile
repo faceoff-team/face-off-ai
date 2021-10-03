@@ -6,4 +6,4 @@ COPY . .
 
 RUN yarn install
 
-CMD [ "npm", "run", "build" ]
+CMD [ "./run.sh" ]

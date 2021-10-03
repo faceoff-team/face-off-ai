@@ -1,2 +1,6 @@
 # Setup Environment
-First, download the GitHub repo
+First, install Git
+Next, download the GitHub repo
+
+# Dependecies
+First, get JS

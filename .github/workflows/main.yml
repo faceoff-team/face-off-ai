@@ -28,6 +28,9 @@ jobs:
       - name: copy config files before build.
         run: cp -r db_config /home/faceoff/
 
+      - name: build build_frontend container
+        run: docker build -t build_frontend .
+
       - name: build all images
         run: docker-compose build
 

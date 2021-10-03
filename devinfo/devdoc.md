@@ -3,4 +3,8 @@ First, install Git
 Next, download the GitHub repo
 
 # Dependecies
-First, get JS
+First, get Node.js
+Then install npm
+
+Next, get Python
+Then install pip

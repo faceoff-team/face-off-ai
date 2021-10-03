@@ -22,7 +22,9 @@ var connection = mysql.createConnection({
         clearInterval();
     });
 
-app.get('/', (req, res) => {
+app.use(express.static("static"));
+
+app.get('*', (req, res) => {
     res.send('hello world');
 });
 

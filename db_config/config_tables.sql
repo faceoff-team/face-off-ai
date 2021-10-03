@@ -50,3 +50,9 @@ CREATE TABLE emotion (
     emotionID           INT(1) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     emotionName         VARCHAR(64)
 )
+CREATE TABLE user_game (
+    userGameID          INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    userID              INT(10) NOT NULL FOREIGN KEY REFERENCES user(userID),
+    gameID              INT(10) NOT NULL FOREIGN KEY REFERENCES game(gameID),
+    score               INT(10) NOT NULL
+);

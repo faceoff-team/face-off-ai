@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
 .App {
   text-align: center;
 }
@@ -32,4 +34,14 @@
   width:20%;
   display: flex;
   justify-content: left;
+  font-weight: bold;
+}
+
+.about-desc {
+  text-align: left;
+}
+
+.font-weight-heavy {
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
 }

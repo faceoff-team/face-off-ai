@@ -8,3 +8,5 @@ Then install npm
 
 Next, get Python
 Then install pip
+
+Run npm install to get all the libraries to install to local environment

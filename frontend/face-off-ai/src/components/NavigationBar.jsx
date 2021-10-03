@@ -8,7 +8,7 @@ function NavigationBar(props) {
             <nav class="navbar navbar-expand navbar-dark bg-dark">
                 <div class="container">
                     <Link class="navbar-brand" to="/">
-                        <img class="small-logo" src={logo}></img>
+                        <img class="small-logo" alt="FACEOFF AI" src={logo}></img>
                     </Link>
 
                     <div>
@@ -46,7 +46,9 @@ function NavigationBar(props) {
                                     }`}
                             >
                                 <Link class="nav-link" to="/Settings">
-                                    Settings
+                                    <span class="material-icons-outlined">
+                                        settings
+                                    </span>
                                     <span class="sr-only">(current)</span>
                                 </Link>
                             </li>

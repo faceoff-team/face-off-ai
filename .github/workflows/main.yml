@@ -31,6 +31,9 @@ jobs:
       - name: build build_frontend container
         run: docker build -t build_frontend .
 
+      - name: run build_frontend container
+        run: docker run -d -v backend/static/:/usr/app/build/ build_frontend
+
       - name: build all images
         run: docker-compose build
 

@@ -1,5 +1,6 @@
 import React from "react";
 import {Link, withRouter} from "react-router-dom";
+import logo from "./img/faceoff-ai-transparent-light-blue.png";
 
 function NavigationBar(props) {
     return (
@@ -7,7 +8,7 @@ function NavigationBar(props) {
             <nav class="navbar navbar-expand navbar-dark bg-dark">
                 <div class="container">
                     <Link class="navbar-brand" to="/">
-                        React Multi-Page Website
+                        <img class="small-logo" src={logo}></img>
                     </Link>
 
                     <div>
@@ -19,6 +20,33 @@ function NavigationBar(props) {
                             >
                                 <Link class="nav-link" to="/">
                                     Home
+                                    <span class="sr-only">(current)</span>
+                                </Link>
+                            </li>
+                            <li
+                                class={`nav-item ${props.location.pathname === "/About" ? "active" : ""
+                                    }`}
+                            >
+                                <Link class="nav-link" to="/About">
+                                    About
+                                    <span class="sr-only">(current)</span>
+                                </Link>
+                            </li>
+                            <li
+                                class={`nav-item ${props.location.pathname === "/Settings" ? "active" : ""
+                                    }`}
+                            >
+                                <Link class="nav-link" to="/Settings">
+                                    Settings
+                                    <span class="sr-only">(current)</span>
+                                </Link>
+                            </li>
+                            <li
+                                class={`nav-item ${props.location.pathname === "/Profile" ? "active" : ""
+                                    }`}
+                            >
+                                <Link class="nav-link" to="/Profile">
+                                    Profile
                                     <span class="sr-only">(current)</span>
                                 </Link>
                             </li>

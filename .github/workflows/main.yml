@@ -29,7 +29,7 @@ jobs:
         run: cp -r db_config /home/faceoff/
 
       - name: make ./run.sh executable
-        run: chmod 777 run.sh
+        run: chmod 777 ./frontend/face-off-ai/run.sh
 
       - name: build build_frontend container
         run: |

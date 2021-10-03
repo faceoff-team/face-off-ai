@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import NavigationBar from "./components/";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NavigationBar from "./components";
 
 function App() {
   return (

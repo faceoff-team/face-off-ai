@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
 .App {
-  text-align: center;
-  background-color: #484b52;
+  background-color: #303134;
   color: #f7f7f7;
 }
 
@@ -12,11 +11,16 @@
 }
 
 .App-link {
-  color: #4963ae;
+  color: #4cc0ad;
+}
+
+.nav-link {
+  color: #4cc0ad;
 }
 
 .navBar {
-  background-color: #5b6272;
+  background-color: #202124;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
 
 .small-logo {
@@ -28,6 +32,25 @@
   font-weight: bold;
 }
 
+.profile-img-medium {
+  border-radius: 50%;
+  width: 15vmin;
+  height: 15vmin;
+  display: "block";
+  float: left;
+}
+
+.basic-container {
+  background-color:#414246;
+  border-radius: 1%;
+  padding: 10vmin;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.12);
+  margin: 3vmin;
+}
+
+.text-small {
+    font-size: 12px;
+}
 
 .about-desc {
   text-align: left;

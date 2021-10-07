@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
-import { About, Login, Profile } from "./screens";
+import { About, Home, Login, Profile } from "./screens";
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
             <NavigationBar />
             <Switch>
                 <Route path="/login" exact component={() => <Login />} />
+                <Route path="/home" exact component={() => <Home />} />
                 <Route path="/about" exact component={() => <About />} />
                 <Route path="/profile" exact component={() => <Profile />} />
             </Switch>

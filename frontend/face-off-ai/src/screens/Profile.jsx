@@ -1,5 +1,5 @@
 import React from "react";
-import Picture from "./img/default-profile-picture.jpg";
+import Picture from "../assets/default-profile-picture.jpg";
 import HorizontalLine from "../components/HorizontalLine.jsx";
 
 function Profile() {

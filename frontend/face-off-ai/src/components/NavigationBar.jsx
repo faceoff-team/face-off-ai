@@ -17,7 +17,7 @@ function NavigationBar(props) {
                                     props.location.pathname === "/" ? "active" : ""
                                 }`}
                             >
-                                <Link class="nav-link" to="/">
+                                <Link class="nav-link" to="/home">
                                     <span class="material-icons md-18">
                                         home
                                         <span class="sr-only">(current)</span>

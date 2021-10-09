@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 8080;
 
 const mysql = require('mysql2');
 
+const path = require(`path`);
+
 var connection = mysql.createConnection({
     host     : 'faceoff-db',
     user     : 'faceoff',

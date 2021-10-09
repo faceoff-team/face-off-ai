@@ -12,20 +12,23 @@ var connection = mysql.createConnection({
     database : 'faceoff'
 });
 
-    connection.connect((err) => {
-        if (err) {
-            console.error(err);
-            return;
-        }
-    
-        console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
-        clearInterval();
-    });
+//Connect to the mysql server.
+connection.connect((err) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
 
-app.use(express.static("static"));
+    console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
+    clearInterval();
+});
+
+const REACT = path.join(__dirname, `react`);
+
+app.use(express.static(REACT));
 
 app.get('*', (req, res) => {
-    res.send('hello world');
+    res.sendFile(path.join(REACT, "index.html"));
 });
 
 app.listen(PORT, () => {

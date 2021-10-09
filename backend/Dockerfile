@@ -9,7 +9,10 @@ COPY package*.json ./
 RUN npm install
 
 # Copy all code into the container
-COPY . .
+COPY ./ ./
+
+# Copy static react files.
+COPY ./react/ ./react/
 
 # Expose the port 8080 to the outside
 EXPOSE 8080

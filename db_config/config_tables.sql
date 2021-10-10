@@ -44,17 +44,20 @@ CREATE TABLE challenge (
 );
 
 CREATE TABLE video (
-    videoURL            VARCHAR(255) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    videoID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY 
+    videoURL            VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE emotion (
     emotionID           INT(1) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     emotionName         VARCHAR(64)
 )
+
 CREATE TABLE user_game (
-    -- userGameID          INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userID              INT(10) NOT NULL FOREIGN KEY REFERENCES user(userID),
-    gameID              INT(10) NOT NULL FOREIGN KEY REFERENCES game(gameID),
+    user              INT NOT NULL,
+    game              INT NOT NULL,
     score               INT(10) NOT NULL,
-    PRIMARY KEY (userID, gameID)
+    FOREIGN KEY (user) REFERENCES user(userID),
+    FOREIGN KEY (game) REFERENCES game(gameID),
+    PRIMARY KEY (user, game)
 );

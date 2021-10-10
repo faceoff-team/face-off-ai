@@ -1,11 +1,12 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
-import { About, Game, Home, Login, Profile } from "./screens";
+import { About, Game, Home, Login, Profile, Settings } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { dark } from '@mui/material/styles/createPalette';
 
-const theme = createTheme({
+function App() {
+  const theme = createTheme({
     palette: {
         type: "dark",
         primary: {
@@ -18,9 +19,8 @@ const theme = createTheme({
             contrastText: "#f7f7f7"
         }
     }
-})
+  });
 
-function App() {
   return (
     <div className="App">
         <ThemeProvider theme={theme}>
@@ -29,7 +29,7 @@ function App() {
             <Switch>
                 <Route path="/login" exact component={() => <Login />} />
                 <Route path="/game" exact component={() => <Game />} />
-                <Route path="/settings" exact component={() => <Game />} />
+                <Route path="/settings" exact component={() => <Settings />} />
                 <Route path="/home" exact component={() => <Home />} />
                 <Route path="/about" exact component={() => <About />} />
                 <Route path="/profile" exact component={() => <Profile />} />

@@ -1,7 +1,5 @@
 import React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
+import { Tabs, Tab, Box } from "@mui/material/";
 import Typography from "@mui/material/Typography";
 
 function TabPanel(props) {
@@ -44,7 +42,8 @@ export default function ProfileBody() {
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs 
                 variant="fullWidth" 
-                value={value} 
+                centered
+                value={value}
                 textColor="secondary"
                 indicatorColor="secondary"
                 onChange={handleChange}>

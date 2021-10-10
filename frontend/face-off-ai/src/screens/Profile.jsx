@@ -1,11 +1,14 @@
 import React from "react";
-import Picture from "../assets/joker-picture-1.jpg";
-import Picture2 from "../assets/profile-picture-1.jpg";
-import Picture3 from "../assets/profile-picture-2.jpg";
+
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileBody from "../components/ProfileBody.jsx"
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import SmallProfile from "../components/SmallProfile.jsx";
+
+/* These pictures are placeholders for our presentation */
+import Picture from "../assets/joker-picture-1.jpg";
+import Picture2 from "../assets/profile-picture-1.jpg";
+import Picture3 from "../assets/profile-picture-2.jpg";
 
 function Profile() {
     return (

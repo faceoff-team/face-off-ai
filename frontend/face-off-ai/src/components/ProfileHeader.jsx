@@ -1,20 +1,24 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 
 function ProfileHeader({ username, picture }) {
     return (
-        <div>
+        <Grid container>
+            <Grid item xs={10}>
             <Avatar 
                 variant="circular" 
                 src={picture}
                 style={{ height: '100px', width: '100px' }}
             />
             <h1 class="font-weight-heavy">{username}</h1>
-            <div>
+            <span class="font-small">Howdy yall I'm mr. musterd man</span>
+            </Grid>
+            <Grid item xs={2}>
                 <Button variant="contained" size="small">Edit Profile</Button>
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     );
 }
 

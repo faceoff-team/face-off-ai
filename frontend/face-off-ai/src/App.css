@@ -37,10 +37,10 @@
   justify-content: left;
   position: relative;
   font-weight: bold;
-  background-color: #303134;
+  background-color: #4a4b50;
   border-radius: 1em 1em 1em 1em;
   width: 100%;
-  padding: 3vmin 4vmin 3vmin 4vmin;
+  padding: 1vmin 4vmin 1vmin 4vmin;
   margin: 1vmin;
   transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
 }
@@ -52,7 +52,7 @@
   left: 0;
   right: 0;
   width: 50%;
-  height: 35%;
+  height: 50%;
   margin: auto;
 }
 
@@ -73,11 +73,8 @@
 
 .profile-img-medium {
   cursor: pointer;
-  border-radius: 50%;
   width: 15vmin;
   height: 15vmin;
-  display: "block";
-  float: left;
 }
 
 .basic-container {

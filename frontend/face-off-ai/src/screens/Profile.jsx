@@ -1,5 +1,7 @@
 import React from "react";
 import Picture from "../assets/default-profile-picture.jpg";
+import Picture2 from "../assets/profile-picture-1.jpg"
+import ProfileHeader from "../components/ProfileHeader.jsx";
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import SmallProfile from "../components/SmallProfile.jsx";
 
@@ -10,12 +12,7 @@ function Profile() {
                 <div class="row">
                     <div class="col-8">
                         <div class="basic-container col">
-                            <div class="row">
-                                <img src={Picture} alt="Profile" class="profile-img-medium"></img>
-                            </div>
-                            <div class="row">
-                                <h1 class="font-weight-heavy">username</h1>
-                            </div>
+                            <ProfileHeader picture={Picture2} username="quertyXolsz"/>
                             <HorizontalLine color="#f7f7f7" width="100%" />
                             <div class="row">
                                 Bio: Testing here would be a little bio for someone to put stuff
@@ -37,7 +34,7 @@ function Profile() {
                                     <SmallProfile username="sri29323" picture={Picture}/>
                                 </div>
                                 <div class="row">
-                                    <SmallProfile username="ashtonS" picture={Picture} />
+                                    <SmallProfile username="ashtonS" />
                                 </div>
                                 <div class="row">
                                     <SmallProfile username="lokiFlex23" picture={Picture} />

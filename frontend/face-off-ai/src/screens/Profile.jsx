@@ -1,13 +1,14 @@
 import React from "react";
 import Picture from "../assets/default-profile-picture.jpg";
 import HorizontalLine from "../components/HorizontalLine.jsx";
+import SmallProfile from "../components/SmallProfile.jsx";
 
 function Profile() {
     return (
         <div className="about">
             <div class="container">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-8">
                         <div class="basic-container col">
                             <div class="row">
                                 <img src={Picture} alt="Profile" class="profile-img-medium"></img>
@@ -27,11 +28,25 @@ function Profile() {
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <div class="basic-container">
-                            <h1 class="font-weight-heavy">Friends</h1>
-                            <div>friend profile 1</div>
-                            <div>friend profile 2</div>
+                            <h1 class="font-weight-heavy-small">Friends</h1>
+                            <HorizontalLine color="#f7f7f7" width="100%" />
+                            <div class="column">
+                                <div class="row">
+                                    <SmallProfile username="sri29323" picture={Picture}/>
+                                </div>
+                                <div class="row">
+                                    <SmallProfile username="ashtonS" picture={Picture} />
+                                </div>
+                                <div class="row">
+                                    <SmallProfile username="lokiFlex23" picture={Picture} />
+                                </div>
+                                <div class="row">
+                                    <SmallProfile username="byorne" picture={Picture} />
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

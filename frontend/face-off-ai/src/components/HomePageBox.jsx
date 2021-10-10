@@ -6,8 +6,8 @@ function HomePageBox({url}) {
         <div class="home-page-box">
             <div class="player-wrapper">
                 <ReactPlayer class="react-player"
-                    width={"100%"}
-                    height={"100%"}
+                    width={"auto"}
+                    height={"auto"}
                     className="videoFrame"
                     url={url}
                     light={true}

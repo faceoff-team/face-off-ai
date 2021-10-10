@@ -45,6 +45,8 @@
   font-weight: bold;
 }
 
+/* Begin Small Profile Classes */
+
 .small-profile {
   display: flex;
   justify-content: left;
@@ -83,6 +85,8 @@
   display: "block";
   float: left;
 }
+
+/* End Small Profile classes */
 
 .home-page-box {
   margin: 2vmin;

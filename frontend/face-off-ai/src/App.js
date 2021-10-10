@@ -5,20 +5,27 @@ import { About, Game, Home, Login, Profile, Settings } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { dark } from '@mui/material/styles/createPalette';
 
-const theme = createTheme({
+function App() {
+  const theme = createTheme({
     palette: {
         type: "dark",
+        text: {
+            primary: "#f7f7f7",
+            secondary: "#f7f7f7"
+        },
+
         primary: {
-            main: "#4963ae"
+            main: "#4963ae",
+            contrastText: "#f7f7f7"
         },
 
         secondary: {
-            main: "#4cc0ad"
+            main: "#4cc0ad",
+            contrastText: "#f7f7f7"
         }
     }
-})
+  });
 
-function App() {
   return (
     <div className="App">
         <ThemeProvider theme={theme}>

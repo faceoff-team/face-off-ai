@@ -16,7 +16,7 @@ function ProfileHeader({ username, picture, bio }) {
             <span class="font-small">{bio}</span>
             </Grid>
             <Grid item xs={2}>
-                <Button variant="contained" size="small">Edit Profile</Button>
+                <Button variant="contained" size="small" color="secondary">Edit Profile</Button>
             </Grid>
         </Grid>
     );

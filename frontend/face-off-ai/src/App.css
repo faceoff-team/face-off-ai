@@ -82,7 +82,6 @@
 .home-page-box {
   margin: 2vmin;
   padding: 8vmin;
-  font-weight: bold;
   background-color: #414246;
   border-radius: 0.5em 0.5em 0.5em 0.5em;
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.12);

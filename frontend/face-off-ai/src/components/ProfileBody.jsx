@@ -2,6 +2,8 @@ import React from "react";
 import { Tabs, Tab, Box } from "@mui/material/";
 import Typography from "@mui/material/Typography";
 
+import AccountList from "../components/AccountList.jsx";
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -59,7 +61,7 @@ export default function ProfileBody() {
                 Insert Statistics here
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Insert Friends list here
+                <AccountList />
             </TabPanel>
         </Box>
     );

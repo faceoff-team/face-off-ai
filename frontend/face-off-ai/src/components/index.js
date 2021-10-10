@@ -6,3 +6,4 @@ export { default as ProfileHeader } from "./ProfileHeader.jsx";
 export { default as ProfileBody } from "./ProfileBody.jsx";
 export { default as HomePageBox } from "./HomePageBox.jsx";
 export { default as HomePageGrid } from "./HomePageGrid.jsx";
+export { default as AccountList } from "./AccountList.jsx";

@@ -33,7 +33,7 @@ function App() {
                 <Route path="/profile" exact component={() => <Profile />} />
             </Switch>
             <HorizontalLine color="#f7f7f7" width="85%"/>
-            <Footer />
+            <Footer darkMode={true}/>
       </Router>
       </ThemeProvider>
     </div>

@@ -3,6 +3,8 @@
 .App {
   background-color: #303134;
   color: #f7f7f7;
+  position: relative;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -16,6 +18,12 @@
 
 .App-link:hover  {
   color: #45aa99;
+}
+
+.footerDiv {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .navBar {

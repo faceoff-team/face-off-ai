@@ -14,16 +14,21 @@ var connection = mysql.createConnection({
     database : 'faceoff'
 });
 
-//Connect to the mysql server.
-connection.connect((err) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
+global.connection = connection;
 
-    console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
-    clearInterval();
-});
+//Connect to the mysql server.
+// connection.connect((err) => {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     }
+
+//     console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
+//     clearInterval();
+// });
+
+//Route all api calls to api functions.
+app.all('/api', require('./api/api'));
 
 const REACT = path.join(__dirname, `react`);
 

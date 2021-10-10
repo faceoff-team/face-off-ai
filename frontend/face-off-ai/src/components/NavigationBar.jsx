@@ -1,6 +1,10 @@
 import React from "react";
 import {Link, withRouter} from "react-router-dom";
 import logo from "../assets/faceoff-ai-transparent-green.png";
+import HomeIcon from '@mui/icons-material/Home';
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 function NavigationBar(props) {
     return (
@@ -18,10 +22,9 @@ function NavigationBar(props) {
                                 }`}
                             >
                                 <Link class="nav-link" to="/home">
-                                    <span class="material-icons md-18">
-                                        home
+                                    <HomeIcon>
                                         <span class="sr-only">(current)</span>
-                                    </span>
+                                    </HomeIcon>
                                 </Link>
                             </li>
                             <li
@@ -29,10 +32,9 @@ function NavigationBar(props) {
                                     }`}
                             >
                                 <Link class="nav-link" to="/leaderboards">
-                                    <span class="material-icons md-18">
-                                        leaderboard
+                                    <LeaderboardIcon>
                                         <span class="sr-only">(current)</span>
-                                    </span>
+                                    </LeaderboardIcon>
                                 </Link>
                             </li>
                             <li
@@ -40,10 +42,9 @@ function NavigationBar(props) {
                                     }`}
                             >
                                 <Link class="nav-link" to="/profile">
-                                    <span class="material-icons md-18">
-                                        account_circle
-                                    </span>
-                                    <span class="sr-only">(current)</span>
+                                    <AccountCircleIcon>
+                                        <span class="sr-only">(current)</span>
+                                    </AccountCircleIcon>
                                 </Link>
                             </li>
                             <li
@@ -51,8 +52,9 @@ function NavigationBar(props) {
                                     }`}
                             >
                                 <Link class="nav-link" to="/settings">
-                                    <span class="material-icons md-18">settings</span>
-                                    <span class="sr-only">(current)</span>
+                                    <SettingsIcon>
+                                        <span class="sr-only">(current)</span>
+                                    </SettingsIcon>
                                 </Link>
                             </li>
                         </ul>

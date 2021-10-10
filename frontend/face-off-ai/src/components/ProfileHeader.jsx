@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Avatar from "@material-ui/core/Avatar";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Avatar from "@mui/material/Avatar";
 
 function ProfileHeader({ username, picture, bio }) {
     return (

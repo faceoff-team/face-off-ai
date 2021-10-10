@@ -2,8 +2,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
 import { About, Game, Home, Login, Profile } from "./screens";
-import { createTheme, ThemeProvider } from "@material-ui/core";
-import { dark } from '@material-ui/core/styles/createPalette';
+import { createTheme, ThemeProvider } from "@mui/material";
+import { dark } from '@mui/material/styles/createPalette';
 
 const theme = createTheme({
     palette: {

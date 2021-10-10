@@ -71,12 +71,6 @@
   float: left;
 }
 
-.profile-img-medium {
-  cursor: pointer;
-  width: 15vmin;
-  height: 15vmin;
-}
-
 .basic-container {
   background-color:#414246;
   border-radius: 0.5em 0.5em 0.5em 0.5em;

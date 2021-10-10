@@ -4,14 +4,16 @@ import Avatar from "@material-ui/core/Avatar";
 
 function ProfileHeader({ username, picture }) {
     return (
-        <div class="container">
-            <Avatar class="profile-img-medium"
+        <div>
+            <Avatar 
+                variant="circular" 
                 src={picture}
-                >
-                </Avatar>
-                
+                style={{ height: '100px', width: '100px' }}
+            />
             <h1 class="font-weight-heavy">{username}</h1>
-            <Button variant="contained" size="small">Edit Profile</Button>
+            <div>
+                <Button variant="contained" size="small">Edit Profile</Button>
+            </div>
         </div>
     );
 }

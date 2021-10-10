@@ -1,6 +1,7 @@
 import React from "react";
-import Picture from "../assets/default-profile-picture.jpg";
-import Picture2 from "../assets/profile-picture-1.jpg"
+import Picture from "../assets/joker-picture-1.jpg";
+import Picture2 from "../assets/profile-picture-1.jpg";
+import Picture3 from "../assets/profile-picture-2.jpg";
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import SmallProfile from "../components/SmallProfile.jsx";
@@ -12,7 +13,7 @@ function Profile() {
                 <div class="row">
                     <div class="col-8">
                         <div class="basic-container col">
-                            <ProfileHeader picture={Picture2} username="quertyXolsz"/>
+                            <ProfileHeader username="quertyXolsz" picture={Picture3}/>
                             <HorizontalLine color="#f7f7f7" width="100%" />
                             <div class="row">
                                 Bio: Testing here would be a little bio for someone to put stuff
@@ -31,16 +32,16 @@ function Profile() {
                             <HorizontalLine color="#f7f7f7" width="100%" />
                             <div class="column">
                                 <div class="row">
-                                    <SmallProfile username="sri29323" picture={Picture}/>
+                                    <SmallProfile username="sri29323" picture={Picture} />
                                 </div>
                                 <div class="row">
-                                    <SmallProfile username="ashtonS" />
+                                    <SmallProfile username="ashtonS"  />
                                 </div>
                                 <div class="row">
-                                    <SmallProfile username="lokiFlex23" picture={Picture} />
+                                    <SmallProfile username="lokiFlex23" picture={Picture2} />
                                 </div>
                                 <div class="row">
-                                    <SmallProfile username="byorne" picture={Picture} />
+                                    <SmallProfile username="byorne"/>
                                 </div>
                             </div>
                             

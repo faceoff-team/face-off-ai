@@ -27,3 +27,5 @@
 1. In frontend directory, remove `node_modules` folder if exists
 
 2. In frontend directory, run `yarn install` to get all packages
+
+1. Ensure that Python has been properly installed to get Model functions

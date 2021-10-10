@@ -9,14 +9,9 @@ function Footer(props) {
                     <div class="row">
                         <div class="col-10 text-small">
                             <div>Copyright &copy; FACEOFF AI 2021</div>
-                            <div
-                                class={`nav-item ${props.location.pathname === "/about" ? "active" : ""
-                                    }`}
-                            >
-                                <Link class="" to="/about">About
-                                    <span class="sr-only">(current)</span>
-                                </Link>
-                            </div>
+                            <Link class="App-link" to="/about">About
+                                <span class="sr-only">(current)</span>
+                            </Link>
                         </div>
                         <div class="col-2 text-small">
                             

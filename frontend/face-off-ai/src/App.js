@@ -2,10 +2,26 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
 import { About, Game, Home, Login, Profile } from "./screens";
+import { createTheme, ThemeProvider } from "@material-ui/core";
+import { dark } from '@material-ui/core/styles/createPalette';
+
+const theme = createTheme({
+    palette: {
+        type: "dark",
+        primary: {
+            main: "#4963ae"
+        },
+
+        secondary: {
+            main: "#4cc0ad"
+        }
+    }
+})
 
 function App() {
   return (
     <div className="App">
+        <ThemeProvider theme={theme}>
         <Router>
             <NavigationBar />
             <Switch>
@@ -18,6 +34,7 @@ function App() {
             <HorizontalLine color="#f7f7f7" width="85%"/>
             <Footer />
       </Router>
+      </ThemeProvider>
     </div>
   );
 }

@@ -14,18 +14,9 @@ function Profile() {
                 <div class="row">
                     <div class="col-8">
                         <div class="basic-container col">
-                            <ProfileHeader username="MustardMan900" picture={Picture3}/>
+                            <ProfileHeader username="MustardMan900" picture={Picture3} bio="Howdy yall I'm mr. musterd man"/>
                             <HorizontalLine color="#f7f7f7" width="100%" />
                             <ProfileBody />
-                            <div class="row">
-                                Bio: Testing here would be a little bio for someone to put stuff
-                            </div>
-                            <div class="row">
-                                High Score: 100
-                            </div>
-                            <div class="row">
-                                Following 130 Followers 130
-                            </div>
                         </div>
                     </div>
                     <div class="col-4">

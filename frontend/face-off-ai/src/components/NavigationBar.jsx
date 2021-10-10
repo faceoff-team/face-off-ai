@@ -1,6 +1,6 @@
 import React from "react";
 import {Link, withRouter} from "react-router-dom";
-import logo from "../assets/faceoff-ai-transparent-light-blue.png";
+import logo from "../assets/faceoff-ai-transparent-green.png";
 
 function NavigationBar(props) {
     return (

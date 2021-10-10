@@ -8,7 +8,7 @@ import { dark } from '@mui/material/styles/createPalette';
 function App() {
   const theme = createTheme({
     palette: {
-        type: "dark",
+        type: dark,
         text: {
             primary: "#f7f7f7",
             secondary: "#f7f7f7"

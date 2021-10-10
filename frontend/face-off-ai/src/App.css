@@ -71,6 +71,23 @@
   float: left;
 }
 
+.home-page-box {
+  margin: 2vmin;
+  padding: 8vmin;
+  font-weight: bold;
+  background-color: #414246;
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
+}
+
+.home-page-box:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.12);
+  background-color: #3a3b3f;
+  color: #4cc0ad;
+}
+
 .basic-container {
   background-color:#414246;
   border-radius: 0.5em 0.5em 0.5em 0.5em;

@@ -1,13 +1,13 @@
 import React from "react";
+import HomePageGrid from "../components/HomePageGrid.jsx";
 
 function Home() {
     return (
-        <div className="home">
-            <div class="container">
-                <div class="row">
-                    <p>Home screen</p>
-                </div>
-            </div>
+        <div className="home" class="container">
+            <h1 class="font-weight-heavy">Popular Today</h1>
+            <HomePageGrid />
+            <h1 class="font-weight-heavy">Sad Videos</h1>
+            <HomePageGrid />
         </div>
     );
 }

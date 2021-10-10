@@ -7,7 +7,7 @@ function NavigationBar(props) {
         <div className="navBar">
             <nav class="navbar navbar-expand navbar-dark">
                 <div class="container">
-                    <Link class="navbar-brand" to="/">
+                    <Link class="navbar-brand" to="/home">
                         <img class="small-logo" alt="FACEOFF AI" src={logo}></img>
                     </Link>
                     <div>

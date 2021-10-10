@@ -27,6 +27,7 @@ function App() {
             <Switch>
                 <Route path="/login" exact component={() => <Login />} />
                 <Route path="/game" exact component={() => <Game />} />
+                <Route path="/settings" exact component={() => <Game />} />
                 <Route path="/home" exact component={() => <Home />} />
                 <Route path="/about" exact component={() => <About />} />
                 <Route path="/profile" exact component={() => <Profile />} />

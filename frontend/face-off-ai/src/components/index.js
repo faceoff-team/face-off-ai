@@ -4,3 +4,5 @@ export { default as HorizontalLine } from "./HorizontalLine.jsx";
 export { default as SmallProfile } from "./SmallProfile.jsx";
 export { default as ProfileHeader } from "./ProfileHeader.jsx";
 export { default as ProfileBody } from "./ProfileBody.jsx";
+export { default as HomePageBox } from "./HomePageBox.jsx";
+export { default as HomePageGrid } from "./HomePageGrid.jsx";

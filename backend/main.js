@@ -28,7 +28,7 @@ global.connection = connection;
 // });
 
 //Route all api calls to api functions.
-app.all('/api', require('./api/api'));
+app.use('/api', require('./api/api'));
 
 const REACT = path.join(__dirname, `react`);
 

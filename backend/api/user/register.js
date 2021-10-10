@@ -45,6 +45,7 @@ const validateRegisterBody = (body) => {
 };
 
 const handleRegisterRequest = async (req, res) => {
+    console.log(req.body);
     //Validate the body.
     validateRegisterBody(req.body);
 

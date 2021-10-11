@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS emotion;
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username            VARCHAR(255) NOT NULL,
-    hash                VARCHAR(64) NOT NULL,
+    hash                VARCHAR(128) NOT NULL,
     salt                VARCHAR(64) NOT NULL,
     email               VARCHAR(64),
     image               LONGBLOB,

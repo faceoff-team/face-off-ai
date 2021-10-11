@@ -27,6 +27,9 @@ global.connection = connection;
 //     clearInterval();
 // });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //Route all api calls to api functions.
 app.use('/api', require('./api/api'));
 

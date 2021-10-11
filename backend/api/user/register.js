@@ -63,7 +63,7 @@ const handleRegisterRequest = async (req, res) => {
 
 module.exports = (req, res, next) => {
     try {
-        handleRegisterRequest(req, res);
+        await handleRegisterRequest(req, res);
     } catch (err) {
         next(err);
     }

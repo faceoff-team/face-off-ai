@@ -22,16 +22,16 @@ const validateRegisterBody = (body) => {
     if (body.email.match(/\S+\@+\S+\.+\S/) == null)
         throw new BadRequestError('Email malformed.', 400);
 
-    if (typeof payload.user !== 'string') 
+    if (typeof body.user !== 'string') 
         throw new BadRequestError('User must be of type string.', 400);
 
-    if (payload.user.length === 0) 
+    if (body.user.length === 0) 
         throw new BadRequestError('User must not be an empty string.', 400);
 
-    if (payload.user.match(/^\S*$/) == null) 
+    if (body.user.match(/^\S*$/) == null) 
         throw new BadRequestError('User must not have whitespace.', 400);
 
-    if (payload.user.match(/@/) != null) 
+    if (body.user.match(/@/) != null) 
         throw new BadRequestError('User must not have an \'@\' symbol.', 400)
 
     if (typeof body.password !== 'string')

@@ -13,34 +13,34 @@ const validateRegisterBody = (body) => {
     if (numberOfIdentifiers !== 3) 
         throw new BadRequestError('Unknown Identifier.', 400);
 
-    if (typeof payload.email !== 'string')
+    if (typeof body.email !== 'string')
         throw new BadRequestError('Email must be of type string.', 400);
 
-    if (payload.email.length === 0)
+    if (body.email.length === 0)
         throw new BadRequestError('Email must not be an empty string.', 400);
 
-    if (payload.email.match(/\S+\@+\S+\.+\S/) == null)
+    if (body.email.match(/\S+\@+\S+\.+\S/) == null)
         throw new BadRequestError('Email malformed.', 400);
 
-    if (typeof payload.user !== 'string') 
+    if (typeof body.user !== 'string') 
         throw new BadRequestError('User must be of type string.', 400);
 
-    if (payload.user.length === 0) 
+    if (body.user.length === 0) 
         throw new BadRequestError('User must not be an empty string.', 400);
 
-    if (payload.user.match(/^\S*$/) == null) 
+    if (body.user.match(/^\S*$/) == null) 
         throw new BadRequestError('User must not have whitespace.', 400);
 
-    if (payload.user.match(/@/) != null) 
+    if (body.user.match(/@/) != null) 
         throw new BadRequestError('User must not have an \'@\' symbol.', 400)
 
-    if (typeof payload.password !== 'string')
+    if (typeof body.password !== 'string')
         throw new BadRequestError('Password must be of type string.', 400);
 
-    if (payload.password.length < 8)
+    if (body.password.length < 8)
         throw new BadRequestError('Password must have a length greater than 8 characters.', 400);
 
-    if (payload.password.match(/^\S*$/) == null) 
+    if (body.password.match(/^\S*$/) == null) 
         throw new BadRequestError('Password must not have whitespace.', 400);
 };
 

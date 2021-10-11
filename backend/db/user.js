@@ -20,7 +20,7 @@ const createUser = async (username, email, hash, salt) => {
     try {
     let newUser = await global.connection.query(`
         INSERT INTO user (username, email, hash, salt, worldRank, bestScore) 
-        VALUES (${username}, ${email}, ${hash}, ${salt}, ${-1}, ${-1});`);
+        VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1});`);
     } catch (err) { 
         console.error(err);
     }

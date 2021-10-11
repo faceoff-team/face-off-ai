@@ -17,10 +17,13 @@ const createUser = async (username, email, hash, salt) => {
     console.log(`
     INSERT INTO user (username, email, hash, salt, worldRank, bestScore) 
     VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1});`);
-    
+    try {
     let newUser = await global.connection.query(`
         INSERT INTO user (username, email, hash, salt, worldRank, bestScore) 
         VALUES (${username}, ${email}, ${hash}, ${salt}, ${-1}, ${-1});`);
+    } catch (err) { 
+        console.error(err);
+    }
 };
 
 module.exports = {

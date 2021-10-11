@@ -14,6 +14,10 @@ const getUserByKey = async (key) => {
 };
 
 const createUser = async (username, email, hash, salt) => {
+    console.log(`
+    INSERT INTO user (username, email, hash, salt, worldRank, bestScore) 
+    VALUES (${username}, ${email}, ${hash}, ${salt}, ${-1}, ${-1});`);
+    
     let newUser = await global.connection.query(`
         INSERT INTO user (username, email, hash, salt, worldRank, bestScore) 
         VALUES (${username}, ${email}, ${hash}, ${salt}, ${-1}, ${-1});`);

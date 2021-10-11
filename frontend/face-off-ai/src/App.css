@@ -231,3 +231,21 @@
 .socialMediaButtons {
   padding: 10px 100px 10px 0px;
 }
+
+/* Game CSS */
+
+.gameRow {
+  display: flex;
+}
+
+.gameColumn {
+  flex: 50%;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+/* End Game CSS */

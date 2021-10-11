@@ -16,16 +16,8 @@ var connection = mysql.createConnection({
 
 global.connection = connection;
 
-//Connect to the mysql server.
-// connection.connect((err) => {
-//     if (err) {
-//         console.error(err);
-//         return;
-//     }
-
-//     console.log(`Connected to MySQL as theadID: ${connection.threadId}`);
-//     clearInterval();
-// });
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //Route all api calls to api functions.
 app.use('/api', require('./api/api'));
@@ -36,6 +28,20 @@ app.use(express.static(REACT));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(REACT, "index.html"));
+});
+
+app.use((err, req, res, next) => {
+    if (!err.status) {
+        err.status = 500;
+    }
+
+    //For debugging. All errors end up here.
+    console.log(err);
+
+    res.status(err.status).json({
+        success: false,
+        msg: err.message,
+    });
 });
 
 app.listen(PORT, () => {

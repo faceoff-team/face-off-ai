@@ -4,8 +4,31 @@
  */
 
 const { generatePasswordHash } = require("../../db/auth");
-const { createUser } = require("../../db/user");
+const { createUser, getUserByEmail, getUserbyUsername } = require("../../db/user");
 const BadRequestError = require("../../error/BadRequestError");
+
+/**
+ * Checks if the user parameters already exist in the database.
+ * 
+ * @param {String} username The username to check exists in the database.
+ * @param {String} email The email to check exists in the database.
+ * @returns {Boolean} True if the user exists and false else.
+ */
+
+const checkUserExists = async (username, email) => {
+    let usernameUser = await getUserbyUsername(username); 
+    let emailUser = await getUserByEmail(email);
+
+    return false;
+}
+
+/**
+ * This function validates the body passed to the register api endpoint. This is
+ * to ensure that problems in the request do not work their way into later code
+ * and cause large breaks in the system.
+ * 
+ * @param {Object} body The body to validate.
+ */
 
 const validateRegisterBody = (body) => {
     let numberOfIdentifiers = Object.keys(body).length;
@@ -45,14 +68,18 @@ const validateRegisterBody = (body) => {
 };
 
 const handleRegisterRequest = async (req, res) => {
-    console.log(req.body);
     //Validate the body.
     validateRegisterBody(req.body);
 
-    //TODO check for collisions.
+    //Check to see if the user exists and if it does, throw an error.
+    if (!checkUserExists(req.body.username, req.body.email)) {
+        throw new BadRequestError(`User already exists.`);
+    };
 
+    //Genereate a password hash for the user's password.
     let { hash, salt } = generatePasswordHash(req.body.password);
 
+    //Create the user.
     await createUser(req.body.username, req.body.email, hash, salt);
 
     res.status(200).json({

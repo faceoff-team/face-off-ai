@@ -8,4 +8,6 @@ const router = express.Router();
 
 router.post(`/register`, require('./register.js'));
 
+router.post(`/login`, require('./login.js'));
+
 module.exports = router;

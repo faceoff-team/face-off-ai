@@ -22,9 +22,11 @@ services:
     container_name: faceoff-backend
     command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
     ports: 
-      - 8080:8080
+      - 80:80
+      - 443:443
     volumes:
       - /home/faceoff/.security/:/usr/src/app/auth/keys/
+      - /home/faceoff/https/:/usr/src/app/https/
     depends_on:
       - db
     

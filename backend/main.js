@@ -9,6 +9,8 @@ const mysql = require('mysql2');
 
 const path = require(`path`);
 
+const fs = require('fs');
+
 var connection = mysql.createConnection({
     host     : 'faceoff-db',
     user     : 'faceoff',

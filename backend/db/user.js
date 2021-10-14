@@ -33,6 +33,55 @@ const createUser = async (username, email, hash, salt) => {
                         });
                     });
         });
+        return newUser;
+    } catch (err) { 
+        console.error(err);
+    }
+};
+
+const getUserbyUsername = async (username) => {
+    console.log(`
+    SELECT * FROM user WHERE username == "${username}"`);
+    try {
+        let user = await new Promise((resolve, reject) => {
+                global.connection.query(`
+                SELECT * FROM user WHERE username == "${username}"`, (err, results, fields) => {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+
+                        resolve({
+                            results,
+                            fields,
+                        });
+                    });
+        });
+        return user;
+    } catch (err) { 
+        console.error(err);
+    }
+};
+
+const getUserByEmail = async (email) => {
+    console.log(`
+    SELECT * FROM user WHERE email == "${email}"`);
+    try {
+        let user = await new Promise((resolve, reject) => {
+                global.connection.query(`
+                SELECT * FROM user WHERE email == "${email}"`, (err, results, fields) => {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+
+                        resolve({
+                            results,
+                            fields,
+                        });
+                    });
+        });
+        return user;
     } catch (err) { 
         console.error(err);
     }
@@ -40,5 +89,7 @@ const createUser = async (username, email, hash, salt) => {
 
 module.exports = {
     getUserByKey,
+    getUserbyUsername,
+    getUserByEmail,
     createUser,
 };

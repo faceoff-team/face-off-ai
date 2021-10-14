@@ -8,9 +8,27 @@ const mysql = require('mysql2');
 //connection is defined globally.
 
 const getUserByKey = async (key) => {
-    let user = await global.connection.query(`SELECT * FROM user WHERE userID == ${key};`);
+    console.log(`
+    SELECT * FROM user WHERE userID = "${key}"`);
+    try {
+        let user = await new Promise((resolve, reject) => {
+                global.connection.query(`
+                SELECT * FROM user WHERE userID = "${key}"`, (err, results, fields) => {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
 
-    return user;
+                        resolve({
+                            results,
+                            fields,
+                        });
+                    });
+        });
+        return user.results;
+    } catch (err) { 
+        console.error(err);
+    }
 };
 
 const createUser = async (username, email, hash, salt) => {
@@ -57,7 +75,7 @@ const getUserbyUsername = async (username) => {
                         });
                     });
         });
-        return user;
+        return user.results;
     } catch (err) { 
         console.error(err);
     }
@@ -81,7 +99,7 @@ const getUserByEmail = async (email) => {
                         });
                     });
         });
-        return user;
+        return user.results;
     } catch (err) { 
         console.error(err);
     }

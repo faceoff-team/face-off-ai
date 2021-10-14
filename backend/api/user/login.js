@@ -67,7 +67,7 @@ const handleLoginRequest = async (req, res) => {
     //Validate the login body.
     validateLoginBody(req.body);
 
-    let user = getUser(req.body.user);
+    let user = await getUser(req.body.user);
 
     console.log(user);
 

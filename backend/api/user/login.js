@@ -69,6 +69,8 @@ const handleLoginRequest = async (req, res) => {
 
     let user = getUser(req.body.user);
 
+    console.log(user);
+
     if (!verifyPassword(req.body.password, user.salt, user.hash)) 
         throw new AuthorizationError(`Username or password incorrect.`, 401);
     

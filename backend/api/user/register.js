@@ -72,7 +72,7 @@ const handleRegisterRequest = async (req, res) => {
     validateRegisterBody(req.body);
 
     //Check to see if the user exists and if it does, throw an error.
-    if (!checkUserExists(req.body.username, req.body.email)) {
+    if (!(await checkUserExists(req.body.username, req.body.email))) {
         throw new BadRequestError(`User already exists.`);
     };
 

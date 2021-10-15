@@ -54,6 +54,24 @@
   margin-left: 40vmin;
 }
 
+.small-game {
+  display: flex;
+  justify-content: left;
+  background-color: #4a4b50;
+  border-radius: 1em 1em 1em 1em;
+  width: 100%;
+  padding: 1vmin 4vmin 1vmin 4vmin;
+  margin: 1vmin;
+  transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
+}
+
+.small-game:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.12);
+  background-color: #3a3b3f;
+  color: #4cc0ad;
+}
+
 
 /* Begin Small Profile Classes */
 

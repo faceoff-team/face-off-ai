@@ -58,7 +58,15 @@ export default function ProfileBody() {
                 <GameList username="MustardMan900" title="Past Games"/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Insert Statistics here
+                <div>
+                    High Score: 230203
+                </div>
+                <div>
+                    Low Score: 903
+                </div>
+                <div>
+                    Average Score: 12030
+                </div>
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <AccountList />

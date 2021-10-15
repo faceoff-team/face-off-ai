@@ -32,8 +32,8 @@
 }
 
 .container {
-  margin-left: -10;
-  margin-right: -10;
+  margin-left: -5;
+  margin-right: -5;
 }
 
 .react-player {
@@ -57,12 +57,6 @@
 
 .top-left-box {
   margin-left: 40vmin;
-}
-
-.navbar-align-right {
-  justify-content: right;
-  text-align: right;
-  margin-left: 70vw;
 }
 
 .small-game {

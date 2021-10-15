@@ -18,7 +18,7 @@ const modalStyle = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
 
 //get url and title for parameter and API
 function Game() {

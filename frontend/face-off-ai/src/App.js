@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
-import { About, Game, Home, Login, Profile, Settings } from "./screens";
+import { About, Game, Home, Login, Profile, Settings, Leaderboard } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { dark } from '@mui/material/styles/createPalette';
 
@@ -39,6 +39,7 @@ function App() {
                     <Route path="/home" exact component={() => <Home />} />
                     <Route path="/about" exact component={() => <About />} />
                     <Route path="/profile" exact component={() => <Profile />} />
+                    <Route path="/leaderboards" exact component ={() => <Leaderboard />} />
                 </Switch>
             </div>
             <div className="footerDiv">

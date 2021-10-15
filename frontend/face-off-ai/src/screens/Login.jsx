@@ -37,33 +37,41 @@ class Login extends Component {
       <div className="formCenter">
         <form className="formFields" onSubmit={this.handleSubmit}>
           <div className="formField">
-            <label className="formFieldLabel" htmlFor="email">
-              E-Mail Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="formFieldInput"
-              placeholder="Enter your email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
+            <div className="labelWrapper">
+              <label className="formFieldLabel" htmlFor="email">
+                E-Mail Address
+              </label>
+            </div>
+            <div className="inputWrapper">
+              <input
+                type="email"
+                id="email"
+                className="formFieldInput"
+                placeholder="Enter your email"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
 
           <div className="formField">
-            <label className="formFieldLabel" htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="formFieldInput"
-              placeholder="Enter your password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
+            <div className="labelWrapper">
+              <label className="formFieldLabel" htmlFor="password">
+                Password
+              </label>
+            </div>
+            <div className="inputWrapper">
+              <input
+                type="password"
+                id="password"
+                className="formFieldInput"
+                placeholder="Enter your password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
 
           <div className="formField">

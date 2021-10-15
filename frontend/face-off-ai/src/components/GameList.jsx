@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 function GameList({ title, username }) {
     return (
         <div>
+            
             <h1 class="font-weight-heavy-small">{username}'s {title}</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
             <div class="column">

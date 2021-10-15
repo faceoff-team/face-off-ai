@@ -2,7 +2,7 @@ import React from "react";
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Box from "@mui/material/Box";
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 
 
@@ -15,7 +15,7 @@ function ResultIcon(props) {
         return (    
                 <Grid>
                     <span> Result: {winner}</span>
-                    <ControlPointIcon style={{ color: "#358679", marginLeft: "5px" }} />
+                    <AddBoxIcon style={{ color: "#358679", marginLeft: "5px" }} />
                 </Grid>
         );
     } else {
@@ -41,7 +41,7 @@ function SmallGame({ date, gamehighscore, result }) {
                         <Box 
                             sx={{
                                 display: 'flex',
-                                borderRight: '0.1em solid white',
+                                borderRight: '0.05em solid #303134',
                                 marginRight: '10px',
                                 marginLeft: '10px'
                             }}
@@ -54,7 +54,7 @@ function SmallGame({ date, gamehighscore, result }) {
                         <Box
                             sx={{
                                 display: 'flex',
-                                borderRight: '0.1em solid white',
+                                borderRight: '0.05em solid #303134',
                                 marginRight: '10px',
                                 marginLeft: '10px'
                             }}

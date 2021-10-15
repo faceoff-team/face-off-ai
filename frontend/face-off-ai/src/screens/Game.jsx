@@ -49,10 +49,10 @@ function Game() {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Are you sure you want to Quit?
                 </Typography>
-                <Button size="medium" onClick={redirect}>
+                <Button size="medium" color="secondary" onClick={redirect}>
                     YES!!
                 </Button>
-                <Button size="medium" onClick={handleClose}>
+                <Button size="medium" color="secondary" onClick={handleClose}>
                     NO :)
                 </Button>
                 </Box>

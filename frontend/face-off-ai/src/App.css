@@ -31,6 +31,11 @@
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
 
+.container {
+  margin-left: -10;
+  margin-right: -10;
+}
+
 .react-player {
   padding-top: 56.25%;
   position: relative;
@@ -52,6 +57,12 @@
 
 .top-left-box {
   margin-left: 40vmin;
+}
+
+.navbar-align-right {
+  justify-content: right;
+  text-align: right;
+  margin-left: 70vw;
 }
 
 .small-game {

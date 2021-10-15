@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
 import { About, Game, Home, Login, Profile, Settings, Leaderboard } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
@@ -33,6 +33,9 @@ function App() {
             <NavigationBar />
             <div style={{paddingBottom: "129px"}}>
                 <Switch>
+                    <Route exact path="/">
+                        <Redirect to="/home" />
+                    </Route>
                     <Route path="/login" exact component={() => <Login />} />
                     <Route path="/game" exact component={() => <Game />} />
                     <Route path="/settings" exact component={() => <Settings />} />

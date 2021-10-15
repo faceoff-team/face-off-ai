@@ -13,7 +13,11 @@ import Picture3 from "../assets/profile-picture-2.jpg";
 function Profile() {
     return (
         <div className="Profile" class="container">
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} align-items="center">
+            <Grid container 
+                spacing={{ xs: 2, md: 3 }} 
+                columns={{ xs: 4, sm: 8, md: 12 }}
+                align-items="center"
+            >
                 <Grid item xs={4} sm={6} md={8}>
                     <div class="basic-container col">
                         <ProfileHeader username="MustardMan900" picture={Picture3} bio="Howdy yall I'm mr. musterd man"/>
@@ -27,7 +31,7 @@ function Profile() {
                     xs={2}
                     sm={3}
                     md={4}
-                    display={{ xs: "none", sm: "block", md: "block" }}
+                    visibility={{ xs: "hidden", sm: "visible", md: "visible" }}
                 >
                     <div>
                         <div class="basic-container">

@@ -45,12 +45,21 @@
   font-weight: bold;
 }
 
+.edit-profile-box {
+  float: right;
+  text-align: right;
+}
+
+.top-left-box {
+  margin-left: 40vmin;
+}
+
+
 /* Begin Small Profile Classes */
 
 .small-profile {
   display: flex;
   justify-content: left;
-  position: relative;
   font-weight: bold;
   background-color: #4a4b50;
   border-radius: 1em 1em 1em 1em;
@@ -60,16 +69,6 @@
   transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
 }
 
-.small-profile-text {
-  display: block;
-  margin-left: 10px;
-  margin-top: auto;
-  margin-right: auto;
-  margin-bottom: auto;
-  width: 50%;
-  height: 50%;
-}
-
 .small-profile:hover {
   cursor: pointer;
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.12);
@@ -77,12 +76,14 @@
   color: #4cc0ad;
 }
 
-.profile-img-small {
-  border-radius: 50%;
-  width: 7vmin;
-  height: 7vmin;
-  display: "block";
-  float: left;
+.small-profile-text {
+  display: block;
+  margin-left: 5px;
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  width: 50%;
+  height: 50%;
 }
 
 /* End Small Profile classes */
@@ -230,12 +231,6 @@
 
 .socialMediaButtons {
   padding: 10px 100px 10px 0px;
-}
-
-@media screen and (max-width: 700px) {
-  .display-option {
-    display: none;
-  }
 }
 
 /* Game CSS */

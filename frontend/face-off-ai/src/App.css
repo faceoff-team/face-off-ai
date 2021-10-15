@@ -45,12 +45,39 @@
   font-weight: bold;
 }
 
+.edit-profile-box {
+  float: right;
+  text-align: right;
+}
+
+.top-left-box {
+  margin-left: 40vmin;
+}
+
+.small-game {
+  display: flex;
+  justify-content: left;
+  background-color: #4a4b50;
+  border-radius: 1em 1em 1em 1em;
+  width: 100%;
+  padding: 1vmin 4vmin 1vmin 4vmin;
+  margin: 1vmin;
+  transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
+}
+
+.small-game:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.12);
+  background-color: #3a3b3f;
+  color: #4cc0ad;
+}
+
+
 /* Begin Small Profile Classes */
 
 .small-profile {
   display: flex;
   justify-content: left;
-  position: relative;
   font-weight: bold;
   background-color: #4a4b50;
   border-radius: 1em 1em 1em 1em;
@@ -60,17 +87,6 @@
   transition: box-shadow 0.25s, background-color 0.25s, color 0.25s;
 }
 
-.small-profile-text {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 50%;
-  height: 50%;
-  margin: auto;
-}
-
 .small-profile:hover {
   cursor: pointer;
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.12);
@@ -78,12 +94,14 @@
   color: #4cc0ad;
 }
 
-.profile-img-small {
-  border-radius: 50%;
-  width: 7vmin;
-  height: 7vmin;
-  display: "block";
-  float: left;
+.small-profile-text {
+  display: block;
+  margin-left: 5px;
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  width: 50%;
+  height: 50%;
 }
 
 /* End Small Profile classes */
@@ -127,6 +145,7 @@
 .font-weight-heavy {
   font-family: 'Montserrat', sans-serif;
   text-align: left;
+  font-size: 5vmin;
 }
 
 .font-weight-heavy-small {
@@ -251,6 +270,7 @@
   .column {
     width: 100%;
   }
+  
 }
 
 /* End Game CSS */

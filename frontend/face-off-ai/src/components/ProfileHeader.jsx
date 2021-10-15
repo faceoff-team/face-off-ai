@@ -5,8 +5,8 @@ import Avatar from "@mui/material/Avatar";
 
 function ProfileHeader({ username, picture, bio }) {
     return (
-        <Grid container>
-            <Grid item xs={10}>
+        <Grid container row>
+            <Grid>
             <Avatar 
                 variant="circular" 
                 src={picture}
@@ -15,8 +15,12 @@ function ProfileHeader({ username, picture, bio }) {
             <h1 class="font-weight-heavy">{username}</h1>
             <span class="font-small">{bio}</span>
             </Grid>
-            <Grid item xs={2}>
-                <Button variant="contained" size="small" color="secondary">Edit Profile</Button>
+            <Grid alignItems="right">
+                <div class="edit-profile-box">
+                    <div class="top-left-box">
+                        <Button variant="contained" size="small" color="secondary">Edit Profile</Button>
+                    </div>
+                </div>
             </Grid>
         </Grid>
     );

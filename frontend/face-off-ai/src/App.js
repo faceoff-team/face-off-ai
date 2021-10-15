@@ -5,6 +5,36 @@ import { About, Game, Home, Login, Profile, Settings } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { dark } from '@mui/material/styles/createPalette';
 
+import { Provider } from 'react-redux';
+import store from './store';
+import { createStore } from "redux";
+
+const initialState = {
+    count: 42,
+};
+
+function reducer(state = initialState, action) {
+    
+    switch(action.type) {
+        case "LOGIN":
+            return {
+                count: state.count + 1,
+            };
+        case "DECREMENT":
+            return {
+                count: state.count - 1,
+            };
+        default:
+            return state;
+    }
+
+    return state;
+}
+
+const store = createStore(reducer);
+
+store.dispatch({ type: "LOGIN" });
+
 function App() {
   const theme = createTheme({
     palette: {
@@ -27,7 +57,8 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <Provider store={store}>
+     <div className="App">
         <ThemeProvider theme={theme}>
         <Router>
             <NavigationBar />
@@ -47,7 +78,8 @@ function App() {
             </div>
       </Router>
       </ThemeProvider>
-    </div>
+     </div>
+    </Provider>
   );
 }
 

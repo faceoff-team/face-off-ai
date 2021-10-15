@@ -7,33 +7,6 @@ import { dark } from '@mui/material/styles/createPalette';
 
 import { Provider } from 'react-redux';
 import store from './store';
-import { createStore } from "redux";
-
-const initialState = {
-    count: 42,
-};
-
-function reducer(state = initialState, action) {
-    
-    switch(action.type) {
-        case "LOGIN":
-            return {
-                count: state.count + 1,
-            };
-        case "DECREMENT":
-            return {
-                count: state.count - 1,
-            };
-        default:
-            return state;
-    }
-
-    return state;
-}
-
-const store = createStore(reducer);
-
-store.dispatch({ type: "LOGIN" });
 
 function App() {
   const theme = createTheme({

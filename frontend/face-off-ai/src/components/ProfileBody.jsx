@@ -3,6 +3,7 @@ import { Tabs, Tab, Box } from "@mui/material/";
 import Typography from "@mui/material/Typography";
 
 import AccountList from "../components/AccountList.jsx";
+import GameList from "../components/GameList.jsx";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -54,10 +55,18 @@ export default function ProfileBody() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                Insert Past Games here
+                <GameList username="MustardMan900" title="Past Games"/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Insert Statistics here
+                <div>
+                    High Score: 230203
+                </div>
+                <div>
+                    Low Score: 903
+                </div>
+                <div>
+                    Average Score: 12030
+                </div>
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <AccountList />

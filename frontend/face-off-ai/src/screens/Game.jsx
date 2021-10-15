@@ -18,7 +18,7 @@ const modalStyle = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
 
 //get url and title for parameter and API
 function Game() {
@@ -49,10 +49,10 @@ function Game() {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Are you sure you want to Quit?
                 </Typography>
-                <Button size="medium" onClick={redirect}>
+                <Button size="medium" color="secondary" onClick={redirect}>
                     YES!!
                 </Button>
-                <Button size="medium" onClick={handleClose}>
+                <Button size="medium" color="secondary" onClick={handleClose}>
                     NO :)
                 </Button>
                 </Box>
@@ -85,6 +85,7 @@ function Game() {
                         width='300'
                         height='200'
                         audio
+                        mirrored
                     />
                 </div>
             </div>

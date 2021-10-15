@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 //Trying to add button functionality to each HomePageBox
 import { useHistory } from 'react-router-dom';
 
-function HomePageGrid() {
+function HomePageGrid({url}) {
 
     let history = useHistory();
 
@@ -17,7 +17,7 @@ function HomePageGrid() {
         <Grid container Spacing={10} columns={{ xs: 4, sm: 8, md: 12 }}>
             {Array.from(Array(6)).map((_, index) => (
                 <Grid item xs={2} sm={4} md={4} key={index}>
-                    <HomePageBox url="https://www.youtube.com/watch?v=YqaacQc6sho"/>
+                    <HomePageBox url={url}/>
                 </Grid>
             ))}
         </Grid>

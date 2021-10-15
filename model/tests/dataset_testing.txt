@@ -1,0 +1,22 @@
+Dataset tests: Manual Testing:
+
+Test 1 (AC 2,3):
+input: Dataset
+Expected output: Image count
+Procedure:
+1. Enter the directory model/modified_data/train
+2. Observe the folders of data. If there are any stray images outside of the
+image classes (folders), then fail. Furthermore, if the train folder has no
+organized image class lists at all, then fail.
+
+Test 2 (AC 5):
+input: Dataset
+Expected output: A reasonable distribution of race and gender amongst images
+Procedure:
+1. Enter the directory model/modified_data/train. You may also enter model/data/train if you like,
+as it can be more difficult to observe the resized/modified images for gender/race.
+2. Choose 10 (100 for a more robust test) images at random from the set.
+3. Observe the race of each image as best as possible. If 80% of the images are the same race, then
+Fail.
+4. Observe the gender of each image as best as possible. If 80% of the images are the same gender, then
+Fail.

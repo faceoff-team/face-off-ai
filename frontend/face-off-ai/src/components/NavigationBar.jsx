@@ -8,9 +8,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 function NavigationBar(props) {
     return (
-        <div className="navBar">
-            <nav class="navbar navbar-expand navbar-dark">
-                <div class="container">
+            <div className="navBar">
+                <nav class="navbar navbar-expand navbar-dark">
+                    <div class="container">
                     <Link class="navbar-brand" to="/home">
                         <img class="small-logo" alt="FACEOFF AI" src={logo}></img>
                     </Link>
@@ -60,8 +60,9 @@ function NavigationBar(props) {
                         </ul>
                     </div>
                 </div>
-            </nav>
-        </div>
+                </nav>
+            </div>
+        
     );
 }
 

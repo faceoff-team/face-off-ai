@@ -1,0 +1,24 @@
+Facial Recognition Tests: Manual (covers AC 3-5)
+
+Input: Webcam data including a face
+
+Test 1 (AC 3, 5):
+Expected output: a square bounding box around a human face
+Procedure:
+1. Navigate to face-off-ai home directory
+2. Run pipenv run python facial_recognition/facial_recognition.py
+3. When video loads, observe bounding boxes around faces (if there is no bounding box, fail)
+4. Move face back and forth across screen, never allowing any part of the face to Move
+off of the screen (if a bounding box drops, fail).
+5. Move face off of screen. Bounding box should disappear (if box persists, fail)
+
+
+Test 2 (AC 2):
+Expected output: real-time ML labels on emotion
+Procedure:
+1. Navigate to face-off-ai home directory
+2. Run pipenv run python facial_recognition/facial_recognition.py
+3. When video loads, observe real-time labels appearing in the terminal.
+4. Change facial expressions from happy to sad to ensure that labels change
+accordingly (if no labels change, fail.)
+5. Start a clock and time delta between labels being processed (if > 1 second, fail.)

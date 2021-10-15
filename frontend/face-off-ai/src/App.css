@@ -61,14 +61,13 @@
 }
 
 .small-profile-text {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  display: block;
+  margin-left: 10px;
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
   width: 50%;
   height: 50%;
-  margin: auto;
 }
 
 .small-profile:hover {

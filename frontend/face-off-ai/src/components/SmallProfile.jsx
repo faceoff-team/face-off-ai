@@ -6,7 +6,7 @@ function SmallProfile({ username, picture }) {
         <div class="small-profile">
             <div class="column">
                 <div class="row">
-                    <Avatar 
+                    <Avatar
                         src={picture}
                         sx={{ bgcolor: "#23430" }}>
                     </Avatar>

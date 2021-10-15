@@ -4,14 +4,15 @@ import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileBody from "../components/ProfileBody.jsx"
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import AccountList from "../components/AccountList.jsx";
+import Grid from '@mui/material/Grid';
 
 /* This picture is a placeholder for our presentation */
 import Picture3 from "../assets/profile-picture-2.jpg";
 
 function Profile() {
     return (
-        <div className="about">
-            <div class="container">
+        <div className="Profile">
+            <Grid class="container">
                 <div class="row">
                     <div class="col-8">
                         <div class="basic-container col">
@@ -26,7 +27,7 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Grid>
         </div>
     );
 }

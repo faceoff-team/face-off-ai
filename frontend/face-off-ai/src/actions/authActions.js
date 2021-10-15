@@ -30,17 +30,21 @@ export const loadUser = async (dispatch, getState) => {
     }
 };
 
-export const login = async (dispatch, getState) => {
-    if (getState().isAuthenticated) {
-        console.log("user already logged in.");
-        return;
-    }
-
+export const login = async (user, password) => (dispatch) => {
     dispatch({ type: LOGOUT });
 
     try {
-        let res = await http.post('/api/user/login', )
+        let res = await http.post('/api/user/login', {
+            user,
+            password,
+        });
+
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data.token,
+        });
     } catch (err) {
         console.error(err);
+        dispatch({ type: LOGIN_FAIL });
     }
 };

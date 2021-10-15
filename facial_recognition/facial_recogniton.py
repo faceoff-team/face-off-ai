@@ -43,7 +43,7 @@ def image_landmarks(image, landmarks):
 if __name__ == "__main__":
     video = cv2.VideoCapture(0)
     face_locations = []
-    model = tensorflow.keras.models.load_model('/Users/dommiller88/Documents/GitHub/face-off-ai/model/models/modelv6.h5')
+    model = tensorflow.keras.models.load_model('/Users/dommiller88/Documents/GitHub/face-off-ai/model/binaries/modelv6.h5')
     face_detect = dlib.get_frontal_face_detector()
     landmark_predict = dlib.shape_predictor('/Users/dommiller88/Documents/GitHub/face-off-ai/model/scripts/shape_predictor_68_face_landmarks.dat')
     emotions = {
@@ -66,7 +66,7 @@ if __name__ == "__main__":
             y2 = face_rect.top()
             image = cv2.rectangle(frame, (x1, y2), (x2, y1), (0, 0, 255), 2)
             # image = cv2.resize(image, (128, 128))
-            cv2.imshow('Video', frame)
+            # cv2.imshow('Video', frame)
             image, landmarks = get_landmarks(image)
             if image is not None:
                 image_copy = image_landmarks(image, landmarks)
@@ -81,8 +81,11 @@ if __name__ == "__main__":
                 print(prob)
                 label = prob.argmax(axis=1)
                 print(emotions[label[0]])
+                frame = cv2.putText(frame, emotions[label[0]], (x1, y2-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36,255,12), 2)
             else:
                 print('found nothing\n')
+        frame = cv2.cvtColor(frame, cv2.COLOR_GRAY2BGR)
+        cv2.imshow('Video', frame)
         if cv2.waitKey(1) % 0xFF == ord('q'):
             break
 

@@ -126,6 +126,7 @@
 .font-weight-heavy {
   font-family: 'Montserrat', sans-serif;
   text-align: left;
+  font-size: 5vmin;
 }
 
 .font-weight-heavy-small {

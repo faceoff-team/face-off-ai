@@ -11,22 +11,22 @@ import Picture3 from "../assets/profile-picture-2.jpg";
 
 function Profile() {
     return (
-        <div className="Profile">
-            <Grid class="container">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="basic-container col">
-                            <ProfileHeader username="MustardMan900" picture={Picture3} bio="Howdy yall I'm mr. musterd man"/>
-                            <HorizontalLine color="#f7f7f7" width="100%" />
-                            <ProfileBody />
-                        </div>
+        <div className="Profile" class="container">
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                <Grid item xs={4} sm={6} md={8}>
+                    <div class="basic-container col">
+                        <ProfileHeader username="MustardMan900" picture={Picture3} bio="Howdy yall I'm mr. musterd man"/>
+                        <HorizontalLine color="#f7f7f7" width="100%" />
+                        <ProfileBody />
                     </div>
-                    <div class="col-4">
+                </Grid>
+                <Grid item xs={2} sm={4} md={4}>
+                    <div>
                         <div class="basic-container">
-                            <AccountList title="You might know"/>
+                            <AccountList title="You might know" />
                         </div>
                     </div>
-                </div>
+                </Grid>
             </Grid>
         </div>
     );

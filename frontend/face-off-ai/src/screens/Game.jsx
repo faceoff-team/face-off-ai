@@ -85,6 +85,7 @@ function Game() {
                         width='300'
                         height='200'
                         audio
+                        mirrored
                     />
                 </div>
             </div>

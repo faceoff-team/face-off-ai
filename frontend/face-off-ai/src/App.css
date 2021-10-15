@@ -242,6 +242,11 @@
   flex: 50%;
 }
 
+.labelWrapper, .inputWrapper {
+  display: flex;
+  align-items: center;
+}
+
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;

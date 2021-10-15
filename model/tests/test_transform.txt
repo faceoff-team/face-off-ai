@@ -10,3 +10,5 @@ Procedure:
 3. Run command "pipenv run python model/scripts/transform.py --src <full_path_to_source_dir> --dst <full_path_to_destination_dir>"
 4. Observe each file in the destination folder. Each folder should be cropped, resized, and covered in facial landmarks. No
 undesirable images should be in the destination folder.
+
+NOTE: This test also fulfills AC 4 for story 37, as it shows that inanimate objects will be discluded from the dataset used for testing.

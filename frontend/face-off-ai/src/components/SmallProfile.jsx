@@ -10,7 +10,7 @@ function SmallProfile({ username, picture }) {
                         src={picture}
                         sx={{ bgcolor: "#23430" }}>
                     </Avatar>
-                    <span class="small-profile-text">{username}</span>
+                    <div class="small-profile-text">{username}</div>
                 </div>
             </div>
         </div>

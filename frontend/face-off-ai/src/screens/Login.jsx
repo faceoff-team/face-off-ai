@@ -1,6 +1,8 @@
 import { React, Component } from 'react'
 import { Link } from "react-router-dom";
 import { FacebookLoginButton, InstagramLoginButton } from "react-social-login-buttons";
+import { connect } from 'react-redux'; 
+import { login } from '../actions/authActions';
 
 class Login extends Component {
   constructor() {
@@ -30,6 +32,10 @@ class Login extends Component {
 
     console.log("The form was submitted with the following data:");
     console.log(this.state);
+
+    const { email, password } = this.state;
+
+    this.props.login(this.state.email, this.state.password);
   }
 
   render() {
@@ -96,7 +102,14 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(
+  mapStateToProps,
+  { login } 
+)(Login);
 
 /*import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@mui/material'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';

@@ -19,7 +19,7 @@ export const loadUser = async (dispatch, getState) => {
     const token = getState().auth.token;
 
     try {
-        let res = await http.get('/api/user/profile', config);
+        let res = await http.get('/api/user/profile');
 
         dispatch({ 
             type: USER_LOADED,
@@ -30,18 +30,24 @@ export const loadUser = async (dispatch, getState) => {
     }
 };
 
-export const login = async (user, password) => (dispatch) => {
-    dispatch({ type: LOGOUT });
+export const login = (user, password) => async (dispatch) => {
+    dispatch({ type: LOGOUT_SUCCESS });
 
     try {
+        console.log('asking server.');
         let res = await http.post('/api/user/login', {
             user,
             password,
         });
 
+        console.log(res);
+
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: res.data.token,
+            payload: {
+                token: res.data.token,
+                user: null,
+            },
         });
     } catch (err) {
         console.error(err);

@@ -55,12 +55,6 @@ function Game() {
                 <Button size="medium" color="secondary" onClick={handleClose}>
                     NO :)
                 </Button>
-                <Button size="medium" color="secondary" onClick={redirect}>
-                    YES!!
-                </Button>
-                <Button size="medium" color="secondary" onClick={handleClose}>
-                    NO :)
-                </Button>
                 </Box>
             </Modal>
             <div class="backButtonContainer" style={{marginTop: "20px"}}>
@@ -90,6 +84,22 @@ function Game() {
                     <Webcam
                         width='300'
                         height='200'
+                        audio
+                        mirrored
+                    />
+                </div>
+                <div className="game" class="gameColumn">
+                    <Webcam
+                        width='500'
+                        height='200'
+                        audio
+                        mirrored
+                    />
+                </div>
+                <div className="game" class="gameColumn">
+                    <Webcam
+                        width='300'
+                        height='300'
                         audio
                         mirrored
                     />

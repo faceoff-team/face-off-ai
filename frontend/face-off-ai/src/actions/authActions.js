@@ -54,3 +54,26 @@ export const login = (user, password) => async (dispatch) => {
         dispatch({ type: LOGIN_FAIL });
     }
 };
+
+export const register = (username, password, email) => async (dispatch) => {
+    dispatch({ type: LOGOUT_SUCCESS});
+
+    try {
+        let res = await http.post('/api/user/register', {
+            username,
+            password,
+            email,
+        });
+
+        dispatch({
+            type: REGISTER_SUCCESS,
+            payload: {
+                token: res.data.token,
+                user: null,
+            }
+        });
+    } catch (err) {
+        console.log(err);
+        dispatch({ type: REGISTER_FAIL });
+    }
+}

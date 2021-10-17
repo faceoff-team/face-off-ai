@@ -55,6 +55,12 @@ function Game() {
                 <Button size="medium" color="secondary" onClick={handleClose}>
                     NO :)
                 </Button>
+                <Button size="medium" color="secondary" onClick={redirect}>
+                    YES!!
+                </Button>
+                <Button size="medium" color="secondary" onClick={handleClose}>
+                    NO :)
+                </Button>
                 </Box>
             </Modal>
             <div class="backButtonContainer" style={{marginTop: "20px"}}>

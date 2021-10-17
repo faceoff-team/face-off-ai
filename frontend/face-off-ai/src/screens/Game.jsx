@@ -34,6 +34,14 @@ function Game() {
       history.push('/home')
     }
 
+    const neutralizeBack = (callback) => {
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = () => {
+          window.history.pushState(null, "", window.location.href);
+          callback();
+        };
+      };
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -84,22 +92,6 @@ function Game() {
                     <Webcam
                         width='300'
                         height='200'
-                        audio
-                        mirrored
-                    />
-                </div>
-                <div className="game" class="gameColumn">
-                    <Webcam
-                        width='500'
-                        height='200'
-                        audio
-                        mirrored
-                    />
-                </div>
-                <div className="game" class="gameColumn">
-                    <Webcam
-                        width='300'
-                        height='300'
                         audio
                         mirrored
                     />

@@ -42,7 +42,7 @@ class Register extends Component {
 
     const { email, password, username } = this.state;
 
-    //this.props.register(this.state.email, this.state.password);
+    this.props.register(username, password, email);
   }
 
   render() {

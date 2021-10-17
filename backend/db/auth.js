@@ -95,5 +95,5 @@ module.exports = {
     verifyJWT,
     generatePasswordHash,
     verifyPassword,
-
+    authenticate,
 };

@@ -13,20 +13,20 @@ function LeaderboardList({ title }) {
         <div>
             <h1 class="font-weight-heavy-small">{title}</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
-            <div class="column">
-                <div class="row">
+            <Grid container columns={1}>
+                <Grid item xs={8} >
                     <LeaderboardListing position="1" highscore="239299" username="xXbilbo_swagginsXx" />
-                </div>
-                <div class="row">
+                </Grid>
+                <Grid item xs={8}>
                     <LeaderboardListing position="2" highscore="220030" username="tinguspingus" />
-                </div>
-                <div class="row">
-                    <LeaderboardListing position="3"/>
-                </div>
-                <div class="row">
-                    <LeaderboardListing position="4" />
-                </div>
-            </div>
+                </Grid>
+                <Grid item xs={8}>
+                    <LeaderboardListing position="3" highscore="220029" username="Asowwru"/>
+                </Grid>
+                <Grid item xs={8}>
+                    <LeaderboardListing position="4" highscore="203000" username="AbandonedEgg" />
+                </Grid>
+            </Grid>
         </div>
     );
 }

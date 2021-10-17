@@ -1,25 +1,48 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
+import Box from "@mui/material/Box";
 
-function LeaderboardListing({ username, picture, highScore, position}) {
+function LeaderboardListing({ username, picture, highscore, position}) {
     return (
         <div class="small-profile">
             <div class="row">
                 <Grid container>
-                    <Grid class="small-profile-text">
-                        <span class="small-profile-text">{position}</span>
+                    <Grid>
+                        <div>{position}</div>
                     </Grid>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            borderRight: '0.05em solid #303134',
+                            marginRight: '10px',
+                            marginLeft: '10px'
+                        }}
+                    >
+                        <Divider orientation="vertical" flexItem />
+                    </Box>
+                    <Grid >
+                        <span>{highscore}</span>
+                    </Grid>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            borderRight: '0.05em solid #303134',
+                            marginRight: '10px',
+                            marginLeft: '10px'
+                        }}
+                    >
+                        <Divider orientation="vertical" flexItem />
+                    </Box>
                     <Grid>
                         <Avatar
                             src={picture}
-                            sx={{ bgcolor: "#23430" }}>
+                            sx={{ bgcolor: "#23430", marginRight: "20px" }}>
+                            
                         </Avatar>
                     </Grid>
                     <Grid>
-                        <div>{highScore}</div>
-                    </Grid>
-                    <Grid class="small-profile-text">
                         <div class="small-profile-text">{username}</div>
                     </Grid>
                 </Grid>

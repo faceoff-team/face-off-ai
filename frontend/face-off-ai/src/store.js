@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 //Make http accessable throughout app.
-const http = require('axios');
+export const http = require('axios');
 
 http.defaults.headers.post['Content-Type'] = 'application/json';
  
@@ -13,8 +13,7 @@ const middleware = [thunk];
 
 const store = createStore(rootReducer, initialState, compose(
     applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENTION__ && window.__REDUX_DEVTOOLS_EXTENTION__()
+    window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 
 export default store;
-export default http;

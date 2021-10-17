@@ -3,7 +3,7 @@
  * 10/9/21
  */
 
-const { generatePasswordHash } = require("../../db/auth");
+const { generatePasswordHash, issueJWT } = require("../../db/auth");
 const { createUser, getUserByEmail, getUserbyUsername } = require("../../db/user");
 const BadRequestError = require("../../error/BadRequestError");
 
@@ -86,9 +86,14 @@ const handleRegisterRequest = async (req, res) => {
     //Create the user.
     await createUser(req.body.username, req.body.email, hash, salt);
 
+    let user = await getUserByEmail(req.body.email);
+
+    let token = issueJWT(user.userID);
+
     res.status(200).json({
         success: true,
         msg: `User created.`,
+        token,
     });
 };
 

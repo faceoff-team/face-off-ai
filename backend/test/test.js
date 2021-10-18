@@ -9,7 +9,7 @@ const mocha = require('mocha');
 const { expect } = require('chai');
 const request = require('supertest');
 
-const app = require("../main.js");
+const app = require("./main.js");
 
 /**
  * @param {String} should is a message that is displayed in the console.

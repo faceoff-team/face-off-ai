@@ -22,7 +22,7 @@ function Profile() {
                     <div class="basic-container col">
                         <ProfileHeader username="MustardMan900" picture={Picture3} bio="Howdy yall I'm mr. musterd man"/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
-                        <ProfileBody />
+                        <ProfileBody username="MustardMan900" />
                     </div>
                 </Grid>
                 <Box

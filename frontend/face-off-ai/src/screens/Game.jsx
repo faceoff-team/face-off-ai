@@ -53,7 +53,7 @@ function Game() {
     };
     const handleClose = () => {
         setOpen(false);
-        this.setState(revivalBacky);
+        this.setState(revivalBack);
     };
 
     return (

@@ -1,5 +1,5 @@
 import { React, Component } from 'react'
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { FacebookLoginButton, InstagramLoginButton } from "react-social-login-buttons";
 import { connect } from 'react-redux'; 
 import { login } from '../actions/authActions';
@@ -27,7 +27,7 @@ class Login extends Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
 
     console.log("The form was submitted with the following data:");
@@ -35,7 +35,11 @@ class Login extends Component {
 
     const { email, password } = this.state;
 
-    this.props.login(this.state.email, this.state.password);
+    await this.props.login(email, password);
+
+    if (this.props.isAuthenticated) {
+      this.props.history.push('/profile');
+    }
   }
 
   render() {
@@ -106,56 +110,9 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
+const LoginWithRouter = withRouter(Login);
+
 export default connect(
   mapStateToProps,
   { login } 
-)(Login);
-
-/*import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@mui/material'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-const Login=()=>{
-
-    const paperStyle={padding :20,height:'70vh',width:280, margin:"20px auto"}
-    const btnstyle={margin:'8px 0'}
-    return(
-        <Grid>
-            <Paper elevation={10} style={paperStyle}>
-                <Grid align='center'>
-                    <h2>Sign In</h2>
-                </Grid>
-                <TextField label='Username' placeholder='Enter username' fullWidth required/>
-                <TextField label='Password' placeholder='Enter password' type='password' fullWidth required/>
-                <FormControlLabel
-                    control={
-                    <Checkbox
-                        name="checkedB"
-                        color="primary"
-                    />
-                    }
-                    label="Remember me"
-                 />
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
-                <Typography >
-                     <Link href="#" >
-                        Forgot password ?
-                </Link>
-                </Typography>
-                <Typography > Do you have an account ?
-                     <Link href="#" >
-                        Sign Up 
-                </Link>
-                </Typography>
-            </Paper>
-        </Grid>
-    )
-}
-
-function Login() {
-    return (
-        <p>Login</p>
-    );
-}
-
-export default Login;*/
+)(LoginWithRouter);

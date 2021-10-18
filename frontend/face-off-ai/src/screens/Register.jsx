@@ -1,5 +1,5 @@
 import { React, Component } from 'react'
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { FacebookLoginButton, InstagramLoginButton } from "react-social-login-buttons";
 import { connect } from 'react-redux'; 
 import { register } from '../actions/authActions';
@@ -29,7 +29,7 @@ class Register extends Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
 
     if (this.password !== this.retypepassword) {
@@ -37,12 +37,16 @@ class Register extends Component {
       return;
     }
 
-    console.log("The form was submitted with the following data:");
-    console.log(this.state);
+    //let history = useHistory();
 
     const { email, password, username } = this.state;
 
-    this.props.register(username, password, email);
+    await this.props.register(username, password, email);
+
+    if (this.props.isAuthenticated) {
+        this.props.history.push('/profile');
+    }
+
   }
 
   render() {
@@ -147,6 +151,10 @@ class Register extends Component {
   }
 }
 
+// Create a new component that is "connected" (to borrow redux
+// terminology) to the router.
+const RegisterWithRouter = withRouter(Register);
+
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
@@ -154,4 +162,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   { register } 
-)(Register);
+)(RegisterWithRouter);

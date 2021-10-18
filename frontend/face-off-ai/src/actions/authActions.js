@@ -34,13 +34,10 @@ export const login = (user, password) => async (dispatch) => {
     dispatch({ type: LOGOUT_SUCCESS });
 
     try {
-        console.log('asking server.');
         let res = await http.post('/api/user/login', {
             user,
             password,
         });
-
-        console.log(res);
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -56,13 +53,13 @@ export const login = (user, password) => async (dispatch) => {
 };
 
 export const register = (username, password, email) => async (dispatch) => {
-    dispatch({ type: LOGOUT_SUCCESS});
+    dispatch({ type: LOGOUT_SUCCESS });
 
     try {
         let res = await http.post('/api/user/register', {
+            email,
             username,
             password,
-            email,
         });
 
         dispatch({
@@ -70,10 +67,11 @@ export const register = (username, password, email) => async (dispatch) => {
             payload: {
                 token: res.data.token,
                 user: null,
-            }
+            },
         });
+
     } catch (err) {
-        console.log(err);
+        console.error(err);
         dispatch({ type: REGISTER_FAIL });
     }
 }

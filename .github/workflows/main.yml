@@ -30,6 +30,7 @@ jobs:
 
       - name: test backend
         run: | 
+          cd backend
           docker build -t test-faceoff-backend -f ./test/Dockerfile .
       
       - name: make ./run.sh executable

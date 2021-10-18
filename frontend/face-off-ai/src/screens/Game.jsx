@@ -40,7 +40,12 @@ function Game() {
           window.history.pushState(null, "", window.location.href);
           callback();
         };
-      };
+    };
+
+    const revivalBack = () => {
+        window.onpopstate = undefined;
+        window.history.back();
+    };
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

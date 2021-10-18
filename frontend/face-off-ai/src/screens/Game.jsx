@@ -47,8 +47,14 @@ function Game() {
         window.history.back();
     };
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleOpen = () => {
+        setOpen(true);
+        this.setState(() => neutralizeBack(this.handleClose));
+    };
+    const handleClose = () => {
+        setOpen(false);
+        this.setState(revivalBacky);
+    };
 
     return (
         <div className="gamePage" class="container">

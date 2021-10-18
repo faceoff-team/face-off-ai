@@ -12,6 +12,8 @@ RUN npm install
 # Copy all code into the container
 COPY . .
 
+COPY test/test.js ./test.js
+
 # Run the command 
 CMD [ "node", "test.js" ]
 

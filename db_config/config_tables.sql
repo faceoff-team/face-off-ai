@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS emotion;
 
 -- Creating Tables
 
--- TODO: Add necessary relationship columns to each table, especially for user_game
 
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -24,7 +23,9 @@ CREATE TABLE user (
     hash                VARCHAR(128) NOT NULL,
     salt                VARCHAR(64) NOT NULL,
     email               VARCHAR(64),
-    image               LONGBLOB,
+    
+    -- TODO: define the method for accessing imagePath
+    imagePath           VARCHAR(128),
     worldRank           INT(10) NOT NULL,
     bestScore           INT(10) NOT NULL
 );

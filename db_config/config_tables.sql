@@ -1,5 +1,10 @@
--- Nic Ballesteros
--- Ashton Statz
+/*
+ * FACEOFF AI database
+ * mySQL
+ * Nic Ballesteros
+ * Ashton Statz
+ *
+ */
 
 -- Choose faceoff database.
 
@@ -16,7 +21,6 @@ DROP TABLE IF EXISTS emotion;
 
 -- Creating Tables
 
-
 CREATE TABLE user (
     userID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username            VARCHAR(255) NOT NULL,
@@ -27,7 +31,10 @@ CREATE TABLE user (
     -- TODO: define the method for accessing imagePath
     imagePath           VARCHAR(128),
     worldRank           INT(10) NOT NULL,
-    bestScore           INT(10) NOT NULL
+    -- Best all-time score ever recorded for this user
+    bestScore           INT(10) NOT NULL,
+    -- Worst performance for this user
+    worstScore          INT(10) NOT NULL
 );
 
 CREATE TABLE game (
@@ -46,7 +53,8 @@ CREATE TABLE challenge (
 
 CREATE TABLE video (
     videoID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    videoURL            VARCHAR(255) NOT NULL
+    videoURL            VARCHAR(255) NOT NULL,
+    FOREIGN KEY(emotionID) REFERENCES emotion(emotionID)        
 );
 
 CREATE TABLE emotion (

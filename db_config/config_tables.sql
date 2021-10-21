@@ -14,6 +14,7 @@ USE faceoff;
 
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS user_game;
+DROP TABLE IF EXISTS friend;
 DROP TABLE IF EXISTS game;
 DROP TABLE IF EXISTS challenge;
 DROP TABLE IF EXISTS video;
@@ -42,6 +43,12 @@ CREATE TABLE game (
     winnerSore          INT(10),
     gameDate            DATE
 );
+
+CREATE TABLE friend {
+    FOREIGN KEY (user1) REFERENCES user(userID),
+    FOREIGN KEY (user2) REFERENCES user(userID),
+    PRIMARY KEY (user1, user2)
+}
 
 CREATE TABLE challenge (
     challengeID         INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,

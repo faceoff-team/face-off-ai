@@ -27,7 +27,7 @@ CREATE TABLE user (
     hash                VARCHAR(128) NOT NULL,
     salt                VARCHAR(64) NOT NULL,
     email               VARCHAR(64),
-    
+    bio                 VARCHAR(256),
     -- TODO: define the method for accessing imagePath
     imagePath           VARCHAR(128),
     worldRank           INT(10) NOT NULL,

@@ -6,6 +6,14 @@ const handleGetFriends = async (req, res) => {
     });
 };
 
+const handlePostFriend = async (async, res) => {
+    res.status(200).json({
+        success: true,
+        msg: "Friends retrieved.",
+
+    });
+};
+
 module.exports = {
     getFriends: async (req, res, next) => {
         try {
@@ -16,7 +24,7 @@ module.exports = {
     },
     postFriend: async (req, res, next) => {
         try {
-            
+            await handlePostFriend(req, res);
         } catch (err) {
             next(err);
         }

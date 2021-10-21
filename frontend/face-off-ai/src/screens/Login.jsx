@@ -44,7 +44,7 @@ class Login extends Component {
 
   render() {
     return (
-    <div class="basic-container" style={{ marginLeft: '30vmin', marginRight: '30vmin'}}>
+    <div class="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
         <div className="formCenter">
             <form className="formFields" onSubmit={this.handleSubmit}>
             <div className="formField">

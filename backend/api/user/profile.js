@@ -5,7 +5,11 @@
  * 10/17/21
  */
 
-const handleGetPrivateProfile = async (req, res) => {    
+const BadRequestError = require("../../error/BadRequestError");
+
+const { updateProfile } = require("../../db/user");
+
+const handleGetProfile = async (req, res) => {    
     res.status(200).json({
         success: true,
         msg: "Private profile retreived.",
@@ -13,26 +17,41 @@ const handleGetPrivateProfile = async (req, res) => {
     });
 };
 
+const validatePutProfile = (body) => {
+    if (typeof body.bio !== 'string') 
+        throw new BadRequestError(`bio must be of type string.`, 400);
+
+    if (typeof body.username !== 'string')
+        throw new BadRequestError(`username must be of type string.`, 400);
+}
+
 const handlePutProfile = async (req, res) => {
-    console.log(req.body);
+    validatePutProfile(req.body);
+
+    let bio = req.body.bio;
+    let username = req.body.username;
+
+    if (!req.body.bio) {
+        bio = req.user.bio;
+    }
+
+    if (!req.body.username) {
+        username = req.user.username;
+    }
+
+    let profile = await updateProfile(username, bio);
 
     res.status(200).json({
         success: true,
         msg: "Profile updated.",
+        profile,
     });
 };
 
 module.exports = {
-    privateProfile: async (req, res, next) => {
+    getProfile: async (req, res, next) => {
         try {
-            await handleGetPrivateProfile(req, res);
-        } catch (err) {
-            next(err);
-        }
-    },
-    publicProfile: async (req, res, next) => {
-        try {
-            await handleGetPrivateProfile(req, res);
+            await handleGetProfile(req, res);
         } catch (err) {
             next(err);
         }

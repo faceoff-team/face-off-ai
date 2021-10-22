@@ -4,6 +4,7 @@
  */
 
 const mysql = require('mysql2');
+const BadRequestError = require('../error/BadRequestError');
 
 //connection is defined globally.
 
@@ -105,9 +106,35 @@ const getUserByEmail = async (email) => {
     }
 };
 
+const updateProfile = async (userid, username, bio) => {
+    try {
+        let user = await new Promise((resolve, reject) => {
+            global.connection.query(`
+                UPDATE user
+                SET username = "${username}", bio = "${bio}",
+                WHERE userID == ${userid}
+            `, (err, results, fields) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve({
+                    results,
+                    fields,
+                });
+            });
+        });
+    } catch (err) {
+        console.error(err);
+        throw new BadRequestError(`Could not update profile.`, 500);
+    }
+};
+
 module.exports = {
     getUserByKey,
     getUserbyUsername,
     getUserByEmail,
     createUser,
+    updateProfile,
 };

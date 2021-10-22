@@ -163,6 +163,7 @@ module.exports = {
     getUserByKey,
     getUserbyUsername,
     getUserByEmail,
+    getFriendsByUsername,
     createUser,
     updateProfile,
 };

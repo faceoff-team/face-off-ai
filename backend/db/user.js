@@ -82,6 +82,34 @@ const getUserbyUsername = async (username) => {
     }
 };
 
+const getFriendsByUsername = async (username) => {
+    console.log(`
+    SELECT * FROM user 
+    RIGHT JOIN friend ON friend.user2 = user.userID
+    WHERE username == "${username}"`);
+    try {
+        let user = await new Promise((resolve, reject) => {
+            global.connection.query(`
+                SELECT * FROM user
+                RIGHT JOIN friend ON friend.user2 = user.userID
+                WHERE username == "${username}"`, (err, results, fields) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve({
+                    results,
+                    fields,
+                });
+            });
+        });
+        return user.results;
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 const getUserByEmail = async (email) => {
     console.log(`
     SELECT * FROM user WHERE email == "${email}"`);

@@ -82,7 +82,7 @@ const getUserbyUsername = async (username) => {
     }
 };
 
-const getFriendsByUsername = async (username) => {
+const getFriendsByUsername = async (user, username) => {
     console.log(`
     SELECT * FROM user 
     RIGHT JOIN friend ON friend.user2 = user.userID

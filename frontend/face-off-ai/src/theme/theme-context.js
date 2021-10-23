@@ -1,3 +1,13 @@
+import React from 'react';
+
+const initialState = {
+   dark: false,
+   theme: themes.light,
+   toggle: () => {}
+ }
+ 
+const ThemeContext = React.createContext(initialState)
+
 const themes = {
     dark: {
         backgroundColor: 'black',

@@ -28,8 +28,20 @@ router.get(`/profile/:id`, publicProfile);
 
 router.put(`/profile`, authenticate, putProfile);
 
+/**
+ * Friends
+ */
+
 const { getFriends, postFriend } = require('./friend');
 
 router.post(`/friend`, authenticate, postFriend);
+
 router.get(`/friend`, authenticate, getFriends);
+
+/**
+ * User scores
+ */
+
+router.get(`/scores`, authenticate, require('./scores'));
+
 module.exports = router;

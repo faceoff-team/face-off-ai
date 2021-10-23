@@ -2,7 +2,7 @@
  * @author Nic Ballesteros
  * @description This file handles all create requests for scores.
  * 
- * 10/21/21
+ * 10/22/21
  */
 
 const handleCreateScoreRequest = async (req, res) => {

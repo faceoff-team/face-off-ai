@@ -2,7 +2,7 @@
  * @author Nic Ballesteros
  * @description This file handles all get requests for a specific score.
  * 
- * 10/21/21
+ * 10/22/21
  */
 
 const handleGetScoreRequest = async (req, res) => {

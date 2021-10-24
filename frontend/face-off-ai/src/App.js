@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import { NavigationBar, Footer, HorizontalLine } from "./components";
 import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, Error404 } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
-import { NewThemeProvider } from './theme/theme-context';
 import { dark } from '@mui/material/styles/createPalette';
 
 import { Provider } from 'react-redux';

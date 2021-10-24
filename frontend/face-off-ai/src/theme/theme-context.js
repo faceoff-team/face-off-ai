@@ -1,25 +1,49 @@
 import React from 'react';
 
+const themes = {
+    dark: {
+        text: {
+            primary: "#f7f7f7",
+            secondary: "#f7f7f7"
+        },
+        primary: {
+            main: "#4963ae",
+            contrastText: "#f7f7f7"
+        },
+        secondary: {
+            main: "#4cc0ad",
+            contrastText: "#f7f7f7"
+        },
+        backgroundColor: 'black',
+        backgroundCard: '#25282c',
+        color: 'white'
+    },
+    light: {
+        text: {
+            primary: "#f7f7f7",
+            secondary: "#f7f7f7"
+        },
+        primary: {
+            main: "#4963ae",
+            contrastText: "#f7f7f7"
+        },
+        secondary: {
+            main: "#4cc0ad",
+            contrastText: "#f7f7f7"
+        },
+        backgroundColor: 'white',
+        backgroundCard: '#fff',
+        color: 'black'
+    }
+}
+
 const initialState = {
    dark: false,
    theme: themes.light,
    toggle: () => {}
- }
- 
-const ThemeContext = React.createContext(initialState)
-
-const themes = {
-    dark: {
-        backgroundColor: 'black',
-        backgroundCard: '#25282c',
-        color: 'white'
-      },
-     light: {
-       backgroundColor: 'white',
-       backgroundCard: '#fff',
-       color: 'black'
-     }
 }
+
+const ThemeContext = React.createContext(initialState)
 
 function NewThemeProvider({ children }) {
     const [dark, setDark] = React.useState(false) // Default theme is light

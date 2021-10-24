@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import ReactPlayer from "react-player";
 import Webcam from "react-webcam";
 import Button from '@mui/material/Button';
@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useHistory } from 'react-router-dom';
+import WebcamCapture from '../components/WebcamCapture'
 
 const modalStyle = {
     position: 'absolute',
@@ -28,6 +29,7 @@ function Game() {
     var title = "Try Not to Laugh"
 
     const [open, setOpen] = React.useState(false);
+    const [running, setRunning] = React.useState(false);
     let history = useHistory();
 
     const redirect = () => {
@@ -41,6 +43,15 @@ function Game() {
           callback();
         };
     };
+    
+    const handleRunning = useCallback(() => {
+        if (running) {
+            setRunning(false);
+        }
+        else {
+            setRunning(true);
+        }
+    }, [])
 
     const revivalBack = () => {
         window.onpopstate = undefined;
@@ -119,6 +130,10 @@ function Game() {
                         width={"750px"}
                         height={"400px"}
                         className="videoFrame"
+                        onStart={handleRunning}
+                        onPlay={handleRunning}
+                        onPause={handleRunning}
+                        onEnded={handleRunning}
                         url={url}
                         light={true}
                         controls
@@ -131,11 +146,8 @@ function Game() {
                     />
                 </div>
                 <div className="game" class="gameColumn">
-                    <Webcam
-                        width='300'
-                        height='200'
-                        audio
-                        mirrored
+                    <WebcamCapture
+                        running
                     />
                 </div>
             </div>

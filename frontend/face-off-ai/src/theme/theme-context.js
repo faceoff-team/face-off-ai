@@ -2,34 +2,42 @@ import React from 'react';
 
 const themes = {
     dark: {
-        text: {
-            primary: "#f7f7f7",
-            secondary: "#f7f7f7"
-        },
-        primary: {
-            main: "#4963ae",
-            contrastText: "#f7f7f7"
-        },
-        secondary: {
-            main: "#4cc0ad",
-            contrastText: "#f7f7f7"
+        palette: {
+            text: {
+                primary: "#f7f7f7",
+                secondary: "#f7f7f7"
+            },
+    
+            primary: {
+                main: "#4963ae",
+                contrastText: "#f7f7f7"
+            },
+    
+            secondary: {
+                main: "#4cc0ad",
+                contrastText: "#f7f7f7"
+            }
         },
         backgroundColor: 'black',
         backgroundCard: '#25282c',
         color: 'white'
     },
     light: {
-        text: {
-            primary: "#f7f7f7",
-            secondary: "#f7f7f7"
-        },
-        primary: {
-            main: "#4963ae",
-            contrastText: "#f7f7f7"
-        },
-        secondary: {
-            main: "#4cc0ad",
-            contrastText: "#f7f7f7"
+        palette: {
+            text: {
+                primary: "#f7f7f7",
+                secondary: "#f7f7f7"
+            },
+    
+            primary: {
+                main: "#4963ae",
+                contrastText: "#f7f7f7"
+            },
+    
+            secondary: {
+                main: "#4cc0ad",
+                contrastText: "#f7f7f7"
+            }
         },
         backgroundColor: 'white',
         backgroundCard: '#fff',

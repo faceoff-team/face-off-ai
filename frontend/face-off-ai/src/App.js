@@ -33,7 +33,7 @@ function App() {
   return (
     <Provider store={store}>
      <div className="App">
-        <ThemeProvider theme={theme}>
+        <NewThemeProvider>
         <Router>
             <NavigationBar />
             <div style={{paddingBottom: "129px"}}>
@@ -58,7 +58,7 @@ function App() {
                 <Footer darkMode={true}/>
             </div>
       </Router>
-      </ThemeProvider>
+      </NewThemeProvider>
      </div>
     </Provider>
   );

@@ -21,7 +21,7 @@ const themes = {
      }
 }
 
-function ThemeProvider({ children }) {
+function NewThemeProvider({ children }) {
     const [dark, setDark] = React.useState(false) // Default theme is light
     
     // To toggle between dark and light modes
@@ -39,4 +39,4 @@ function ThemeProvider({ children }) {
         )
 }
 
-export { ThemeProvider, ThemeContext }
+export { NewThemeProvider, ThemeContext }

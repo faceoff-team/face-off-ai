@@ -30,6 +30,7 @@ function Game() {
 
     const [open, setOpen] = React.useState(false);
     const [running, setRunning] = React.useState(false);
+    const [lost, setLost] = React.useState(false);
     let history = useHistory();
 
     const redirect = () => {
@@ -147,7 +148,8 @@ function Game() {
                 </div>
                 <div className="game" class="gameColumn">
                     <WebcamCapture
-                        running
+                        running={running}
+                        stateChanger={setLost}
                     />
                 </div>
             </div>

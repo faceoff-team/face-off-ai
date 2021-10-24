@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import './cameraStyles.css'
 import Webcam from "react-webcam";
+const axios = require('axios')
 
 const WebcamComponent = () => <Webcam />;
 const videoConstraints = {
@@ -8,7 +9,7 @@ const videoConstraints = {
     height='200',
 }
 
-const WebcamCapture = ({running}) => {
+const WebcamCapture = ({running, stateChanger}) => {
     const webcamRef = React.useRef(null);
     
     React.useEffect(() => {
@@ -16,6 +17,16 @@ const WebcamCapture = ({running}) => {
             if (running) {
                 const imageSrc = webcamRef.current.getScreenshot();
                 //TODO: process image, send information back to game
+                axios.post('/predict', {
+                    image: imageSrc
+                })
+                .then((res) => {
+                    if (res.prediction == 'happy') {
+                        stateChanger(true);
+                    }
+                }, (err) => {
+                    console.log(err);
+                })
             }
         }, 2000)
         return () => clearInterval(interval);

@@ -5,6 +5,7 @@ import cv2
 import matplotlib.pyplot as plt
 from PIL import Image, ImageOps
 import argparse
+import base64
 
 face_detect = dlib.get_frontal_face_detector()
 landmark_predict = dlib.shape_predictor('/Users/dommiller88/Documents/GitHub/face-off-ai/model/scripts/shape_predictor_68_face_landmarks.dat')
@@ -34,6 +35,30 @@ def find_nth(haystack, needle, n):
         start = haystack.find(needle, start+len(needle))
         n -= 1
     return start
+
+def transformIndividual(im_b64):
+    im_bytes = base64.b64decode(im_b64)
+    im_arr = np.frombuffer(im_bytes, dtype=np.uint8) 
+    img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
+    face = face_detect(img, 1)
+    for i, face_rect in enumerate(face):
+        crop_area = (face_rect.left(), face_rect.top(), face_rect.right(), face_rect.bottom())
+        crop_image = img[face_rect.bottom():face_rect.top(), face_rect.left():face_rect.right()]
+        image,landmarks = get_landmarks(crop_image)
+        if image is not None:
+            image_copy = image_landmarks(image, landmarks)
+            image_copy = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+            image_copy = cv2.resize(image_copy, (128, 128))
+            image_copy = image_copy/255.
+            image_copy = np.expand_dims(image_copy, axis=0)
+            im_arr = cv2.imencode('.jpg', image_copy)
+            im_bytes = im_arr.tobytes()
+            im_b64 = base64.b64encode(im_bytes)
+            return im_b64
+        else:
+            return None
+        
+        
 
 
 

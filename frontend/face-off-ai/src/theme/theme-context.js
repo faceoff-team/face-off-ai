@@ -39,23 +39,4 @@ function NewThemeProvider({ children }) {
         )
 }
 
-
-function SecondThemeProvider({ children }) {
-    const [dark, setDark] = React.useState(false) // Default theme is light
-    
-    // To toggle between dark and light modes
-    const toggle = () => {
-       setDark(!dark)
-    }
-    
-    // Filter the styles based on the theme selected
-    const theme = dark ? themes.dark : themes.light
-    
-    return (
-        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>
-        )
-}
-
 export { NewThemeProvider, ThemeContext }

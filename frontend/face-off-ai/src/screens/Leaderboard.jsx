@@ -16,7 +16,6 @@ const leaderboard = async() => {
 };
 
 function Leaderboard(props) {
-    let { leaderboardUsers } = this.state;
 
     return (
         <div className="leaderboard" class="container">

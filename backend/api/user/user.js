@@ -20,11 +20,11 @@ router.post(`/login`, require('./login.js'));
  * Profile
  */
 
-const { privateProfile, publicProfile, putProfile } = require('./profile');
+const { getProfile, putProfile } = require('./profile');
 
-router.get(`/profile`, authenticate, privateProfile);
+router.get(`/profile`, authenticate, getProfile);
 
-router.get(`/profile/:id`, publicProfile);
+router.get(`/profile/:id`, getProfile);
 
 router.put(`/profile`, authenticate, putProfile);
 

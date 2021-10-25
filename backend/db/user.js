@@ -176,6 +176,7 @@ const getLeaderboard = async() => {
                 });
             });
         });
+        return leaderboard.results;
     } catch (err) {
         console.error(err);
         throw new BadRequestError(`Could not get leaderboard.`, 500);

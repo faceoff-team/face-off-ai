@@ -10,7 +10,7 @@ const leaderboard = async() => {
 
         console.log(res);
 
-        this.state = res;
+        return res;
     } catch (err) {
         console.error(err);
     }
@@ -19,7 +19,7 @@ const leaderboard = async() => {
 
 function Leaderboard(props) {
     useEffect(() => {
-        leaderboard();
+        this.state = leaderboard();
     });
 
     return (

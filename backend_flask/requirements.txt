@@ -1,0 +1,4 @@
+Flask==0.10.1
+numpy==1.11.3
+opencv-python==4.2.0.32
+dlib==18.17.100

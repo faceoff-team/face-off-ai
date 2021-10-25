@@ -1,0 +1,22 @@
+FROM ubuntu:16.04
+
+MAINTAINER Dominic Miller
+
+RUN apt-get update -y && \
+    apt-get install -y python-pip python-dev python3.6-venv python3.6 build-essential
+
+RUN python3 -m pip install --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.12.0-py3-none-any.whl
+
+COPY ./requirements.txt /app/requirements.txt
+
+WORKDIR /app
+
+RUN pip install -r requirements.txt
+
+COPY . /app
+
+ENTRYPOINT [ "python" ]
+
+EXPOSE 5000
+
+CMD ["app.py"]

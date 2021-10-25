@@ -19,7 +19,7 @@ const leaderboard = async() => {
 
 function Leaderboard(props) {
     useEffect(() => {
-        this.state = leaderboard();
+        this.setState(leaderboard());
     });
 
     return (

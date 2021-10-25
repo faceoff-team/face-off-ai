@@ -72,7 +72,7 @@ CREATE TABLE emotion (
 CREATE TABLE user_game (
     user              INT NOT NULL,
     game              INT NOT NULL,
-    finalScore             INT(10) NOT NULL,
+    finalScore        INT(10) NOT NULL,
     FOREIGN KEY (user) REFERENCES user(userID),
     FOREIGN KEY (game) REFERENCES game(gameID),
     PRIMARY KEY (user, game)

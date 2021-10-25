@@ -12,8 +12,8 @@ USE faceoff;
 
 -- Dropping Tables
 
-DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS user_game;
+DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS friend;
 DROP TABLE IF EXISTS game;
 DROP TABLE IF EXISTS challenge;
@@ -58,15 +58,15 @@ CREATE TABLE challenge (
     highScore           INT(10)
 );
 
+CREATE TABLE emotion (
+    emotionID           INT(1) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    emotionName         VARCHAR(64)
+);
+
 CREATE TABLE video (
     videoID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     videoURL            VARCHAR(255) NOT NULL,
     FOREIGN KEY(emotionID) REFERENCES emotion(emotionID)        
-);
-
-CREATE TABLE emotion (
-    emotionID           INT(1) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    emotionName         VARCHAR(64)
 );
 
 CREATE TABLE user_game (

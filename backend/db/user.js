@@ -190,4 +190,5 @@ module.exports = {
     getFriendsByUsername,
     createUser,
     updateProfile,
+    getLeaderboard,
 };

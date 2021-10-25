@@ -44,4 +44,6 @@ router.get(`/friend`, authenticate, getFriends);
 
 router.get(`/scores`, authenticate, require('./scores'));
 
+router.get(`/leaderboard`, require('./leaderboard'));
+
 module.exports = router;

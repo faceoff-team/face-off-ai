@@ -1,3 +1,8 @@
+/**
+ * @author Ashton Statz, Nic Ballesteros
+ * @description this module handles all friend related requests
+ */
+
 const { getFriendsByUsername } = require("../../db/user");
 const BadRequestError = require("../../error/BadRequestError");
 

@@ -8,7 +8,7 @@ import Picture2 from "../assets/profile-picture-1.jpg";
 
 import Grid from '@mui/material/Grid';
 
-function LeaderboardList({ title }) {
+function LeaderboardList({ title, LeaderboardUsers }) {
     return (
         <div>
             <h1 class="font-weight-heavy-small">{title}</h1>

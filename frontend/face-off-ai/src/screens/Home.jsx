@@ -15,8 +15,11 @@ function Home() {
                     size="large" 
                     variant="contained" 
                     color="secondary"
-                        style={{ fontSize: '18px', maxWidth: '14em', maxHeight: '4em', minWidth: '12em', minHeight: '3em' }}
-                >
+                    style={{ fontSize: '18px',
+                             maxWidth: '14em',
+                             maxHeight: '4em',
+                             minWidth: '12em',
+                             minHeight: '3em' }}>
                     Singleplayer
                 </Button></Link>
                 <div style={{marginTop: "20px"}}></div>
@@ -25,8 +28,11 @@ function Home() {
                         size="large"
                         variant="contained"
                         color="secondary"
-                        style={{ fontSize: '18px', maxWidth: '14em', maxHeight: '4em', minWidth: '12em', minHeight: '3em' }}
-                    >
+                        style={{ fontSize: '18px', 
+                                 maxWidth: '14em',
+                                 maxHeight: '4em',
+                                 minWidth: '12em', 
+                                 minHeight: '3em' }}>
                         Play with friends
                     </Button></Link>
             </div><div style={{marginTop: "20px"}}></div>

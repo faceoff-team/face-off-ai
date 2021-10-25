@@ -159,6 +159,29 @@ const updateProfile = async (userid, username, bio) => {
     }
 };
 
+const getLeaderboard = async() => {
+    try {
+        let leaderboard = await new Promise((resolve, reject) => {
+            global.connection.query(`
+                SELECT * FROM user ORDER BY worldRank
+            `, (err, results, fields) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve({
+                    results,
+                    fields,
+                });
+            });
+        });
+    } catch (err) {
+        console.error(err);
+        throw new BadRequestError(`Could not get leaderboard.`, 500);
+    }
+};
+
 module.exports = {
     getUserByKey,
     getUserbyUsername,

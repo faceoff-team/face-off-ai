@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Box from "@mui/material/Box";
 
-function LeaderboardListing({ username, picture, highscore, position}) {
+function LeaderboardItem({ username, picture, highscore, position}) {
     return (
         <div class="small-profile">
             <div class="row">
@@ -51,4 +51,4 @@ function LeaderboardListing({ username, picture, highscore, position}) {
     );
 }
 
-export default LeaderboardListing;
+export default LeaderboardItem;

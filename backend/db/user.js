@@ -163,7 +163,7 @@ const getLeaderboard = async() => {
     try {
         let leaderboard = await new Promise((resolve, reject) => {
             global.connection.query(`
-                SELECT * FROM user ORDER BY worldRank
+                SELECT userID, worldRank, bestScore, username FROM user ORDER BY worldRank
             `, (err, results, fields) => {
                 if (err) {
                     reject(err);

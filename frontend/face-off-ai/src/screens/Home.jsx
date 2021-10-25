@@ -32,10 +32,10 @@ function Home() {
             </div><div style={{marginTop: "20px"}}></div>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Popular Today</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
-            <HomePageGrid url="https://www.youtube.com/watch?v=YqaacQc6sho"/>
+            <HomePageGrid videoID="YqaacQc6sho"/>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Sad Videos</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
-            <HomePageGrid url="https://www.youtube.com/watch?v=r9SsqcT6heE"/>
+            <HomePageGrid videoID="r9SsqcT6heE"/>
         </div>
     );
 }

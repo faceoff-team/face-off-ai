@@ -2,9 +2,17 @@ import React from "react";
 import LeaderboardList from "../components/LeaderboardList.jsx";
 import { http } from "../store.js";
 
-function Leaderboard() {
-    http.get("/api/")
 
+const leaderboard = async() => {
+    try {
+        let res = await http.get("/api/user/leaderboard");
+    } catch (err) {
+        console.error(err);
+    }
+    
+};
+
+function Leaderboard() {
     return (
         <div className="leaderboard" class="container">
             <div class="basic-container">

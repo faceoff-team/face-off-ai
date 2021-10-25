@@ -6,28 +6,23 @@
 const { getLeaderboard } = require("../../db/user");
 const BadRequestError = require("../../error/BadRequestError");
 
-const validateGetLeaderboardBody = (body) => {
-    if (body.username === undefined)
-        throw new BadRequestError(`Username property required.`, 400);
-
-    if (typeof body.username !== 'string')
-        throw new BadRequestError(`Username must be of type string.`, 400);
-
-}
 
 const handleGetLeaderboard = async (req, res) => {
-    validateGetLeaderboardBody(req.body);
 
     let leaderboard = await getLeaderboard();
 
     res.status(200).json({
         success: true,
         msg: "Leaderboard retreived.",
-        leaderboard,
+        leaderboard : req.leaderboard,
     });
 };
 
-const handlePostLeaderboard = async (async, res) => {
+const handlePutLeaderboard = async (async, res) => {
+
+    // Add functionality for updating a leaderboard?
+    // may not be necessary since we would just update a
+    // single user's score
 
     res.status(200).json({
         success: true,
@@ -38,16 +33,16 @@ const handlePostLeaderboard = async (async, res) => {
 };
 
 module.exports = {
-    getFriends: async (req, res, next) => {
+    getLeaderboard: async (req, res, next) => {
         try {
             await handleGetLeaderboard(req, res);
         } catch (err) {
             next(err);
         }
     },
-    postFriend: async (req, res, next) => {
+    postLeaderboard: async (req, res, next) => {
         try {
-            await handlePostLeaderboard(req, res);
+            await handlePutLeaderboard(req, res);
         } catch (err) {
             next(err);
         }

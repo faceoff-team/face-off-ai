@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const modalStyle = {
     position: 'absolute',
@@ -22,13 +22,16 @@ const modalStyle = {
 
 //get url and title for parameter and API
 function Game() {
-
-    //for testing sake
-    var url = "https://www.youtube.com/watch?v=YqaacQc6sho";
-    var title = "Try Not to Laugh"
+    const { id, title } = useParams();
 
     const [open, setOpen] = React.useState(false);
     let history = useHistory();
+
+    if( id == null || title == null) {
+        history.push('/error');
+    }
+
+    var url = `https://www.youtube.com/watch?v=${id}`;
 
     const redirect = () => {
       history.push('/home')

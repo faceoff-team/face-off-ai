@@ -42,7 +42,7 @@ function App() {
                         <Redirect to="/login" />
                     </Route>
                     <Route path="/login" exact component={() => <Login />} />
-                    <Route path="/game" exact component={() => <Game />} />
+                    <Route path="/game/:id/:title" exact component={() => <Game />} />
                     <Route path="/settings" exact component={() => <Settings />} />
                     <Route path="/home" exact component={() => <Home />} />
                     <Route path="/about" exact component={() => <About />} />

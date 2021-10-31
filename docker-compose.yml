@@ -32,11 +32,20 @@ services:
   proxy:
     image: traefik:v2.3
     command:
-      - --log.level=INFO
+      - --log.level=DEBUG
+      - --api.insecure=true
+      - --entrypoints.web.address=:80
+      - --providers.docker
     ports:
       - 80:80
       - 443:443
       - 8081:8080 #Use 8081 to configure traefik
+    volumes:
+      /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      traefik.http.routers.dash.rule: Host(`dash.localhost`)
+      traefik.http.routers.dash.service: api@internal
+      traefik.http.routers.dash.tls: false
 
   backend:
     build: ./backend 

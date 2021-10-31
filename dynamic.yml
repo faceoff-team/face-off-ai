@@ -2,13 +2,18 @@ http:
   routers:
     backend:
       rule: "Host(`ai.faceoff.cf`)"
-      service: "backend-face-off-ai@docker"
+      service: "backend-wrapper"
       middleware:
       tls: {}
       entryPoints:
         - websecure
 
   services:
+    backend-wrapper:
+      loadBalancer:
+        services:
+        - name: "backend-face-off-ai@docker"
+      passHostHeader: false
 
   middleware:
 

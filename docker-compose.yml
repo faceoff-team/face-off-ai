@@ -26,6 +26,8 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - /home/faceoff/https/:/etc/nginx/ssl/
+    depends_on:
+      - backend
 
   backend:
     build: ./backend 
@@ -40,5 +42,4 @@ services:
       # - /home/faceoff/https/:/usr/src/app/https/
     depends_on:
       - db
-      - nginx
     

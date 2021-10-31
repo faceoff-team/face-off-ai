@@ -49,10 +49,10 @@ services:
       traefik.http.routers.dash.rule: Host(`dash.localhost`)
       traefik.http.routers.dash.service: api@internal
       traefik.http.routers.dash.tls: false
-      traefik.http.routers.backend.entrypoints: websecure
-      traefik.http.routers.backend.rule: Host(`ai.faceoff.cf`)
-      traefik.http.routers.backend.service: backend-face-off-ai
-      traefik.http.routers.backend.tls: true
+      # traefik.http.routers.backend.entrypoints: websecure
+      # traefik.http.routers.backend.rule: Host(`ai.faceoff.cf`)
+      # traefik.http.routers.backend.service: backend-face-off-ai
+      # traefik.http.routers.backend.tls: true
 
 
   backend:

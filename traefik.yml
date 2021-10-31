@@ -6,17 +6,27 @@ api:
   dashboard: true
   insecure: true
 
-entryPoints:
-  web:
-    address: :80
-    http:
-      redirections:
-        entryPoint:
-          to: websecure
-          scheme: https
+http:
+  routers:
+    backend:
+      rule: "Host(`ai.faceoff.cf`)"
+      service: "backend-face-off-ai"
+      tls: true
+      entryPoint: websecure
 
-  websecure:
-    address: :443
+      
+
+  entryPoints:
+    web:
+      address: :80
+      http:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+
+    websecure:
+      address: :443
 
 tls:
   certificates:

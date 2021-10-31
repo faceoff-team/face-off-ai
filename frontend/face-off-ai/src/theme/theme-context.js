@@ -80,10 +80,6 @@ function NewThemeProvider({ children }) {
            {children}
         </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
            {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
         </ThemeContext.Provider>
         )
 }

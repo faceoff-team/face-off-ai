@@ -31,7 +31,7 @@ services:
 
   proxy:
     image: traefik:v2.3
-    container-name: faceoff-proxy
+    container_name: faceoff-proxy
     command:
       - --log.level=DEBUG
       - --api.insecure=true

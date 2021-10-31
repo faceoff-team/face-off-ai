@@ -41,7 +41,7 @@ services:
       - 443:443
       - 8081:8080 #Use 8081 to configure traefik
     volumes:
-      /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     labels:
       traefik.http.routers.dash.rule: Host(`dash.localhost`)
       traefik.http.routers.dash.service: api@internal

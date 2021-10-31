@@ -45,6 +45,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro 
       - /home/faceoff/https:/usr/cert/
       - ./traefik.yml:/etc/traefik/traefik.yml
+      - ./dynamic.yml:/etc/traefik/dynamic.yml
     labels:
       traefik.http.routers.dash.rule: Host(`dash.localhost`)
       traefik.http.routers.dash.service: api@internal

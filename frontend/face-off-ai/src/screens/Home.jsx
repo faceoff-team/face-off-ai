@@ -22,7 +22,8 @@ function Home() {
                              minHeight: '3em' }}>
                     Singleplayer
                 </Button></Link>
-                <div style={{marginTop: "20px"}}></div>
+
+                <div style={{marginTop: "25px"}}></div>
                 <Link to="/game">
                     <Button
                         size="large"

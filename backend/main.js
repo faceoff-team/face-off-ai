@@ -58,30 +58,30 @@ app.use((err, req, res, next) => {
     });
 });
 
-let privateKey = fs.readFileSync(path.join(__dirname, './https/priv.pem'), `utf8`);
-let certificate = fs.readFileSync(path.join(__dirname, './https/cert.pem'), `utf8`);
+// let privateKey = fs.readFileSync(path.join(__dirname, './https/priv.pem'), `utf8`);
+// let certificate = fs.readFileSync(path.join(__dirname, './https/cert.pem'), `utf8`);
 
-let credentials = {
-    key: privateKey,
-    cert: certificate,
-};
+// let credentials = {
+//     key: privateKey,
+//     cert: certificate,
+// };
 
-let server = https.createServer(credentials, app);
-server.listen(443, () => {
-    console.log("HTTPS Server started on port 443.");
-});
-
-const http = require('http');
-
-http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    res.end();
-}).listen(80, () => {
-    console.log(`HTTP Server started on port 80.`);
-});
-
-// app.listen(PORT, () => {
-//     console.log(`Listening on port ${PORT}!`);
+// let server = https.createServer(credentials, app);
+// server.listen(443, () => {
+//     console.log("HTTPS Server started on port 443.");
 // });
+
+// const http = require('http');
+
+// http.createServer(function (req, res) {
+//     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+//     res.end();
+// }).listen(80, () => {
+//     console.log(`HTTP Server started on port 80.`);
+// });
+
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}!`);
+});
 
 module.exports = app;

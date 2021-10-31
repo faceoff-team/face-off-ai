@@ -32,11 +32,11 @@ services:
   proxy:
     image: traefik:v2.3
     container_name: faceoff-proxy
-    command:
-      - --log.level=DEBUG
-      - --api.insecure=true
-      - --entrypoints.web.address=:80
-      - --providers.docker
+    # command:
+      # - --log.level=DEBUG
+      # - --api.insecure=true
+      # - --entrypoints.web.address=:80
+      # - --providers.docker
     ports:
       - 80:80
       - 443:443

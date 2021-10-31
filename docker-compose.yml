@@ -41,11 +41,15 @@ services:
       - 443:443
       - 8081:8080 #Use 8081 to configure traefik
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro 
+      - /home/faceoff/https:/usr/cert/
     labels:
       traefik.http.routers.dash.rule: Host(`dash.localhost`)
       traefik.http.routers.dash.service: api@internal
       traefik.http.routers.dash.tls: false
+      traefik.http.routers.backend.rule: Host(`backend-face-off-ai`)
+      traefik.http.routers.backend.service: backend-face-off-ai@docker
+      traefik.http.routers.backend.tls: true
 
   backend:
     build: ./backend 

@@ -1,0 +1,18 @@
+http:
+  routers:
+    backend:
+      rule: "Host(`ai.faceoff.cf`)"
+      service: "backend-face-off-ai@docker"
+      middleware:
+      tls: {}
+      entryPoints:
+        - websecure
+
+  services:
+
+  middleware:
+
+tls:
+  certificates:
+    - certFile: /usr/cert/cert.pem
+      keyFile: /usr/cert/priv.pem

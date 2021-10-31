@@ -25,7 +25,7 @@ http:
   routers:
     backend:
       rule: "Host(`ai.faceoff.cf`)"
-      service: "backend-face-off-ai"
+      service: "backend-face-off-ai@docker"
       tls: {}
       entryPoints:
         - websecure
@@ -38,3 +38,6 @@ tls:
 providers:
   docker:
     exposedByDefault: true
+  file:
+    filename: /etc/traefik/dynamic.yml
+    watch: true

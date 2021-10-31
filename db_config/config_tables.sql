@@ -41,12 +41,14 @@ CREATE TABLE user (
 CREATE TABLE game (
     gameID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     winnerSore          INT(10),
+    lowScore            INT(10),
     gameDate            DATE
 );
 
 CREATE TABLE friend {
     FOREIGN KEY (user1) REFERENCES user(userID),
     FOREIGN KEY (user2) REFERENCES user(userID),
+    friendDate          DATE,
     PRIMARY KEY (user1, user2)
 }
 
@@ -66,6 +68,7 @@ CREATE TABLE emotion (
 CREATE TABLE video (
     videoID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     videoURL            VARCHAR(255) NOT NULL,
+    videoRank           INT(10),
     FOREIGN KEY(emotionID) REFERENCES emotion(emotionID)        
 );
 

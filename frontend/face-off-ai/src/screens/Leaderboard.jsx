@@ -18,6 +18,8 @@ const leaderboard = async() => {
 };
 
 function Leaderboard(props) {
+
+    // TODO: fix the set state issue
     useEffect(() => {
         this.setState(leaderboard());
     });

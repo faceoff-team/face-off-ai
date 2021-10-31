@@ -23,7 +23,7 @@ function Home() {
                     Singleplayer
                 </Button></Link>
 
-                <div style={{marginTop: "25px"}}></div>
+                <div style={{marginTop: "20px"}}></div>
                 <Link to="/game">
                     <Button
                         size="large"

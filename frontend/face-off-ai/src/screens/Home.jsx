@@ -24,7 +24,7 @@ function Home() {
                 </Button></Link>
 
                 <div style={{marginTop: "20px"}}></div>
-                <Link to="/game">
+                <Link to="/multiplayergame">
                     <Button
                         size="large"
                         variant="contained"

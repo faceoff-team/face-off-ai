@@ -2,7 +2,7 @@ http:
   routers:
     backend:
       rule: "Host(`ai.faceoff.cf`)"
-      service: "backend-ai-face-off@docker"
+      service: "backend-face-off-ai@docker"
       middleware:
       tls: {}
       entryPoints:

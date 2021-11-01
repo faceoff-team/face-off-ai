@@ -10,6 +10,13 @@ const leaderboard = async() => {
 
         console.log(res);
 
+        this.state = {
+            //save individual names here
+            id: res.userid,
+            username: res.username,
+            rank: res.worldRank
+        }
+
         return res;
     } catch (err) {
         console.error(err);
@@ -18,17 +25,21 @@ const leaderboard = async() => {
 };
 
 function Leaderboard(props) {
-
+    leaderboard();
+    
     // TODO: fix the set state issue
     useEffect(() => {
-        this.setState(leaderboard());
+        function handleStatusChange(status) {
+
+        }
+        //this.setState(leaderboard());
     });
 
     return (
         <div className="leaderboard" class="container">
             <div class="basic-container">
                 <h1 class="font-weight-heavy" style={{ marginTop: "10px" }}>Leaderboard</h1>
-                <LeaderboardList props={props} />
+                <LeaderboardList props={props} numUsers={5}/>
             </div>
         </div>
     );

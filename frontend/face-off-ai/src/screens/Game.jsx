@@ -88,32 +88,7 @@ function Game() {
         window.onpopstate = undefined;
         window.history.back();
     };
-
-    const neutralizeBack = (callback) => {
-        window.history.pushState(null, "", window.location.href);
-        window.onpopstate = () => {
-          window.history.pushState(null, "", window.location.href);
-          callback();
-        };
-    };
-
-    const revivalBack = () => {
-        window.onpopstate = undefined;
-        window.history.back();
-    };
-
-    const neutralizeBack = (callback) => {
-        window.history.pushState(null, "", window.location.href);
-        window.onpopstate = () => {
-          window.history.pushState(null, "", window.location.href);
-          callback();
-        };
-    };
-
-    const revivalBack = () => {
-        window.onpopstate = undefined;
-        window.history.back();
-    };
+    
 
     window.onbeforeunload = function (evt) {
         var message = 'Are you sure you want to leave?';

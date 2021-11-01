@@ -2,11 +2,20 @@ import React from "react";
 import HomePageGrid from "../components/HomePageGrid.jsx";
 import Button from "@mui/material/Button";
 import HorizontalLine from "../components/HorizontalLine.jsx";
+import TextField from '@mui/material/TextField';
+
 import { Link, withRouter } from 'react-router-dom';
 
 function Home() {
     return (
         <div className="home" class="container">
+            <TextField
+                label={'Looking for a video?'}
+                placeholder={'Search'}
+                margin={'normal'}
+                color={"primary"}
+                
+            />
             <h1 class="font-weight-heavy" style={{ marginTop: "20px" }}>Welcome! Want to jump right in? Click Below:</h1>
             <HorizontalLine color="#f7f7f7" width="100%"/>
             <div style={{textAlign: 'center'}}>

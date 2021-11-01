@@ -9,6 +9,7 @@ const BadRequestError = require("../../error/BadRequestError");
 
 const handleGetLeaderboard = async (req, res) => {
     let leaderboard = await getLeaderboard();
+    console.log(leaderboard);
 
     res.status(200).json({
         success: true,

@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
-import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, Error404 } from "./screens";
+import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, MultiplayerGame, Error404 } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { dark } from '@mui/material/styles/createPalette';
 
@@ -48,6 +48,7 @@ function App() {
                     <Route path="/profile" exact component={() => <Profile />} />
                     <Route path="/leaderboards" exact component ={() => <Leaderboard />} />
                     <Route path="/register" exect component = {() => <Register />} />
+                    <Route path="/multiplayergame" exect component = {() => <MultiplayerGame />} />
 
                     <Route component={() => <Error404 />} />
                 </Switch>

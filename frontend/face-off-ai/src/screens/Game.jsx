@@ -100,10 +100,10 @@ function Game() {
                     Are you sure you want to Quit?
                 </Typography>
                 <Button size="medium" color="secondary" onClick={redirect}>
-                    YES!!
+                    yes
                 </Button>
                 <Button size="medium" color="secondary" onClick={handleClose}>
-                    NO :)
+                    no
                 </Button>
                 </Box>
             </Modal>

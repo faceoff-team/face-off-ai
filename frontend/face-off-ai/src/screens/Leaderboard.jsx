@@ -11,7 +11,7 @@ const leaderboard = async() => {
         console.log(res);
 
         this.state = {
-            //save individual names here
+            //save individual components here
             id: res.userid,
             username: res.username,
             rank: res.worldRank
@@ -39,7 +39,7 @@ function Leaderboard(props) {
         <div className="leaderboard" class="container">
             <div class="basic-container">
                 <h1 class="font-weight-heavy" style={{ marginTop: "10px" }}>Leaderboard</h1>
-                <LeaderboardList props={props} numUsers={5}/>
+                <LeaderboardList props={props} numUsers={25}/>
             </div>
         </div>
     );

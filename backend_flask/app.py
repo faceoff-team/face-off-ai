@@ -31,7 +31,7 @@ def predict():
         data['success'] = True
     return flask.jsonify(data)
 
-app.run(host='0.0.0.0', port=50)
+app.run(host='0.0.0.0')
         
     
     

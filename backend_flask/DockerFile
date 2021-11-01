@@ -7,13 +7,13 @@ RUN apt-get update -y && \
 
 RUN python3 -m pip install --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.12.0-py3-none-any.whl
 
-COPY ./requirements.txt /app/requirements.txt
+COPY . /app
 
 WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-COPY . /app
+
 
 ENTRYPOINT [ "python" ]
 

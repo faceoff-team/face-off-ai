@@ -35,6 +35,14 @@ services:
     depends_on:
       - db
 
+  backend_flask:
+    build: ./backend_flask
+    container_name: faceoff-flask
+    networks:
+      - proxy
+    ports:
+      - 5000:5000
+
   proxy:
     image: nginx
     container_name: faceoff-proxy

@@ -2,9 +2,9 @@ FROM python:alpine3.6
 
 # MAINTAINER Dominic Miller
 
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip3
 
-RUN pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.6.0-cp36-cp36m-manylinux2010_x86_64.whl
+RUN pip3 install -r requirements.txt
 
 RUN mkdir app
 

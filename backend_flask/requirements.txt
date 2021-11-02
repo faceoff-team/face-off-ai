@@ -1,4 +1,5 @@
 Flask
+cmake
 numpy==1.19.5
 opencv-python==4.5.3.56
 dlib==19.22.1

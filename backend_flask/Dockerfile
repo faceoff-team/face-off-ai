@@ -2,9 +2,8 @@ FROM python:alpine3.6
 
 # MAINTAINER Dominic Miller
 
-RUN pip3 install --upgrade pip3
 
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 RUN mkdir app
 

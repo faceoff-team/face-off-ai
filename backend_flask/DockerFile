@@ -1,0 +1,19 @@
+FROM python:alpine3.6
+
+MAINTAINER Dominic Miller
+
+RUN pip install --upgrade https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.12.0-py3-none-any.whl
+
+RUN mkdir app
+
+WORKDIR /app
+
+COPY . /app
+
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+ENTRYPOINT [ "python" ]
+
+CMD ["app.py"]

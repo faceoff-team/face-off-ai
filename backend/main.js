@@ -11,6 +11,7 @@ const mysql = require('mysql2');
 const path = require(`path`);
 
 const fs = require('fs');
+const axios = require('axios');
 
 var connection = mysql.createConnection({
     host     : 'faceoff-db',
@@ -40,6 +41,14 @@ const REACT = path.join(__dirname, `react`);
 
 app.use(express.static(REACT));
 
+app.post('/request', (req, res) => {
+    axios.get('https://127.0.0.1:5000/predict', {
+        image: req.params.image
+    })
+    .then((result) => {
+        return result;
+    })
+})
 app.get('*', (req, res) => {
     res.sendFile(path.join(REACT, "index.html"));
 });

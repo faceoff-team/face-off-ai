@@ -2,21 +2,30 @@ import dlib
 import numpy as np
 from os import path, walk
 import cv2
-import matplotlib.pyplot as plt
 from PIL import Image, ImageOps
 import argparse
 import base64
+import pandas as pd
 
 face_detect = dlib.get_frontal_face_detector()
 landmark_predict = dlib.shape_predictor('/Users/dommiller88/Documents/GitHub/face-off-ai/model/scripts/shape_predictor_68_face_landmarks.dat')
 
-def get_landmarks(image):
-    face = face_detect(image, 1)
+def get_landmarks(image, df):
+    print(len(df.columns))
+    row = []
     if len(face):
-        landmarks = [(p.x, p.y) for p in landmark_predict(image, face[0]).parts()]
-    else:
-        return None,None
-    return image, landmarks
+        x = landmark_predict(image, face[0])
+        for i in range(0,68):
+            p = x.part(i)
+            point_a = np.array((p.x, p.y, 1))
+            for k in range(0,68):
+                point_b = ((x.part(k).x, x.part(k).y, 1))
+                distance = np.linalg.norm(point_a - point_b)
+                row.append(distance)
+        new_row = pd.Series(row)
+        df = df.append(new_row, ignore_index=True)
+        # landmarks = [(p.x, p.y) for p in landmark_predict(image, face[0]).parts()]
+    return df
 
 def image_landmarks(image, landmarks):
     radius = -1
@@ -45,6 +54,7 @@ def transformIndividual(im_b64):
         crop_area = (face_rect.left(), face_rect.top(), face_rect.right(), face_rect.bottom())
         crop_image = img[face_rect.bottom():face_rect.top(), face_rect.left():face_rect.right()]
         image,landmarks = get_landmarks(crop_image)
+        print(landmarks)
         if image is not None:
             image_copy = image_landmarks(image, landmarks)
             image_copy = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
@@ -66,8 +76,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--src', required=True)
     parser.add_argument('--dst', required=True)
+    parser.add_argument('--file', required=True)
     args = parser.parse_args()
     print(args.src)
+    df = pd.DataFrame()
     for subdir, dirs, files in walk(args.src):
         for file in files:
             print(file)
@@ -85,12 +97,13 @@ if __name__ == "__main__":
                     dest_true = path.join(args.dst, file)
                     cropped.save(dest_true)
                     image = cv2.imread(dest_true)
-                    image, landmarks = get_landmarks(image)
-                    if image is not None:
-                        image_copy = image_landmarks(image, landmarks)
-                        cv2.imwrite(dest_true, image_copy)
-                    else:
-                        pass
+                    df = get_landmarks(image, df)
+                    # if image is not None:
+                    #     image_copy = image_landmarks(image, landmarks)
+                    #     cv2.imwrite(dest_true, image_copy)
+                    # else:
+                    #     pass
+    df.to_csv(f'{args.file}')
     
 
             

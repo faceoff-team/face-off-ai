@@ -2,7 +2,6 @@ import dlib
 import numpy as np
 from os import path, walk
 import cv2
-import matplotlib.pyplot as plt
 from PIL import Image, ImageOps
 import argparse
 import base64

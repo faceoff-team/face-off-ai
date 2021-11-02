@@ -17,12 +17,14 @@ const WebcamCapture = ({running, stateChanger}) => {
             if (running) {
                 const imageSrc = webcamRef.current.getScreenshot();
                 //TODO: process image, send information back to game
-                axios.post('/predict', {
+                axios.post('https://139.177.201.12:5000/predict', {
                     image: imageSrc
                 })
                 .then((res) => {
-                    if (res.prediction == 'happy') {
-                        stateChanger(true);
+                    if (res.success == 'true') {
+                        if (res.prediction == 'happy') {
+                            stateChanger(true);
+                        }
                     }
                 }, (err) => {
                     console.log(err);

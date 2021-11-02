@@ -4,6 +4,10 @@ import '../model/scripts/transform' as transform
 import base64
 import numpy
 import cv2
+import boto3
+
+s3 = boto3.client('s3')
+s3.download_file('s3://face-off-ai', 'CUMv6.h5', 'CUMv6.h5')
 
 app = flask.Flask(__name__)
 
@@ -18,7 +22,7 @@ model = tf.keras.models.load_model('CUMv6.h5')
 
 @app.route("/predict", methods=["GET","POST"])
 def predict():
-    data = {'success': False}
+    data = {'success': 'false'}
     params = flask.request.json
     if (params != None):
         transformed = transform.transformIndividual(params.image)
@@ -28,7 +32,7 @@ def predict():
         prob = model.predict(image_copy)
         label = prob.argmax(axis=1)
         data['prediction'] = str(emotions[label[0]])
-        data['success'] = True
+        data['success'] = 'true'
     return flask.jsonify(data)
 
 app.run(host='0.0.0.0')

@@ -5,9 +5,9 @@ const axios = require('axios')
 
 const WebcamComponent = () => <Webcam />;
 const videoConstraints = {
-    width='300',
-    height='200',
-}
+    width: '300',
+    height: '200',
+};
 
 const WebcamCapture = ({running, stateChanger}) => {
     const webcamRef = React.useRef(null);
@@ -22,6 +22,7 @@ const WebcamCapture = ({running, stateChanger}) => {
                 })
                 .then((res) => {
                     if (res.success == 'true') {
+                        console.log(res.prediction);
                         if (res.prediction == 'happy') {
                             stateChanger(true);
                         }

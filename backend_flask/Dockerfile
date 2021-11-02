@@ -6,6 +6,8 @@ FROM python:3.7-slim as builder
 RUN apt update && \
     apt install --no-install-recommends -y build-essential gcc
 COPY requirements.txt /requirements.txt
+RUN pip install --no-cache-dir --user cmake==3.21.3
+RUN pip install --no-cache-dir --user face_recognition==1.3.0
 RUN pip install --no-cache-dir --user -r /requirements.txt
 
 

@@ -1,6 +1,6 @@
 FROM python:alpine3.6
 
-MAINTAINER Dominic Miller
+# MAINTAINER Dominic Miller
 
 RUN mkdir app
 

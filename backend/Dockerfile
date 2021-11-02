@@ -14,8 +14,5 @@ COPY ./ ./
 # Copy static react files.
 COPY ./react/ ./react/
 
-# Expose the port 8080 to the outside
-EXPOSE 8080
-
 # Run the command 
-CMD [ "node", "main.js" ]
+CMD [ "/bin/bash", "init.sh" ]

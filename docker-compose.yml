@@ -34,7 +34,7 @@ services:
       # - /home/faceoff/https/:/usr/src/app/https/
     depends_on:
       - db
-    
+
   proxy:
     image: nginx
     container_name: faceoff-proxy
@@ -46,6 +46,8 @@ services:
     volumes:
       - $HOME/https/:/etc/nginx/certs
       - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
 
 networks:
   proxy:

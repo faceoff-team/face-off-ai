@@ -12,63 +12,18 @@ landmark_predict = dlib.shape_predictor('/Users/dommiller88/Documents/GitHub/fac
 
 def get_landmarks(image, df):
     print(len(df.columns))
-    JAWLINE_X = []
-    JAWLINE_Y = []
-    R_EYEBROW_X = []
-    R_EYEBROW_Y = []
-    L_EYEBROW_X = []
-    L_EYEBROW_Y = []
-    NOSE_BR_X = []
-    NOSE_BR_Y = []
-    NOSE_LOW_X = []
-    NOSE_LOW_Y = []
-    R_EYE_X = []
-    R_EYE_Y = []
-    L_EYE_X = []
-    L_EYE_Y = []
-    MOUTH_INNER_X = []
-    MOUTH_INNER_Y = []
-    MOUTH_OUTER_X = []
-    MOUTH_OUTER_Y = []
+    row = []
     if len(face):
         x = landmark_predict(image, face[0])
         for i in range(0,68):
-            print(i)
             p = x.part(i)
-            print(f'current part: ({p.x}, {p.y})')
-            if i <= 16:
-                JAWLINE_X.append(p.x)
-                JAWLINE_Y.append(p.y)
-            elif i <= 21:
-                R_EYEBROW_X.append(p.x)
-                R_EYEBROW_Y.append(p.y)
-            elif i <= 26:
-                L_EYEBROW_X.append(p.x)
-                L_EYEBROW_Y.append(p.y)
-            elif i <= 30:
-                NOSE_BR_X.append(p.x)
-                NOSE_BR_Y.append(p.y)
-            elif i <= 35:
-                NOSE_LOW_X.append(p.x)
-                NOSE_LOW_Y.append(p.y)
-            elif i <= 41:
-                R_EYE_X.append(p.x)
-                R_EYE_Y.append(p.y)
-            elif i <= 47:
-                L_EYE_X.append(p.x)
-                L_EYE_Y.append(p.y)
-            elif i <= 59:
-                MOUTH_OUTER_X.append(p.x)
-                MOUTH_OUTER_Y.append(p.y)
-            else:
-                MOUTH_INNER_X.append(p.x)
-                MOUTH_INNER_Y.append(p.y)
-        new_row = [JAWLINE_X, JAWLINE_Y, R_EYEBROW_X, R_EYEBROW_Y, L_EYEBROW_X, L_EYEBROW_Y, NOSE_BR_X, NOSE_BR_Y, NOSE_LOW_X, NOSE_LOW_Y, R_EYE_X, R_EYE_Y, L_EYE_X, L_EYE_Y, MOUTH_INNER_X, MOUTH_INNER_Y, MOUTH_OUTER_X, MOUTH_OUTER_Y]
-        for l in new_row:
-            print(f'check it out: {l}')
-        new_row = pd.Series(new_row, index=df.columns)
+            point_a = np.array((p.x, p.y, 1))
+            for k in range(0,68):
+                point_b = ((x.part(k).x, x.part(k).y, 1))
+                distance = np.linalg.norm(point_a - point_b)
+                row.append(distance)
+        new_row = pd.Series(row)
         df = df.append(new_row, ignore_index=True)
-        print(df)
         # landmarks = [(p.x, p.y) for p in landmark_predict(image, face[0]).parts()]
     return df
 
@@ -124,7 +79,7 @@ if __name__ == "__main__":
     parser.add_argument('--file', required=True)
     args = parser.parse_args()
     print(args.src)
-    df = pd.DataFrame(columns=['JAWLINE_X','JAWLINE_Y', 'R_EYEBROW_X','R_EYEBROW_Y', 'L_EYEBROW_X', 'L_EYEBROW_Y', 'NOSE_BR_X', 'NOSE_BR_Y', 'NOSE_LOW_X', 'NOSE_LOW_Y', 'R_EYE_X', 'R_EYE_Y', 'L_EYE_X', 'L_EYE_Y', 'MOUTH_INNER_X', 'MOUTH_INNER_Y', 'MOUTH_OUTER_X', 'MOUTH_OUTER_Y'])
+    df = pd.DataFrame()
     for subdir, dirs, files in walk(args.src):
         for file in files:
             print(file)

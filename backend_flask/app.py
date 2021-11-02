@@ -14,7 +14,7 @@ emotions = {
         3: 'Sad'
 }
 
-model = tf.keras.models.load_model('/Users/dommiller88/Documents/Github/face-off-ai/model/binaries/modelv6.h5')
+model = tf.keras.models.load_model('CUMv6.h5')
 
 @app.route("/predict", methods=["GET","POST"])
 def predict():

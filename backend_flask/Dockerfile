@@ -11,13 +11,12 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
 RUN apk update
 RUN apk add make automake gcc g++ subversion python3-dev
 
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+
 
 EXPOSE 5000
 

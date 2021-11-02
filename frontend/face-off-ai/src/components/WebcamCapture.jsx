@@ -1,5 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
-import './cameraStyles.css'
+//TODO this seems to have been included in a local production. The file does not
+//exist to run on the server.
+// import './cameraStyles.css'
 import Webcam from "react-webcam";
 const axios = require('axios')
 

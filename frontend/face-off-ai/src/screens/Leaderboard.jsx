@@ -25,6 +25,7 @@ const leaderboard = async() => {
 };
 
 function Leaderboard(props) {
+    leaderboard();
     
     // TODO: fix the set state issue
     useEffect(() => {

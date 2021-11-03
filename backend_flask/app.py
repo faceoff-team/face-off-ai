@@ -1,6 +1,6 @@
 import tensorflow as tf
 import flask
-import '../model/scripts/transform' as transform
+import 'transform' as transform
 import base64
 import numpy
 import cv2

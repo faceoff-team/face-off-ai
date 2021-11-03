@@ -61,35 +61,35 @@ def transformIndividual(im_b64):
 
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--src', required=True)
-    parser.add_argument('--dst', required=True)
-    args = parser.parse_args()
-    print(args.src)
-    for subdir, dirs, files in walk(args.src):
-        for file in files:
-            print(file)
-            if (file.endswith('.jpg')):
-                prefix = subdir[:(find_nth(subdir, '/', 7))]
-                suffix = subdir[find_nth(subdir, '/', 8) + 1:]
-                full_path = path.join(prefix, 'modified_data', suffix, file)
-                image = cv2.imread(path.join(subdir, file))
-                face = face_detect(image, 1)
-                crop_image = Image.open(path.join(subdir, file))
-                for i, face_rect in enumerate(face):
-                    crop_area = (face_rect.left(), face_rect.top(), face_rect.right(), face_rect.bottom())
-                    cropped = crop_image.crop(crop_area)
-                    cropped = cropped.resize((128,128))
-                    dest_true = path.join(args.dst, file)
-                    cropped.save(dest_true)
-                    image = cv2.imread(dest_true)
-                    image, landmarks = get_landmarks(image)
-                    if image is not None:
-                        image_copy = image_landmarks(image, landmarks)
-                        cv2.imwrite(dest_true, image_copy)
-                    else:
-                        pass
+# if __name__ == "__main__":
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument('--src', required=True)
+#     parser.add_argument('--dst', required=True)
+#     args = parser.parse_args()
+#     print(args.src)
+#     for subdir, dirs, files in walk(args.src):
+#         for file in files:
+#             print(file)
+#             if (file.endswith('.jpg')):
+#                 prefix = subdir[:(find_nth(subdir, '/', 7))]
+#                 suffix = subdir[find_nth(subdir, '/', 8) + 1:]
+#                 full_path = path.join(prefix, 'modified_data', suffix, file)
+#                 image = cv2.imread(path.join(subdir, file))
+#                 face = face_detect(image, 1)
+#                 crop_image = Image.open(path.join(subdir, file))
+#                 for i, face_rect in enumerate(face):
+#                     crop_area = (face_rect.left(), face_rect.top(), face_rect.right(), face_rect.bottom())
+#                     cropped = crop_image.crop(crop_area)
+#                     cropped = cropped.resize((128,128))
+#                     dest_true = path.join(args.dst, file)
+#                     cropped.save(dest_true)
+#                     image = cv2.imread(dest_true)
+#                     image, landmarks = get_landmarks(image)
+#                     if image is not None:
+#                         image_copy = image_landmarks(image, landmarks)
+#                         cv2.imwrite(dest_true, image_copy)
+#                     else:
+#                         pass
     
 
             

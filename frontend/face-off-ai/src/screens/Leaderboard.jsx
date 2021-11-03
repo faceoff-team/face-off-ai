@@ -10,6 +10,7 @@ const leaderboard = async() => {
 
         console.log("Hello, res: " + res.data);
         console.log("res json: " + JSON.stringify(res));
+        // hopefully this works
 
         {/*this.state = {
             //save individual components here

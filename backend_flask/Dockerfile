@@ -1,13 +1,14 @@
 
-#STAGE 1 BUILDING
 FROM python:3.7-slim
 
-# MAINTAINER Dominic Miller
+MAINTAINER Dominic Miller
+
 RUN apt update && \
     apt install --no-install-recommends -y build-essential gcc wget
 COPY . .
+RUN python -m pip install --upgrade pip
 RUN pip install cmake
-RUN pip install --no-cache-dir --user -r /requirements.txt
+RUN pip install -r /requirements.txt
 
-CMD ['python', 'app/app.py']
+CMD ["python", "app.py"]
 EXPOSE 5000

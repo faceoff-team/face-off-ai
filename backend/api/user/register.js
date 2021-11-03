@@ -38,7 +38,7 @@ const validateRegisterBody = (body) => {
     let numberOfIdentifiers = Object.keys(body).length;
 
     if (numberOfIdentifiers !== 3) 
-        throw new BadRequestError('Unknown Identifier.', 400);
+        throw new BadRequestError('Unknown Identifier.' + numberOfIdentifiers + ".", 400);
 
     if (typeof body.email !== 'string')
         throw new BadRequestError('Email must be of type string.', 400);

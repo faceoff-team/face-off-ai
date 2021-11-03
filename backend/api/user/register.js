@@ -65,7 +65,7 @@ const validateRegisterBody = (body) => {
         throw new BadRequestError('Password must be of type string.', 400);
 
     if (body.password.length < 8)
-        throw new BadRequestError('Password must have a length greater than 8 characters.', 400);
+        throw new BadRequestError('Password must have a length of at least 8 characters.', 400);
 
     if (body.password.match(/^\S*$/) == null) 
         throw new BadRequestError('Password must not have whitespace.', 400);

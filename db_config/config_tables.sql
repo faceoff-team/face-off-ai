@@ -67,8 +67,9 @@ CREATE TABLE emotion (
 
 CREATE TABLE video (
     videoID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    videoURL            VARCHAR(255) NOT NULL,
+    videoYoutubeID      VARCHAR(255) NOT NULL,
     videoRank           INT(10),
+    videoTitle          VARCHAR(255),
     FOREIGN KEY(emotionID) REFERENCES emotion(emotionID)        
 );
 

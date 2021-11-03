@@ -8,7 +8,8 @@ const leaderboard = async() => {
     try {
         let res = await http.get("/api/user/leaderboard");
 
-        console.log(res);
+        console.log("Hello, res: " + res.data);
+        console.log("res json: " + res.json());
 
         {/*this.state = {
             //save individual components here
@@ -25,6 +26,7 @@ const leaderboard = async() => {
 };
 
 function Leaderboard(props) {
+    leaderboard();
     
     // TODO: fix the set state issue
     useEffect(() => {

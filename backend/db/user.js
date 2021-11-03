@@ -161,9 +161,14 @@ const updateProfile = async (userid, username, bio) => {
 
 const getLeaderboard = async() => {
     try {
+        console.log(`SELECT userID, worldRank, bestScore, username, imagePath 
+        FROM user 
+        ORDER BY worldRank`);
         let leaderboard = await new Promise((resolve, reject) => {
             global.connection.query(`
-                SELECT userID, worldRank, bestScore, username, imagePath FROM user ORDER BY worldRank
+                SELECT userID, worldRank, bestScore, username, imagePath 
+                FROM user 
+                ORDER BY worldRank
             `, (err, results, fields) => {
                 if (err) {
                     reject(err);

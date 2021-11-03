@@ -8,16 +8,18 @@ RUN apt update && \
 COPY requirements.txt /requirements.txt
 RUN pip install cmake==3.21.3
 RUN pip install face_recognition==1.3.0
-RUN pip install --no-cache-dir --user -r /requirements.txt
-
-
+RUN python3.7 -m pip install --no-cache-dir --user -r /requirements.txt
 
 #STAGE 2 RUNTIME
 FROM debian:buster-slim
 RUN apt update && \
-    apt install --no-install-recommends -y build-essential python3 wget && \
+    apt install --no-install-recommends -y build-essential python3 wget bzip2 && \
     apt clean && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /root/.local/lib/python3.7/site-packages /usr/local/lib/python3.7/dist-packages
 COPY . /app
 CMD ['python3', 'app.py']
 EXPOSE 5000
+
+# cd ~/actions-runner/_work/face-off-ai/face-off-ai/backend_flask
+# docker build -t face-off-ai_backend_flask .
+# docker run -it face-off-ai_backend_flask bash

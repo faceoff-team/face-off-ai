@@ -51,12 +51,6 @@ const initialState = {
    toggle: () => {}
 }
 
-const initialState = {
-    dark: false,
-    theme: themes.light,
-    toggle: () => {}
-}
-
 const ThemeContext = React.createContext(initialState)
 
 function NewThemeProvider({ children }) {
@@ -72,25 +66,6 @@ function NewThemeProvider({ children }) {
     
     return (
         <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>
-                <ThemeContext.Provider value={{ theme, dark, toggle }}>
-                {children}
-             </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
-           {children}
-        </ThemeContext.Provider>        <ThemeContext.Provider value={{ theme, dark, toggle }}>
            {children}
         </ThemeContext.Provider>
         )

@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir --user -r /requirements.txt
 #STAGE 2 RUNTIME
 FROM debian:buster-slim
 RUN apt update && \
-    apt install --no-install-recommends -y build-essential python3 && \
+    apt install --no-install-recommends -y build-essential python3 wget && \
     apt clean && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /root/.local/lib/python3.7/site-packages /usr/local/lib/python3.7/dist-packages
 COPY . /app

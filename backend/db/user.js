@@ -176,7 +176,7 @@ const getLeaderboard = async() => {
                 });
             });
         });
-        console.log(leaderboard.results)
+        //console.log(leaderboard.results)
         return leaderboard.results;
     } catch (err) {
         console.error(err);

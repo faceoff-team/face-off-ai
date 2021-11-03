@@ -6,6 +6,7 @@ FROM python:3.7-slim
 RUN apt update && \
     apt install --no-install-recommends -y build-essential gcc wget
 COPY . .
+RUN pip install cmake
 RUN pip install --no-cache-dir --user -r /requirements.txt
 
 CMD ['python', 'app/app.py']

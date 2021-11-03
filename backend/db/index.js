@@ -39,4 +39,5 @@ const queryPromise = (query) => {
 
 module.exports = {
   connection,
+  queryPromise,
 };

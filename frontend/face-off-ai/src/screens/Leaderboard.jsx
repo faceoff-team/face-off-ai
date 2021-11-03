@@ -10,12 +10,12 @@ const leaderboard = async() => {
 
         console.log(res);
 
-        this.state = {
+        {/*this.state = {
             //save individual components here
-            /*id: res.userid,
+            id: res.userid,
             username: res.username,
-            rank: res.worldRank*/
-        }
+            rank: res.worldRank
+        }*/}
 
         return res;
     } catch (err) {
@@ -25,7 +25,6 @@ const leaderboard = async() => {
 };
 
 function Leaderboard(props) {
-    props = leaderboard();
     
     // TODO: fix the set state issue
     useEffect(() => {

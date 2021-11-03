@@ -14,7 +14,7 @@ const handleGetLeaderboard = async (req, res) => {
     res.status(200).json({
         success: true,
         msg: "Leaderboard retreived.",
-        leaderboard: lb,
+        lb,
     });
 };
 

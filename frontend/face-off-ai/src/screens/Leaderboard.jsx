@@ -9,7 +9,6 @@ const leaderboard = async() => {
         let res = await http.get("/api/user/leaderboard");
 
         console.log("Hello, res: " + res.data);
-        console.log("res text: " + res.text());
         console.log("res json: " + res.json());
 
         {/*this.state = {

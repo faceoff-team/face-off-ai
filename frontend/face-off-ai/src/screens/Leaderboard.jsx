@@ -10,6 +10,11 @@ const leaderboard = async() => {
 
         console.log("Hello, res: " + res);
 
+        res.on('data', function (body) {
+            console.log(body);
+        });
+        
+
         {/*this.state = {
             //save individual components here
             id: res.userid,

@@ -38,26 +38,23 @@ CREATE TABLE user (
     worstScore          INT(10) NOT NULL
 );
 
-CREATE TABLE game (
-    gameID              INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    winnerSore          INT(10),
-    lowScore            INT(10),
-    gameDate            DATE
-);
-
-CREATE TABLE friend {
+CREATE TABLE friend (
+    user1               INT(10) NOT NULL,
+    user2               INT(10) NOT NULL,
     FOREIGN KEY (user1) REFERENCES user(userID),
     FOREIGN KEY (user2) REFERENCES user(userID),
     friendDate          DATE,
     PRIMARY KEY (user1, user2)
-}
+);
 
 CREATE TABLE challenge (
     challengeID         INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     challengeName       VARCHAR(255),
     difficulty          INT(10),
     averageRating       INT(10),
-    highScore           INT(10)
+    highScore           INT(10),
+    videoID             INT(10),
+    FOREIGN KEY (videoID) REFERENCES video(videoID)
 );
 
 CREATE TABLE emotion (
@@ -71,7 +68,17 @@ CREATE TABLE video (
     videoYoutubeID      VARCHAR(255) NOT NULL,
     videoRank           INT(10),
     videoTitle          VARCHAR(255),
+    emotionID           INT(1) NOT NULL,
     FOREIGN KEY(emotionID) REFERENCES emotion(emotionID)        
+);
+
+CREATE TABLE game (
+    gameID                  INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    videoID                 INT(10) NOT NULL,
+    FOREIGN KEY (videoID)   REFERENCES video(videoID),
+    winnerSore              INT(10),
+    lowScore                INT(10),
+    gameDate                DATE
 );
 
 CREATE TABLE user_game (
@@ -82,3 +89,12 @@ CREATE TABLE user_game (
     FOREIGN KEY (game) REFERENCES game(gameID),
     PRIMARY KEY (user, game)
 );
+
+INSERT INTO emotion (emotionID, emotionName)
+VALUES (1, "Happy");
+
+INSERT INTO emotion (emotionID, emotionName)
+VALUES (2, "Sad");
+
+INSERT INTO emotion (emotionID, emotionName)
+VALUES (3, "Funny");

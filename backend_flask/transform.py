@@ -7,7 +7,7 @@ import argparse
 import base64
 
 face_detect = dlib.get_frontal_face_detector()
-landmark_predict = dlib.shape_predictor('/Users/dommiller88/Documents/GitHub/face-off-ai/model/scripts/shape_predictor_68_face_landmarks.dat')
+landmark_predict = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
 def get_landmarks(image):
     face = face_detect(image, 1)

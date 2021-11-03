@@ -11,23 +11,16 @@ const mysql = require('mysql2');
 const path = require(`path`);
 
 const fs = require('fs');
+// const axios = require('axios');
 
-var connection = mysql.createConnection({
-    host     : 'faceoff-db',
-    user     : 'faceoff',
-    password : 'FaceoffAIRocks',
-    database : 'faceoff'
-});
+const { connection } = require('./db');
+// app.use((req, res, next) => {
+//     if (!req.secure) {
+//         return res.redirect('https://' + req.get('host') + req.url);
+//     }
 
-global.connection = connection;
-
-app.use((req, res, next) => {
-    if (!req.secure) {
-        return res.redirect('https://' + req.get('host') + req.url);
-    }
-
-    next();
-});
+//     next();
+// });
 
 app.use(cors());
 app.use(express.json());
@@ -40,6 +33,14 @@ const REACT = path.join(__dirname, `react`);
 
 app.use(express.static(REACT));
 
+// app.post('/request', (req, res) => {
+//     axios.get('https://127.0.0.1:5000/predict', {
+//         image: req.params.image
+//     })
+//     .then((result) => {
+//         return result;
+//     })
+// })
 app.get('*', (req, res) => {
     res.sendFile(path.join(REACT, "index.html"));
 });
@@ -58,30 +59,30 @@ app.use((err, req, res, next) => {
     });
 });
 
-let privateKey = fs.readFileSync(path.join(__dirname, './https/priv.pem'), `utf8`);
-let certificate = fs.readFileSync(path.join(__dirname, './https/cert.pem'), `utf8`);
+// let privateKey = fs.readFileSync(path.join(__dirname, './https/priv.pem'), `utf8`);
+// let certificate = fs.readFileSync(path.join(__dirname, './https/cert.pem'), `utf8`);
 
-let credentials = {
-    key: privateKey,
-    cert: certificate,
-};
+// let credentials = {
+//     key: privateKey,
+//     cert: certificate,
+// };
 
-let server = https.createServer(credentials, app);
-server.listen(443, () => {
-    console.log("HTTPS Server started on port 443.");
-});
-
-const http = require('http');
-
-http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    res.end();
-}).listen(80, () => {
-    console.log(`HTTP Server started on port 80.`);
-});
-
-// app.listen(PORT, () => {
-//     console.log(`Listening on port ${PORT}!`);
+// let server = https.createServer(credentials, app);
+// server.listen(443, () => {
+//     console.log("HTTPS Server started on port 443.");
 // });
+
+// const http = require('http');
+
+// http.createServer(function (req, res) {
+//     res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+//     res.end();
+// }).listen(80, () => {
+//     console.log(`HTTP Server started on port 80.`);
+// });
+
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}!`);
+});
 
 module.exports = app;

@@ -65,6 +65,7 @@ CREATE TABLE emotion (
     emotionName         VARCHAR(64)
 );
 
+-- Changes should be here
 CREATE TABLE video (
     videoID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     videoYoutubeID      VARCHAR(255) NOT NULL,

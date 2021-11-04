@@ -5,39 +5,34 @@ import HorizontalLine from "../components/HorizontalLine.jsx";
 import { Link, withRouter } from 'react-router-dom';
 import { TextField } from '@mui/material';
 
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
+
 function Home() {
+    const ytRegex = "^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
     return (
         <div className="home" class="container">
-            <h1 class="font-weight-heavy" style={{ marginTop: "20px" }}>Welcome! Want to jump right in? Click Below:</h1>
+            <h1 class="font-weight-heavy" style={{ marginTop: "20px" }}>Welcome! Paste in a YouTube video link or click a video below:</h1>
             <HorizontalLine color="#f7f7f7" width="100%"/>
-            <TextField 
+            <br/>
+            <TextField
+                inputProps={{ pattern: ytRegex }}
                 id="outlined-basic"
                 label="Paste a YouTube link here"
                 variant="outlined"
-                color="primary"
+                color="secondary"
                 fullWidth
             />
-            <div style={{textAlign: 'center'}}>
-                <Link to="/game">
-                <Button 
-                    size="large" 
-                    variant="contained" 
-                    color="secondary"
-                        style={{ fontSize: '18px', maxWidth: '14em', maxHeight: '4em', minWidth: '12em', minHeight: '3em' }}
-                >
-                    Singleplayer
-                </Button></Link>
-                <div style={{marginTop: "20px"}}></div>
-                <Link to="/game">
-                    <Button
-                        size="large"
-                        variant="contained"
-                        color="secondary"
-                        style={{ fontSize: '18px', maxWidth: '14em', maxHeight: '4em', minWidth: '12em', minHeight: '3em' }}
-                    >
-                        Play with friends
-                    </Button></Link>
-            </div>
+            <br/>
             <div style={{marginTop: "20px"}}></div>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Popular Today</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />

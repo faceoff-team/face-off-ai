@@ -30,7 +30,7 @@ function HomePageBox({videoID, videoTitle}) {
                             component="img"
                             height="140"
                             image={thumbnailURL}
-                            alt="green iguana"
+                            alt={videoTitle}
                         />
                     </CardActionArea>
                 </Card>

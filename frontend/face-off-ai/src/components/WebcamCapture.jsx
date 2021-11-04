@@ -19,16 +19,17 @@ const WebcamCapture = ({running, stateChanger}) => {
             if (running) {
                 const imageSrc = webcamRef.current.getScreenshot();
                 //TODO: process image, send information back to game
-                axios.post('https://139.177.201.12:5000/predict', {
+                axios.post('https://ai.faceoff.cf/predict', {
                     image: imageSrc
                 })
                 .then((res) => {
-                    if (res.success == 'true') {
-                        console.log(res.prediction);
-                        if (res.prediction == 'happy') {
-                            stateChanger(true);
-                        }
-                    }
+                    // if (res.success == 'true') {
+                    //     console.log(res.prediction);
+                    //     if (res.prediction == 'happy') {
+                    //         stateChanger(true);
+                    //     }
+                    // }
+                    console.log(res)
                 }, (err) => {
                     console.log(err);
                 })

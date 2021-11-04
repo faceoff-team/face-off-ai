@@ -18,8 +18,10 @@ const WebcamCapture = ({running, stateChanger}) => {
         console.log("entered effect")
         const interval = setInterval(() => {
             console.log(running);
-            const imageSrc = webcamRef.current.getScreenshot();
-            console.log(imageSrc);
+            let imageSrc = webcamRef.current.getScreenshot({width: 150, height: 100});
+            imageSrc = imageSrc.substring(imageSrc.indexOf(",") + 1);
+            console.log("type of image src: ".concat(typeof(imageSrc)))
+            console.log("image.src: ".concat(imageSrc));
             //TODO: process image, send information back to game
             axios.post('https://ai.faceoff.cf/predict', {
                 image: imageSrc

@@ -24,7 +24,7 @@ const { getProfile, putProfile } = require('./profile');
 
 router.get(`/profile`, authenticate, getProfile);
 
-router.post(`/profile/pic`, require('./profilePic'));
+router.post(`/profile/pic`, authenticate, require('./profilePic'));
 
 router.get(`/profile/:id`, getProfile);
 

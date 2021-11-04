@@ -9,5 +9,6 @@ const router = express.Router();
 //All user routes.
 router.use('/user', require('./user/user'));
 router.use('/score', require('./score'));
+router.use('/challenge', require('./challenge'));
 
 module.exports = router;

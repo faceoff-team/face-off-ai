@@ -26,7 +26,7 @@ const profilePics = '/home/faceoff/profilePics';
 
 const handleChangeProfilePictueRequest = async (req, res) => {
   //If no files are in the request, throw an error.
-  if (Object.keys().length == 0) {
+  if (Object.keys(req.files).length == 0) {
     throw new BadRequestError(`No file sent.`, 400);
   }
 

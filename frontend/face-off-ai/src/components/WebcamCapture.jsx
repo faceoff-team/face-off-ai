@@ -18,7 +18,7 @@ const WebcamCapture = ({running, stateChanger}) => {
         console.log("entered effect")
         const interval = setInterval(() => {
             console.log(running);
-            let imageSrc = webcamRef.current.getScreenshot({width: 80, height: 45});
+            let imageSrc = webcamRef.current.getScreenshot({width: 48, height: 48});
             imageSrc = imageSrc.substring(imageSrc.indexOf(",") + 1);
             console.log("type of image src: ".concat(typeof(imageSrc)))
             console.log("image.src: ".concat(imageSrc));
@@ -53,7 +53,6 @@ const WebcamCapture = ({running, stateChanger}) => {
             screenshotFormat="image/jpeg"
             width={300}
             videoConstraints={videoConstraints}
-            audio
             mirrored
         />
         </div>

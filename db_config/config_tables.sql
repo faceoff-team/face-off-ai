@@ -76,7 +76,7 @@ CREATE TABLE game (
     gameID                  INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     videoID                 INT(10) NOT NULL,
     FOREIGN KEY (videoID)   REFERENCES video(videoID),
-    winnerSore              INT(10),
+    winnerScore             INT(10),
     lowScore                INT(10),
     gameDate                DATE
 );

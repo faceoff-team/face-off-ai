@@ -49,7 +49,7 @@ const getAllGames = async (userID) => {
     SELECT * FROM user_game LIMIT 100
     WHERE userID = ${userID}
   `;
-
+//TODO do a join here.
   let games = await queryPromise(query);
 
   return games.results;

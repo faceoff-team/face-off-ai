@@ -27,7 +27,7 @@ const handleCreateGameRequest = async (req, res) => {
   });
 };
 
-module.exports = (req, res, next) => {
+module.exports =  async (req, res, next) => {
   try {
     await handleCreateGameRequest(req, res); 
   } catch (err) {

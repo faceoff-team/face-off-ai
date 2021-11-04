@@ -15,7 +15,9 @@ const WebcamCapture = ({running, stateChanger}) => {
     const webcamRef = React.useRef(null);
     
     React.useEffect(() => {
+        console.log("entered effect")
         const interval = setInterval(() => {
+            console.log(running);
             if (running) {
                 const imageSrc = webcamRef.current.getScreenshot();
                 //TODO: process image, send information back to game
@@ -29,7 +31,7 @@ const WebcamCapture = ({running, stateChanger}) => {
                     //         stateChanger(true);
                     //     }
                     // }
-                    console.log(res)
+                    console.log(res);
                 }, (err) => {
                     console.log(err);
                 })

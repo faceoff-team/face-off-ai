@@ -1,4 +1,6 @@
 import React from "react";
+import Linking from "react";
+import useState from "react";
 
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileBody from "../components/ProfileBody.jsx"
@@ -7,10 +9,35 @@ import AccountList from "../components/AccountList.jsx";
 import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
 
+
 /* This picture is a placeholder for our presentation */
 import Picture3 from "../assets/profile-picture-2.jpg";
+import { Button } from "@mui/material";
+
+
 
 function Profile() {
+    const postOnFacebook = () => {
+        let facebookParameters = [];
+        let facebookShareURL = "https://cf.faceoff.ai/home";
+        let postContent = "Check out FACEOFF AI"
+        if (facebookShareURL)
+          facebookParameters.push('u=' + encodeURI(facebookShareURL));
+        if (postContent)
+          facebookParameters.push('quote=' + encodeURI(postContent));
+        const url =
+          'https://www.facebook.com/sharer/sharer.php?'
+           + facebookParameters.join('&');
+    
+        Linking.openURL(url)
+          .then((data) => {
+            alert('Facebook Opened');
+          })
+          .catch(() => {
+            alert('Something went wrong');
+          });
+      };
+
     return (
         <div className="Profile" class="container">
             <Grid container 
@@ -40,6 +67,8 @@ function Profile() {
                     </div>
                 </Box>
             </Grid>
+            <br />
+            <Button onPress={postOnFacebook}>Share on Facebook</Button>
         </div>
     );
 }

@@ -51,102 +51,104 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="formCenter">
-        <form className="formFields" onSubmit={this.handleSubmit}>
-        <div className="formField">
-            <div className="labelWrapper">
-              <label className="formFieldLabel" htmlFor="username">
-                Username
-              </label>
+        <div class="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
+        <div className="formCenter">
+            <form className="formFields" onSubmit={this.handleSubmit}>
+            <div className="formField">
+                <div className="labelWrapper">
+                <label className="formFieldLabel" htmlFor="username">
+                    Username
+                </label>
+                </div>
+                <div className="inputWrapper">
+                <input
+                    type="text"
+                    id="username"
+                    className="formFieldInput"
+                    placeholder="Enter A New Username"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                />
+                </div>
             </div>
-            <div className="inputWrapper">
-              <input
-                type="text"
-                id="username"
-                className="formFieldInput"
-                placeholder="Enter A New Username"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          
-          <div className="formField">
-            <div className="labelWrapper">
-              <label className="formFieldLabel" htmlFor="email">
-                E-Mail Address
-              </label>
-            </div>
-            <div className="inputWrapper">
-              <input
-                type="email"
-                id="email"
-                className="formFieldInput"
-                placeholder="Enter your email"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-
-          <div className="formField">
-            <div className="labelWrapper">
-              <label className="formFieldLabel" htmlFor="password">
-                Password
-              </label>
-            </div>
-            <div className="inputWrapper">
-              <input
-                type="password"
-                id="password"
-                className="formFieldInput"
-                placeholder="Enter your password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-
-          <div className="formField">
-            <div className="labelWrapper">
-              <label className="formFieldLabel" htmlFor="password">
-                Retype Password
-              </label>
-            </div>
-            <div className="inputWrapper">
-              <input
-                type="password"
-                id="retypepassword"
-                className="formFieldInput"
-                placeholder="Retype your password"
-                name="retypepassword"
-                value={this.state.retypepassword}
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-
-          <div className="formField">
-            <button className="formFieldButton">Register</button>{" "}
-            <Link to="/login" className="formFieldLink">
-              Already have an account? Login
-            </Link>
-          </div>
-
-          <div className="socialMediaButtons">
-            <div className="facebookButton">
-              <FacebookLoginButton onClick={() => alert("Hello")} />
+            
+            <div className="formField">
+                <div className="labelWrapper">
+                <label className="formFieldLabel" htmlFor="email">
+                    E-Mail Address
+                </label>
+                </div>
+                <div className="inputWrapper">
+                <input
+                    type="email"
+                    id="email"
+                    className="formFieldInput"
+                    placeholder="Enter your email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                />
+                </div>
             </div>
 
-            <div className="instagramButton">
-              <InstagramLoginButton onClick={() => alert("Hello")} />
+            <div className="formField">
+                <div className="labelWrapper">
+                <label className="formFieldLabel" htmlFor="password">
+                    Password
+                </label>
+                </div>
+                <div className="inputWrapper">
+                <input
+                    type="password"
+                    id="password"
+                    className="formFieldInput"
+                    placeholder="Enter your password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                />
+                </div>
             </div>
-          </div>
-        </form>
-      </div>
+
+            <div className="formField">
+                <div className="labelWrapper">
+                <label className="formFieldLabel" htmlFor="password">
+                    Retype Password
+                </label>
+                </div>
+                <div className="inputWrapper">
+                <input
+                    type="password"
+                    id="retypepassword"
+                    className="formFieldInput"
+                    placeholder="Retype your password"
+                    name="retypepassword"
+                    value={this.state.retypepassword}
+                    onChange={this.handleChange}
+                />
+                </div>
+            </div>
+
+            <div className="formField">
+                <button className="formFieldButton">Register</button>{" "}
+                <Link to="/login" className="formFieldLink">
+                Already have an account? Login
+                </Link>
+            </div>
+
+            <div className="socialMediaButtons">
+                <div className="facebookButton">
+                <FacebookLoginButton onClick={() => alert("Hello")} />
+                </div>
+
+                <div className="instagramButton">
+                <InstagramLoginButton onClick={() => alert("Hello")} />
+                </div>
+            </div>
+            </form>
+        </div>
+        </div>
     );
   }
 }

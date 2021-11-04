@@ -5,6 +5,7 @@ import cv2
 from PIL import Image, ImageOps
 import argparse
 import base64
+import io
 
 face_detect = dlib.get_frontal_face_detector()
 landmark_predict = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
@@ -36,24 +37,28 @@ def find_nth(haystack, needle, n):
     return start
 
 def transformIndividual(im_b64):
-    im_bytes = base64.b64decode(im_b64)
-    im_arr = np.frombuffer(im_bytes, dtype=np.uint8) 
-    img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
+    im_b64.replace(" ", "+")
+    base64_decoded = base64.b64decode(im_b64)
+    image = Image.open(io.BytesIO(base64_decoded))
+    img = np.array(image)
+    img = img.astype(np.uint8)
+    img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
     face = face_detect(img, 1)
     for i, face_rect in enumerate(face):
         crop_area = (face_rect.left(), face_rect.top(), face_rect.right(), face_rect.bottom())
-        crop_image = img[face_rect.bottom():face_rect.top(), face_rect.left():face_rect.right()]
+        print(crop_area)
+        crop_image = img[face_rect.top():face_rect.bottom(), face_rect.left():face_rect.right()]
+        crop_image = cv2.resize(crop_image, (128, 128))
         image,landmarks = get_landmarks(crop_image)
         if image is not None:
             image_copy = image_landmarks(image, landmarks)
-            image_copy = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
-            image_copy = cv2.resize(image_copy, (128, 128))
-            image_copy = image_copy/255.
-            image_copy = np.expand_dims(image_copy, axis=0)
-            im_arr = cv2.imencode('.jpg', image_copy)
-            im_bytes = im_arr.tobytes()
-            im_b64 = base64.b64encode(im_bytes)
-            return im_b64
+            # image_copy = image_copy/255.
+            # image_copy = np.expand_dims(image_copy, axis=0)
+            # pil_img = Image.fromarray(image_copy)
+            # pil_img.show()
+            # buff = io.BytesIO()
+            # new_image_string = base64.b64encode(buff.getvalue()).decode("utf-8")
+            return image_copy
         else:
             return None
         

@@ -107,4 +107,4 @@ dist
 db_data
 log
 
-.pem
+*.pem

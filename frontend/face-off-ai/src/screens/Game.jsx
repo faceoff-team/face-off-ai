@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Card from '@mui/material/Card';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -141,6 +142,18 @@ function Game() {
                         mirrored
                     />
                 </div>
+            </div>
+            <br/>
+            <div className="statsRow" class="gameRow">
+                <Card style={{width: '50%'}}>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
+                        <h4 style={{marginTop: "10px"}}>Average time: </h4>
+                        <h4 style={{marginTop: "10px"}}>Best time: </h4>
+                        <h4 style={{marginTop: "10px"}}>Your last time: </h4>
+                        <h4 style={{marginTop: "10px"}}>Your best time: </h4>
+                    </div>
+                </Card>
             </div>
         </div>
     );

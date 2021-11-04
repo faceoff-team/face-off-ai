@@ -1,16 +1,60 @@
 import './App.css';
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
 import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, Error404 } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
-import { NewThemeProvider } from './theme/theme-context';
-import { dark } from '@mui/material/styles/createPalette';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import Brightness2Icon from '@mui/icons-material/Brightness2';
 
 import { Provider } from 'react-redux';
 import store from './store';
 
+const light = {
+    palette: {
+        type: "light",
+        text: {
+            primary: "#080808",
+            secondary: "#080808"
+        },
+
+        primary: {
+            main: "#4963ae",
+            contrastText: "#080808"
+        },
+
+        secondary: {
+            main: "#4cc0ad",
+            contrastText: "#080808"
+        }
+    },
+};
+    
+const dark = {
+    palette: {
+        type: "dark",
+        text: {
+            primary: "#f7f7f7",
+            secondary: "#f7f7f7"
+        },
+
+        primary: {
+            main: "#4963ae",
+            contrastText: "#f7f7f7"
+        },
+
+        secondary: {
+            main: "#4cc0ad",
+            contrastText: "#f7f7f7"
+        }
+    },
+};
+
 function App() {
-  const theme = createTheme({
+
+  /* const theme = createTheme({
     palette: {
         type: dark,
         text: {
@@ -28,12 +72,21 @@ function App() {
             contrastText: "#f7f7f7"
         }
     }
-  });
+  }); */
+  // The light theme is used by default
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  // This function is triggered when the Switch component is toggled
+  const changeTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
 
   return (
     <Provider store={store}>
      <div className="App">
-        <NewThemeProvider>
+     <ThemeProvider
+        theme={isDarkTheme ? createTheme(dark) : createTheme(light)}
+     >
         <Router>
             <NavigationBar />
             <div style={{paddingBottom: "129px"}}>
@@ -55,10 +108,10 @@ function App() {
             </div>
             <div className="footerDiv">
                 <HorizontalLine color="#f7f7f7" width="85%"/>
-                <Footer darkMode={true}/>
+                <Footer/>
             </div>
       </Router>
-      </NewThemeProvider>
+      </ThemeProvider>
      </div>
     </Provider>
   );

@@ -3,12 +3,20 @@ import HomePageGrid from "../components/HomePageGrid.jsx";
 import Button from "@mui/material/Button";
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import { Link, withRouter } from 'react-router-dom';
+import { TextField } from '@mui/material';
 
 function Home() {
     return (
         <div className="home" class="container">
             <h1 class="font-weight-heavy" style={{ marginTop: "20px" }}>Welcome! Want to jump right in? Click Below:</h1>
             <HorizontalLine color="#f7f7f7" width="100%"/>
+            <TextField 
+                id="outlined-basic"
+                label="Paste a YouTube link here"
+                variant="outlined"
+                color="primary"
+                fullWidth
+            />
             <div style={{textAlign: 'center'}}>
                 <Link to="/game">
                 <Button 
@@ -29,7 +37,8 @@ function Home() {
                     >
                         Play with friends
                     </Button></Link>
-            </div><div style={{marginTop: "20px"}}></div>
+            </div>
+            <div style={{marginTop: "20px"}}></div>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Popular Today</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
             <HomePageGrid videoID="YqaacQc6sho" videoTitle="Try Not To Laugh Vol 69"/>

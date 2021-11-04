@@ -44,9 +44,10 @@ const getGame = async (id) => {
  * Retreives all games in database. 
  */
 
-const getAllGames = async () => {
+const getAllGames = async (userID) => {
   let query = `
-    SELECT * FROM game LIMIT 100
+    SELECT * FROM user_game LIMIT 100
+    WHERE userID = ${userID}
   `;
 
   let games = await queryPromise(query);

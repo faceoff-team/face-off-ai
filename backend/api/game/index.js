@@ -14,4 +14,6 @@ router.get('/', authenticate, getAll);
 
 router.get('/:id', authenticate, get);
 
+router.post('/', require('./create'));
+
 module.exports = router;

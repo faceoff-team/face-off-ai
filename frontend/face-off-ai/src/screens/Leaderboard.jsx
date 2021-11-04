@@ -6,7 +6,7 @@ import { http } from "../store.js";
 
 const leaderboard = async() => {
     try {
-        let res = await http.get("/api/user/leaderboard");
+        let res = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
 
         console.log("res.data: " + res.body);
         console.log("res json: " + JSON.stringify(res.body));

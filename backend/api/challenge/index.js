@@ -6,8 +6,10 @@
 const express = require('express');
 const router = express.Router();
 
-router.get(`/`, require('./get').getAll(req, res));
+const { get, getAll } = require('./get');
 
-router.get(`/:challengeID`, require('./get').get(req, res));
+router.get(`/`, getAll);
+
+router.get(`/:challengeID`, get);
 
 module.exports = router;

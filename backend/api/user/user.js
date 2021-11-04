@@ -24,6 +24,8 @@ const { getProfile, putProfile } = require('./profile');
 
 router.get(`/profile`, authenticate, getProfile);
 
+router.post(`/profile/pic`, require('./profilePic'));
+
 router.get(`/profile/:id`, getProfile);
 
 router.put(`/profile`, authenticate, putProfile);
@@ -46,6 +48,5 @@ router.get(`/scores`, authenticate, require('./scores'));
 
 router.get(`/leaderboard`, require('./leaderboard'));
 
-router.post(`/profile/pic`, require('./profilePic'));
 
 module.exports = router;

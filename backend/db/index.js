@@ -3,6 +3,8 @@
  * @description This file initializes a connetion to the database.
  */
 
+const mysql = require('mysql2');
+
 //Create connection variable.
 
 var connection = mysql.createConnection({

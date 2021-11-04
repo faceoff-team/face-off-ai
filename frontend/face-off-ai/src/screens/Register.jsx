@@ -1,6 +1,6 @@
 import { React, Component } from 'react'
 import { Link, withRouter } from "react-router-dom";
-import { FacebookLoginButton, InstagramLoginButton } from "react-social-login-buttons";
+import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux'; 
 import { register } from '../actions/authActions';
 
@@ -48,6 +48,22 @@ class Register extends Component {
     }
 
   }
+
+  responseFacebook(response) {
+    console.log(response);
+        const authResponse = new Promise(window.FB.login);
+        if (!authResponse) {
+            this.props.history.push('/profile');
+        }
+        
+        /*setData(response);
+        setPicture(response.picture.data.url);*/
+        if (response.accessToken) {
+            /*setLogin(true);*/
+        } else {
+            /*setLogin(false);*/
+        }
+}
 
   render() {
     return (
@@ -131,20 +147,21 @@ class Register extends Component {
             </div>
 
             <div className="formField">
-                <button className="formFieldButton">Register</button>{" "}
+                <button className="formFieldButton">Register</button>
+                <br />
                 <Link to="/login" className="formFieldLink">
                 Already have an account? Login
                 </Link>
             </div>
 
             <div className="socialMediaButtons">
-                <div className="facebookButton">
-                <FacebookLoginButton onClick={() => alert("Hello")} />
-                </div>
-
-                <div className="instagramButton">
-                <InstagramLoginButton onClick={() => alert("Hello")} />
-                </div>
+                <FacebookLogin
+                    appId="372920357955526"
+                    autoLoad={true}
+                    fields="name,email,picture"
+                    scope="public_profile,user_friends"
+                    callback={this.responseFacebook.bind(this)}
+                    icon="fa-facebook" />
             </div>
             </form>
         </div>

@@ -46,4 +46,6 @@ router.get(`/scores`, authenticate, require('./scores'));
 
 router.get(`/leaderboard`, require('./leaderboard'));
 
+router.post(`/profile/pic`, require('./profilePic'));
+
 module.exports = router;

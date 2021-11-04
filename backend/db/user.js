@@ -3,7 +3,7 @@
  * 10/9/21
  */
 
-const mysql = require('mysql2');
+const { queryPromise } = require('.');
 const BadRequestError = require('../error/BadRequestError');
 
 //connection is defined globally.
@@ -188,6 +188,16 @@ const getLeaderboard = async() => {
     }
 };
 
+const updateProfilePicture = async (id, filename) => {
+    let query = `
+        UPDATE user
+        SET imagePath = "${filename}"
+        WHERE userID = ${id};
+    `;
+
+    await queryPromise(query);
+};
+
 module.exports = {
     getUserByKey,
     getUserbyUsername,
@@ -196,4 +206,5 @@ module.exports = {
     createUser,
     updateProfile,
     getLeaderboard,
+    updateProfilePicture,
 };

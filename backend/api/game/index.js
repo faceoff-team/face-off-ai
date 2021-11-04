@@ -13,3 +13,5 @@ const { get, getAll } = require('./get');
 router.get('/', authenticate, getAll);
 
 router.get('/:id', authenticate, get);
+
+module.exports = router;

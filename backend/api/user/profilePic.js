@@ -12,7 +12,6 @@ const path = require('path');
 const BadRequestError = require('../../error/BadRequestError');
 const { updateProfilePicture } = require('../../db/user');
 
-const profilePics = '/home/faceoff/profilePics';
 
 //TODO make this an env var
 //const profilePics = process.env.;
@@ -41,7 +40,7 @@ const handleChangeProfilePictueRequest = async (req, res) => {
   //Give the file a name.
   let userFilename = `${uuid.v4()}.${ext}`;
 
-  await fs.writeFile(path.join(profilePics, userFilename), file.data);
+  await fs.writeFile(path.join(`/usr/src/app/profilePics`, userFilename), file.data);
 
   await updateProfilePicture(req.user.userID, userFilename);
 

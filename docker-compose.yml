@@ -31,6 +31,7 @@ services:
       - 8080:8080
     volumes:
       - $HOME/.security/:/usr/src/app/auth/keys/
+      - $HOME/profilePics/:/usr/src/app/profilePics/
       # - /home/faceoff/https/:/usr/src/app/https/
     depends_on:
       - db

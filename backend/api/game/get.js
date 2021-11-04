@@ -4,18 +4,38 @@
  * 11/3/21
  */
 
-const handleGetAllChallengesRequest = async (req, res) => {
+const { getGame, getAllGames } = require("../../db/game");
+
+/**
+ * This function retreives all games the user owns.
+ * @param {Object} req 
+ * @param {Object} res 
+ */
+
+const handleGetAllUserGamesRequest = async (req, res) => {
+  let games = await getAllGames();
 
   res.status(200).json({
     success: true,
     msg: `Games retreived successfully.`,
+    games,
   });
 };
 
-const handleGetUserGameRequest = (req, res) => {
+/**
+ * Get a single game object from the database.
+ *  
+ * @param {Object} req 
+ * @param {Object} res 
+ */
+
+const handleGetGameRequest = (req, res) => {
+  let game = await getGame(req.params.id);
+
   res.status(200).json({
     success: true,
     msg: `Game retieved successfully.`,
+    game,
   });
 };
 
@@ -29,7 +49,7 @@ module.exports = {
   },
   async get(req, res, next) {
     try {
-      await handleGetUserGameRequest(req, res);
+      await handleGetGameRequest(req, res);
     } catch (err) {
       next(err);
     }

@@ -55,6 +55,7 @@ module.exports = async (req, res, next) => {
   try {
     await handleChangeProfilePictueRequest(req, res);
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };

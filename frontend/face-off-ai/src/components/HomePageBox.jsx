@@ -16,7 +16,6 @@ import {
 function HomePageBox({videoID, videoTitle}) {
     const videoURL = `https://www.youtube.com/watch?v=${videoID}`;
     const thumbnailURL = `http://img.youtube.com/vi/${videoID}/hqdefault.jpg`
-    console.log(thumbnailURL);
 
     return (
         <Link to={`game/${videoID}/${videoTitle}`}>

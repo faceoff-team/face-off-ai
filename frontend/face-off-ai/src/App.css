@@ -279,3 +279,8 @@
 }
 
 /* End Game CSS */
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+}

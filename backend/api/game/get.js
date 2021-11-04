@@ -20,14 +20,14 @@ const handleGetUserGameRequest = (req, res) => {
 };
 
 module.exports = {
-  getAll(req, res, next) {
+  async getAll(req, res, next) {
     try {
       await handleGetAllUserGamesRequest(req, res);
     } catch (err) {
       next(err);
     }
   },
-  get(req, res, next) {
+  async get(req, res, next) {
     try {
       await handleGetUserGameRequest(req, res);
     } catch (err) {

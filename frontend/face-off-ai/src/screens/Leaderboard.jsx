@@ -8,8 +8,8 @@ const leaderboard = async() => {
     try {
         let res = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
 
-        console.log("res.data: " + res.body);
-        console.log("res json: " + JSON.stringify(res.body));
+        console.log("res.data: " + res.data.leaderboard);
+        console.log("res json: " + JSON.stringify(res.data.leaderboard));
 
         {/*this.state = {
             //save individual components here

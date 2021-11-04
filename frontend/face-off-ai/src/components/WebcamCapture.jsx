@@ -31,7 +31,7 @@ const WebcamCapture = ({running, stateChanger}) => {
                 //         stateChanger(true);
                 //     }
                 // }
-                console.log(res);
+                console.log(res.data);
             }, (err) => {
                 console.log(err);
             })

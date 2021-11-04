@@ -18,23 +18,25 @@ const WebcamCapture = ({running, stateChanger}) => {
         console.log("entered effect")
         const interval = setInterval(() => {
             console.log(running);
+            const imageSrc = webcamRef.current.getScreenshot();
+            console.log(imageSrc);
+            //TODO: process image, send information back to game
+            axios.post('https://ai.faceoff.cf/predict', {
+                image: imageSrc
+            })
+            .then((res) => {
+                // if (res.success == 'true') {
+                //     console.log(res.prediction);
+                //     if (res.prediction == 'happy') {
+                //         stateChanger(true);
+                //     }
+                // }
+                console.log(res);
+            }, (err) => {
+                console.log(err);
+            })
             if (running) {
-                const imageSrc = webcamRef.current.getScreenshot();
-                //TODO: process image, send information back to game
-                axios.post('https://ai.faceoff.cf/predict', {
-                    image: imageSrc
-                })
-                .then((res) => {
-                    // if (res.success == 'true') {
-                    //     console.log(res.prediction);
-                    //     if (res.prediction == 'happy') {
-                    //         stateChanger(true);
-                    //     }
-                    // }
-                    console.log(res);
-                }, (err) => {
-                    console.log(err);
-                })
+                
             }
         }, 2000)
         return () => clearInterval(interval);

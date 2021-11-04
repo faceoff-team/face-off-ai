@@ -29,7 +29,7 @@ const handleGetAllUserGamesRequest = async (req, res) => {
  * @param {Object} res 
  */
 
-const handleGetGameRequest = (req, res) => {
+const handleGetGameRequest = async (req, res) => {
   let game = await getGame(req.params.id);
 
   res.status(200).json({

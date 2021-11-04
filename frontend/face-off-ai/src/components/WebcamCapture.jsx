@@ -18,7 +18,7 @@ const WebcamCapture = ({running, stateChanger}) => {
         console.log("entered effect")
         const interval = setInterval(() => {
             console.log(running);
-            let imageSrc = webcamRef.current.getScreenshot({width: 150, height: 100});
+            let imageSrc = webcamRef.current.getScreenshot({width: 50, height: 34});
             imageSrc = imageSrc.substring(imageSrc.indexOf(",") + 1);
             console.log("type of image src: ".concat(typeof(imageSrc)))
             console.log("image.src: ".concat(imageSrc));

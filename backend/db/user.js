@@ -39,8 +39,8 @@ const createUser = async (username, email, hash, salt) => {
     try {
         let newUser = await new Promise((resolve, reject) => {
                 global.connection.query(`
-                    INSERT INTO user (username, email, hash, salt, worldRank, bestScore) 
-                    VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1});`, (err, results, fields) => {
+                    INSERT INTO user (username, email, hash, salt, worldRank, bestScore, worstScore) 
+                    VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1}, ${-1});`, (err, results, fields) => {
                         if (err) {
                             reject(err);
                             return;

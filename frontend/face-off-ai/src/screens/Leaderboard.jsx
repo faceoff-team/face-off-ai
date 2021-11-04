@@ -9,8 +9,7 @@ const leaderboard = async() => {
         let res = await http.get("/api/user/leaderboard");
 
         console.log("Hello, res: " + res.data);
-        console.log("res json: " + JSON.stringify(res));
-        // hopefully this works
+        console.log("res json: " + JSON.stringify(res.data));
 
         {/*this.state = {
             //save individual components here

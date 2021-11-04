@@ -88,7 +88,7 @@ class Login extends Component {
             <div className="formField">
                 <button className="formFieldButton">Sign In</button>{" "}
                 <div>
-                    <Link to="/" className="formFieldLink">
+                    <Link to="/register" className="formFieldLink">
                     Create an account
                     </Link>
                 </div>

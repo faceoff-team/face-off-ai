@@ -147,10 +147,10 @@ function Game() {
                     />
                 </div>
                 <div className="game" class="gameColumn">
-                    {/* <WebcamCapture
+                    <WebcamCapture
                         running={running}
                         stateChanger={setLost}
-                    /> */}
+                    />
                 </div>
             </div>
         </div>

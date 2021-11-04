@@ -12,7 +12,10 @@ const path = require('path');
 const BadRequestError = require('../../error/BadRequestError');
 const { updateProfilePicture } = require('../../db/user');
 
-const profilePics = process.env.PROFILE_PATH;
+const profilePics = '/home/faceoff/profilePics';
+
+//TODO make this an env var
+//const profilePics = process.env.;
 
 /**
  * This function changes the profile pic in the database.

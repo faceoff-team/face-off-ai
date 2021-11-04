@@ -25,7 +25,7 @@ const getAllChallenges = async () => {
  * @returns challenge corrisponding to that id.
  */
 
-const getChallenge = (id) => {
+const getChallenge = async (id) => {
   let query = `SELECT * FROM challenge WHERE id == ${id};`;
   let challenge = await queryPromise(query);
   return challenge;

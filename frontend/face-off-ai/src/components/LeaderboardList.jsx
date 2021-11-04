@@ -14,7 +14,8 @@ function getLeaders(numUsers) {
     return leaderboarditems;
 }
 
-function LeaderboardList({ title, LeaderboardUsers, numUsers }) {    
+function LeaderboardList({ title, LeaderboardUsers, numUsers }) {  
+    console.log("leaderboard list number users: " + numUsers);  
     return (
         <div>
             <h1 class="font-weight-heavy-small">{title}</h1>

@@ -15,7 +15,7 @@ const { queryPromise } = require('.');
 const createGame = async (video) => {
   let query = `
     INSERT INTO game (videoID)
-    VALUES (${video.videoID});
+    VALUES (${video});
   `;
 
   let game = await queryPromise(query)

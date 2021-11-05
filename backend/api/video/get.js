@@ -41,14 +41,14 @@ const handleGetAllVideosRequest = async (req, res) => {
 };
 
 module.exports = {
-  async getAll() {
+  async getAll(req, res, next) {
     try {
       await handleGetAllVideosRequest(req, res);
     } catch (err) {
       next (err);  
     }
   },
-  async get() {
+  async get(req, res, next) {
     try {
       await handleGetVideoRequest(req, res); 
     } catch (err) {

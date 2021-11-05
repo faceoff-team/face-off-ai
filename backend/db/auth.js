@@ -81,14 +81,18 @@ const verifyPassword = (password, salt, hash) => {
 };
 
 const authenticate = async (req, res, next) => {
-    if (!req.headers.authorization) {
-        throw new AuthorizationError(`No key provided for protected API.`, 401);
+    try {
+        if (!req.headers.authorization) {
+            throw new AuthorizationError(`No key provided for protected API.`, 401);
+        }
+
+        let jwt = verifyJWT(req.headers.authorization);
+
+        //Get the user from the database.
+        req.user = await getUserByKey(jwt.sub);  
+    } catch (err) {
+        next(err);
     }
-
-    let jwt = verifyJWT(req.headers.authorization);
-
-    //Get the user from the database.
-    req.user = await getUserByKey(jwt.sub);  
 }
 
 module.exports = {

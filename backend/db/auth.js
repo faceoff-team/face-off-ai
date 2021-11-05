@@ -9,6 +9,7 @@ const jsonwebtoken = require(`jsonwebtoken`);
 const fs = require(`fs`);
 const path = require(`path`);
 const AuthorizationError = require("../error/AuthorizationError");
+const { getUserByKey } = require("./user");
 
 const pubPath = path.join(__dirname, `..`, `auth`, `keys`, `id_rsa_pub.pem`);
 const privPath = path.join(__dirname, `..`, `auth`, `keys`, `id_rsa_priv.pem`);
@@ -87,7 +88,7 @@ const authenticate = async (req, res, next) => {
     let jwt = verifyJWT(req.headers.authorization);
 
     //Get the user from the database.
-    
+    req.user = await getUserByKey(jwt.sub);  
 }
 
 module.exports = {

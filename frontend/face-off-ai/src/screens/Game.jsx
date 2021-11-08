@@ -105,21 +105,6 @@ function Game() {
     const handleOpenMode = () => setOpenMode(true);
     const handleCloseMode = () => setOpenMode(false);
 
-
-
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const handleOpenMode = () => setOpenMode(true);
-    const handleCloseMode = () => setOpenMode(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const handleOpenMode = () => setOpenMode(true);
-    const handleCloseMode = () => setOpenMode(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
     return (
         <div className="gamePage" class="container">
             <Modal
@@ -246,6 +231,42 @@ function Game() {
             </div>
             <br/>
             <div className="statsRow" class="gameRow">
+                <Card style={{width: '50%'}}>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
+                    </div>
+                </Card>
+                <Card style={{width: '50%'}}>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
+                    </div>
+                </Card>
+                <Card style={{width: '50%'}}>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
+                    </div>
+                </Card>
+                <Card style={{width: '50%'}}>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
+                    </div>
+                </Card>
                 <Card style={{width: '50%'}}>
                     <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
                         <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>

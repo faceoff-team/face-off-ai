@@ -105,6 +105,39 @@ function Game() {
     const handleOpenMode = () => setOpenMode(true);
     const handleCloseMode = () => setOpenMode(false);
 
+
+
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const handleOpenMode = () => setOpenMode(true);
+    const handleCloseMode = () => setOpenMode(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const handleOpenMode = () => setOpenMode(true);
+    const handleCloseMode = () => setOpenMode(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const handleOpenMode = () => setOpenMode(true);
+    const handleCloseMode = () => setOpenMode(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const handleOpenMode = () => setOpenMode(true);
+    const handleCloseMode = () => setOpenMode(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const handleOpenMode = () => setOpenMode(true);
+    const handleCloseMode = () => setOpenMode(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const handleOpenMode = () => setOpenMode(true);
+    const handleCloseMode = () => setOpenMode(false);
+
     return (
         <div className="gamePage" class="container">
             <Modal

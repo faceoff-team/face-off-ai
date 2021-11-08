@@ -120,26 +120,62 @@ function Game() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const handleOpenMode = () => setOpenMode(true);
-    const handleCloseMode = () => setOpenMode(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const handleOpenMode = () => setOpenMode(true);
-    const handleCloseMode = () => setOpenMode(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const handleOpenMode = () => setOpenMode(true);
-    const handleCloseMode = () => setOpenMode(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const handleOpenMode = () => setOpenMode(true);
-    const handleCloseMode = () => setOpenMode(false);
-
     return (
         <div className="gamePage" class="container">
+            <Modal
+                open={openMode}
+                onClose={handleCloseMode}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Which mode do you want to play?
+                </Typography>
+                <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                    Single Player
+                </Button>
+                <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                    Multi Player
+                </Button>
+                </Box>
+            </Modal>
+            <Modal
+                open={openMode}
+                onClose={handleCloseMode}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Which mode do you want to play?
+                </Typography>
+                <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                    Single Player
+                </Button>
+                <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                    Multi Player
+                </Button>
+                </Box>
+            </Modal>
+            <Modal
+                open={openMode}
+                onClose={handleCloseMode}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Which mode do you want to play?
+                </Typography>
+                <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                    Single Player
+                </Button>
+                <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                    Multi Player
+                </Button>
+                </Box>
+            </Modal>
             <Modal
                 open={openMode}
                 onClose={handleCloseMode}

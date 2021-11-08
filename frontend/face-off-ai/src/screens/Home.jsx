@@ -69,12 +69,6 @@ function Home() {
 
     const ytRegex2 = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
     const idRegex2 = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi
-
-    const ytRegex3 = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
-    const idRegex3 = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi
-
-    const ytRegex4 = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
-    const idRegex4 = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi
     return (
         <div className="home" class="container">
             <Modal
@@ -144,6 +138,18 @@ function Home() {
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Sad Videos</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
             <HomePageGrid videoID="r9SsqcT6heE" videoTitle="Try Not To Cry Vol 69"/>
+            <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Sad Videos</h1>
+            <HorizontalLine color="#f7f7f7" width="100%" />
+            <HomePageGrid videoID="r9SsqcT6heE" videoTitle="Try Not To Cry Vol 69"/>
+            <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Sad Videos</h1>
+            <HorizontalLine color="#f7f7f7" width="100%" />
+            <HomePageGrid videoID="r9SsqcT6heE" videoTitle="Try Not To Cry Vol 69"/>
+            <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Sad Videos</h1>
+            <HorizontalLine color="#f7f7f7" width="100%" />
+            <HomePageGrid videoID="r9SsqcT6heE" videoTitle="Try Not To Cry Vol 69"/>
+            <HorizontalLine color="#f7f7f7" width="100%" />
+            <HorizontalLine color="#f7f7f7" width="100%" />
+            <HorizontalLine color="#f7f7f7" width="100%" />
         </div>
     );
 }

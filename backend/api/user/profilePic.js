@@ -70,11 +70,26 @@ const handleChangeProfilePictueRequest = async (req, res) => {
   });
 };
 
-module.exports = async (req, res, next) => {
-  try {
-    await handleChangeProfilePictueRequest(req, res);
-  } catch (err) {
-    console.log(err);
-    next(err);
+const handleGetProfilePic = async (req, res) => {
+  let filename = req.params.image;
+
+  res.sendFile(path.join(__dirname, `../../profilePics/${filename}`))
+};
+
+module.exports = {
+  profilePicGet: async (req, res, next) => {
+    try {
+      await handleGetProfilePic(req, res);
+    } catch (err) {
+      next(err);
+    }
+  },
+  profilePicPost: async (req, res, next) => {
+    try {
+      await handleChangeProfilePictueRequest(req, res);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
   }
 };

@@ -10,7 +10,7 @@ const uuid = require('uuid');
 const fs = require('fs/promises');
 const path = require('path');
 const BadRequestError = require('../../error/BadRequestError');
-const { updateProfilePicture } = require('../../db/user');
+const { updateProfilePicture, getUserProfilePicName } = require('../../db/user');
 
 
 //TODO make this an env var
@@ -25,8 +25,9 @@ const { updateProfilePicture } = require('../../db/user');
 
 const handleChangeProfilePictueRequest = async (req, res) => {
   if (!req.files) {
-    throw new BadRequestError(`No file sent.`, 400);
+    throw new BadRequestError(`File object does not exist.`, 400);
   }
+
   //If no files are in the request, throw an error.
   if (Object.keys(req.files).length == 0) {
     throw new BadRequestError(`No file sent.`, 400);
@@ -51,7 +52,15 @@ const handleChangeProfilePictueRequest = async (req, res) => {
     console.error(err);
   }
 
+  let oldFile = await getUserProfilePicName(req.user.userID);
+
   await updateProfilePicture(req.user.userID, userFilename);
+
+  try {
+    await fs.rm(path.join(__dirname, `../../profilePics/${oldFile}`));
+  } catch (err) {
+    throw new DatabaseError('Could not remove old profile picture.', 500);
+  }
 
   res.status(200).json({
     success: true,

@@ -160,48 +160,62 @@ const updateProfile = async (userid, username, bio) => {
 };
 
 const getLeaderboard = async() => {
-    try {
-        console.log(`SELECT userID, worldRank, bestScore, username, imagePath 
-        FROM user 
-        ORDER BY worldRank`);
-        let leaderboard = await new Promise((resolve, reject) => {
-            global.connection.query(`
-                SELECT userID, worldRank, bestScore, username, imagePath 
-                FROM user 
-                ORDER BY worldRank
-            `, (err, results, fields) => {
-                if (err) {
-                    reject(err);
-                    return;
-                }
+  try {
+      console.log(`SELECT userID, worldRank, bestScore, username, imagePath 
+      FROM user 
+      ORDER BY worldRank`);
+      let leaderboard = await new Promise((resolve, reject) => {
+          global.connection.query(`
+              SELECT userID, worldRank, bestScore, username, imagePath 
+              FROM user 
+              ORDER BY worldRank
+          `, (err, results, fields) => {
+              if (err) {
+                  reject(err);
+                  return;
+              }
 
-                resolve({
-                    results,
-                    fields,
-                });
-            });
-        });
-        return leaderboard.results;
-    } catch (err) {
-        console.error(err);
-        throw new BadRequestError(`Could not get leaderboard.`, 500);
-    }
+              resolve({
+                  results,
+                  fields,
+              });
+          });
+      });
+      return leaderboard.results;
+  } catch (err) {
+      console.error(err);
+      throw new BadRequestError(`Could not get leaderboard.`, 500);
+  }
 };
 
 const updateProfilePicture = async (id, filename) => {
-    try {
-        let query = `
-            UPDATE user
-            SET imagePath = "${filename}"
-            WHERE userID = ${id};
-        `;
+  try {
+    let query = `
+        UPDATE user
+        SET imagePath = "${filename}"
+        WHERE userID = ${id};
+    `;
 
-        await queryPromise(query);
-    } catch (err) {
-        console.error(err);
-        throw new DatabaseError(`Could not update user image in db.`);
-    }
+    await queryPromise(query);
+  } catch (err) {
+    console.error(err);
+    throw new DatabaseError(`Could not update user image in db.`);
+  }
 };
+
+const getUserProfilePicName = async (id) => {
+  try {
+    let query = `
+      SELECT imagePath FROM user
+      WHERE userID = ${id}
+    `;
+
+    return await queryPromise(query);
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
 
 module.exports = {
     getUserByKey,

@@ -11,7 +11,7 @@ const fs = require('fs/promises');
 const path = require('path');
 const BadRequestError = require('../../error/BadRequestError');
 const { updateProfilePicture, getUserProfilePicName } = require('../../db/user');
-
+const { DatabaseError } = require('../../error/DatabaseError');
 
 //TODO make this an env var
 //const profilePics = process.env.;

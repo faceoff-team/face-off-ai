@@ -31,7 +31,7 @@ router.put(`/profile`, authenticate, putProfile);
 
 const { profilePicPost, profilePicGet } = require('./profilePic');
 
-router.get('/profile/:image', profilePicGet);
+router.get('/profile/pic/:image', profilePicGet);
 router.post(`/profile/pic`, authenticate, profilePicPost);
 /**
  * Friends

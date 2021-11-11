@@ -226,4 +226,5 @@ module.exports = {
     updateProfile,
     getLeaderboard,
     updateProfilePicture,
+    getUserProfilePicName,
 };

@@ -5,6 +5,7 @@
 
 const { queryPromise } = require('.');
 const BadRequestError = require('../error/BadRequestError');
+const DatabaseError = require('../error/DatabaseError');
 
 //connection is defined globally.
 
@@ -26,7 +27,12 @@ const getUserByKey = async (key) => {
                         });
                     });
         });
-        return user.results;
+
+        if (user.results > 1) {
+          throw new DatabaseError(`Should not happen. Duplicate keys.`, 500);
+        }
+
+        return user.results[0];
     } catch (err) { 
         console.error(err);
     }

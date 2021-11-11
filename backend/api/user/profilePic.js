@@ -24,6 +24,9 @@ const { updateProfilePicture } = require('../../db/user');
  */
 
 const handleChangeProfilePictueRequest = async (req, res) => {
+  if (!req.files) {
+    throw new BadRequestError(`No file sent.`, 400);
+  }
   //If no files are in the request, throw an error.
   if (Object.keys(req.files).length == 0) {
     throw new BadRequestError(`No file sent.`, 400);

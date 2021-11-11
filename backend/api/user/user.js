@@ -21,17 +21,17 @@ router.post(`/login`, require('./login.js'));
  */
 
 const { getProfile, putProfile } = require('./profile');
+const { profilePicPost, profilePicGet } = require('./profilePic');
 
 router.get(`/profile`, authenticate, getProfile);
 
+router.get('/profile/pic/:image', profilePicGet);
 
 router.get(`/profile/:id`, getProfile);
 
 router.put(`/profile`, authenticate, putProfile);
 
-const { profilePicPost, profilePicGet } = require('./profilePic');
 
-router.get('/profile/pic/:image', profilePicGet);
 router.post(`/profile/pic`, authenticate, profilePicPost);
 /**
  * Friends

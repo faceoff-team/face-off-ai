@@ -11,16 +11,15 @@ const { updateProfile, getUserByKey } = require("../../db/user");
 
 const handleGetProfile = async (req, res) => {
     let user = {};
+    
     if (req.user) {    
         user = req.user;
         delete user.hash;
         delete user.salt;
     } else {
         user = await getUserByKey(req.params.id);
-        console.log(user);
         delete user.hash;
         delete user.salt;
-        console.log(user);
     }
     
     if (!user) {
@@ -29,7 +28,7 @@ const handleGetProfile = async (req, res) => {
 
     res.status(200).json({
         success: true,
-        msg: "Private profile retreived.",
+        msg: "Profile retreived.",
         user,
     });
 };

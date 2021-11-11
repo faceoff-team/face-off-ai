@@ -210,7 +210,13 @@ const getUserProfilePicName = async (id) => {
       WHERE userID = ${id}
     `;
 
-    return (await queryPromise(query))[0];
+    let obj = await queryPromise(query);
+
+    if (obj.results.length > 1) {
+      throw Error('This should never happen. Duplicate Primary Keys.');
+    }
+
+    return obj.results[0].imagePath;
   } catch (err) {
     console.error(err);
     throw err;

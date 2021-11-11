@@ -90,6 +90,7 @@ const authenticate = async (req, res, next) => {
 
         //Get the user from the database.
         req.user = (await getUserByKey(jwt.sub))[0];  
+        next();
     } catch (err) {
         next(err);
     }

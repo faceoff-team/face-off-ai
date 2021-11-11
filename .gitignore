@@ -108,3 +108,5 @@ db_data
 log
 
 *.pem
+
+email/

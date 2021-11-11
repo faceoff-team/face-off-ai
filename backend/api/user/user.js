@@ -24,12 +24,15 @@ const { getProfile, putProfile } = require('./profile');
 
 router.get(`/profile`, authenticate, getProfile);
 
-router.post(`/profile/pic`, authenticate, require('./profilePic'));
 
 router.get(`/profile/:id`, getProfile);
 
 router.put(`/profile`, authenticate, putProfile);
 
+const { profilePicPost, profilePicGet } = require('./profilePic');
+
+router.get('/profile/:image', profilePicGet);
+router.post(`/profile/pic`, authenticate, profilePicPost);
 /**
  * Friends
  */

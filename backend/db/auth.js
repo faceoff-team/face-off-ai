@@ -89,7 +89,7 @@ const authenticate = async (req, res, next) => {
         let jwt = verifyJWT(req.headers.authorization);
 
         //Get the user from the database.
-        req.user = (await getUserByKey(jwt.sub))[0];  
+        req.user = await getUserByKey(jwt.sub);  
         next();
     } catch (err) {
         next(err);

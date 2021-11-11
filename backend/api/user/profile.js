@@ -7,7 +7,7 @@
 
 const BadRequestError = require("../../error/BadRequestError");
 
-const { updateProfile } = require("../../db/user");
+const { updateProfile, getUserByKey } = require("../../db/user");
 
 const handleGetProfile = async (req, res) => {
     let user = {};

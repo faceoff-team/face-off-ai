@@ -210,7 +210,7 @@ const getUserProfilePicName = async (id) => {
       WHERE userID = ${id}
     `;
 
-    return await queryPromise(query);
+    return (await queryPromise(query))[0];
   } catch (err) {
     console.error(err);
     throw err;

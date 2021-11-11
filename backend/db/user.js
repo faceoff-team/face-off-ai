@@ -189,13 +189,18 @@ const getLeaderboard = async() => {
 };
 
 const updateProfilePicture = async (id, filename) => {
-    let query = `
-        UPDATE user
-        SET imagePath = "${filename}"
-        WHERE userID = ${id};
-    `;
+    try {
+        let query = `
+            UPDATE user
+            SET imagePath = "${filename}"
+            WHERE userID = ${id};
+        `;
 
-    await queryPromise(query);
+        await queryPromise(query);
+    } catch (err) {
+        console.error(err);
+        throw new DatabaseError(`Could not update user image in db.`);
+    }
 };
 
 module.exports = {

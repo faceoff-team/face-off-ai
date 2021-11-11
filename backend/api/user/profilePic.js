@@ -40,7 +40,13 @@ const handleChangeProfilePictueRequest = async (req, res) => {
   //Give the file a name.
   let userFilename = `${uuid.v4()}.${ext}`;
 
-  await fs.writeFile(path.join(`/usr/src/app/profilePics`, userFilename), file.data);
+  console.log(`Saving user profile pic under ${userFilename}`);
+
+  try {
+    await fs.writeFile(path.join(`/usr/src/app/profilePics`, userFilename), file.data);
+  } catch (err) {
+    console.error(err);
+  }
 
   await updateProfilePicture(req.user.userID, userFilename);
 

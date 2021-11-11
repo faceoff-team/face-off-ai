@@ -17,6 +17,8 @@ const handleGetProfile = async (req, res) => {
         delete user.salt;
     } else {
         user = await getUserByKey(req.params.id);
+        delete user.hash;
+        delete user.salt;
     }
     
     if (!user) {

@@ -54,13 +54,10 @@ const handleChangeProfilePictueRequest = async (req, res) => {
 
   let oldFile = await getUserProfilePicName(req.user.userID);
 
-  console.log(oldFile);
-
   await updateProfilePicture(req.user.userID, userFilename);
 
   if (oldFile != undefined) {
     try {
-      console.log(path.join(__dirname, `../../profilePics/${oldFile}`));
       await fs.rm(path.join(__dirname, `../../profilePics/${oldFile}`));
     } catch (err) {
       throw new DatabaseError('Could not remove old profile picture.', 500);

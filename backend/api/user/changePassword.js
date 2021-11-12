@@ -4,8 +4,24 @@
  * 11/11/21
  */
 
-const handleChangePasswordRequest = async (req, res) => {
+const transport = require('../../email');
+const BadRequestError = require('../../error/BadRequestError');
 
+const handleChangePasswordRequest = async (req, res) => {
+  if (!req.email) 
+    throw new BadRequestError(`User does not have an email.`, 400);
+
+  await transport.sendMail({
+    to: [`${req.user.email}`],
+    from: `faceoffbot81@gmail.com`,
+    subject: `Reset Password Request`,
+    text: `Go to this link to reset your password. ${'this is a link'} `,
+  }); 
+  
+  res.status(200).json({
+    success: true,
+    msg: `Change password request proccessed.`,
+  });
 };
 
 module.exports = async (req, res, next) => {

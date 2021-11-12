@@ -114,15 +114,37 @@ function Game() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={modalStyle}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Which mode do you want to play?
-                </Typography>
-                <Button size="medium" color="secondary" onClick={handleCloseMode}>
-                    Single Player
-                </Button>
-                <Button size="medium" color="secondary" onClick={handleCloseMode}>
-                    Multi Player
-                </Button>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Which mode do you want to play?
+                    </Typography>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Single Player
+                    </Button>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Multi Player
+                    </Button>
+                </Box>
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Which mode do you want to play?
+                    </Typography>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Single Player
+                    </Button>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Multi Player
+                    </Button>
+                </Box>
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Which mode do you want to play?
+                    </Typography>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Single Player
+                    </Button>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Multi Player
+                    </Button>
                 </Box>
             </Modal>
             <Modal

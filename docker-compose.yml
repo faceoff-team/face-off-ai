@@ -49,6 +49,7 @@ services:
     container_name: faceoff-proxy
     networks:
       - proxy
+      - mailcowdockerized_mailcow-network
     ports:
       - 80:80
       - 443:443
@@ -61,7 +62,8 @@ services:
 networks:
   proxy:
     name: proxy
-
+  mailcowdockerized_mailcow-network:
+    external: true
   # proxy:
   #   image: traefik:v2.3
   #   container_name: faceoff-proxy

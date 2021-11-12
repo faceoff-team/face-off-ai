@@ -7,6 +7,7 @@ import numpy as np
 from PIL import Image
 from io import BytesIO
 import transform
+import transform_local
 
 
 # print('Downloading CUM...')
@@ -36,11 +37,13 @@ print('model loaded, good to go!')
 @app.route("/predict", methods=["GET","POST"])
 def predict():
     data = {'success': 'false'}
-    image = request.args.get('image')
+    request = request.get_json()
+    image = request['image']
     print(image)
     if (image != None):
         transformed = transform.transformIndividual(image)
         if (type(transformed) != None):
+            transformed = cv2.cvtColor(transformed, cv2.COLOR_GRAY2RGB)
             transformed = transformed/255.
             transformed = np.expand_dims(transformed, axis=0)
             prob = model.predict(transformed)

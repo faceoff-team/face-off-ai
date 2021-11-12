@@ -52,4 +52,6 @@ router.get(`/scores`, authenticate, require('./scores'));
 router.get(`/leaderboard`, require('./leaderboard'));
 
 
+router.post('/changepassword', authenticate, require('./changePassword'));
+
 module.exports = router;

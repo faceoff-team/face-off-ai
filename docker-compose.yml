@@ -27,6 +27,7 @@ services:
       - proxy
     environment:
       PORT: 8080
+      EMAIL_PASS: ${EMAIL_PASS}
     ports: 
       - 8080:8080
     volumes:

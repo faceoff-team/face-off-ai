@@ -40,7 +40,7 @@ def predict():
     print(image)
     if (image != None):
         transformed = transform.transformIndividual(image)
-        if (type(transformed) is not None):
+        if (type(transformed) != None):
             transformed = transformed/255.
             transformed = np.expand_dims(transformed, axis=0)
             prob = model.predict(transformed)

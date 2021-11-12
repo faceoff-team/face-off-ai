@@ -36,8 +36,8 @@ print('model loaded, good to go!')
 @app.route("/predict", methods=["GET","POST"])
 def predict():
     data = {'success': 'false'}
-    request = request.get_json()
-    image = request['image']
+    req = request.get_json()
+    image = req['image']
     print(image)
     if (image != None):
         transformed = transform.transformIndividual(image)

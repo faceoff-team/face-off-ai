@@ -9,6 +9,7 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 
 const createTransporter = async () => {
+  try {
   const oauth2Client = new OAuth2(
     process.env.OAUTHCLIENTID,
     process.env.OAUTHCLIENTSECRET,
@@ -22,7 +23,7 @@ const createTransporter = async () => {
   const accessToken = await new Promise((resolve, reject) => {
     oauth2Client.getAccessToken((err, token) => {
       if (err) {
-        reject();
+        reject(err);
       }
       resolve(token);
     });
@@ -41,6 +42,10 @@ const createTransporter = async () => {
   });
 
   return transporter;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
 };
 
 // const oauth2Client = new OAuth2(
@@ -65,6 +70,4 @@ const createTransporter = async () => {
 //   }
 // });
 
-(async () => {
-  module.exports = await createTransporter();
-})
+module.exports = createTransporter;

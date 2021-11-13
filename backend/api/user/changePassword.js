@@ -4,12 +4,14 @@
  * 11/11/21
  */
 
-const transport = require('../../email');
+const createTransport = require('../../email');
 const BadRequestError = require('../../error/BadRequestError');
 
 const handleChangePasswordRequest = async (req, res) => {
   if (!req.user.email) 
     throw new BadRequestError(`User does not have an email.`, 400);
+
+  let transport = await createTransport();
 
   await transport.sendMail({
     to: [`${req.user.email}`],

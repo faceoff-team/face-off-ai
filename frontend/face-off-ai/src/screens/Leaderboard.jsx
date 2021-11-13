@@ -24,12 +24,17 @@ function Leaderboard(props) {
     }, []);
 
     const leaderboard = async() => {
-        const response = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
-        const jsonData = await response.json();
+        try {
+            const response = await fetch("https://ai.faceoff.cf/api/user/leaderboard");
+            const jsonData = await response.json();
+            
+            console.log("res json: " + JSON.stringify(response.data.leaderboard));
+            
+            setUserData(jsonData);
+        } catch (err) {
+            console.error(err);
+        }
         
-        console.log("res json: " + JSON.stringify(response.data.leaderboard));
-        
-        setUserData(jsonData);
     };
 
     console.log(leaderboard.length);

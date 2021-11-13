@@ -37,8 +37,8 @@ function Leaderboard(props) {
         
     };
 
-    console.log(leaderboard.length);
-    console.log(leaderboard[0]);
+    console.log(userData.length);
+    console.log("HELLO:" + userData);
 
     var userNum = userData;
     return (

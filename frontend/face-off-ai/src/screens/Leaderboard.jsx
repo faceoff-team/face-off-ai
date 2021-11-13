@@ -28,7 +28,7 @@ function Leaderboard(props) {
             const response = await fetch("https://ai.faceoff.cf/api/user/leaderboard");
             const jsonData = await response.json();
             
-            console.log("res json: " + JSON.stringify(response.data.leaderboard));
+            //console.log("res json: " + JSON.stringify(response.data.leaderboard));
             
             setUserData(jsonData);
         } catch (err) {

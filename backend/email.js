@@ -9,8 +9,11 @@ const nodemailer = require('nodemailer');
 let transport = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'faceoffbot81@gmail.com',
-    pass: process.env.EMAIL_PASS,
+    XOAuth2: {
+      user: "faceoffbot81@gmail.com",
+      clientId: process.env.OAUTHCLIENTID,
+      clientSecret: process.env.OAUTHCLIENTSECRET,
+    }
   }
 });
 

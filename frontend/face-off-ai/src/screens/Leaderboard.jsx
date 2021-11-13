@@ -38,8 +38,9 @@ function Leaderboard(props) {
         } catch (err) {
             console.error(err);
         }
-        
     };
+
+    console.log("HELLO: " + userData.leaderboard.length);
 
     //console.log("HELLO:" + userData);
 

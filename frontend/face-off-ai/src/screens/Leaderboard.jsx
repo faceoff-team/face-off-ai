@@ -30,7 +30,7 @@ function Leaderboard(props) {
 
             const response = await axios.get("https://ai.faceoff.cf/api/user/leaderboard");
             console.log(response);
-            console.log(response.leaderboard);
+            console.log("leaderboard:" + response.data.leaderboard);
             setUserData(response.data);
             
             //console.log("res json: " + JSON.stringify(response.data.leaderboard));

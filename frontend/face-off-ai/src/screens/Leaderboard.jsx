@@ -4,20 +4,12 @@ import LeaderboardList from "../components/LeaderboardList.jsx";
 import { http } from "../store.js";
 
 
-// Get leaderboard from the database 
-/*const leaderboard = async() => {
-    try {
-        
-
-        //return response;
-    } catch (err) {
-        console.error(err);
-    }
-    
-};*/
 
 function Leaderboard(props) {
-    const [userData, setUserData] = useState({});
+
+    const [users, setUsers] = useState(0);
+    const [numUsers, setNumUsers] = useState(0);
+
 
     useEffect(() => {
         leaderboard();
@@ -25,30 +17,24 @@ function Leaderboard(props) {
 
     const leaderboard = async() => {
         try {
-            /*const response = await fetch("https://ai.faceoff.cf/api/user/leaderboard");
-            const jsonData = await response.json();*/
 
             const response = await axios.get("https://ai.faceoff.cf/api/user/leaderboard");
-            console.log(response);
-            console.log("leaderboard:" + response.data.leaderboard);
-            setUserData(response.data);
+            console.log("length: " + response.data.leaderboard.length);
+            setUsers(response.data.leaderboard);
+            setNumUsers(response.data.leaderboard.length);
             
-            //console.log("res json: " + JSON.stringify(response.data.leaderboard));
-            
-            //setUserData(jsonData);
         } catch (err) {
             console.error(err);
         }
     };
 
-    //console.log("HELLO:" + userData);
+    console.log("outside function test state numUsers: " + numUsers);
 
-    var userNum = userData;
     return (
         <div className="leaderboard" class="container">
             <div class="basic-container">
                 <h1 class="font-weight-heavy" style={{ marginTop: "10px" }}>Leaderboard</h1>
-                <LeaderboardList props={props} numUsers={userNum}/>
+                <LeaderboardList props={props} numUsers={numUsers} leaderboardUsers={users} />
             </div>
         </div>
     );

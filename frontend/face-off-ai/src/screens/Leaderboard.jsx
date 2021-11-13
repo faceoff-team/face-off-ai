@@ -5,22 +5,16 @@ import { http } from "../store.js";
 
 
 // Get leaderboard from the database 
-const leaderboard = async() => {
+/*const leaderboard = async() => {
     try {
-        const response = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
-        const jsonData = await response.json();
         
-        
-        console.log("res json: " + JSON.stringify(response.data.leaderboard));
-        
-        this.setState(jsonData);
 
         //return response;
     } catch (err) {
         console.error(err);
     }
     
-};
+};*/
 
 function Leaderboard(props) {
     const [userData, setUserData] = useState({});
@@ -29,7 +23,14 @@ function Leaderboard(props) {
         leaderboard();
     }, []);
 
-    const leaderboard = async() => {};
+    const leaderboard = async() => {
+        const response = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
+        const jsonData = await response.json();
+        
+        console.log("res json: " + JSON.stringify(response.data.leaderboard));
+        
+        setUserData(jsonData);
+    };
 
     console.log(leaderboard.length);
     console.log(leaderboard[0]);

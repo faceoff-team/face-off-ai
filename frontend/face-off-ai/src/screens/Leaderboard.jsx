@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import LeaderboardList from "../components/LeaderboardList.jsx";
 import { http } from "../store.js";
 
@@ -25,12 +25,15 @@ function Leaderboard(props) {
 
     const leaderboard = async() => {
         try {
-            const response = await fetch("https://ai.faceoff.cf/api/user/leaderboard");
-            const jsonData = await response.json();
+            /*const response = await fetch("https://ai.faceoff.cf/api/user/leaderboard");
+            const jsonData = await response.json();*/
+
+            const response = await axios.get("https://ai.faceoff.cf/api/user/leaderboard");
+            setUserData(response.data);
             
             //console.log("res json: " + JSON.stringify(response.data.leaderboard));
             
-            setUserData(jsonData);
+            //setUserData(jsonData);
         } catch (err) {
             console.error(err);
         }

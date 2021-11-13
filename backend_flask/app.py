@@ -36,11 +36,13 @@ print('model loaded, good to go!')
 @app.route("/predict", methods=["GET","POST"])
 def predict():
     data = {'success': 'false'}
-    image = request.args.get('image')
+    req = request.get_json()
+    image = req['image']
     print(image)
     if (image != None):
         transformed = transform.transformIndividual(image)
         if (type(transformed) != None):
+            transformed = cv2.cvtColor(transformed, cv2.COLOR_GRAY2RGB)
             transformed = transformed/255.
             transformed = np.expand_dims(transformed, axis=0)
             prob = model.predict(transformed)

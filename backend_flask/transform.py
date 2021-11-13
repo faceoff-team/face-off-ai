@@ -74,7 +74,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     image_copy = transformIndividual(args.img)
     pil_img = Image.fromarray(image_copy)
-    pil_img.show()
+    # pil_img.show()
     # print(args.src)
     # for subdir, dirs, files in walk(args.src):
     #     for file in files:

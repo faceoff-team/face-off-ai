@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
 import LeaderboardList from "../components/LeaderboardList.jsx";
 import { http } from "../store.js";
 
@@ -6,10 +7,15 @@ import { http } from "../store.js";
 // Get leaderboard from the database 
 const leaderboard = async() => {
     try {
-        let res = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
-        console.log("res json: " + JSON.stringify(res.data.leaderboard));
+        const response = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
+        const jsonData = await response.json();
         
-        return res;
+        
+        //console.log("res json: " + JSON.stringify(response.data.leaderboard));
+        
+        this.setState(jsonData);
+
+        //return response;
     } catch (err) {
         console.error(err);
     }
@@ -17,9 +23,13 @@ const leaderboard = async() => {
 };
 
 function Leaderboard(props) {
-    var results = leaderboard();
-    
-    console.log("results: " + JSON.stringify(results.data.leaderboard));
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        leaderboard();
+    }, []);
+
+    const leaderboard = async() => {};
 
     var userNum = 1;
     return (

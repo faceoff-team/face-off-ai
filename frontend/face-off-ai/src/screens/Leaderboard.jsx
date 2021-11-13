@@ -11,7 +11,7 @@ const leaderboard = async() => {
         const jsonData = await response.json();
         
         
-        //console.log("res json: " + JSON.stringify(response.data.leaderboard));
+        console.log("res json: " + JSON.stringify(response.data.leaderboard));
         
         this.setState(jsonData);
 
@@ -31,7 +31,10 @@ function Leaderboard(props) {
 
     const leaderboard = async() => {};
 
-    var userNum = 1;
+    console.log(leaderboard.length);
+    console.log(leaderboard[0]);
+
+    var userNum = userData;
     return (
         <div className="leaderboard" class="container">
             <div class="basic-container">

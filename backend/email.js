@@ -10,38 +10,41 @@ const OAuth2 = google.auth.OAuth2;
 
 const createTransporter = async () => {
   try {
-  const oauth2Client = new OAuth2(
-    process.env.OAUTHCLIENTID,
-    process.env.OAUTHCLIENTSECRET,
-    "https://developers.google.com/oauthplayground"
-  );
+    const oauth2Client = new OAuth2(
+      process.env.OAUTHCLIENTID,
+      process.env.OAUTHCLIENTSECRET,
+      "https://developers.google.com/oauthplayground"
+    );
 
-  oauth2Client.setCredentials({
-    refresh_token: process.env.REFRESH
-  });
-
-  const accessToken = await new Promise((resolve, reject) => {
-    oauth2Client.getAccessToken((err, token) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(token);
+    oauth2Client.setCredentials({
+      refresh_token: process.env.REFRESH
     });
-  });
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: "faceoffbot81@gmail.com",
-      accessToken,
-      clientId: process.env.OAUTHCLIENTID,
-      clientSecret: process.env.OAUTHCLIENTSECRET,
-      refreshToken: process.env.REFRESH
-    }
-  });
+    const accessToken = await new Promise((resolve, reject) => {
+      oauth2Client.getAccessToken((err, token) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(token);
+      });
+    });
 
-  return transporter;
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: "faceoffbot81@gmail.com",
+        accessToken,
+        clientId: process.env.OAUTHCLIENTID,
+        clientSecret: process.env.OAUTHCLIENTSECRET,
+        refreshToken: process.env.REFRESH
+      },
+      tls:{
+        rejectUnauthorized:false
+      }
+    });
+
+    return transporter;
   } catch (err) {
     console.error(err);
     throw err;

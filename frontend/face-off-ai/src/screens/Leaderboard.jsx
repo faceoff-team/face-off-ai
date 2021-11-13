@@ -3,7 +3,7 @@ import LeaderboardList from "../components/LeaderboardList.jsx";
 import { http } from "../store.js";
 
 
-
+// Get leaderboard from the database 
 const leaderboard = async() => {
     try {
         let res = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
@@ -18,8 +18,10 @@ const leaderboard = async() => {
 
 function Leaderboard(props) {
     var results = leaderboard();
-    var userNum = results.length;
-    console.log(results);
+    var userNum = results.value.length;
+    console.log("results: " + results);
+    console.log("results: " + results.value);
+    console.log("results: " + userNum);
 
     return (
         <div className="leaderboard" class="container">

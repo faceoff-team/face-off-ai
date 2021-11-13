@@ -9,7 +9,7 @@ const leaderboard = async() => {
         let res = await http.get("https://ai.faceoff.cf/api/user/leaderboard");
         console.log("res json: " + JSON.stringify(res.data.leaderboard));
         
-        return JSON.stringify(res.data.leaderboard);
+        return res;
     } catch (err) {
         console.error(err);
     }
@@ -18,11 +18,10 @@ const leaderboard = async() => {
 
 function Leaderboard(props) {
     var results = leaderboard();
-    var userNum = results.value.length;
-    console.log("results: " + results);
-    console.log("results: " + results.value);
-    console.log("results: " + userNum);
+    
+    console.log("results: " + JSON.stringify(results.data.leaderboard));
 
+    var userNum = 1;
     return (
         <div className="leaderboard" class="container">
             <div class="basic-container">

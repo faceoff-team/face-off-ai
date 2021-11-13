@@ -24,6 +24,7 @@ jobs:
       EMAIL_PASS: ${{ secrets.password }}
       OAUTHCLIENTID: ${{ secrets.OAUTHCLIENTID }}
       OAUTHCLIENTSECRET: ${{ secrets.OAUTHCLIENTSECRET }}
+      REFRESH: ${{ secrets.REFRESH }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it

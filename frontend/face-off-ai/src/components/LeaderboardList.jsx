@@ -8,16 +8,32 @@ function getLeaders(numUsers, leaderboardUsers) {
     const leaderboarditems = [];
     if (numUsers > 25) {
         numUsers = 25;
-    }
-    
-    for (var i = 0; i < numUsers; i++) {
+    } else if (numUsers == 0) {
         leaderboarditems.push(<Grid item xs={8} >
-            <LeaderboardItem position={i + 1} 
-                             highscore={leaderboardUsers[i].bestScore}
-                             username={leaderboardUsers[i].username}
-                             picture={leaderboardUsers[i].imagePath}
-                             />
-        </Grid>)
+            <div>There are no users to display.</div>
+                             </Grid>)
+    }
+
+    for (var i = 0; i < numUsers; i++) {
+        if (leaderboardUsers[i].bestScore < 0) {
+            leaderboarditems.push(<Grid item xs={8} >
+                <LeaderboardItem position={i + 1} 
+                                 highscore={"0"}
+                                 username={leaderboardUsers[i].username}
+                                 picture={leaderboardUsers[i].imagePath}
+                                 />
+                                 </Grid>)
+        } else {
+            leaderboarditems.push(<Grid item xs={8} >
+                <LeaderboardItem position={i + 1} 
+                                highscore={leaderboardUsers[i].bestScore}
+                                username={leaderboardUsers[i].username}
+                                picture={leaderboardUsers[i].imagePath}
+                                />
+                                </Grid>)
+        }
+        
+        
     }
     return leaderboarditems;
 }

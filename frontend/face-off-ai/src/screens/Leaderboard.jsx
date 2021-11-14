@@ -9,10 +9,10 @@ function Leaderboard(props) {
     const [numUsers, setNumUsers] = useState(0);
 
     useEffect(() => {
-        leaderboard();
+        getLeaderboard();
     }, []);
 
-    const leaderboard = async() => {
+    const getLeaderboard = async() => {
         try {
 
             const response = await axios.get("https://ai.faceoff.cf/api/user/leaderboard");

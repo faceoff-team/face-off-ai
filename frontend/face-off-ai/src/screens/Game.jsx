@@ -125,6 +125,25 @@ function Game() {
                     </Button>
                 </Box>
             </Modal>
+        <div className="gamePage" class="container">
+            <Modal
+                open={openMode}
+                onClose={handleCloseMode}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Which type of Multiplayer play do you want to do?
+                    </Typography>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Same Device
+                    </Button>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Multi Device
+                    </Button>
+                </Box>
+            </Modal>
             <Modal
                 open={open}
                 onClose={handleClose}

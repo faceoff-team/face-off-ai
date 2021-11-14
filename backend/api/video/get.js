@@ -4,7 +4,7 @@
  * 11/4/21
  */
 
-const { getAllVideos, getAllEmotionVideos, getVideo } = require("../../db/video");
+const { getAllVideos, getAllHappyVideos, getAllSadVideos, getVideo } = require("../../db/video");
 
 /**
  * This function handles a get video request based on the id passed in params.

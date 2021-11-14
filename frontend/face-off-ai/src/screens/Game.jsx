@@ -37,6 +37,7 @@ function Game() {
 
     const [open, setOpen] = React.useState(false);
     const [openMode, setOpenMode] = React.useState(true);
+    const [openMulti, setOpenMulti] = React.useState(true);
     let history = useHistory();
 
     if( id == null || title == null) {
@@ -62,28 +63,6 @@ function Game() {
         window.history.back();
     };
 
-    window.onbeforeunload = function (evt) {
-        var message = 'Are you sure you want to leave?';
-        if (typeof evt == 'undefined') {
-          evt = window.event;
-        }
-        if (evt) {
-          evt.returnValue = message;
-        }
-        return message;
-    }
-
-    window.onbeforeunload = function (evt) {
-        var message = 'Are you sure you want to leave?';
-        if (typeof evt == 'undefined') {
-          evt = window.event;
-        }
-        if (evt) {
-          evt.returnValue = message;
-        }
-        return message;
-    }   
-    
     window.onbeforeunload = function (evt) {
         var message = 'Are you sure you want to leave?';
         if (typeof evt == 'undefined') {
@@ -127,6 +106,9 @@ function Game() {
     const handleOpenMode = () => setOpenMode(true);
     const handleCloseMode = () => setOpenMode(false);
 
+    const handleOpenMulti = () => setOpenMulti(true);
+    const handleCloseMulti = () => setOpenMulti(false);
+
     return (
         <div className="gamePage" class="container">
             <Modal
@@ -142,12 +124,14 @@ function Game() {
                     <Button size="medium" color="secondary" onClick={handleCloseMode}>
                         Single Player
                     </Button>
-                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                    <Button size="medium" color="secondary" onClick={() => {
+                        handleCloseMode();
+                        handleOpenMulti();
+                    }}>
                         Multi Player
                     </Button>
                 </Box>
             </Modal>
-        <div className="gamePage" class="container">
             <Modal
                 open={openMode}
                 onClose={handleCloseMode}
@@ -156,32 +140,14 @@ function Game() {
             >
                 <Box sx={modalStyle}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Which type of Multiplayer play do you want to do?
+                        Which multiplayer mode do you want to play?
                     </Typography>
-                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
-                        Same Device
+                    <Button size="medium" color="secondary" onClick={handleCloseMulti}>
+                        Single Device
                     </Button>
-                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                    <Button size="medium" color="secondary" onClick={handleCloseMulti}>
                         Multi Device
                     </Button>
-                </Box>
-            </Modal>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={modalStyle}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Are you sure you want to Quit?
-                </Typography>
-                <Button size="medium" color="secondary" onClick={redirect}>
-                    YES!!
-                </Button>
-                <Button size="medium" color="secondary" onClick={handleClose}>
-                    NO :)
-                </Button>
                 </Box>
             </Modal>
             <div class="backButtonContainer" style={{marginTop: "20px"}}>

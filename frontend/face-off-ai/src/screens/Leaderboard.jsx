@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import LeaderboardList from "../components/LeaderboardList.jsx";
-import { http } from "../store.js";
-
 
 
 function Leaderboard(props) {
 
     const [users, setUsers] = useState(0);
     const [numUsers, setNumUsers] = useState(0);
-
 
     useEffect(() => {
         leaderboard();
@@ -19,7 +16,6 @@ function Leaderboard(props) {
         try {
 
             const response = await axios.get("https://ai.faceoff.cf/api/user/leaderboard");
-            console.log("length: " + response.data.leaderboard.length);
             setUsers(response.data.leaderboard);
             setNumUsers(response.data.leaderboard.length);
             
@@ -27,8 +23,6 @@ function Leaderboard(props) {
             console.error(err);
         }
     };
-
-    console.log("outside function test state numUsers: " + numUsers);
 
     return (
         <div className="leaderboard" class="container">

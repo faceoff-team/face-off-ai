@@ -6,6 +6,10 @@ import Grid from '@mui/material/Grid';
 
 function getLeaders(numUsers, leaderboardUsers) {
     const leaderboarditems = [];
+    if (numUsers > 25) {
+        numUsers = 25;
+    }
+    
     for (var i = 0; i < numUsers; i++) {
         leaderboarditems.push(<Grid item xs={8} >
             <LeaderboardItem position={i + 1} 
@@ -19,7 +23,6 @@ function getLeaders(numUsers, leaderboardUsers) {
 }
 
 function LeaderboardList({ title, leaderboardUsers, numUsers }) {  
-    console.log("leaderboard list number users: " + numUsers);  
     return (
         <div>
             <h1 class="font-weight-heavy-small">{title}</h1>

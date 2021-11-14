@@ -7,9 +7,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { get, getAll, getAllEmotions } = require('./get');
+const { get, getAll, getSad, getHappy } = require('./get');
 
-router.get('/emotion', getAllEmotions)
+router.get('/sad', getSad);
+router.get('/happy', getHappy);
 router.get('/', getAll);
 router.get('/:id', get);
 

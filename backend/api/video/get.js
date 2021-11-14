@@ -41,13 +41,30 @@ const handleGetAllVideosRequest = async (req, res) => {
 };
 
 /**
- * This function handles all get all emotion requests from the user. 
+ * This function handles all get all sad emotion video requests from the user. 
  * 
  * @param {Object} req 
  * @param {Object} res  
  */
-const handleGetEmotionVideosRequest = async (req, res) => {
-    let videos = await getAllEmotionVideos(req.params.id);
+const handleGetSadVideosRequest = async (req, res) => {
+    let videos = await getAllSadVideos();
+  
+    res.status(200).json({
+      success: true,
+      msg: `Videos retreived successfully.`,
+      videos,
+    });
+  };
+
+  
+/**
+ * This function handles all get all happy emotion video requests from the user. 
+ * 
+ * @param {Object} req 
+ * @param {Object} res  
+ */
+const handleGetHappyVideosRequest = async (req, res) => {
+    let videos = await getAllHappyVideos();
   
     res.status(200).json({
       success: true,
@@ -64,9 +81,16 @@ module.exports = {
       next (err);  
     }
   },
-  async getAllEmotions(req, res, next) {
+  async getSad(req, res, next) {
     try {
-      await handleGetEmotionVideosRequest(req, res);
+      await handleGetSadVideosRequest(req, res);
+    } catch (err) {
+      next (err);  
+    }
+  },
+  async getHappy(req, res, next) {
+    try {
+      await handleGetHappyVideosRequest(req, res);
     } catch (err) {
       next (err);  
     }

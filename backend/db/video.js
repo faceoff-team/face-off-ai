@@ -58,9 +58,31 @@ const getAllVideos = async () => {
   return videos.results;
 };
 
-// Returns videos of the same emotion
-const getAllEmotionVideos = async (emotionID) => {
-    let query = `SELECT * FROM video WHERE emotionID = ${emotionID}`;
+
+/**
+ * This function returns all the videos in the database
+ * with emotion sad.
+ *  
+ * @returns {Array} A list of all the  sad videos in the database.
+ */
+
+const getAllSadVideos = async () => {
+    let query = `SELECT * FROM video WHERE emotionID = 2`;
+  
+    let videos = await queryPromise(query);
+  
+    return videos.results;
+};
+
+
+/**
+ * This function returns all the happy videos in the database.
+ *  
+ * @returns {Array} A list of all the happy videos in the database.
+ */
+
+const getAllHappyVideos = async () => {
+    let query = `SELECT * FROM video WHERE emotionID = 1`;
   
     let videos = await queryPromise(query);
   
@@ -87,4 +109,6 @@ module.exports = {
   addVideo,
   getVideo,
   getAllVideos,
+  getAllSadVideos,
+  getAllHappyVideos
 };

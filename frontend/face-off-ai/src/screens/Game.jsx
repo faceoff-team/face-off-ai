@@ -73,6 +73,28 @@ function Game() {
         return message;
     }
 
+    window.onbeforeunload = function (evt) {
+        var message = 'Are you sure you want to leave?';
+        if (typeof evt == 'undefined') {
+          evt = window.event;
+        }
+        if (evt) {
+          evt.returnValue = message;
+        }
+        return message;
+    }   
+    
+    window.onbeforeunload = function (evt) {
+        var message = 'Are you sure you want to leave?';
+        if (typeof evt == 'undefined') {
+          evt = window.event;
+        }
+        if (evt) {
+          evt.returnValue = message;
+        }
+        return message;
+    }
+
     /*
     <!-- Trigger the modal with a button -->
     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>

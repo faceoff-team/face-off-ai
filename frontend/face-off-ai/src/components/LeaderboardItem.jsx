@@ -13,17 +13,22 @@ function LeaderboardItem({ username, picture, highscore, position}) {
         getImage();
     }, []);
 
+    
+    
+
     const getImage = async() => {
         try {
+            var imageURL = "/usr/src/app/profilePics/" + picture;
+            setImg(imageURL);
 
-            var baseURL = "https://ai.faceoff.cf/api/user/profile/pic/" + picture
+            /*var baseURL = "https://ai.faceoff.cf/api/user/profile/pic/" + picture;
 
-            const response = await axios.get(baseURL, {
+            const response = await axios.get(baseURL);/*, {
                 responseType: 'arraybuffer'
               })
               .then(response => new Buffer(response.data, 'binary').toString('base64'));
 
-            setImg(response);
+            setImg(response);*/
             
         } catch (err) {
             console.error(err);
@@ -63,6 +68,7 @@ function LeaderboardItem({ username, picture, highscore, position}) {
                     <Grid>
                         <Avatar
                             src={img}
+                            imageProps = {{ width: 100}}
                             sx={{ bgcolor: "#23430", marginRight: "20px" }}>
                             
                         </Avatar>

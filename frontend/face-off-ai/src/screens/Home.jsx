@@ -6,9 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import TextField from '@mui/material/TextField';
-
 import { Link, withRouter } from 'react-router-dom';
-import { TextField } from '@mui/material';
 
 const modalStyle = {
     position: 'absolute',
@@ -126,28 +124,6 @@ function Home() {
             </div>
             <br/>
             <div style={{marginTop: "20px"}}></div>
-                    style={{ fontSize: '18px',
-                             maxWidth: '14em',
-                             maxHeight: '4em',
-                             minWidth: '12em',
-                             minHeight: '3em' }}>
-                    Singleplayer
-                </Button></Link>
-
-                <div style={{marginTop: "20px"}}></div>
-                <Link to="/multiplayergame">
-                    <Button
-                        size="large"
-                        variant="contained"
-                        color="secondary"
-                        style={{ fontSize: '18px', 
-                                 maxWidth: '14em',
-                                 maxHeight: '4em',
-                                 minWidth: '12em', 
-                                 minHeight: '3em' }}>
-                        Play with friends
-                    </Button></Link>
-            </div><div style={{marginTop: "20px"}}></div>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Popular Today</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
             <HomePageGrid videoID="YqaacQc6sho" videoTitle="Try Not To Laugh Vol 69"/>

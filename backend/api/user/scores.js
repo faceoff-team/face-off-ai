@@ -12,7 +12,7 @@ const handleGetUserScores = async (req, res) => {
   
   res.status(200).json({
     success: true,
-    msg: `Retreived user scores.`,
+    msg: "User scores retrieved.",
     scores,
   });
 };

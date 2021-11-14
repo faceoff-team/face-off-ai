@@ -4,8 +4,6 @@
  */
 
 const { getLeaderboard } = require("../../db/user");
-const BadRequestError = require("../../error/BadRequestError");
-
 
 const handleGetLeaderboard = async (req, res) => {
     let leaderboard = await getLeaderboard();
@@ -17,20 +15,6 @@ const handleGetLeaderboard = async (req, res) => {
         leaderboard,
     });
 };
-
-// const handlePutLeaderboard = async (async, res) => {
-
-//     // Add functionality for updating a leaderboard?
-//     // may not be necessary since we would just update a
-//     // single user's score
-
-//     res.status(200).json({
-//         success: true,
-//         msg: "Leaderboard updated.",
-
-//     });
-
-// };
 
 module.exports = async (req, res, next) => {
     try {

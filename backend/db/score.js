@@ -1,8 +1,8 @@
 /**
- * @author Nic Ballesteros
- * @description This file helps modify the database.
+ * @author Nic Ballesteros, Ashton Statz
+ * @description This file helps query/modify the database
  * 
- * 10/22/21
+ * 11/13/21
  */
 
 const { queryPromise } = require(".");
@@ -11,6 +11,31 @@ const getUserScores = async (user) => {
   let query = `SELECT * FROM user_game WHERE user = ${user.userID}`;
 
   let userScores = await queryPromise(query);
+
+  console.log(`
+    SELECT * FROM user_game
+    WHERE user == "${user.userID}"`);
+    try {
+        let user = await new Promise((resolve, reject) => {
+            global.connection.query(`
+                SELECT * FROM user_game
+                WHERE user == "${user.userID}"`, (err, results, fields) => {
+
+                if (err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve({
+                    results,
+                    fields,
+                });
+            });
+        });
+        return user.results;
+    } catch (err) {
+        console.error(err);
+    }
   
   return userScores.results;
 }

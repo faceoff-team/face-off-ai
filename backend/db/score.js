@@ -13,13 +13,15 @@ const getUserScores = async (user) => {
   let userScores = await queryPromise(query);
 
   console.log(`
-    SELECT * FROM user_game
-    WHERE user == "${user.userID}"`);
+    SELECT game.gameDate, game.winnerScore, user_game.finalScore FROM user_game
+    INNER JOIN game ON user_game.game = game.gameID
+    WHERE user_game.user == "${user.userID}"`);
     try {
         let user = await new Promise((resolve, reject) => {
             global.connection.query(`
-                SELECT * FROM user_game
-                WHERE user == "${user.userID}"`, (err, results, fields) => {
+                SELECT game.gameDate, game.winnerScore, user_game.finalScore FROM user_game
+                INNER JOIN game ON user_game.game = game.gameID
+                WHERE user_game.user == "${user.userID}"`, (err, results, fields) => {
 
                 if (err) {
                     reject(err);

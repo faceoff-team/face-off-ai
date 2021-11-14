@@ -29,7 +29,7 @@ CREATE TABLE user (
     salt                VARCHAR(64) NOT NULL,
     email               VARCHAR(64),
     bio                 VARCHAR(256),
-    -- TODO: define the method for accessing imagePath
+    -- Path to the user's profile page
     imagePath           VARCHAR(128),
     worldRank           INT(10) NOT NULL,
     -- Best all-time score ever recorded for this user
@@ -62,7 +62,6 @@ CREATE TABLE emotion (
     emotionName         VARCHAR(64)
 );
 
--- Changes should be here
 CREATE TABLE video (
     videoID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     videoYoutubeID      VARCHAR(255) NOT NULL,

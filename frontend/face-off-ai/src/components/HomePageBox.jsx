@@ -1,26 +1,40 @@
 import React from "react";
-import ReactPlayer from "react-player";
 
-function HomePageBox({url}) {
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Link,
+  } from "react-router-dom";
+
+function HomePageBox({videoID, videoTitle}) {
+    const videoURL = `https://www.youtube.com/watch?v=${videoID}`;
+    const thumbnailURL = `http://img.youtube.com/vi/${videoID}/hqdefault.jpg`
+
     return (
-        <div class="home-page-box">
-            <div class="player-wrapper">
-                <ReactPlayer class="react-player"
-                    width={"auto"}
-                    height={"auto"}
-                    className="videoFrame"
-                    url={url}
-                    light={true}
-                    controls
-                    muted
-                    config={{
-                        youtube: {
-                            playerVars: { showinfo: 1 }
-                        }
-                    }}
-                />
+        <Link to={`game/${videoID}/${videoTitle}`}>
+            <div style={{margin: '20px'}}>
+                <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                        <CardContent>
+                            <h5>{videoTitle}</h5>
+                        </CardContent>
+                        <CardMedia
+                            component="img"
+                            height="140"
+                            image={thumbnailURL}
+                            alt={videoTitle}
+                        />
+                    </CardActionArea>
+                </Card>
             </div>
-        </div>
+        </Link>
     );
 }
 

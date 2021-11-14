@@ -7,7 +7,7 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import Brightness2Icon from '@mui/icons-material/Brightness2';
 
 function Footer(props) {
-    const [colorMode, setColorMode] = React.useState('dark');
+    const [colorMode, setColorMode] = React.useState(false);
 
     const handleColorMode = (event, newMode) => {
         if (newMode !== null) {
@@ -35,10 +35,10 @@ function Footer(props) {
                                 onChange={handleColorMode}
                                 aria-label="color mode"
                             >
-                                <ToggleButton value="light" aria-label="light mode" disabled /*disabled for now*/>
+                                <ToggleButton value={false} aria-label="light mode">
                                     <WbSunnyIcon />
                                 </ToggleButton>
-                                <ToggleButton value="dark" aria-label="dark mode">
+                                <ToggleButton value={true} aria-label="dark mode">
                                     <Brightness2Icon />
                                 </ToggleButton>
                             </ToggleButtonGroup>

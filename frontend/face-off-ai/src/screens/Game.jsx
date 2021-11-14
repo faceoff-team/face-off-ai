@@ -5,8 +5,9 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Card from '@mui/material/Card';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import WebcamCapture from '../components/WebcamCapture'
 
 const modalStyle = {
@@ -23,15 +24,31 @@ const modalStyle = {
 
 //get url and title for parameter and API
 function Game() {
+    const { id, title } = useParams();
 
-    //for testing sake
-    var url = "https://www.youtube.com/watch?v=YqaacQc6sho";
-    var title = "Try Not to Laugh"
+    const avgTimeDict = {"r9SsqcT6heE" : "50 seconds", "YqaacQc6sho" : "1 minute 3 seconds"};
+    const bestTimeDict = {"r9SsqcT6heE" : "2 minutes 10 seconds", "YqaacQc6sho" : "5 minutes 4 seconds"};
+    const userLastTimeDict = {"r9SsqcT6heE" : "32 seconds", "YqaacQc6sho" : "48 seconds"};
+    const userBestTimeDict = {"r9SsqcT6heE" : "1 minute 3 seconds", "YqaacQc6sho" : "2 minutes 17 seconds"};
+    
+    const avgTime = avgTimeDict[id] === undefined ? "N/A" : avgTimeDict[id];
+    const bestTime = bestTimeDict[id] === undefined ? "N/A" : bestTimeDict[id];
+    const userLastTime = userLastTimeDict[id] === undefined ? "N/A" : userLastTimeDict[id];
+    const userBestTime = userBestTimeDict[id] === undefined ? "N/A" : userBestTimeDict[id];
 
     const [open, setOpen] = React.useState(false);
+    const [openMode, setOpenMode] = React.useState(true);
+    const [openMulti, setOpenMulti] = React.useState(false);
     const [running, setRunning] = React.useState(false);
     const [lost, setLost] = React.useState(false);
+
     let history = useHistory();
+
+    if( id == null || title == null) {
+        history.push('/error');
+    }
+
+    var url = `https://www.youtube.com/watch?v=${id}`;
 
     const redirect = () => {
       history.push('/home')
@@ -99,6 +116,12 @@ function Game() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const handleOpenMode = () => setOpenMode(true);
+    const handleCloseMode = () => setOpenMode(false);
+
+    const handleOpenMulti = () => setOpenMulti(true);
+    const handleCloseMulti = () => setOpenMulti(false);
+
     return (
         <div className="gamePage" class="container">
             <Modal
@@ -117,6 +140,43 @@ function Game() {
                 <Button size="medium" color="secondary" onClick={handleClose}>
                     no
                 </Button>
+                </Box>
+            </Modal>
+            <Modal
+                open={openMode}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Which mode do you want to play?
+                    </Typography>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Single Player
+                    </Button>
+                    <Button size="medium" color="secondary" onClick={() => {
+                        handleCloseMode();
+                        handleOpenMulti();
+                    }}>
+                        Multi Player
+                    </Button>
+                </Box>
+            </Modal>
+            <Modal
+                open={openMulti}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Which multiplayer mode do you want to play?
+                    </Typography>
+                    <Button size="medium" color="secondary" onClick={handleCloseMulti}>
+                        Single Device
+                    </Button>
+                    <Button size="medium" color="secondary" onClick={handleCloseMulti}>
+                        Multi Device
+                    </Button>
                 </Box>
             </Modal>
             <div class="backButtonContainer" style={{marginTop: "20px"}}>
@@ -152,6 +212,24 @@ function Game() {
                         stateChanger={setLost}
                     />
                 </div>
+            </div>
+            <br/>
+            <div className="statsRow" class="gameRow">
+                <Card style={{width: '50%', margin: "20px"}}>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>{avgTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
+                    </div>
+                </Card>
+                <Card style={{width: '50%', margin: "20px"}}>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Ratings</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>96% like this video!</h4>
+                    </div>
+                </Card>
             </div>
         </div>
     );

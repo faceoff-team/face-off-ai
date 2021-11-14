@@ -1,15 +1,61 @@
 import './App.css';
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
 import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, MultiplayerGame, Error404 } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import Brightness2Icon from '@mui/icons-material/Brightness2';
 import { dark } from '@mui/material/styles/createPalette';
 
 import { Provider } from 'react-redux';
 import store from './store';
 
+const light = {
+    palette: {
+        type: "light",
+        text: {
+            primary: "#080808",
+            secondary: "#080808"
+        },
+
+        primary: {
+            main: "#4963ae",
+            contrastText: "#080808"
+        },
+
+        secondary: {
+            main: "#4cc0ad",
+            contrastText: "#080808"
+        }
+    },
+};
+    
+const dark = {
+    palette: {
+        type: "dark",
+        text: {
+            primary: "#f7f7f7",
+            secondary: "#f7f7f7"
+        },
+
+        primary: {
+            main: "#4963ae",
+            contrastText: "#f7f7f7"
+        },
+
+        secondary: {
+            main: "#4cc0ad",
+            contrastText: "#f7f7f7"
+        }
+    },
+};
+
 function App() {
-  const theme = createTheme({
+
+  /* const theme = createTheme({
     palette: {
         type: dark,
         text: {
@@ -27,12 +73,21 @@ function App() {
             contrastText: "#f7f7f7"
         }
     }
-  });
+  }); */
+  // The light theme is used by default
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  // This function is triggered when the Switch component is toggled
+  const changeTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
 
   return (
     <Provider store={store}>
      <div className="App">
-        <ThemeProvider theme={theme}>
+     <ThemeProvider
+        theme={isDarkTheme ? createTheme(dark) : createTheme(light)}
+     >
         <Router>
             <NavigationBar />
             <div style={{paddingBottom: "129px"}}>
@@ -41,7 +96,7 @@ function App() {
                         <Redirect to="/login" />
                     </Route>
                     <Route path="/login" exact component={() => <Login />} />
-                    <Route path="/game" exact component={() => <Game />} />
+                    <Route path="/game/:id/:title" exact component={() => <Game />} />
                     <Route path="/settings" exact component={() => <Settings />} />
                     <Route path="/home" exact component={() => <Home />} />
                     <Route path="/about" exact component={() => <About />} />
@@ -55,7 +110,7 @@ function App() {
             </div>
             <div className="footerDiv">
                 <HorizontalLine color="#f7f7f7" width="85%"/>
-                <Footer darkMode={true}/>
+                <Footer/>
             </div>
       </Router>
       </ThemeProvider>

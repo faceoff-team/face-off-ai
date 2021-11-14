@@ -4,7 +4,7 @@
  * 11/4/21
  */
 
-const { getAllVideos, getVideo } = require("../../db/video");
+const { getAllVideos, getAllEmotionVideos, getVideo } = require("../../db/video");
 
 /**
  * This function handles a get video request based on the id passed in params.
@@ -40,10 +40,33 @@ const handleGetAllVideosRequest = async (req, res) => {
   });
 };
 
+/**
+ * This function handles all get all emotion requests from the user. 
+ * 
+ * @param {Object} req 
+ * @param {Object} res  
+ */
+const handleGetEmotionVideosRequest = async (req, res) => {
+    let videos = await getAllEmotionVideos(req.params.id);
+  
+    res.status(200).json({
+      success: true,
+      msg: `Videos retreived successfully.`,
+      videos,
+    });
+  };
+
 module.exports = {
   async getAll(req, res, next) {
     try {
       await handleGetAllVideosRequest(req, res);
+    } catch (err) {
+      next (err);  
+    }
+  },
+  async getAllEmotions(req, res, next) {
+    try {
+      await handleGetEmotionVideosRequest(req, res);
     } catch (err) {
       next (err);  
     }

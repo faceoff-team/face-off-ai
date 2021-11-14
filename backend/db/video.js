@@ -1,5 +1,5 @@
 /**
- * @author Nic Ballesteros
+ * @author Nic Ballesteros, Ashton Statz
  * @description This file handles all db requests regarding video objects.
  */
 
@@ -56,6 +56,15 @@ const getAllVideos = async () => {
   let videos = await queryPromise(query);
 
   return videos.results;
+};
+
+// Returns videos of the same emotion
+const getAllEmotionVideos = async (emotionID) => {
+    let query = `SELECT * FROM video WHERE emotionID = ${emotionID}`;
+  
+    let videos = await queryPromise(query);
+  
+    return videos.results;
 };
 
 /**

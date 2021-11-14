@@ -37,7 +37,7 @@ function Game() {
 
     const [open, setOpen] = React.useState(false);
     const [openMode, setOpenMode] = React.useState(true);
-    const [openMulti, setOpenMulti] = React.useState(true);
+    const [openMulti, setOpenMulti] = React.useState(false);
     let history = useHistory();
 
     if( id == null || title == null) {
@@ -112,8 +112,25 @@ function Game() {
     return (
         <div className="gamePage" class="container">
             <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Are you sure you want to Quit?
+                </Typography>
+                <Button size="medium" color="secondary" onClick={redirect}>
+                    YES!!
+                </Button>
+                <Button size="medium" color="secondary" onClick={handleClose}>
+                    NO :)
+                </Button>
+                </Box>
+            </Modal>
+            <Modal
                 open={openMode}
-                onClose={handleCloseMode}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -133,8 +150,7 @@ function Game() {
                 </Box>
             </Modal>
             <Modal
-                open={openMode}
-                onClose={handleCloseMode}
+                open={openMulti}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -184,49 +200,19 @@ function Game() {
             </div>
             <br/>
             <div className="statsRow" class="gameRow">
-                <Card style={{width: '50%'}}>
+                <Card style={{width: '50%', margin: "20px"}}>
                     <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
                         <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
-                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>{avgTime}</h4>
                         <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
                         <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
                         <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
                     </div>
                 </Card>
-                <Card style={{width: '50%'}}>
+                <Card style={{width: '50%', margin: "20px"}}>
                     <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
-                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
-                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
-                    </div>
-                </Card>
-                <Card style={{width: '50%'}}>
-                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
-                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
-                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
-                    </div>
-                </Card>
-                <Card style={{width: '50%'}}>
-                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
-                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
-                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
-                    </div>
-                </Card>
-                <Card style={{width: '50%'}}>
-                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
-                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
-                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>Average time: {avgTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Ratings</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>96% like this video!</h4>
                     </div>
                 </Card>
             </div>

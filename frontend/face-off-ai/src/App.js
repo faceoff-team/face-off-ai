@@ -4,11 +4,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import { NavigationBar, Footer, HorizontalLine } from "./components";
 import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, MultiplayerGame, Error404 } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import Brightness2Icon from '@mui/icons-material/Brightness2';
-import { dark } from '@mui/material/styles/createPalette';
 
 import { Provider } from 'react-redux';
 import store from './store';

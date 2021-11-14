@@ -28,8 +28,6 @@ function Home() {
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
 
-    //let videoID = "";
-    //let videoTitle = "";
 
     const updateID = (ID) => setVideoID(ID);
     const updateTitle = (title) => setVideoTitle(title);
@@ -51,7 +49,6 @@ function Home() {
 
           var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
           var match = value.match(regExp);
-          //const keys = value.match(idRegex);
           updateID(match[7]);
           updateTitle("My First Video");
           handleOpenNewGame();
@@ -62,7 +59,7 @@ function Home() {
       }
 
     const ytRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
-    const idRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/gi
+
     return (
         <div className="home" class="container">
             <Modal
@@ -131,6 +128,7 @@ function Home() {
             <HomePageGrid videoID="YqaacQc6sho" videoTitle="Try Not To Laugh Vol 69"/>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Sad Videos</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
+            <HomePageGrid videoID="r9SsqcT6heE" videoTitle="Try Not To Cry Vol 69"/>
         </div>
     );
 }

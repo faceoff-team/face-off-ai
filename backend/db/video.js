@@ -55,7 +55,7 @@ const getAllVideos = async () => {
 
   let videos = await queryPromise(query);
 
-  return video.results;
+  return videos.results;
 };
 
 /**

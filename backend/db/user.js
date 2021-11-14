@@ -3,8 +3,9 @@
  * 10/9/21
  */
 
-const mysql = require('mysql2');
+const { queryPromise } = require('.');
 const BadRequestError = require('../error/BadRequestError');
+const DatabaseError = require('../error/DatabaseError');
 
 //connection is defined globally.
 
@@ -26,7 +27,12 @@ const getUserByKey = async (key) => {
                         });
                     });
         });
-        return user.results;
+
+        if (user.results > 1) {
+          throw new DatabaseError(`Should not happen. Duplicate keys.`, 500);
+        }
+
+        return user.results[0];
     } catch (err) { 
         console.error(err);
     }
@@ -39,8 +45,8 @@ const createUser = async (username, email, hash, salt) => {
     try {
         let newUser = await new Promise((resolve, reject) => {
                 global.connection.query(`
-                    INSERT INTO user (username, email, hash, salt, worldRank, bestScore) 
-                    VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1});`, (err, results, fields) => {
+                    INSERT INTO user (username, email, hash, salt, worldRank, bestScore, worstScore) 
+                    VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1}, ${-1});`, (err, results, fields) => {
                         if (err) {
                             reject(err);
                             return;
@@ -159,6 +165,70 @@ const updateProfile = async (userid, username, bio) => {
     }
 };
 
+const getLeaderboard = async() => {
+  try {
+      console.log(`SELECT userID, worldRank, bestScore, username, imagePath 
+      FROM user 
+      ORDER BY worldRank`);
+      let leaderboard = await new Promise((resolve, reject) => {
+          global.connection.query(`
+              SELECT userID, worldRank, bestScore, username, imagePath 
+              FROM user 
+              ORDER BY worldRank
+          `, (err, results, fields) => {
+              if (err) {
+                  reject(err);
+                  return;
+              }
+
+              resolve({
+                  results,
+                  fields,
+              });
+          });
+      });
+      return leaderboard.results;
+  } catch (err) {
+      console.error(err);
+      throw new BadRequestError(`Could not get leaderboard.`, 500);
+  }
+};
+
+const updateProfilePicture = async (id, filename) => {
+  try {
+    let query = `
+        UPDATE user
+        SET imagePath = "${filename}"
+        WHERE userID = ${id};
+    `;
+
+    await queryPromise(query);
+  } catch (err) {
+    console.error(err);
+    throw new DatabaseError(`Could not update user image in db.`);
+  }
+};
+
+const getUserProfilePicName = async (id) => {
+  try {
+    let query = `
+      SELECT imagePath FROM user
+      WHERE userID = ${id}
+    `;
+
+    let obj = await queryPromise(query);
+
+    if (obj.results.length > 1) {
+      throw Error('This should never happen. Duplicate Primary Keys.');
+    }
+
+    return obj.results[0].imagePath;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+
 module.exports = {
     getUserByKey,
     getUserbyUsername,
@@ -166,4 +236,7 @@ module.exports = {
     getFriendsByUsername,
     createUser,
     updateProfile,
+    getLeaderboard,
+    updateProfilePicture,
+    getUserProfilePicName,
 };

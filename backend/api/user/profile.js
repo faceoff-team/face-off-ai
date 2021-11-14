@@ -7,13 +7,29 @@
 
 const BadRequestError = require("../../error/BadRequestError");
 
-const { updateProfile } = require("../../db/user");
+const { updateProfile, getUserByKey } = require("../../db/user");
 
-const handleGetProfile = async (req, res) => {    
+const handleGetProfile = async (req, res) => {
+    let user = {};
+    
+    if (req.user) {    
+        user = req.user;
+        delete user.hash;
+        delete user.salt;
+    } else {
+        user = await getUserByKey(req.params.id);
+        delete user.hash;
+        delete user.salt;
+    }
+    
+    if (!user) {
+        throw BadRequestError(`No id provided.`);
+    }
+
     res.status(200).json({
         success: true,
-        msg: "Private profile retreived.",
-        user: req.user,
+        msg: "Profile retreived.",
+        user,
     });
 };
 

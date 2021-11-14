@@ -1,31 +1,50 @@
 import React from "react";
 import HorizontalLine from "../components/HorizontalLine.jsx";
-import LeaderboardListing from "../components/LeaderboardListing.jsx";
-
-/* These pictures are placeholders for our presentation */
-import Picture from "../assets/joker-picture-1.jpg";
-import Picture2 from "../assets/profile-picture-1.jpg";
+import LeaderboardItem from "../components/LeaderboardItem.jsx";
 
 import Grid from '@mui/material/Grid';
 
-function LeaderboardList({ title }) {
+function getLeaders(numUsers, leaderboardUsers) {
+    const leaderboarditems = [];
+    if (numUsers > 25) {
+        numUsers = 25;
+    } else if (numUsers == 0) {
+        leaderboarditems.push(<Grid item xs={8} >
+            <div>There are no users to display.</div>
+                             </Grid>)
+    }
+
+    for (var i = 0; i < numUsers; i++) {
+        if (leaderboardUsers[i].bestScore < 0) {
+            leaderboarditems.push(<Grid item xs={8} >
+                <LeaderboardItem position={i + 1} 
+                                 highscore={"0"}
+                                 username={leaderboardUsers[i].username}
+                                 picture={leaderboardUsers[i].imagePath}
+                                 />
+                                 </Grid>)
+        } else {
+            leaderboarditems.push(<Grid item xs={8} >
+                <LeaderboardItem position={i + 1} 
+                                highscore={leaderboardUsers[i].bestScore}
+                                username={leaderboardUsers[i].username}
+                                picture={leaderboardUsers[i].imagePath}
+                                />
+                                </Grid>)
+        }
+        
+        
+    }
+    return leaderboarditems;
+}
+
+function LeaderboardList({ title, leaderboardUsers, numUsers }) {  
     return (
         <div>
             <h1 class="font-weight-heavy-small">{title}</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
             <Grid container columns={1}>
-                <Grid item xs={8} >
-                    <LeaderboardListing position="1" highscore="239299" username="xXbilbo_swagginsXx" />
-                </Grid>
-                <Grid item xs={8}>
-                    <LeaderboardListing position="2" highscore="220030" username="tinguspingus" />
-                </Grid>
-                <Grid item xs={8}>
-                    <LeaderboardListing position="3" highscore="220029" username="Asowwru"/>
-                </Grid>
-                <Grid item xs={8}>
-                    <LeaderboardListing position="4" highscore="203000" username="AbandonedEgg" />
-                </Grid>
+                {getLeaders(numUsers, leaderboardUsers)}
             </Grid>
         </div>
     );

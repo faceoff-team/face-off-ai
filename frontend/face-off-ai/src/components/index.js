@@ -9,5 +9,5 @@ export { default as HomePageGrid } from "./HomePageGrid.jsx";
 export { default as AccountList } from "./AccountList.jsx";
 export { default as SmallGame } from "./SmallGame.jsx";
 export { default as GameList } from "./GameList.jsx";
-export { default as LeaderboardListing } from "./LeaderboardListing.jsx";
+export { default as LeaderboardItem } from "./LeaderboardItem.jsx";
 export { default as LeaderboardList } from "./LeaderboardList.jsx";

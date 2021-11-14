@@ -4,6 +4,8 @@ services:
   db: 
     image: mysql
     container_name: faceoff-db
+    networks:
+      - proxy
     ports: 
       - 3306:3306
       - 33060:33060
@@ -16,18 +18,76 @@ services:
       MYSQL_DATABASE: faceoff
       MYSQL_USER: faceoff
       MYSQL_PASSWORD: FaceoffAIRocks
-
+    
   backend:
     build: ./backend 
     container_name: faceoff-backend
     command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
+    networks:
+      - proxy
+    environment:
+      PORT: 8080
+      EMAIL_PASS: ${EMAIL_PASS}
+      OAUTHCLIENTID: ${OAUTHCLIENTID}
+      OAUTHCLIENTSECRET: ${OAUTHCLIENTSECRET}
+      REFRESH: ${REFRESH}
     ports: 
+      - 8080:8080
+    volumes:
+      - $HOME/.security/:/usr/src/app/auth/keys/
+      - $HOME/profilePics/:/usr/src/app/profilePics/
+      # - /home/faceoff/https/:/usr/src/app/https/
+    depends_on:
+      - db
+
+  backend_flask:
+    build: ./backend_flask
+    container_name: faceoff-flask
+    networks:
+      - proxy
+    ports:
+      - 5000:5000
+
+  proxy:
+    image: nginx
+    container_name: faceoff-proxy
+    networks:
+      - proxy
+    ports:
       - 80:80
       - 443:443
     volumes:
-      - /home/faceoff/.security/:/usr/src/app/auth/keys/
-      - /home/faceoff/https/:/usr/src/app/https/
+      - $HOME/https/:/etc/nginx/certs
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
-      - db
-    
-    
+      - backend
+
+networks:
+  proxy:
+    name: proxy
+  # proxy:
+  #   image: traefik:v2.3
+  #   container_name: faceoff-proxy
+  #   # command:
+  #     # - --log.level=DEBUG
+  #     # - --api.insecure=true
+  #     # - --entrypoints.web.address=:80
+  #     # - --providers.docker
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #     - 8081:8080 #Use 8081 to configure traefik
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro 
+  #     - /home/faceoff/https:/usr/cert/
+  #     - ./traefik.yml:/etc/traefik/traefik.yml
+  #     - ./dynamic.yml:/etc/traefik/dynamic.yml
+  #   labels:
+  #     traefik.http.routers.dash.rule: Host(`dash.localhost`)
+  #     traefik.http.routers.dash.service: api@internal
+  #     traefik.http.routers.dash.tls: false
+  #     traefik.http.routers.backend-face-off-ai.
+  #     # traefik.http.routers.backend.entrypoints: websecure
+  #     # traefik.http.routers.backend.rule: Host(`ai.faceoff.cf`)
+  #     # traefik.http.routers.backend.service: backend-face-off-ai
+  #     # traefik.http.routers.backend.tls: true

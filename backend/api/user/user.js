@@ -20,14 +20,19 @@ router.post(`/login`, require('./login.js'));
  * Profile
  */
 
-const { privateProfile, publicProfile, putProfile } = require('./profile');
+const { getProfile, putProfile } = require('./profile');
+const { profilePicPost, profilePicGet } = require('./profilePic');
 
-router.get(`/profile`, authenticate, privateProfile);
+router.get(`/profile`, authenticate, getProfile);
 
-router.get(`/profile/:id`, publicProfile);
+router.get('/profile/pic/:image', profilePicGet);
+
+router.get(`/profile/:id`, getProfile);
 
 router.put(`/profile`, authenticate, putProfile);
 
+
+router.post(`/profile/pic`, authenticate, profilePicPost);
 /**
  * Friends
  */
@@ -43,5 +48,10 @@ router.get(`/friend`, authenticate, getFriends);
  */
 
 router.get(`/scores`, authenticate, require('./scores'));
+
+router.get(`/leaderboard`, require('./leaderboard'));
+
+
+router.post('/changepassword', authenticate, require('./changePassword'));
 
 module.exports = router;

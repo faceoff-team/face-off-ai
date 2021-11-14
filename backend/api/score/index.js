@@ -13,3 +13,5 @@ const router = express.Router();
 router.get(`/:scoreID`, require(`./get`));
 
 router.post(`/create`, authenticate, require(`./create`));
+
+module.exports = router;

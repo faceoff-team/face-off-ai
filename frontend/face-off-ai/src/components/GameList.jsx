@@ -2,8 +2,6 @@ import React from "react";
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import SmallGame from "../components/SmallGame.jsx";
 
-import Grid from '@mui/material/Grid';
-
 function GameList({ title, username }) {
     return (
         <div>

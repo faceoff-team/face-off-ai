@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-//Make http accessable throughout app.
+//Make http accessible throughout app.
 export const http = require('axios');
 
 http.defaults.headers.post['Content-Type'] = 'application/json';

@@ -6,8 +6,6 @@ import SmallProfile from "../components/SmallProfile.jsx";
 import Picture from "../assets/joker-picture-1.jpg";
 import Picture2 from "../assets/profile-picture-1.jpg";
 
-import Grid from '@mui/material/Grid';
-
 function AccountList({title}) {
     return (
             <div>

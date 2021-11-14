@@ -1,6 +1,6 @@
 import { React, Component } from 'react'
 import { Link, withRouter } from "react-router-dom";
-import { FacebookLoginButton, InstagramLoginButton } from "react-social-login-buttons";
+import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux'; 
 import { login } from '../actions/authActions';
 
@@ -42,7 +42,28 @@ class Login extends Component {
     }
   }
 
+
+
+responseFacebook(response) {
+    console.log(response);
+        const authResponse = new Promise(window.FB.login);
+        if (!authResponse) {
+            this.props.history.push('/profile');
+        }
+        
+        /*setData(response);
+        setPicture(response.picture.data.url);*/
+        if (response.accessToken) {
+            /*setLogin(true);*/
+        } else {
+            /*setLogin(false);*/
+        }
+}
+
   render() {
+
+
+
     return (
     <div class="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
         <div className="formCenter">
@@ -88,20 +109,20 @@ class Login extends Component {
             <div className="formField">
                 <button className="formFieldButton">Sign In</button>{" "}
                 <div>
-                    <Link to="/" className="formFieldLink">
+                    <Link to="/register" className="formFieldLink">
                     Create an account
                     </Link>
                 </div>
             </div>
 
             <div className="socialMediaButtons">
-                <div className="facebookButton">
-                <FacebookLoginButton onClick={() => alert("Hello")} />
-                </div>
-
-                <div className="instagramButton">
-                <InstagramLoginButton onClick={() => alert("Hello")} />
-                </div>
+                <FacebookLogin
+                    appId="372920357955526"
+                    autoLoad={true}
+                    fields="name,email,picture"
+                    scope="public_profile,user_friends"
+                    callback={this.responseFacebook.bind(this)}
+                    icon="fa-facebook" />
             </div>
             </form>
         </div>

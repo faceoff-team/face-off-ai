@@ -76,6 +76,12 @@ function ProfileHeader({ username, picture, bio }) {
                                 Change Bio
                             </Button>
                         </Grid>
+                        <Grid>
+                            <form action="/api/user/profile/pic" method="post" enctype="multipart/form-data">
+                                <input type="file" name="profile" id="profilePicture" />
+                                <input type="submit" value="Update Picture"/>
+                            </form>
+                        </Grid>
                         <Grid item xs={6}>
                             <TextField label="Bio" variant="filled" />
                         </Grid>

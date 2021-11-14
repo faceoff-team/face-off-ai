@@ -9,6 +9,7 @@ const jsonwebtoken = require(`jsonwebtoken`);
 const fs = require(`fs`);
 const path = require(`path`);
 const AuthorizationError = require("../error/AuthorizationError");
+const { getUserByKey } = require("./user");
 
 const pubPath = path.join(__dirname, `..`, `auth`, `keys`, `id_rsa_pub.pem`);
 const privPath = path.join(__dirname, `..`, `auth`, `keys`, `id_rsa_priv.pem`);
@@ -80,14 +81,19 @@ const verifyPassword = (password, salt, hash) => {
 };
 
 const authenticate = async (req, res, next) => {
-    if (!req.headers.authorization) {
-        throw new AuthorizationError(`No key provided for protected API.`, 401);
+    try {
+        if (!req.headers.authorization) {
+            throw new AuthorizationError(`No key provided for protected API.`, 401);
+        }
+
+        let jwt = verifyJWT(req.headers.authorization);
+
+        //Get the user from the database.
+        req.user = await getUserByKey(jwt.sub);  
+        next();
+    } catch (err) {
+        next(err);
     }
-
-    let jwt = verifyJWT(req.headers.authorization);
-
-    //Get the user from the database.
-    
 }
 
 module.exports = {

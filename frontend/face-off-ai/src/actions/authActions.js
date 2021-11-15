@@ -30,12 +30,12 @@ export const loadUser = async (dispatch, getState) => {
     }
 };
 
-export const login = (user, password) => async (dispatch) => {
+export const login = (username, password) => async (dispatch) => {
     dispatch({ type: LOGOUT_SUCCESS });
 
     try {
         let res = await http.post('/api/user/login', {
-            user,
+            username,
             password,
         });
 
@@ -43,7 +43,7 @@ export const login = (user, password) => async (dispatch) => {
             type: LOGIN_SUCCESS,
             payload: {
                 token: res.data.token,
-                user: null,
+                user: username,
             },
         });
     } catch (err) {

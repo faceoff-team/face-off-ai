@@ -41,7 +41,7 @@ export const login = (user, password) => async (dispatch) => {
 
         let res2 = await http.get(`api/user/profile/`, {
             headers: {
-                Authorization: `${res.data.token}`
+                Authorization: res.data.token
             },
         });
 
@@ -49,7 +49,13 @@ export const login = (user, password) => async (dispatch) => {
             type: LOGIN_SUCCESS,
             payload: {
                 token: res.data.token,
-                user: res2.data.user.userID,
+                user: {
+                    userid: res2.data.user.userID,
+                    username: res2.data.user.username,
+                    bio: res2.data.user.bio,
+                    photo: res2.data.user.imagePath
+                }
+                
             },
         });
     } catch (err) {
@@ -68,11 +74,22 @@ export const register = (username, password, email) => async (dispatch) => {
             password,
         });
 
+        let res2 = await http.get(`api/user/profile/`, {
+            headers: {
+                Authorization: res.data.token
+            },
+        });
+
         dispatch({
             type: REGISTER_SUCCESS,
             payload: {
                 token: res.data.token,
-                user: null,
+                user: {
+                    userid: res2.data.user.userID,
+                    username: res2.data.user.username,
+                    bio: res2.data.user.bio,
+                    photo: res2.data.user.imagePath
+                }
             },
         });
 

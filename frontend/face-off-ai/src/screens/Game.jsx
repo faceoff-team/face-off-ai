@@ -8,7 +8,12 @@ import Modal from '@mui/material/Modal';
 import Card from '@mui/material/Card';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useHistory, useParams } from 'react-router-dom';
-import WebcamCapture from '../components/WebcamCapture'
+import WebcamCapture from '../components/WebcamCapture';
+import IconButton from '@mui/material/IconButton';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
 const modalStyle = {
     position: 'absolute',
@@ -39,6 +44,7 @@ function Game() {
     const [open, setOpen] = React.useState(false);
     const [openMode, setOpenMode] = React.useState(true);
     const [openMulti, setOpenMulti] = React.useState(false);
+    const [rateVideo, setRateVideo] = React.useState(0);
     const [running, setRunning] = React.useState(false);
     const [lost, setLost] = React.useState(false);
 
@@ -121,6 +127,21 @@ function Game() {
 
     const handleOpenMulti = () => setOpenMulti(true);
     const handleCloseMulti = () => setOpenMulti(false);
+
+    const handleLikeVideo = () => {
+        if (rateVideo === 1) {
+            setRateVideo(0);
+        } else {
+            setRateVideo(1);
+        }
+    }
+    const handleDislikeVideo = () => {
+        if (rateVideo === -1) {
+            setRateVideo(0);
+        } else {
+            setRateVideo(-1);
+        }
+    }
 
     return (
         <div className="gamePage" class="container">
@@ -229,6 +250,22 @@ function Game() {
                         <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Ratings</h2>
                         <h4 class="font-weight-normal" style={{marginTop: "10px"}}>96% like this video!</h4>
                     </div>
+                    <IconButton aria-label="like-video" size="large" onClick={() => handleLikeVideo()}>
+                        {rateVideo === 1 &&
+                            <ThumbUpAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== 1) &&
+                            <ThumbUpOffAltIcon/>
+                        }
+                    </IconButton>
+                    <IconButton aria-label="dislike-video" size="large" onClick={() => handleDislikeVideo()}>
+                        {rateVideo === -1 &&
+                            <ThumbDownAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== -1) &&
+                            <ThumbDownOffAltIcon/>
+                        }
+                    </IconButton>
                 </Card>
             </div>
         </div>

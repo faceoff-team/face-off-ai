@@ -10,7 +10,7 @@ function Settings() {
     const password1Ref = useRef(null);
     const password2Ref = useRef(null);
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         let params = {
             photo: photoRef.current.value,
             user: userRef.current.value,
@@ -27,10 +27,7 @@ function Settings() {
         }
 
         try {
-            const res = await http.put("/api/user/profile",{
-                headers: {
-                    Authorization: store.getState().auth.token
-                },
+            const res = await http.put("/api/user/profile", {
                 username: params.user,
                 bio: params.bio
             });

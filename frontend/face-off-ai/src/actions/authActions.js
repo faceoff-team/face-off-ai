@@ -39,11 +39,15 @@ export const login = (user, password) => async (dispatch) => {
             password,
         });
 
+        let res2 = await http.get(`api/userprofile/`, {
+            Authentication: `${res.data.token}`,
+        });
+
         dispatch({
             type: LOGIN_SUCCESS,
             payload: {
                 token: res.data.token,
-                user: null,
+                user: res2.data,
             },
         });
     } catch (err) {

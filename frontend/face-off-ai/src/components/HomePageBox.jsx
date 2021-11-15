@@ -21,10 +21,10 @@ function HomePageBox({videoID, videoTitle}) {
     return (
         <Link to={`game/${videoID}/${videoTitle}`}>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
-                <Card sx={{ maxWidth: 345, backgroundColor: "#414246", color: "white", 
+                <Card sx={{ maxWidth: 345, borderRadius: '10px', backgroundColor: '#414246', color: 'white', 
                     '&:hover': {
-                        backgroundColor: "#3a3b3f",
-                        color: "#4cc0ad"
+                        backgroundColor: '#3a3b3f',
+                        color: '#4cc0ad'
                     }}}
                     >
                     <CardActionArea>

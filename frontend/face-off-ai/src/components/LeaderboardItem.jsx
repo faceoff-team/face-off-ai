@@ -13,9 +13,6 @@ function LeaderboardItem({ username, picture, highscore, position}) {
         getImage();
     }, []);
 
-    
-    
-
     const getImage = async() => {
         try {
             var imageURL = "/usr/src/app/profilePics/" + picture;

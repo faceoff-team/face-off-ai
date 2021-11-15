@@ -3,6 +3,12 @@ import axios from "axios";
 import Grid from '@mui/material/Grid';
 import HomePageBox from "./HomePageBox.jsx";
 
+const MAX_VIDEOS = 9;
+
+/**
+ *  Compiles a list of videos given the video array and
+ *  the number of videos in the list.
+ */
 function videosList(numVideos, videoArray) {
     const videoList = [];
     
@@ -13,8 +19,9 @@ function videosList(numVideos, videoArray) {
         return videoList;
     }
 
-    if (numVideos > 6) {
-        numVideos = 6;
+    // We only want to show MAX_VIDEOS videos maximum for each list
+    if (numVideos > MAX_VIDEOS) {
+        numVideos = MAX_VIDEOS;
     }
 
     for (var i = 0; i < numVideos; i++) {
@@ -41,14 +48,14 @@ function HomePageGrid({emotionID}) {
 
     const getVideoAPI = async() => {
         try {
-            var baseURL = "https://ai.faceoff.cf/api/video/";
-            if (emotionID === 1) {
+            var baseURL = "https://ai.faceoff.cf/api/video/"
+            if (emotionID == 1) {
                 // This is a try not to laugh video set
-                baseURL = "https://ai.faceoff.cf/api/video/";
-            } else if (emotionID === 2) {
+                baseURL += "happy";
+            } else if (emotionID == 2) {
                 // This is a try not to cry video set
-                baseURL = "https://ai.faceoff.cf/api/video/";
-            }
+                baseURL += "sad";
+            } 
             const response = await axios.get(baseURL);
             setNumVideos(response.data.videos.length);
             setVideos(response.data.videos);

@@ -5,7 +5,6 @@
 
 const { queryPromise } = require(".");
 
-
 /**
  * The same as `CreateVideo` but this function adds it because the video 
  * technically already exists.
@@ -67,7 +66,9 @@ const getAllVideos = async () => {
  */
 
 const getAllSadVideos = async () => {
-    let query = `SELECT * FROM video WHERE emotionID = 2`;
+    let query = `SELECT * FROM video 
+                 WHERE emotionID = 2
+                 ORDER BY videoRank`;
   
     let videos = await queryPromise(query);
   
@@ -82,7 +83,9 @@ const getAllSadVideos = async () => {
  */
 
 const getAllHappyVideos = async () => {
-    let query = `SELECT * FROM video WHERE emotionID = 1`;
+    let query = `SELECT * FROM video 
+                 WHERE emotionID = 1
+                 ORDER BY videoRank`;
   
     let videos = await queryPromise(query);
   

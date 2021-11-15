@@ -4,10 +4,12 @@ import LeaderboardItem from "../components/LeaderboardItem.jsx";
 
 import Grid from '@mui/material/Grid';
 
+const MAX_LEADERBOARD_USERS = 25;
+
 function getLeaders(numUsers, leaderboardUsers) {
     const leaderboarditems = [];
-    if (numUsers > 25) {
-        numUsers = 25;
+    if (numUsers > MAX_LEADERBOARD_USERS) {
+        numUsers = MAX_LEADERBOARD_USERS;
     } else if (numUsers == 0) {
         leaderboarditems.push(<Grid item xs={8} >
             <div>There are no users to display.</div>

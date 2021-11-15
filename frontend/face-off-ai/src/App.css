@@ -139,6 +139,10 @@
     font-size: 12px;
 }
 
+.text-medium {
+    font-size: 20px;
+}
+
 .about-desc {
   text-align: left;
 }

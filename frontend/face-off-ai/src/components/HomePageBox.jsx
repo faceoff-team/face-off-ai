@@ -29,7 +29,7 @@ function HomePageBox({videoID, videoTitle}) {
                     >
                     <CardActionArea>
                         <CardContent>
-                            <h5>{videoTitle}</h5>
+                            <p class="text-medium">{videoTitle}</p>
                         </CardContent>
                         <CardMedia
                             component="img"

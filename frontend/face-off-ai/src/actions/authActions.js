@@ -39,7 +39,7 @@ export const login = (user, password) => async (dispatch) => {
             password,
         });
 
-        let res2 = await http.get(`api/userprofile/`, {
+        let res2 = await http.get(`api/user/profile/`, {
             Authentication: `${res.data.token}`,
         });
 

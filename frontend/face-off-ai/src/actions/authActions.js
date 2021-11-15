@@ -40,14 +40,16 @@ export const login = (user, password) => async (dispatch) => {
         });
 
         let res2 = await http.get(`api/user/profile/`, {
-            Authentication: `${res.data.token}`,
+            headers: {
+                Authorization: `${res.data.token}`
+            },
         });
 
         dispatch({
             type: LOGIN_SUCCESS,
             payload: {
                 token: res.data.token,
-                user: res2.data,
+                user: res2.data.user.userID,
             },
         });
     } catch (err) {

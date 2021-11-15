@@ -107,10 +107,10 @@ function Home() {
                     label="Paste link here"
                     variant="outlined"
                     color="secondary"
-                    style={{ width: "75%" }}
+                    style={{ width: "75%"}}
                     value={value}
                     onChange={handleChange}
-                    error={(value.match(ytRegex) == null)}
+                    error={(value.length > 0 && value.match(ytRegex) == null)}
                 />
                 <Button
                     size="large"

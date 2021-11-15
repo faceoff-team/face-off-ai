@@ -17,10 +17,16 @@ function HomePageBox({videoID, videoTitle}) {
     const videoURL = `https://www.youtube.com/watch?v=${videoID}`;
     const thumbnailURL = `http://img.youtube.com/vi/${videoID}/hqdefault.jpg`
 
+
     return (
         <Link to={`game/${videoID}/${videoTitle}`}>
-            <div style={{margin: '20px'}}>
-                <Card sx={{ maxWidth: 345 }}>
+            <div style={{marginTop: '10px', marginBottom: '10px'}}>
+                <Card sx={{ maxWidth: 345, backgroundColor: "#414246", color: "white", 
+                    '&:hover': {
+                        backgroundColor: "#3a3b3f",
+                        color: "#4cc0ad"
+                    }}}
+                    >
                     <CardActionArea>
                         <CardContent>
                             <h5>{videoTitle}</h5>

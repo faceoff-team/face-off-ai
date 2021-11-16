@@ -109,20 +109,25 @@ responseFacebook(response) {
             <div className="formField">
                 <button className="formFieldButton">Sign In</button>{" "}
                 <div>
-                    <Link to="/register" className="formFieldLink">
+                  <Link to="/forgot" className="formFieldLink">
+                    Forgot my password
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/register" className="formFieldLink">
                     Create an account
-                    </Link>
+                  </Link>
                 </div>
             </div>
 
             <div className="socialMediaButtons">
-                <FacebookLogin
-                    appId="372920357955526"
-                    autoLoad={true}
-                    fields="name,email,picture"
-                    scope="public_profile,user_friends"
-                    callback={this.responseFacebook.bind(this)}
-                    icon="fa-facebook" />
+              <FacebookLogin
+                appId="372920357955526"
+                autoLoad={true}
+                fields="name,email,picture"
+                scope="public_profile,user_friends"
+                callback={this.responseFacebook.bind(this)}
+                icon="fa-facebook" />
             </div>
             </form>
         </div>

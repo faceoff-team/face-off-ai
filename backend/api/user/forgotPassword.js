@@ -17,7 +17,7 @@ const handleChangePasswordRequest = async (req, res) => {
   let user;
 
   if (req.body.user.includes('@')) {
-    user = await getUserbyEmail(req.body.user);
+    user = await getUserByEmail(req.body.user);
   } else {
     user = await getUserbyUsername(req.body.user);
   }
@@ -29,6 +29,7 @@ const handleChangePasswordRequest = async (req, res) => {
   console.log(user);
 
   if (!user.email) {
+    //Send a seemingly OK response but don't let the user know that a user does not exist with this name.
     res.status(200).json({
       success: true,
       msg: `Change password request proccessed.`,

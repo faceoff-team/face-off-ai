@@ -20,6 +20,8 @@ const handleChangePasswordRequest = async (req, res) => {
     user = getUserbyUsername(req.body.user);
   }
 
+  console.log(user);
+
   if (!user.email) {
     res.status(200).json({
       success: true,

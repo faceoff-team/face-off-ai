@@ -1,16 +1,18 @@
 import React from "react";
 import {Grid, Stack, Button, TextField } from "@mui/material";
-import {http, store} from "../store"
+import store from "../store"
+const http = require('axios');
+
 
 function Settings() {
 
-    const photoRef = useRef(null);
-    const userRef = useRef(null);
-    const bioRef = useRef(null);
-    const password1Ref = useRef(null);
-    const password2Ref = useRef(null);
+    const photoRef = React.useRef(null);
+    const userRef = React.useRef(null);
+    const bioRef = React.useRef(null);
+    const password1Ref = React.useRef(null);
+    const password2Ref = React.useRef(null);
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         let params = {
             photo: photoRef.current.value,
             user: userRef.current.value,

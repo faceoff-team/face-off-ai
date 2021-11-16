@@ -51,8 +51,17 @@ router.get(`/scores`, authenticate, require('./scores'));
 
 router.get(`/leaderboard`, require('./leaderboard'));
 
+/**
+ * Forgot password.
+ */
+
+const { changeAuthPassword, changeUserPassword } = require('./reset');
 
 router.post('/changepassword', authenticate, require('./changePassword'));
 router.post('/forgotpassword', require('./forgotPassword'));
+
+router.post('/reset', authenticate, changeAuthPassword);
+router.post('/reset/:hash', changeUserPassword);
+
 
 module.exports = router;

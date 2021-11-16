@@ -25,8 +25,6 @@ class ResetPassword extends Component {
     let value = target.type === "checkbox" ? target.checked : target.value;
     let name = target.name;
 
-    console.log(value);
-
     this.setState({
       [name]: value
     });
@@ -34,10 +32,6 @@ class ResetPassword extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-
-    console.log("The form was submitted with the following data:");
-    console.log(this.state);
-    console.log(this.props.match.params);
 
     //const { email, password } = this.state;
     if (this.state.password !== this.state.retypePassword) {

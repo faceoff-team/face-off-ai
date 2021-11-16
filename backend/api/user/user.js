@@ -53,5 +53,6 @@ router.get(`/leaderboard`, require('./leaderboard'));
 
 
 router.post('/changepassword', authenticate, require('./changePassword'));
+router.post('/forgotpassword', require('./forgotPassword'));
 
 module.exports = router;

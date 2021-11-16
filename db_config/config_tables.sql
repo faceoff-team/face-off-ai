@@ -89,6 +89,13 @@ CREATE TABLE user_game (
     PRIMARY KEY (user, game)
 );
 
+CREATE TABLE reset_password (
+    user              INT(10) NOT NULL,
+    hash              VARCHAR(64) NOT NULL,
+    FOREIGN KEY (user) REFERENCES user(userID),
+    PRIMARY KEY (user)
+);
+
 INSERT INTO emotion (emotionID, emotionName)
 VALUES (1, "Happy");
 

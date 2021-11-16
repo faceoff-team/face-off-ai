@@ -5,6 +5,7 @@
 
 import { React, Component } from 'react'
 import { http } from '../store';
+import { withRouter } from 'react-router-dom';
 
 class ResetPassword extends Component {
   constructor() {
@@ -15,36 +16,49 @@ class ResetPassword extends Component {
       retypePassword: "",
     };
 
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleChange(event) {
-  //   let target = event.target;
-  //   let value = target.type === "checkbox" ? target.checked : target.value;
-  //   let name = target.name;
+  handleChange(event) {
+    let target = event.target;
+    let value = target.type === "checkbox" ? target.checked : target.value;
+    let name = target.name;
 
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
+    console.log(value);
+
+    this.setState({
+      [name]: value
+    });
+  }
 
   async handleSubmit(event) {
     event.preventDefault();
 
     console.log("The form was submitted with the following data:");
     console.log(this.state);
+    console.log(this.props.match.params);
 
     //const { email, password } = this.state;
-    if (this.state.password !== this.state.retypePassword)
-      throw new Error('Passwords are not the same.');
+    if (this.state.password !== this.state.retypePassword) {
+      //throw new Error('Passwords are not the same.');
+      console.error(`Passwords must match.`);
+    }
 
-    if (this.state.password.length < 8)
-      throw new Error('Password must be longer than 8 characters.');
+    if (this.state.password.length < 8) {
+      // throw new Error('Password must be longer than 8 characters.');
+      console.error(`Password length should be greater than 8.`);
+    }
 
-    // let res = await http.post('/api/user/reset', {
-    //   password: this.state.password,
-    // });
+    if (!this.props.match.params.hash) {
+      let res = await http.post('/api/user/reset', {
+        password: this.state.password,
+      });
+    } else {
+      let res = await http.post(`/api/user/reset/${this.props.match.params.hash}`, {
+        password: this.state.password,
+      });
+    }
   }
 
   render() {
@@ -66,7 +80,7 @@ class ResetPassword extends Component {
                   placeholder="Enter a new password"
                   name="password"
                   value={this.state.password}
-                  // onChange={this.handleChange}
+                  onChange={this.handleChange}
                 />
               </div>
             </div>
@@ -83,9 +97,9 @@ class ResetPassword extends Component {
                 id="retype-password"
                 className="formFieldInput"
                 placeholder="Retype your password"
-                name="retype-password"
+                name="retypePassword"
                 value={this.state.retypePassword}
-                // onChange={this.handleChange}
+                onChange={this.handleChange}
               />
             </div>
           </div>
@@ -99,4 +113,4 @@ class ResetPassword extends Component {
   }
 }
 
-export default ResetPassword;
+export default withRouter(ResetPassword);

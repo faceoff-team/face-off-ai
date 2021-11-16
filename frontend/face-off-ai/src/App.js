@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
-import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, MultiplayerGame, Error404 } from "./screens";
+import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, MultiplayerGame, Error404, ResetPassword } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 import { Provider } from 'react-redux';
@@ -99,6 +99,9 @@ function App() {
                     <Route path="/leaderboards" exact component ={() => <Leaderboard />} />
                     <Route path="/register" exect component = {() => <Register />} />
                     <Route path="/multiplayergame" exect component = {() => <MultiplayerGame />} />
+                    <Route path="/resetpassword/:hash" exect component = {() => <ResetPassword />} />
+                    <Route path="/resetpassword/" exect component = {() => <ResetPassword />} />
+                    
 
                     <Route component={() => <Error404 />} />
                 </Switch>

@@ -7,4 +7,5 @@ export { default as Settings } from "./Settings.jsx";
 export { default as Leaderboard } from "./Leaderboard.jsx";
 export { default as Register } from "./Register.jsx";
 export { default as MultiplayerGame } from "./MultiplayerGame.jsx";
-export { default as Error404 } from "./Error404.jsx"
+export { default as Error404 } from "./Error404.jsx";
+export { default as ResetPassword } from "./ResetPassword.jsx";

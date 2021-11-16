@@ -52,7 +52,7 @@ const handleResetUserPassword = async (req, res) => {
 
   let query = 
     `SELECT * FROM reset_password
-     WHERE hash = ${req.params.hash}`;
+     WHERE hash = "${req.params.hash}"`;
 
   let { results: rows } = await queryPromise(query);
 
@@ -60,6 +60,14 @@ const handleResetUserPassword = async (req, res) => {
     throw new BadRequestError(`Hash not found.`, 404);
 
   let row = rows[0];
+
+  if (Date.now() > row.expires) {
+    let query = 
+      `DELETE FROM reset_password
+       WHERE hash = "${row.hash}"`;
+    await queryPromise(query);
+    throw new BadRequestError('Link has expired.');
+  }
 
   let { hash, salt } = generatePasswordHash(req.body.password);
 

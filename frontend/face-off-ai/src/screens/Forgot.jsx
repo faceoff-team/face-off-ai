@@ -36,7 +36,7 @@ class Forgot extends Component {
     console.log("The form was submitted with the following data:");
     console.log(this.state);
 
-    let res = await http.post('/api/user/forgotpassword', {
+    await http.post('/api/user/forgotpassword', {
       user: this.state.user,
     });
   }

@@ -28,7 +28,7 @@ function Settings() {
         }
 
         try {
-            const res = await http.put("/api/user/profile", {
+            await http.put("/api/user/profile", {
                 headers: {
                     Authorization: store.getState().auth.token
                 },
@@ -43,9 +43,9 @@ function Settings() {
 
     }
 
-    const handleCancel = () => {
+    // const handleCancel = () => {
 
-    }
+    // }
 
     return (
         <div className="settings" class="container">

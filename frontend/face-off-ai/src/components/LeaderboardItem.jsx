@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Box from "@mui/material/Box";
+// import { http } from "../store";
 
 function LeaderboardItem({ username, picture, highscore, position}) {
 

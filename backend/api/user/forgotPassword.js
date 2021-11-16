@@ -15,9 +15,9 @@ const handleChangePasswordRequest = async (req, res) => {
   let user;
 
   if (req.body.user.includes('@')) {
-    user = getUserbyEmail(req.body.user);
+    user = await getUserbyEmail(req.body.user);
   } else {
-    user = getUserbyUsername(req.body.user);
+    user = await getUserbyUsername(req.body.user);
   }
 
   console.log(user);

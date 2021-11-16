@@ -20,6 +20,8 @@ const handleChangePasswordRequest = async (req, res) => {
     user = await getUserbyUsername(req.body.user);
   }
 
+  //TODO change the return value of getUserByEmail from array to object.
+
   user = user[0];
 
   console.log(user);
@@ -32,11 +34,7 @@ const handleChangePasswordRequest = async (req, res) => {
     return;
   }
     
-  await sendMail({
-    to: `${user.email}`,
-    subject: `Reset Password Request`,
-    html: `<p>Go to this link to reset your password. ${'this is a link'}</p>`,
-  }); 
+  await sendMail(`${user.email}`, `Reset Password Request`, `<p>Go to this link to reset your password. ${'this is a link'}</p>`); 
   
   res.status(200).json({
     success: true,

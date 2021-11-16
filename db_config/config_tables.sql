@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS game;
 DROP TABLE IF EXISTS challenge;
 DROP TABLE IF EXISTS video;
 DROP TABLE IF EXISTS emotion;
+DROP TABLE IF EXISTS reset_password;
 
 -- Creating Tables
 
@@ -92,6 +93,7 @@ CREATE TABLE user_game (
 CREATE TABLE reset_password (
     user              INT(10) NOT NULL,
     hash              VARCHAR(64) NOT NULL,
+    expires           INT(15) NOT NULL,
     FOREIGN KEY (user) REFERENCES user(userID),
     PRIMARY KEY (user)
 );

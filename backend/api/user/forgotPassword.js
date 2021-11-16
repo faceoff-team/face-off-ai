@@ -38,13 +38,15 @@ const handleChangePasswordRequest = async (req, res) => {
     
   let hash = crypto.randomBytes(32).toString('hex');
 
+  let expireTime = (Math.floor(Date.now() / 1000)) + 60 * 60; 
+
   let link = `https://ai.faceoff.cf/resetpassword/${hash}`;
 
   let html = `<p>A forgot password request has been submitted. Please click <a href="${link}">this link</a> to change your password</p>`;
 
   await sendMail(`${user.email}`, `Reset Password Request`, html); 
   
-  await queryPromise(`INSERT INTO reset_password (user, hash) VALUES (${user.userID}, ${hash})`);
+  await queryPromise(`INSERT INTO reset_password (user, hash, expires) VALUES (${user.userID}, "${hash}", ${expireTime})`);
 
   res.status(200).json({
     success: true,

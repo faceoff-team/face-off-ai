@@ -227,16 +227,27 @@ const getUserProfilePicName = async (id) => {
     console.error(err);
     throw err;
   }
-}
+};
+
+const changePassword = async (userID, hash, salt) => {
+  let query = 
+    `UPDATE user
+     SET hash = "${hash}
+     SET salt = "${salt}
+     WHERE userID = ${userID}`;
+
+  await queryPromise(query);
+};
 
 module.exports = {
-    getUserByKey,
-    getUserbyUsername,
-    getUserByEmail,
-    getFriendsByUsername,
-    createUser,
-    updateProfile,
-    getLeaderboard,
-    updateProfilePicture,
-    getUserProfilePicName,
+  getUserByKey,
+  getUserbyUsername,
+  getUserByEmail,
+  getFriendsByUsername,
+  createUser,
+  updateProfile,
+  getLeaderboard,
+  updateProfilePicture,
+  getUserProfilePicName,
+  changePassword,
 };

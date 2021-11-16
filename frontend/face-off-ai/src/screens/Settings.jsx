@@ -1,6 +1,7 @@
 import React from "react";
 import {Grid, Stack, Button, TextField } from "@mui/material";
-import {http, store} from "../store"
+import { http } from "../store"
+import store from "../store";
 
 function Settings() {
 
@@ -29,7 +30,7 @@ function Settings() {
         try {
             const res = await http.put("/api/user/profile", {
                 username: params.user,
-                bio: params.bio
+                bio: params.bio,
             });
             
         }

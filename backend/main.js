@@ -7,7 +7,9 @@ const cors = require('cors');
 
 const path = require(`path`);
 
-const { connection } = require('./db');
+const { init } = require('./email');
+
+init();
 
 app.use(cors());
 app.use(express.json());

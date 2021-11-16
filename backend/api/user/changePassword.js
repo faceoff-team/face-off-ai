@@ -4,7 +4,7 @@
  * 11/11/21
  */
 
-const createTransport = require('../../email');
+const { sendMail } = require('../../email');
 const BadRequestError = require('../../error/BadRequestError');
 
 const handleChangePasswordRequest = async (req, res) => {
@@ -13,11 +13,10 @@ const handleChangePasswordRequest = async (req, res) => {
 
   let transport = await createTransport();
 
-  await transport.sendMail({
-    to: [`${req.user.email}`],
-    from: `faceoffbot81@gmail.com`,
+  await sendMail({
+    to: `${req.user.email}`,
     subject: `Reset Password Request`,
-    text: `Go to this link to reset your password. ${'this is a link'} `,
+    html: `<p>Go to this link to reset your password. ${'this is a link'}</p>`,
   }); 
   
   res.status(200).json({

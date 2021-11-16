@@ -34,7 +34,11 @@ const handleChangePasswordRequest = async (req, res) => {
     return;
   }
     
-  await sendMail(`${user.email}`, `Reset Password Request`, `<p>Go to this link to reset your password. ${'this is a link'}</p>`); 
+  let link = 'google.com';
+
+  let html = `<p>A forgot password request has been submitted. Please click <a href="${link}">this link</a> to change your password</p>`;
+
+  await sendMail(`${user.email}`, `Reset Password Request`, html); 
   
   res.status(200).json({
     success: true,

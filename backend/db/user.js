@@ -66,7 +66,7 @@ const createUser = async (username, email, hash, salt) => {
 
 const getUserbyUsername = async (username) => {
     console.log(`
-    SELECT * FROM user WHERE username == "${username}"`);
+    SELECT * FROM user WHERE username = "${username}"`);
     try {
         let user = await new Promise((resolve, reject) => {
                 global.connection.query(`
@@ -118,7 +118,7 @@ const getFriendsByUsername = async (user, username) => {
 
 const getUserByEmail = async (email) => {
     console.log(`
-    SELECT * FROM user WHERE email == "${email}"`);
+    SELECT * FROM user WHERE email = "${email}"`);
     try {
         let user = await new Promise((resolve, reject) => {
                 global.connection.query(`

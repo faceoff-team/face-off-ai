@@ -1,16 +1,16 @@
 /**
  * @author Nic Ballesteros
- * @description This file handles all requests to change a user's password.
- * 11/11/21
+ * @description This file handles all requests for forgot password.
+ * 11/15/21
  */
 
 const { sendMail } = require('../../email');
 const BadRequestError = require('../../error/BadRequestError');
-
+ 
 const handleChangePasswordRequest = async (req, res) => {
-  if (!req.user.email) 
-    throw new BadRequestError(`User does not have an email.`, 400);
-
+  if (!req.body.user)
+    throw BadRequestError(`No user name given.`, 404);
+ 
   await sendMail({
     to: `${req.user.email}`,
     subject: `Reset Password Request`,

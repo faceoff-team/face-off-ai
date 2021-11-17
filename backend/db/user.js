@@ -146,7 +146,7 @@ const updateProfile = async (userid, username, bio) => {
             global.connection.query(`
                 UPDATE user
                 SET username = "${username}", bio = "${bio}",
-                WHERE userID = ${userid}
+                WHERE userID = ${userid};
             `, (err, results, fields) => {
                 if (err) {
                     reject(err);

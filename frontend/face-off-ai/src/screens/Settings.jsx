@@ -12,6 +12,7 @@ function Settings() {
     const password2Ref = React.useRef(null);
 
     const handleSubmit = async () => {
+        console.log(`state: ${store.getState()}`)
         let params = {
             photo: photoRef.current.value,
             user: userRef.current.value,

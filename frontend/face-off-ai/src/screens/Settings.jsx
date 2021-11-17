@@ -35,7 +35,7 @@ function Settings() {
                 },
                 username: params.user,
                 bio: params.bio,
-                userid: store.getState().auth.user.userid
+                id: store.getState().auth.user.userid
             });
             
         }

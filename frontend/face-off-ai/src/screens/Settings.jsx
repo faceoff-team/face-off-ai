@@ -30,12 +30,13 @@ function Settings() {
 
         try {
             const res = await http.put("/api/user/profile", {
-                headers: {
-                    authorization: store.getState().auth.token
-                },
                 username: params.user,
                 bio: params.bio,
                 id: store.getState().auth.user.userid
+            }, {
+                headers: {
+                    authorization: store.getState().auth.token
+                }
             });
             
         }

@@ -145,7 +145,7 @@ const updateProfile = async (userid, username, bio) => {
         let user = await new Promise((resolve, reject) => {
             global.connection.query(`
                 UPDATE user
-                SET username = "${username}", bio = "${bio}",
+                SET username = "${username}", bio = "${bio}"
                 WHERE userID = "${userid}";
             `, (err, results, fields) => {
                 if (err) {

@@ -17,7 +17,6 @@ function HomePageBox({videoID, videoTitle}) {
     const videoURL = `https://www.youtube.com/watch?v=${videoID}`;
     const thumbnailURL = `http://img.youtube.com/vi/${videoID}/hqdefault.jpg`
 
-
     return (
         <Link to={`game/${videoID}/${videoTitle}`}>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>

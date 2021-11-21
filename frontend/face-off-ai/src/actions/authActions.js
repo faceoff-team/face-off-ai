@@ -99,6 +99,6 @@ export const register = (username, password, email) => async (dispatch) => {
     }
 };
 
-const logout = async () => {
+export const logout = async () => {
     dispatch({ type: LOGOUT_SUCCESS });
 };

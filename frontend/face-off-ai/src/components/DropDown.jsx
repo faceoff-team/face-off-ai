@@ -5,27 +5,22 @@ import Avatar from '@mui/material/Avatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Logout from '@mui/icons-material/Logout';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import Tooltip from '@mui/material/Tooltip';
-import Fade from '@mui/material/Fade';
+import {Grow, Paper, Popper, Tooltip, Fade} from '@mui/material';
+import { connect } from 'react-redux';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logout } from '../actions/authActions';
 
 import { ClickAwayListener } from '@mui/material';
 
+
 function DropDown(props) {
+
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
-
-    const handleLogout = () => {
-        logout();
-    }
 
     const handleClose = (event) => {
         if (anchorRef.current == null) {
@@ -37,6 +32,11 @@ function DropDown(props) {
 
         setOpen(false);
     };
+
+    const handleLogout = async (event) => {
+        await logout();
+    }
+    
 
     function handleListKeyDown(event) {
         if (event.key === 'Tab') {
@@ -158,5 +158,6 @@ function DropDown(props) {
         )}
         </Popper></li>);
 }
+  
 
 export default withRouter(DropDown);

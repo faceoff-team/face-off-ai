@@ -2,7 +2,7 @@ import React from "react";
 import {Grid, Stack, Button, TextField } from "@mui/material";
 import { http } from "../store"
 import store from "../store";
-import update from "../actions/authActions";
+import { update } from "../actions/authActions";
 
 function Settings() {
 

@@ -120,7 +120,7 @@ export const update = (username_input, bio_input, id_input, token_input) => asyn
                 user: {
                     userid: id_input,
                     username: username_input,
-                    bio: bio,
+                    bio: bio_input,
                     photo: null
                 }
             }

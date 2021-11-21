@@ -11,40 +11,46 @@ const videoConstraints = {
     height: '200',
 };
 
-const WebcamCapture = ({running, stateChanger}) => {
+
+const WebcamCapture = ({running, setRunning, time}) => {
     const webcamRef = React.useRef(null);
+
+    
     
     React.useEffect(() => {
-        console.log("entered effect")
-        const interval = setInterval(() => {
-            console.log(running);
-            let imageSrc = webcamRef.current.getScreenshot();
-            imageSrc = imageSrc.substring(imageSrc.indexOf(",") + 1);
-            console.log("type of image src: ".concat(typeof(imageSrc)))
-            console.log("image.src: ".concat(imageSrc));
-            //TODO: process image, send information back to game
-            axios.post('https://ai.faceoff.cf/predict', {
-                image: imageSrc
-            })
-            .then((res) => {
-                // if (res.success == 'true') {
-                //     console.log(res.prediction);
-                //     if (res.prediction == 'happy') {
-                //         stateChanger(true);
-                //     }
-                // }
-                console.log(res.data);
-            }, (err) => {
-                console.log(err);
-            })
-            if (running) {
-                
-            }
-        }, 2000)
-        return () => clearInterval(interval);
+        console.log(running);
+        if (running) {
+            const interval = setInterval(() => {
+                console.log(running);
+                let imageSrc = webcamRef.current.getScreenshot();
+                imageSrc = imageSrc.substring(imageSrc.indexOf(",") + 1);
+                //TODO: process image, send information back to game
+                let currentTime = Date.now();
+                axios.post('https://ai.faceoff.cf/predict', {
+                    image: imageSrc
+                })
+                .then((res) => {
+                    if (res.success == 'true') {
+                        console.log(res.prediction);
+                        console.log(res.confidence);
+                        if (res.prediction == 'happy' && res.confidence > 0.7) {
+                            let lossTime = Date.now();
+                            setRunning(false);
+                            
+                        }
+                    }
+                    console.log(res.data);
+                }, (err) => {
+                    console.log(err);
+                })
+            }, 1000)
+            return () => clearInterval(interval);
+
+        }
+        
 
         
-    }, [])
+    }, [running])
     return (
         <div className="webcam-container">
         <Webcam

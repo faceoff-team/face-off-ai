@@ -46,7 +46,8 @@ function Game() {
     const [openMulti, setOpenMulti] = React.useState(false);
     const [rateVideo, setRateVideo] = React.useState(0);
     const [running, setRunning] = React.useState(false);
-    const [lost, setLost] = React.useState(false);
+    const [time, setTime] = React.useState(0);
+    const [lossTime, setLossTime] = React.useState(0);
 
     let history = useHistory();
 
@@ -75,6 +76,12 @@ function Game() {
         else {
             setRunning(true);
         }
+    }, [])
+
+    const handleStart = useCallback(() => {
+        setRunning(true);
+        setTime(Date.now());
+
     }, [])
 
     const revivalBack = () => {
@@ -212,10 +219,11 @@ function Game() {
                         width={"750px"}
                         height={"400px"}
                         className="videoFrame"
-                        onStart={handleRunning}
+                        onStart={handleStart}
                         onPlay={handleRunning}
                         onPause={handleRunning}
                         onEnded={handleRunning}
+                        playing={running}
                         url={url}
                         light={true}
                         controls
@@ -230,7 +238,8 @@ function Game() {
                 <div className="game" class="gameColumn">
                     <WebcamCapture
                         running={running}
-                        stateChanger={setLost}
+                        setRunning={setRunning}
+                        time={time}
                     />
                 </div>
             </div>

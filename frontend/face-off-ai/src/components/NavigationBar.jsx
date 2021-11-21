@@ -1,6 +1,6 @@
 import React from "react";
 import {Link, withRouter} from "react-router-dom";
-import {Menu, MenuItem} from '@mui/material';
+import {MenuList, MenuItem} from '@mui/material';
 import logo from "../assets/faceoff-ai-transparent-green.png";
 import HomeIcon from '@mui/icons-material/Home';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
@@ -12,19 +12,53 @@ import Avatar from '@mui/material/Avatar';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Logout from '@mui/icons-material/Logout';
-import { ClickAwayListener } from '@mui/core';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+
+import { ClickAwayListener } from '@mui/material';
 
 
 function NavigationBar(props) {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
     };
 
+    const handleClose = (event) => {
+        if (anchorRef.current == null) {
+            setOpen(false);
+        }
+        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+        return;
+        }
+
+        setOpen(false);
+    };
+
+    function handleListKeyDown(event) {
+        if (event.key === 'Tab') {
+        event.preventDefault();
+        setOpen(false);
+        } else if (event.key === 'Escape') {
+        setOpen(false);
+        }
+    }
+
+    // return focus to the button when we transitioned from !open -> open
+    const prevOpen = React.useRef(open);
+    React.useEffect(() => {
+        if (prevOpen.current === true && open === false) {
+            if (anchorRef.current != null) {
+                anchorRef.current.focus();
+            }
+            
+        }
+
+        prevOpen.current = open;
+    }, [open]);
 
     return (
             <div className="navBar">
@@ -72,65 +106,91 @@ function NavigationBar(props) {
                                 class={`nav-item ${props.location.pathname === "/profile" ? "active" : ""
                                     }`}
                             >
-                                <Link class="nav-link" to={props.location.pathname} onClick={handleClick}>
+                                <Link class="nav-link" to={props.location.pathname} onClick={handleToggle} ref={anchorRef}>
+                                    <Tooltip 
+                                        title="Profile"
+                                        TransitionComponent={Fade}
+                                        TransitionProps={{ timeout: 300 }}>
                                     <AccountCircleIcon>
                                         <span class="sr-only">(current)</span>
                                     </AccountCircleIcon>
-                                    <Menu
-                                        anchorEl={anchorEl}
+                                    </Tooltip>
+                                    <Popper
                                         open={open}
-                                        onClose={handleClose}
-                                        onClick={handleClose}
-                                        PaperProps={{
-                                        elevation: 0,
-                                        sx: {
-                                            overflow: 'visible',
-                                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                                            mt: 1.5,
-                                            bgcolor: "#414246",
-                                            color: "white",
-                                            '& .MuiAvatar-root': {
-                                            width: 32,
-                                            height: 32,
-                                            ml: -0.5,
-                                            mr: 1,
-                                            },
-                                            '&:before': {
-                                            content: '""',
-                                            display: 'block',
-                                            position: 'absolute',
-                                            top: 0,
-                                            right: 14,
-                                            width: 10,
-                                            height: 10,
-                                            bgcolor: "#414246",
-                                            transform: 'translateY(-50%) rotate(45deg)',
-                                            zIndex: 0,
-                                            },
-                                        },
-                                        }}
-                                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                                    >
-                                        <MenuItem>
-                                        <Avatar /> Profile
-                                        </MenuItem>
-                                        <MenuItem>
-                                        <Avatar /> My account
-                                        </MenuItem>
-                                        <MenuItem>
-                                        <ListItemIcon>
-                                            <PersonAdd fontSize="small" style={{ fill: "white"}}/>
-                                        </ListItemIcon>
-                                        Add another account
-                                        </MenuItem>
-                                        <MenuItem>
-                                        <ListItemIcon>
-                                            <Logout fontSize="small" style={{ fill: "white"}}/>
-                                        </ListItemIcon>
-                                        Logout
-                                        </MenuItem>
-                                    </Menu>
+                                        anchorEl={anchorRef.current}
+                                        role={undefined}
+                                        placement="bottom-start"
+                                        transition
+                                        disablePortal
+                                        >
+                                        {({ TransitionProps, placement }) => (
+                                            <Grow
+                                            {...TransitionProps}
+                                            style={{
+                                                transformOrigin:
+                                                placement === 'top-start',
+                                            }}
+                                            >
+                                            <Paper>
+                                                <ClickAwayListener onClickAway={handleClose}>
+                                                <MenuList
+                                                    autoFocusItem={open}
+                                                    id="composition-menu"
+                                                    aria-labelledby="composition-button"
+                                                    onKeyDown={handleListKeyDown}
+                                                    PaperProps={{
+                                                        elevation: 0,
+                                                        sx: {
+                                                            overflow: 'visible',
+                                                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                                                            mt: 1.5,
+                                                            bgcolor: "#414246",
+                                                            color: "white",
+                                                            '& .MuiAvatar-root': {
+                                                            width: 32,
+                                                            height: 32,
+                                                            ml: -0.5,
+                                                            mr: 1,
+                                                            },
+                                                            '&:before': {
+                                                            content: '""',
+                                                            display: 'block',
+                                                            position: 'absolute',
+                                                            top: 0,
+                                                            right: 14,
+                                                            width: 10,
+                                                            height: 10,
+                                                            bgcolor: "#414246",
+                                                            transform: 'translateY(-50%) rotate(45deg)',
+                                                            zIndex: 0,
+                                                            },
+                                                        },
+                                                        }}
+                                                >
+                                                    <MenuItem>
+                                                        <Avatar /> Profile
+                                                    </MenuItem>
+                                                    <MenuItem>
+                                                        <Avatar />My Account
+                                                    </MenuItem>
+                                                    <MenuItem>
+                                                    <ListItemIcon>
+                                                        <PersonAdd fontSize="small" style={{ fill: "white"}}/>
+                                                    </ListItemIcon>
+                                                        Add another account
+                                                    </MenuItem>
+                                                    <MenuItem>
+                                                    <ListItemIcon>
+                                                        <Logout fontSize="small" style={{ fill: "white"}}/>
+                                                    </ListItemIcon>
+                                                        Logout
+                                                    </MenuItem>
+                                                </MenuList>
+                                                </ClickAwayListener>
+                                            </Paper>
+                                            </Grow>
+                                        )}
+                                        </Popper>
                                 </Link>
                             </li>
                             <li

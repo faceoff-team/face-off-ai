@@ -3,7 +3,6 @@ import React from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
 import {
@@ -14,11 +13,10 @@ import {
   } from "react-router-dom";
 
 function HomePageBox({videoID, videoTitle}) {
-    const videoURL = `https://www.youtube.com/watch?v=${videoID}`;
     const thumbnailURL = `http://img.youtube.com/vi/${videoID}/hqdefault.jpg`
 
     return (
-        <Link to={`game/${videoID}/${videoTitle}`}>
+        <Link to={`game/${videoID}/${videoTitle}`} style={{textDecoration: 'none'}}>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <Card sx={{ maxWidth: 345, 
                             borderRadius: '10px',

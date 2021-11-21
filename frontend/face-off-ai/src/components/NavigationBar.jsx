@@ -163,25 +163,45 @@ function NavigationBar(props) {
                                                             },
                                                         }}
                                                 >
-                                                    <MenuItem>
-                                                        <Avatar /> Profile
-                                                    </MenuItem>
+                                                    <Link to="/profile" 
+                                                        style={{ 
+                                                            textDecoration: "none",
+                                                            color: "white"}}>
+                                                        <MenuItem>
+                                                            <Avatar /> Profile
+                                                        </MenuItem>
+                                                    </Link>
+                                                    <Link to="/profile"
+                                                        style={{ 
+                                                            textDecoration: "none",
+                                                            color: "white"}}>
                                                     <MenuItem>
                                                         <Avatar />My Account
                                                     </MenuItem>
-                                                    <MenuItem>
-                                                    <ListItemIcon>
-                                                        <PersonAdd fontSize="small" style={{ fill: "white"}}/>
-                                                    </ListItemIcon>
-                                                        Add another account
-                                                    </MenuItem>
-                                                    <MenuItem>
-                                                    <ListItemIcon>
-                                                        <Logout fontSize="small" style={{ fill: "white"}}/>
-                                                    </ListItemIcon>
-                                                        Logout
-                                                    </MenuItem>
-                                                </MenuList>
+                                                    </Link>
+                                                    <Link to="/register"
+                                                        style={{ 
+                                                            textDecoration: "none",
+                                                            color: "white"}}>
+                                                        <MenuItem>
+                                                        <ListItemIcon>
+                                                            <PersonAdd fontSize="small" style={{ fill: "white"}}/>
+                                                        </ListItemIcon>
+                                                            Add another account
+                                                        </MenuItem>
+                                                    </Link>
+                                                    <Link to="/logout"
+                                                        style={{ 
+                                                            textDecoration: "none",
+                                                            color: "white"}}>
+                                                        <MenuItem>
+                                                        <ListItemIcon>
+                                                            <Logout fontSize="small" style={{ fill: "white"}}/>
+                                                        </ListItemIcon>
+                                                            Logout
+                                                        </MenuItem>
+                                                    </Link>
+                                                    </MenuList>
                                                 </ClickAwayListener>
                                             </Paper>
                                             </Grow>

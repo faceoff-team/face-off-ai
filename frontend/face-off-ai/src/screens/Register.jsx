@@ -56,82 +56,65 @@ class Register extends Component {
             <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
             <div className="formCenter">
                 <form className="formFields" onSubmit={this.handleSubmit}>
-                <div className="formField">
-                    <div className="labelWrapper">
                     <label className="formFieldLabel" htmlFor="username">
                         Username
                     </label>
-                    </div>
-
                     <input
                         type="text"
                         id="username"
-                        className="rounded-lg w-100 border border-gray-400 p-2 mb-1"
+                        className="rounded-lg border border-gray-400 p-2 mb-1"
                         placeholder="Enter A New Username"
                         name="username"
                         value={this.state.username}
                         onChange={this.handleChange}
                     />
-                </div>
-                
-                <div className="formField">
-                    <div className="labelWrapper">
-                    <label className="formFieldLabel" htmlFor="email">
+                    <label className="formFieldLabel" htmlFor="email" style={{
+                        marginTop: "0.75em"
+                    }}>
                         E-Mail Address
                     </label>
-                    </div>
-                    
                     <input
                         type="email"
                         id="email"
-                        className="rounded-lg w-100 border border-gray-400 p-2 mb-1"
+                        className="rounded-lg border border-gray-400 p-2 mb-1"
                         placeholder="Enter your email"
                         name="email"
                         value={this.state.email}
                         onChange={this.handleChange}
                     />
-                </div>
 
-                <div className="formField">
-                    <div className="labelWrapper">
-                    <label className="formFieldLabel" htmlFor="password">
+                    <label className="formFieldLabel" htmlFor="password" style={{
+                        marginTop: "0.75em"
+                    }}>
                         Password
                     </label>
-                    </div>
-                    
                     <input
                         type="password"
                         id="password"
-                        className="rounded-lg w-100 border border-gray-400 p-2 mb-1"
+                        className="rounded-lg border border-gray-400 p-2 mb-1"
                         placeholder="Enter your password"
                         name="password"
                         value={this.state.password}
                         onChange={this.handleChange}
                     />
-                    
-                </div>
 
-                <div className="formField">
-                    <div className="labelWrapper">
-                    <label className="formFieldLabel" htmlFor="password">
+                    <label className="formFieldLabel" htmlFor="password" style={{
+                        marginTop: "0.75em"
+                    }}>
                         Retype Password
                     </label>
-                    </div>
-                    
                     <input
                         type="password"
                         id="retypepassword"
-                        className="rounded-lg w-100 border border-gray-400 p-2 mb-1"
+                        className="rounded-lg border border-gray-400 p-2 mb-1"
                         placeholder="Retype your password"
                         name="retypepassword"
                         value={this.state.retypepassword}
                         onChange={this.handleChange}
                     />
-                    
-                </div>
-
+                <br /><br />
                 <div className="formField">
-                    <button className="formFieldButton">Register</button>
+                    <button className="formFieldButton" style={{ backgroundColor: "#4CC0AD"}}>Register</button>
                     <br /><br />
                     <Link to="/login" className="formFieldLink">
                     Already have an account? Login

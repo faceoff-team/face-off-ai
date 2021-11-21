@@ -58,7 +58,7 @@ class Forgot extends Component {
                 <input
                   type="text"
                   id="user"
-                  className="rounded-lg w-100 border border-gray-400 p-2 mb-1"
+                  className="rounded-lg border border-gray-400 p-2 mb-1"
                   placeholder="Enter a username or email"
                   name="user"
                   value={this.state.user}
@@ -67,7 +67,8 @@ class Forgot extends Component {
               </div>
             </div>
             <div className="formField">
-              <button className="formFieldButton">Recover Account</button>{" "}
+              <button className="formFieldButton" style={{ backgroundColor: "#4CC0AD"}}>
+                  Recover Account</button>{" "}
             </div>
           </form>
         </div>

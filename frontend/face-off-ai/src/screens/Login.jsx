@@ -68,13 +68,10 @@ responseFacebook(response) {
         <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
         <div className="formCenter">
             <form className="formFields" onSubmit={this.handleSubmit}>
-            <div className="formField">
-                <div className="labelWrapper">
+               
                 <label className="formFieldLabel" htmlFor="email">
                     E-Mail Address
-                </label>
-                </div>
-                
+                </label>                
                 <input
                     type="email"
                     id="email"
@@ -84,15 +81,14 @@ responseFacebook(response) {
                     value={this.state.email}
                     onChange={this.handleChange}
                 />
-                
-            </div>
 
-            <div className="formField">
-                <div className="labelWrapper">
-                <label className="formFieldLabel" htmlFor="password">
+                
+                <label className="formFieldLabel" htmlFor="password" 
+                    style={{
+                        marginTop: "0.75em"
+                    }}>
                     Password
                 </label>
-                </div>
                 
                 <input
                     type="password"
@@ -103,11 +99,11 @@ responseFacebook(response) {
                     value={this.state.password}
                     onChange={this.handleChange}
                 />
-                
-            </div>
+                <br /><br />
 
             <div className="formField">
-                <button className="formFieldButton">Sign In</button>{" "}
+                <button className="formFieldButton"
+                style={{ backgroundColor: "#4CC0AD"}}>Sign In</button>{" "}
                 <br /><br />
                 <div>
                   <Link to="/forgot" className="formFieldLink">

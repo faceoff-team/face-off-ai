@@ -121,7 +121,6 @@ function NavigationBar(props) {
                                         role={undefined}
                                         placement="bottom-start"
                                         transition
-                                        disablePortal
                                         >
                                         {({ TransitionProps, placement }) => (
                                             <Grow
@@ -138,9 +137,7 @@ function NavigationBar(props) {
                                                     id="composition-menu"
                                                     aria-labelledby="composition-button"
                                                     onKeyDown={handleListKeyDown}
-                                                    PaperProps={{
-                                                        elevation: 0,
-                                                        sx: {
+                                                    sx= {{
                                                             overflow: 'visible',
                                                             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                                                             mt: 1.5,
@@ -164,7 +161,6 @@ function NavigationBar(props) {
                                                             transform: 'translateY(-50%) rotate(45deg)',
                                                             zIndex: 0,
                                                             },
-                                                        },
                                                         }}
                                                 >
                                                     <MenuItem>

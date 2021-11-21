@@ -97,4 +97,8 @@ export const register = (username, password, email) => async (dispatch) => {
         console.error(err);
         dispatch({ type: REGISTER_FAIL });
     }
-}
+};
+
+const logout = async () => {
+    dispatch({ type: LOGOUT_SUCCESS });
+};

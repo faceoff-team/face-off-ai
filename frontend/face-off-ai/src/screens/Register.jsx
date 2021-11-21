@@ -49,25 +49,11 @@ class Register extends Component {
 
   }
 
-  responseFacebook(response) {
-    console.log(response);
-        const authResponse = new Promise(window.FB.login);
-        if (!authResponse) {
-            this.props.history.push('/profile');
-        }
-        
-        /*setData(response);
-        setPicture(response.picture.data.url);*/
-        if (response.accessToken) {
-            /*setLogin(true);*/
-        } else {
-            /*setLogin(false);*/
-        }
-}
-
   render() {
     return (
         <div class="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
+        <h2 class="font-weight-heavy">Sign Up</h2>
+        <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
         <div className="formCenter">
             <form className="formFields" onSubmit={this.handleSubmit}>
             <div className="formField">
@@ -76,17 +62,16 @@ class Register extends Component {
                     Username
                 </label>
                 </div>
-                <div className="inputWrapper">
+
                 <input
                     type="text"
                     id="username"
-                    className="formFieldInput"
+                    className="rounded-lg w-full border border-gray-400 p-2 mb-1"
                     placeholder="Enter A New Username"
                     name="username"
                     value={this.state.username}
                     onChange={this.handleChange}
                 />
-                </div>
             </div>
             
             <div className="formField">
@@ -95,17 +80,16 @@ class Register extends Component {
                     E-Mail Address
                 </label>
                 </div>
-                <div className="inputWrapper">
+                
                 <input
                     type="email"
                     id="email"
-                    className="formFieldInput"
+                    className="rounded-lg w-full border border-gray-400 p-2 mb-1"
                     placeholder="Enter your email"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
                 />
-                </div>
             </div>
 
             <div className="formField">
@@ -114,17 +98,17 @@ class Register extends Component {
                     Password
                 </label>
                 </div>
-                <div className="inputWrapper">
+                
                 <input
                     type="password"
                     id="password"
-                    className="formFieldInput"
+                    className="rounded-lg w-full border border-gray-400 p-2 mb-1"
                     placeholder="Enter your password"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleChange}
                 />
-                </div>
+                
             </div>
 
             <div className="formField">
@@ -133,26 +117,27 @@ class Register extends Component {
                     Retype Password
                 </label>
                 </div>
-                <div className="inputWrapper">
+                
                 <input
                     type="password"
                     id="retypepassword"
-                    className="formFieldInput"
+                    className="rounded-lg w-full border border-gray-400 p-2 mb-1"
                     placeholder="Retype your password"
                     name="retypepassword"
                     value={this.state.retypepassword}
                     onChange={this.handleChange}
                 />
-                </div>
+                
             </div>
 
             <div className="formField">
                 <button className="formFieldButton">Register</button>
-                <br />
+                <br /><br />
                 <Link to="/login" className="formFieldLink">
                 Already have an account? Login
                 </Link>
             </div>
+            
 
             <div className="socialMediaButtons">
                 <FacebookLogin
@@ -160,7 +145,6 @@ class Register extends Component {
                     autoLoad={true}
                     fields="name,email,picture"
                     scope="public_profile,user_friends"
-                    callback={this.responseFacebook.bind(this)}
                     icon="fa-facebook" />
             </div>
             </form>

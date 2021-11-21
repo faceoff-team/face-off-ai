@@ -64,6 +64,8 @@ responseFacebook(response) {
 
     return (
     <div class="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
+        <h2 class="font-weight-heavy">Sign in</h2>
+        <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
         <div className="formCenter">
             <form className="formFields" onSubmit={this.handleSubmit}>
             <div className="formField">
@@ -72,17 +74,17 @@ responseFacebook(response) {
                     E-Mail Address
                 </label>
                 </div>
-                <div className="inputWrapper">
+                
                 <input
                     type="email"
                     id="email"
-                    className="formFieldInput"
+                    className="rounded-lg w-full border border-gray-400 p-2 mb-1"
                     placeholder="Enter your email"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
                 />
-                </div>
+                
             </div>
 
             <div className="formField">
@@ -91,21 +93,22 @@ responseFacebook(response) {
                     Password
                 </label>
                 </div>
-                <div className="inputWrapper">
+                
                 <input
                     type="password"
                     id="password"
-                    className="formFieldInput"
+                    className="rounded-lg w-full border border-gray-400 p-2 mb-1"
                     placeholder="Enter your password"
                     name="password"
                     value={this.state.password}
                     onChange={this.handleChange}
                 />
-                </div>
+                
             </div>
 
             <div className="formField">
                 <button className="formFieldButton">Sign In</button>{" "}
+                <br /><br />
                 <div>
                   <Link to="/forgot" className="formFieldLink">
                     Forgot my password

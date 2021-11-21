@@ -11,6 +11,7 @@ import Popper from '@mui/material/Popper';
 import Tooltip from '@mui/material/Tooltip';
 import Fade from '@mui/material/Fade';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { logout } from '../actions/authActions';
 
 import { ClickAwayListener } from '@mui/material';
 
@@ -21,6 +22,10 @@ function DropDown(props) {
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
+
+    const handleLogout = () => {
+        logout();
+    }
 
     const handleClose = (event) => {
         if (anchorRef.current == null) {
@@ -140,17 +145,12 @@ function DropDown(props) {
                             Add another account
                         </MenuItem>
                     </Link>
-                    <Link to="/logout"
-                        style={{ 
-                            textDecoration: "none",
-                            color: "white"}}>
-                        <MenuItem>
+                        <MenuItem onClick={handleLogout}>
                         <ListItemIcon>
                             <Logout fontSize="small" style={{ fill: "white"}}/>
                         </ListItemIcon>
                             Logout
                         </MenuItem>
-                    </Link>
                     </MenuList>
                 </ClickAwayListener>
             </Paper>

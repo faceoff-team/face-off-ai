@@ -135,6 +135,7 @@ export const update = (username_input, bio_input, id_input, token_input) => asyn
     }
 };
 
-export const logout = async (dispatch) => {
+export const logout = () => async (dispatch) => {
     dispatch({ type: LOGOUT_SUCCESS });
+    return "success";
 };

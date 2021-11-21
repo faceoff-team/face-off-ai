@@ -57,7 +57,9 @@ class ResetPassword extends Component {
 
   render() {
     return (
-    <div className="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
+    <div className="basic-container" style={{marginRight: "25em", marginLeft: "25em"}}>
+        <h2 class="font-weight-heavy">Forgot Password</h2>
+        <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
       <div className="formCenter">
         <form className="formFields" onSubmit={this.handleSubmit}>
           <div className="formField">

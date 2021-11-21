@@ -63,7 +63,7 @@ responseFacebook(response) {
   render() {
 
     return (
-    <div class="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
+    <div class="basic-container" style={{marginRight: "25em", marginLeft: "25em"}}>
         <h2 class="font-weight-heavy">Sign in</h2>
         <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
         <div className="formCenter">

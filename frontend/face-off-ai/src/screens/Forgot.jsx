@@ -43,7 +43,9 @@ class Forgot extends Component {
 
   render() {
     return (
-      <div className="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
+        <div className="basic-container" style={{marginRight: "25em", marginLeft: "25em"}}>
+        <h2 class="font-weight-heavy">Forgot Password</h2>
+        <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
         <div className="formCenter">
           <form className="formFields" onSubmit={this.handleSubmit}>
             <div className="formField">
@@ -56,8 +58,8 @@ class Forgot extends Component {
                 <input
                   type="text"
                   id="user"
-                  className="formFieldInput"
-                  placeholder="Enter a username or password"
+                  className="rounded-lg w-100 border border-gray-400 p-2 mb-1"
+                  placeholder="Enter a username or email"
                   name="user"
                   value={this.state.user}
                   onChange={this.handleChange}

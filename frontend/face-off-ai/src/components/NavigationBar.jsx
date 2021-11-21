@@ -6,6 +6,7 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Tooltip from '@mui/material/Tooltip';
+import Fade from '@mui/material/Fade';
 
 function NavigationBar(props) {
     return (
@@ -23,7 +24,10 @@ function NavigationBar(props) {
                                 }`}
                             >
                                 <Link class="nav-link" to="/home">
-                                    <Tooltip title="Home">
+                                    <Tooltip 
+                                        title="Home"
+                                        TransitionComponent={Fade}
+                                        TransitionProps={{ timeout: 300 }}>
                                     <HomeIcon>
                                         <span class="sr-only">(current)</span>
                                     </HomeIcon>
@@ -36,7 +40,10 @@ function NavigationBar(props) {
                             >
                                 
                                 <Link class="nav-link" to="/leaderboards">
-                                    <Tooltip title="Leaderboard">
+                                    <Tooltip 
+                                        title="Leaderboard"
+                                        TransitionComponent={Fade}
+                                        TransitionProps={{ timeout: 300 }}>
                                     <LeaderboardIcon>
                                         <span class="sr-only">(current)</span>
                                     </LeaderboardIcon>
@@ -49,7 +56,10 @@ function NavigationBar(props) {
                                     }`}
                             >
                                 <Link class="nav-link" to="/profile">
-                                    <Tooltip title="Profile">
+                                    <Tooltip 
+                                        title="Profile"
+                                        TransitionComponent={Fade}
+                                        TransitionProps={{ timeout: 300 }}>
                                     <AccountCircleIcon>
                                         <span class="sr-only">(current)</span>
                                     </AccountCircleIcon>
@@ -61,7 +71,10 @@ function NavigationBar(props) {
                                     }`}
                             >
                                 <Link class="nav-link" to="/settings">
-                                    <Tooltip title="Settings">
+                                    <Tooltip 
+                                        title="Settings"
+                                        TransitionComponent={Fade}
+                                        TransitionProps={{ timeout: 300 }}>
                                     <SettingsIcon>
                                         <span class="sr-only">(current)</span>
                                     </SettingsIcon>

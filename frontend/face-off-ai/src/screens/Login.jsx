@@ -62,8 +62,6 @@ responseFacebook(response) {
 
   render() {
 
-
-
     return (
     <div class="basic-container" style={{ marginLeft: '20vmin', marginRight: '20vmin'}}>
         <div className="formCenter">
@@ -126,7 +124,7 @@ responseFacebook(response) {
                 autoLoad={true}
                 fields="name,email,picture"
                 scope="public_profile,user_friends"
-                callback={this.responseFacebook.bind(this)}
+                callback={() => this.responseFacebook.bind(this)}
                 icon="fa-facebook" />
             </div>
             </form>

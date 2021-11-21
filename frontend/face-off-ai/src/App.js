@@ -77,6 +77,8 @@ function App() {
     setIsDarkTheme(!isDarkTheme);
   };
 
+  console.log(store.getState().auth.isAuthenticated)
+
   return (
     <Provider store={store}>
      <div className="App">
@@ -92,17 +94,28 @@ function App() {
                     </Route>
                     <Route path="/login" exact component={() => <Login />} />
                     <Route path="/game/:id/:title" exact component={() => <Game />} />
-                    <Route path="/settings" exact component={() => <Settings />} />
                     <Route path="/home" exact component={() => <Home />} />
                     <Route path="/about" exact component={() => <About />} />
-                    <Route path="/profile" exact component={() => <Profile />} />
                     <Route path="/leaderboards" exact component ={() => <Leaderboard />} />
                     <Route path="/register" exect component = {() => <Register />} />
                     <Route path="/multiplayergame" exect component = {() => <MultiplayerGame />} />
                     <Route path="/resetpassword/:hash" exect component = {() => <ResetPassword />} />
                     <Route path="/resetpassword/" exect component = {() => <ResetPassword />} />
                     <Route path="/forgot/" exect component = {() => <Forgot />} />
-                    
+
+                    {store.getState().auth.isAuthenticated && 
+                        <Route path="/settings" exact component={() => <Settings />} />
+                    }
+                    {store.getState().auth.isAuthenticated && 
+                        <Route path="/profile" exact component={() => <Profile />} />
+                    }
+
+                    {!store.getState().auth.isAuthenticated &&
+                        <Route path="/settings" exact component={() => <Redirect to="/register" />} />
+                    }
+                    {!store.getState().auth.isAuthenticated &&
+                        <Route path="/profile" exact component={() => <Redirect to="/register" />} />
+                    }
 
                     <Route component={() => <Error404 />} />
                 </Switch>

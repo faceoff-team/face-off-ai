@@ -45,11 +45,11 @@ class ResetPassword extends Component {
     }
 
     if (!this.props.match.params.hash) {
-      let res = await http.post('/api/user/reset', {
+      await http.post('/api/user/reset', {
         password: this.state.password,
       });
     } else {
-      let res = await http.post(`/api/user/reset/${this.props.match.params.hash}`, {
+      await http.post(`/api/user/reset/${this.props.match.params.hash}`, {
         password: this.state.password,
       });
     }

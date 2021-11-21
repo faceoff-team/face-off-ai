@@ -36,9 +36,9 @@ function Settings() {
 
     }
 
-    const handleCancel = () => {
+    // const handleCancel = () => {
 
-    }
+    // }
 
     return (
         <div className="settings" class="container">

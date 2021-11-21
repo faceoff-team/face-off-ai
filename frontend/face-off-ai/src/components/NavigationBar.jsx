@@ -5,6 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
+import Tooltip from '@mui/material/Tooltip';
 
 function NavigationBar(props) {
     return (
@@ -22,29 +23,37 @@ function NavigationBar(props) {
                                 }`}
                             >
                                 <Link class="nav-link" to="/home">
+                                    <Tooltip title="Home">
                                     <HomeIcon>
                                         <span class="sr-only">(current)</span>
                                     </HomeIcon>
+                                    </Tooltip>
                                 </Link>
                             </li>
                             <li
                                 class={`nav-item ${props.location.pathname === "/leaderboards" ? "active" : ""
                                     }`}
                             >
+                                
                                 <Link class="nav-link" to="/leaderboards">
+                                    <Tooltip title="Leaderboard">
                                     <LeaderboardIcon>
                                         <span class="sr-only">(current)</span>
                                     </LeaderboardIcon>
+                                    </Tooltip>
                                 </Link>
+                             
                             </li>
                             <li
                                 class={`nav-item ${props.location.pathname === "/profile" ? "active" : ""
                                     }`}
                             >
                                 <Link class="nav-link" to="/profile">
+                                    <Tooltip title="Profile">
                                     <AccountCircleIcon>
                                         <span class="sr-only">(current)</span>
                                     </AccountCircleIcon>
+                                    </Tooltip>
                                 </Link>
                             </li>
                             <li
@@ -52,9 +61,11 @@ function NavigationBar(props) {
                                     }`}
                             >
                                 <Link class="nav-link" to="/settings">
+                                    <Tooltip title="Settings">
                                     <SettingsIcon>
                                         <span class="sr-only">(current)</span>
                                     </SettingsIcon>
+                                    </Tooltip>
                                 </Link>
                             </li>
                         </ul>

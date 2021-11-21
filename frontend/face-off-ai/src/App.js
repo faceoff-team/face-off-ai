@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { NavigationBar, Footer, HorizontalLine } from "./components";
-import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, MultiplayerGame, Error404, ResetPassword, Forgot } from "./screens";
+import { About, Game, Home, Login, Profile, Settings, Leaderboard, Register, MultiplayerGame, Error404, ResetPassword, Forgot, Unregistered } from "./screens";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 import { Provider } from 'react-redux';
@@ -111,10 +111,10 @@ function App() {
                     }
 
                     {!store.getState().auth.isAuthenticated &&
-                        <Route path="/settings" exact component={() => <Redirect to="/register" />} />
+                        <Route path="/settings" exact component={() => <Unregistered />} />
                     }
                     {!store.getState().auth.isAuthenticated &&
-                        <Route path="/profile" exact component={() => <Redirect to="/register" />} />
+                        <Route path="/profile" exact component={() => <Unregistered />} />
                     }
 
                     <Route component={() => <Error404 />} />

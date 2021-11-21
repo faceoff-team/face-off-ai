@@ -10,3 +10,4 @@ export { default as MultiplayerGame } from "./MultiplayerGame.jsx";
 export { default as Error404 } from "./Error404.jsx";
 export { default as ResetPassword } from "./ResetPassword.jsx";
 export { default as Forgot } from "./Forgot.jsx";
+export { default as Unregistered } from "./Unregistered.jsx";

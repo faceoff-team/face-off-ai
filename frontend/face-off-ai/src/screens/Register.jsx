@@ -114,14 +114,14 @@ class Register extends Component {
                     />
                 <br /><br />
                 <div className="formField">
-                    <button className="formFieldButton" style={{ backgroundColor: "#4CC0AD"}}>Register</button>
+                    <button className="formFieldButton" 
+                        style={{ backgroundColor: "#4CC0AD"}}>Register</button>
                     <br /><br />
                     <Link to="/login" className="formFieldLink">
-                    Already have an account? Login
+                    Already have an account? Sign in
                     </Link>
                 </div>
-                
-
+            
                 <div className="socialMediaButtons">
                     <FacebookLogin
                         appId="372920357955526"
@@ -130,10 +130,9 @@ class Register extends Component {
                         scope="public_profile,user_friends"
                         icon="fa-facebook" />
                 </div>
-                </form>
-            </div>
-        </div>
-        
+            </form>
+         </div>
+    </div>
     );
   }
 }

@@ -7,6 +7,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
+  UPDATE_SUCCESS,
+  UPDATE_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -56,6 +58,13 @@ const reducer = (state = initialState, action) => {
         isAuthenticated: false,
         user: null,
       };
+    case UPDATE_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        isLoading: false,
+        isAuthenticated: true
+      }
     default:
       return state;
   }

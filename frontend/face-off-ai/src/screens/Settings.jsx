@@ -2,6 +2,7 @@ import React from "react";
 import {Grid, Stack, Button, TextField } from "@mui/material";
 import { http } from "../store"
 import store from "../store";
+import update from "../actions/authActions";
 
 function Settings() {
 
@@ -28,20 +29,9 @@ function Settings() {
             params.bio = store.getState().auth.user.bio
         }
 
-        try {
-            const res = await http.put("/api/user/profile", {
-                username: params.user,
-                bio: params.bio,
-                id: store.getState().auth.user.userid
-            }, {
-                headers: {
-                    authorization: store.getState().auth.token
-                }
-            });
-            
-        }
-        catch (err) {
-            console.log(err);
+        const res = update(params.user, params.bio, store.getState().auth.user.bio, store.getState().auth.token);
+        if (res) {
+            alert("Profile update success!");
         }
 
     }
@@ -86,7 +76,7 @@ function Settings() {
                         </Button>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Password1" variant="filled" inputRef={password1Ref}/>
+                        <TextField label="New Password" variant="filled" inputRef={password1Ref}/>
                     </Grid>
                     <Grid item xs={6}>
                         <Button size="medium">
@@ -94,7 +84,7 @@ function Settings() {
                         </Button>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Pic link" variant="filled" inputRef={password2Ref}/>
+                        <TextField label="Confirm new Password" variant="filled" inputRef={password2Ref}/>
                     </Grid>
                 </Grid>
                 <br /><br />

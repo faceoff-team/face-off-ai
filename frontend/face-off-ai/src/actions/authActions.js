@@ -7,6 +7,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
+    UPDATE_SUCCESS,
+    UPDATE_FAIL
 } from '../actions/types';
 
 import { http } from '../store';
@@ -97,4 +99,40 @@ export const register = (username, password, email) => async (dispatch) => {
         console.error(err);
         dispatch({ type: REGISTER_FAIL });
     }
+}
+
+export const update = (username_input, bio_input, id_input, token_input) => async (dispatch) => {
+    try {
+        const res = await http.put("/api/user/profile", {
+            username: username_input,
+            bio: bio_input,
+            id: id_input
+        }, {
+            headers: {
+                authorization: token_input
+            }
+        });
+
+        dispatch({
+            type: UPDATE_SUCCESS,
+            payload: {
+                token: token_input,
+                user: {
+                    userid: id_input,
+                    username: username_input,
+                    bio: bio,
+                    photo: null
+                }
+            }
+        });
+        return "success";
+        
+    }
+    catch (err) {
+        console.log(err);
+        dispatch({type: UPDATE_FAIL});
+        return null;
+    }
+
+    
 }

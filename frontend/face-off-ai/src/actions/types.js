@@ -6,3 +6,5 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const USER_LOADED = "USER_LOADED";
 export const USER_LOADING = "USER_LOADING";
+export const UPDATE_SUCCESS = "UPDATE_SUCCESS"
+export const UPDATE_FAIL = "UPDATE_FAIL"

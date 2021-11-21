@@ -49,7 +49,7 @@ def predict():
             label = prob.argmax(axis=1)
             data['prediction'] = str(emotions[label[0]])
             data['success'] = 'true'
-            data['confidence'] = str(prob[label])
+            data['confidence'] = str(prob[label[0]])
         else:
             print("No faces detected")
             data['success'] = False

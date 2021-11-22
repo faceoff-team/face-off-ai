@@ -23,6 +23,12 @@ const createGame = async (video) => {
   return game.results;
 };
 
+// const createUserGame = async (user, game) => {
+//   let query = `
+//     INSERT INTO user_game ()
+//   `
+// }
+
 /**
  * Retreives a single game from the database with the given id.
  *  

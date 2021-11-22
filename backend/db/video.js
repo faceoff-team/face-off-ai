@@ -44,6 +44,24 @@ const getVideo = async (id) => {
 };
 
 /**
+ * This function asks the database for the video with the corrisponding video with youtube ID.
+ * 
+ * @param {Number} id 
+ * @returns The videoID corrisponding to the id.
+ */
+
+const getVideoByID = async (id) => {
+  let query = `
+    SELECT * FROM video
+    WHERE videoYoutubeID = ${id};
+  `;
+
+  let video = await queryPromise(query);
+
+  return video.results;
+};
+
+/**
  * This function returns all the videos in the database.
  *  
  * @returns {Array} A list of all the videos in the database.
@@ -113,5 +131,6 @@ module.exports = {
   getVideo,
   getAllVideos,
   getAllSadVideos,
-  getAllHappyVideos
+  getAllHappyVideos, 
+  getVideoByID
 };

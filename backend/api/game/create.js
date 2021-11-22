@@ -27,6 +27,16 @@ const handleCreateGameRequest = async (req, res) => {
   });
 };
 
+// const handleCreateUserGameRequest = async (req, res) => {
+//   let game = await createUserGame(req.body.user, req.body.game);
+
+//   res.status(200).json({
+//     success: true,
+//     msg: "User game created successfully",
+//     game,
+//   });
+// }
+
 module.exports =  async (req, res, next) => {
   try {
     await handleCreateGameRequest(req, res); 

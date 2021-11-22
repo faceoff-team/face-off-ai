@@ -7,12 +7,12 @@
 const express = require('express');
 const router = express.Router();
 
-const { get, getAll, getSad, getHappy } = require('./get');
+const { get, getAll, getSad, getHappy, getByID } = require('./get');
 
 router.get('/sad', getSad);
 router.get('/happy', getHappy);
 router.get('/', getAll);
-router.get('/:id', get);
+router.get('/:id', getByID);
 
 router.post('/', require('./create'));
 

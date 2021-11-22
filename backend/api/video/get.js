@@ -4,7 +4,7 @@
  * 11/4/21
  */
 
-const { getAllVideos, getAllHappyVideos, getAllSadVideos, getVideo } = require("../../db/video");
+const { getAllVideos, getAllHappyVideos, getAllSadVideos, getVideo, getVideoByID } = require("../../db/video");
 
 /**
  * This function handles a get video request based on the id passed in params.
@@ -20,6 +20,16 @@ const handleGetVideoRequest = async (req, res) => {
     success: true,
     msg: `Video retreived.`,
     video,
+  });
+}
+
+const handleGetVideoByIDRequest = async (req, res) => {
+  let video = await getVideoByID(req.params.id);
+
+  res.status(200).json({
+    success: true,
+    msg: 'Video retreived.',
+    video
   });
 }
 
@@ -99,6 +109,14 @@ module.exports = {
     try {
       await handleGetVideoRequest(req, res); 
     } catch (err) {
+      next(err);
+    }
+  },
+  async getByID(req, res, next) {
+    try {
+      await handleGetVideoByIDRequest(req, res);
+    } 
+    catch (err) {
       next(err);
     }
   },

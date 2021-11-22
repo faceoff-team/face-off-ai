@@ -8,4 +8,27 @@ const io = require(‘socket.io’)(http,{
  cors: {
  origin: “*”,
  }
+
+ export function testFunc(data) {
+  return (dispatch, getState) => {
+    dispatch(test(data))
+    console.log('GLOBAL STATE IS :', getState())
+  };
+}
+
+function mapStateToProps(state) {
+  return {
+    socket: state.socket,
+    socketio: state.socketio,
+    test: state.test
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return { 
+    getSocket: () => dispatch(getSocket()), 
+    getSocketio: () => dispatch(getSocketIO()), 
+    testing: data => dispatch(testFunc(data)) };
+}
+
 }) */

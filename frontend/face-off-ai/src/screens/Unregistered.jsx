@@ -1,5 +1,4 @@
 import React from "react";
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { Link } from "react-router-dom";
 
 function Unregistered() {

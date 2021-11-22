@@ -9,6 +9,9 @@ import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
 import Fade from '@mui/material/Fade';
 
+import store from "../store";
+import Unregistered from "./Unregistered"
+
 
 // This picture is a placeholder for our presentation
 import Picture3 from "../assets/profile-picture-2.jpg";
@@ -57,7 +60,9 @@ function Profile() {
     };
 
 
-
+    if (!store.getState().auth.isAuthenticated) {
+        return <Unregistered/>
+    }
     return (
         <div className="Profile" class="container">
             <Grid container 

@@ -102,20 +102,8 @@ function App() {
                     <Route path="/resetpassword/:hash" exect component = {() => <ResetPassword />} />
                     <Route path="/resetpassword/" exect component = {() => <ResetPassword />} />
                     <Route path="/forgot/" exect component = {() => <Forgot />} />
-
-                    {store.getState().auth.isAuthenticated && 
-                        <Route path="/settings" exact component={() => <Settings />} />
-                    }
-                    {store.getState().auth.isAuthenticated && 
-                        <Route path="/profile" exact component={() => <Profile />} />
-                    }
-
-                    {!store.getState().auth.isAuthenticated &&
-                        <Route path="/settings" exact component={() => <Unregistered />} />
-                    }
-                    {!store.getState().auth.isAuthenticated &&
-                        <Route path="/profile" exact component={() => <Unregistered />} />
-                    }
+                    <Route path="/settings" exact component={() => <Settings />} />
+                    <Route path="/profile" exact component={() => <Profile />} />
 
                     <Route component={() => <Error404 />} />
                 </Switch>

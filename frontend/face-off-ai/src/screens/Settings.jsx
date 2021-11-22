@@ -1,8 +1,8 @@
 import React from "react";
 import {Grid, Stack, Button, TextField } from "@mui/material";
-import { http } from "../store"
 import store from "../store";
 import { update } from "../actions/authActions";
+import Unregistered from "./Unregistered"
 
 function Settings() {
 
@@ -39,7 +39,9 @@ function Settings() {
     // const handleCancel = () => {
 
     // }
-
+    if (!store.getState().auth.isAuthenticated) {
+        return <Unregistered/>
+    }
     return (
         <div className="settings" class="container">
             <div class="basic-container">

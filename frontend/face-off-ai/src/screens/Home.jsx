@@ -23,6 +23,7 @@ const modalStyle = {
 function Home() {
 
     const [value, setValue] = useState("");
+    const [multiCode, setMultiCode] = useState("");
     const [openWrongURL, setWrongURL] = useState(false);
     const [openNewGame, setNewGame] = useState(false);
     const [videoID, setVideoID] = useState("");
@@ -42,6 +43,10 @@ function Home() {
         setValue(event.target.value)
     }
 
+    const handleCodeChange = (event) => {
+        setMultiCode(event.target.value)
+    }
+
     const handleSubmit = (e) => {
         if (value.match(ytRegex) != null) {
           console.log(value)
@@ -59,6 +64,7 @@ function Home() {
       }
 
     const ytRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
+    const codeRegex = /(\d)+/
 
     return (
         <div className="home" class="container">
@@ -133,9 +139,8 @@ function Home() {
                     variant="outlined"
                     color="secondary"
                     style={{ width: "25%"}}
-                    value={value}
-                    onChange={handleChange}
-                    error={(value.length > 0 && value.match(ytRegex) == null)}
+                    value={multiCode}
+                    onChange={handleCodeChange}
                 />
                 <Button
                     size="large"
@@ -143,6 +148,7 @@ function Home() {
                     color="secondary"
                     style={{ height: "50px", marginLeft: "30px"}}
                     onClick={() => { handleSubmit(); }}
+                    error={(multiCode.length > 0 && multiCode.match(codeRegex) == null)}
                 >
                     Play
                 </Button>

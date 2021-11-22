@@ -64,7 +64,10 @@ function Home() {
       }
 
     const ytRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
-    const codeRegex = /(\d)+/
+    const codeRegex = /(\d)*/
+    const codeRegex2 = /(\d)+/
+    const codeRegex3 = /^(\d)*/
+    const codeRegex4 = /^(\d)+/
 
     return (
         <div className="home" class="container">

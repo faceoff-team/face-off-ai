@@ -122,6 +122,31 @@ function Home() {
                     Search
                 </Button>
             </div>
+            <h1 class="font-weight-heavy" style={{ marginTop: "20px" }}>Or paste in a multiplayer code:</h1>
+
+            <HorizontalLine color="#f7f7f7" width="100%"/>
+            <br/>
+            <div class="searchContainer">
+                <TextField
+                    id="outlined-basic"
+                    label="Paste code here"
+                    variant="outlined"
+                    color="secondary"
+                    style={{ width: "25%"}}
+                    value={value}
+                    onChange={handleChange}
+                    error={(value.length > 0 && value.match(ytRegex) == null)}
+                />
+                <Button
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    style={{ height: "50px", marginLeft: "30px"}}
+                    onClick={() => { handleSubmit(); }}
+                >
+                    Play
+                </Button>
+            </div>
             <br/>
             <div style={{marginTop: "20px"}}></div>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Popular Funny Videos</h1>

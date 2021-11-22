@@ -26,6 +26,7 @@ function Home() {
     const [multiCode, setMultiCode] = useState("");
     const [openWrongURL, setWrongURL] = useState(false);
     const [openNewGame, setNewGame] = useState(false);
+    const [openWrongMulti, setWrongMulti] = useState(false);
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
 
@@ -35,6 +36,9 @@ function Home() {
 
     const handleOpenWrongURL = () => setWrongURL(true);
     const handleCloseWrongURL = () => setWrongURL(false);
+
+    const handleOpenWrongMulti = () => setWrongMulti(true);
+    const handleCloseWrongMulti = () => setWrongMulti(false);
 
     const handleOpenNewGame = () => setNewGame(true);
     const handleCloseNewGame = () => setNewGame(false);
@@ -61,13 +65,16 @@ function Home() {
             console.log("Does not match " + value)
             handleOpenWrongURL();
         }
-      }
+    }
+
+    const handleCodeSubmit = (e) => {
+        if (value.match(codeRegex) == null) {
+            handleOpenWrongMulti();
+        }
+    }
 
     const ytRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
-    const codeRegex = /(\d)*/
-    const codeRegex2 = /(\d)+/
-    const codeRegex3 = /^(\d)*/
-    const codeRegex4 = /^(\d)+/
+    const codeRegex = /[0-9]{6}/
 
     return (
         <div className="home" class="container">
@@ -78,12 +85,12 @@ function Home() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={modalStyle}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Invalid URL! Please try a new URL or select a popular game.
-                </Typography>
-                <Button size="medium" color="secondary" onClick={handleCloseWrongURL}>
-                    Ok!
-                </Button>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Invalid URL! Please try a new URL or select a popular game.
+                    </Typography>
+                    <Button size="medium" color="secondary" onClick={handleCloseWrongURL}>
+                        Ok!
+                    </Button>
                 </Box>
             </Modal>
             <Modal
@@ -93,17 +100,17 @@ function Home() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={modalStyle}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Awesome! Do you want to play "{videoTitle}"?
-                </Typography>
-                <Link to={`game/${videoID}/${videoTitle}`}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Awesome! Do you want to play "{videoTitle}"?
+                    </Typography>
+                    <Link to={`game/${videoID}/${videoTitle}`}>
+                        <Button size="medium" color="secondary" onClick={handleCloseNewGame}>
+                            Go to game!
+                        </Button>
+                    </Link>
                     <Button size="medium" color="secondary" onClick={handleCloseNewGame}>
-                        Go to game!
+                        Cancel
                     </Button>
-                </Link>
-                <Button size="medium" color="secondary" onClick={handleCloseNewGame}>
-                    Cancel
-                </Button>
                 </Box>
             </Modal>
             <h1 class="font-weight-heavy" style={{ marginTop: "20px" }}>Welcome! Paste in a YouTube video link or click a video below:</h1>
@@ -144,14 +151,14 @@ function Home() {
                     style={{ width: "25%"}}
                     value={multiCode}
                     onChange={handleCodeChange}
+                    error={(multiCode.length < 0 || multiCode.match(codeRegex) == null)}
                 />
                 <Button
                     size="large"
                     variant="contained"
                     color="secondary"
                     style={{ height: "50px", marginLeft: "30px"}}
-                    onClick={() => { handleSubmit(); }}
-                    error={(multiCode.length > 0 && multiCode.match(codeRegex) == null)}
+                    onClick={() => { handleCodeSubmit(); }}
                 >
                     Play
                 </Button>

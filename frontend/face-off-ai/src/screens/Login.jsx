@@ -42,7 +42,6 @@ class Login extends Component {
     }
   }
 
-
 responseFacebook(response) {
     console.log(response);
         const authResponse = new Promise(window.FB.login);

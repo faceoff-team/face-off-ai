@@ -41,4 +41,18 @@ function mapDispatchToPropsNew(dispatch) {
     testing: data => dispatch(testFunc(data)) };
 }
 
+function mapDispatchToPropsTest1(dispatch) {
+  return { 
+    getSocket: () => socket.get(getSocket()), 
+    getSocketio: () => socket.get(getSocketIO()), 
+    testing: data => socket.get(testFunc(data)) };
+}
+
+function mapDispatchToPropsTest2(dispatch) {
+  return { 
+    getSocket: () => socket.context(getSocketRaw()), 
+    getSocketio: () => socket.context(getSocketIORaw()), 
+    testing: data => socket.context(testFunc(data)) };
+}
+
 }) */

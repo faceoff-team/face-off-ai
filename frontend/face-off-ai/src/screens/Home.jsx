@@ -94,6 +94,21 @@ function Home() {
                 </Box>
             </Modal>
             <Modal
+                open={openWrongMulti}
+                onClose={handleCloseWrongMulti}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Invalid Game Code! Please try double check your code
+                    </Typography>
+                    <Button size="medium" color="secondary" onClick={handleCloseWrongMulti}>
+                        Ok!
+                    </Button>
+                </Box>
+            </Modal>
+            <Modal
                 open={openNewGame}
                 onClose={handleCloseNewGame}
                 aria-labelledby="modal-modal-title"

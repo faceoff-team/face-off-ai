@@ -133,6 +133,9 @@ export const update = (username_input, bio_input, id_input, token_input) => asyn
         dispatch({type: UPDATE_FAIL});
         return null;
     }
+};
 
-    
-}
+export const logout = () => async (dispatch) => {
+    dispatch({ type: LOGOUT_SUCCESS });
+    return "success";
+};

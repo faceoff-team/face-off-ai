@@ -48,7 +48,7 @@ jobs:
           docker build -t build_frontend .
 
       - name: run build_frontend container
-        run: docker run -v $PWD/backend/react/:/usr/app/build/ build_frontend
+        run: docker run -v $PWD/backend/react/:/usr/app/build/ --name="build_frontend" build_frontend
 
       - name: build all images
         run: docker-compose build

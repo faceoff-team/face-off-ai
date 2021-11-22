@@ -7,6 +7,10 @@ import HorizontalLine from "../components/HorizontalLine.jsx";
 import AccountList from "../components/AccountList.jsx";
 import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
+import Fade from '@mui/material/Fade';
+
+import store from "../store";
+import Unregistered from "./Unregistered"
 
 
 // This picture is a placeholder for our presentation
@@ -56,7 +60,9 @@ function Profile() {
     };
 
 
-
+    if (!store.getState().auth.isAuthenticated) {
+        return <Unregistered/>
+    }
     return (
         <div className="Profile" class="container">
             <Grid container 

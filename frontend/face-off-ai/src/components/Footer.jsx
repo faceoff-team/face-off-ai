@@ -17,17 +17,17 @@ function Footer(props) {
 
     //const { darkMode } =  this.props; <- use `mode` from redux states
     return (
-        <div className="footer">
-            <footer class="py-4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-10 text-small">
+        <div classNameName="footer">
+            <footer className="py-4">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-10 text-small">
                             <div>Copyright &copy; FACEOFF AI 2021</div>
                             <Link class="App-link" to="/about">About
-                                <span class="sr-only">(current)</span>
+                                <span className="sr-only">(current)</span>
                             </Link>
                         </div>
-                        <div class="col-2 text-small">
+                        <div className="col-2 text-small">
                             <ToggleButtonGroup
                                 color="secondary"
                                 value={colorMode}

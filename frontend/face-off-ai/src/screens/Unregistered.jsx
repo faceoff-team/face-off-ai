@@ -6,8 +6,9 @@ function Unregistered() {
     return (
         <div class="container">
             <div class="basic-container">
+                
                 <h1 class="font-weight-heavy" style={{ marginTop: "10px" }}>
-                    Looks like you're trying to access content only registered users can access...
+                <ErrorOutlineIcon fontSize="large"/> Looks like you're trying to access content only registered users can access...
                 </h1>
                 <br/>
                 <br/>

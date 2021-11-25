@@ -6,7 +6,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Logout from '@mui/icons-material/Logout';
 import {Grow, Paper, Popper, Tooltip, Fade} from '@mui/material';
-import { connect } from 'react-redux';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logout } from '../actions/authActions';
 
@@ -40,10 +39,10 @@ function DropDown(props) {
 
     function handleListKeyDown(event) {
         if (event.key === 'Tab') {
-        event.preventDefault();
-        setOpen(false);
+            event.preventDefault();
+            setOpen(false);
         } else if (event.key === 'Escape') {
-        setOpen(false);
+            setOpen(false);
         }
     }
 

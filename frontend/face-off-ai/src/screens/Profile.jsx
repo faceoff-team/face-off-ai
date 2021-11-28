@@ -37,28 +37,6 @@ function Profile() {
         }
     };
 
-    const postOnFacebook = () => {
-        let facebookParameters = [];
-        let facebookShareURL = "https://cf.faceoff.ai/home";
-        let postContent = "Check out FACEOFF AI"
-        if (facebookShareURL)
-          facebookParameters.push('u=' + encodeURI(facebookShareURL));
-        if (postContent)
-          facebookParameters.push('quote=' + encodeURI(postContent));
-        const url =
-          'https://www.facebook.com/sharer/sharer.php?'
-           + facebookParameters.join('&');
-    
-        Linking.openURL(url)
-          .then((data) => {
-            alert('Facebook Opened');
-          })
-          .catch(() => {
-            alert('Something went wrong');
-          });
-    };
-
-
     if (!store.getState().auth.isAuthenticated) {
         return <Unregistered/>
     }
@@ -92,7 +70,6 @@ function Profile() {
                 </Box>
             </Grid>
             <br />
-            <Button onPress={postOnFacebook}>Share on Facebook</Button>
         </div>
     );
 }

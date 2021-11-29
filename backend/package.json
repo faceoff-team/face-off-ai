@@ -4,9 +4,9 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -b --exit",
     "start": "nodemon main.js",
-    "genKeys": "node keys/genKeys.js"
+    "genKeys": "node auth/genKeys.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "mysql2": "^2.3.0",
     "nodemailer": "^6.7.0",
     "nodemon": "^2.0.13",
+    "request": "^2.88.2",
     "supertest": "^6.1.6",
     "uuid": "^8.3.2"
   }

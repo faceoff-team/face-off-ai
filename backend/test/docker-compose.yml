@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  test-db:
+    image: mysql
+    container_name: test-faceoff-db
+    networks:
+      - testing
+    ports:
+      - 3307:3306
+      - 33061:33060
+    volumes:
+      - test-db-data:/var/lib/mysql
+      - test-db-config:/usr/src/
+    environment:
+      MYSQL_ROOT_PASSWORD: FaceoffAIRocks
+      MYSQL_DATABASE: faceoff
+      MYSQL_USER: faceoff
+      MYSQL_PASSWORD: FaceoffAIRocks
+
+  test-backend:
+    build: ./backend
+    container_name: test-faceoff-backend
+    networks:
+      - testing
+    environment:
+      PORT: 8080
+      EMAIL_PASS: ${EMAIL_PASS}
+      OAUTHCLIENTID: ${OAUTHCLIENTID}
+      OAUTHCLIENTSECRET: ${OAUTHCLIENTSECRET}
+      REFRESH: ${REFRESH}
+    ports:
+      - 8081:8080
+    volumes:
+      # - $HOME/.security/:/usr/src/app/auth/keys/
+      - profilePics:/usr/src/app/profilePics/
+      # - /home/faceoff/https/:/usr/src/app/https/
+    depends_on:
+      - test-db
+
+volumes:
+  test-db-data:
+  test-db-config:
+  profilePics:
+
+networks:
+  testing:
+    name: testing

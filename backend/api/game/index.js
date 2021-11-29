@@ -12,8 +12,10 @@ const { get, getAll } = require('./get');
 
 router.get('/', authenticate, getAll);
 
-router.get('/:id', authenticate, get);
+router.get('/:id', get);
 
 router.post('/', require('./create'));
+
+router.put('/:id', require('./update'))
 
 module.exports = router;

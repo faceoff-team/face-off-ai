@@ -50,6 +50,7 @@ def predict():
             data['prediction'] = str(emotions[label[0]])
             data['success'] = 'true'
             data['confidence'] = str(prob[label[0]])
+            print(type(prob[label[0]]))
         else:
             print("No faces detected")
             data['success'] = False

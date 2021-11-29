@@ -77,7 +77,7 @@ CREATE TABLE game (
     videoID                 INT(10) NOT NULL,
     FOREIGN KEY (videoID)   REFERENCES video(videoID),
     winnerScore             INT(10) DEFAULT -1,
-    lowScore                INT(10) DEFAULT -1,
+    lowScore                INT(10) DEFAULT 360000,
     gameDate                DATETIME DEFAULT NOW()
 );
 

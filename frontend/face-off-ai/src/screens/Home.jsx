@@ -7,6 +7,7 @@ import Modal from '@mui/material/Modal';
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import TextField from '@mui/material/TextField';
 import { Link, withRouter } from 'react-router-dom';
+import { http, store } from '../store';
 
 const modalStyle = {
     position: 'absolute',
@@ -27,6 +28,7 @@ function Home() {
     const [openNewGame, setNewGame] = useState(false);
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
+    const [videoKey, setVideoKey] = useState(0);
 
 
     const updateID = (ID) => setVideoID(ID);
@@ -35,14 +37,28 @@ function Home() {
     const handleOpenWrongURL = () => setWrongURL(true);
     const handleCloseWrongURL = () => setWrongURL(false);
 
-    const handleOpenNewGame = () => setNewGame(true);
+    
     const handleCloseNewGame = () => setNewGame(false);
 
     const handleChange = (event) => {
         setValue(event.target.value)
     }
 
-    const handleSubmit = (e) => {
+    const handleOpenNewGame = async (id) => {
+        setNewGame(true);
+         try {
+            http.post('api/game/', {
+                videoID: id
+            })
+         }
+         catch (err) {
+             console.log(err);
+         }
+
+    }
+    
+
+    const handleSubmit = async (e) => {
         if (value.match(ytRegex) != null) {
           console.log(value)
           handleCloseWrongURL();
@@ -50,8 +66,51 @@ function Home() {
           var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
           var match = value.match(regExp);
           updateID(match[7]);
-          updateTitle("My First Video");
-          handleOpenNewGame();
+          try {
+            const resVid = await http.get("https://youtube.googleapis.com/youtube/v3/videos", null, { params: {
+              part: "snippet",
+              id: videoID,
+              key: process.env.YOUTUBE
+            }});
+            updateTitle(resVid.data.items.snippet.title);
+          }
+          catch (err) {
+              console.log(err);
+          }
+          
+          
+          try {
+              const resGet = await http.get(`/api/video/${videoID}`);
+              if (resGet.data.video.length == 0) {
+                  try {
+                    const addVideo = http.post("/api/video/", {
+                        videoYoutubeID: videoID,
+                        videoTitle: videoTitle,
+                        emotion: 1
+                    });
+                  }
+                  catch (err) {
+                      console.log(err);
+                  }
+
+                  try {
+                      const vidCount = await http.get("/api/video/");
+                      setVideoKey(vidCount.data.videos.length);
+                  }
+                  catch (err) {
+                      console.log(err);
+                  }
+                  
+
+              }
+              else {
+                  setVideoKey(resGet.data.video[0].videoID);
+              }
+          }
+          catch (err) {
+              console.log(err);
+          }
+          handleOpenNewGame(videoKey);
         } else {
             console.log("Does not match " + value)
             handleOpenWrongURL();

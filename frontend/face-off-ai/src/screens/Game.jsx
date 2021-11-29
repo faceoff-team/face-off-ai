@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import ReactPlayer from "react-player";
 import Webcam from "react-webcam";
 import Button from '@mui/material/Button';
@@ -14,6 +14,8 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import { http } from '../store';
+import store from '../store'
 
 const modalStyle = {
     position: 'absolute',
@@ -28,7 +30,7 @@ const modalStyle = {
 };
 
 //get url and title for parameter and API
-function Game() {
+function Game(gameID) {
     const { id, title } = useParams();
 
     const avgTimeDict = {"r9SsqcT6heE" : "50 seconds", "YqaacQc6sho" : "1 minute 3 seconds"};
@@ -46,8 +48,8 @@ function Game() {
     const [openMulti, setOpenMulti] = React.useState(false);
     const [rateVideo, setRateVideo] = React.useState(0);
     const [running, setRunning] = React.useState(false);
-    const [time, setTime] = React.useState(0);
-    const [lossTime, setLossTime] = React.useState(0);
+    const [time, setLossTime] = React.useState(0);
+    
 
     let history = useHistory();
 
@@ -72,17 +74,38 @@ function Game() {
     const handleRunning = useCallback(() => {
         if (running) {
             setRunning(false);
+            handleLoss();
         }
         else {
             setRunning(true);
         }
     }, [])
 
-    const handleStart = useCallback(() => {
-        setRunning(true);
-        setTime(Date.now());
+    const handleLoss = async () => {
+        const gameRes = await http.get(`/api/game/${gameID}`);
+        let winnerScore = Math.max(gameRes.data.winnerScore, time * 10);
+        let lowScore = Math.min(gameRes.data.lowScore, time * 10);
+        try {
+            const updateGame = await http.put(`api/game/${gameID}`, {
+                high: winnerScore,
+                low: lowScore
+            });
+        }
+        catch (err) {
+            console.error(err);
+        }
 
-    }, [])
+        if (store.getState().auth.isAuthenticated) {
+            const userGame = await http.post('api/score/create', {
+                user: store.getState().auth.user.userid,
+                game: gameID,
+                score: time * 10
+            })
+        }
+        
+
+        
+    }
 
     const revivalBack = () => {
         window.onpopstate = undefined;
@@ -219,9 +242,9 @@ function Game() {
                         width={"750px"}
                         height={"400px"}
                         className="videoFrame"
-                        onStart={handleStart}
-                        onPlay={handleRunning}
-                        onPause={handleRunning}
+                        onStart={handleRunning}
+                        // onPlay={handleRunning}
+                        // onPause={handleRunning}
                         onEnded={handleRunning}
                         playing={running}
                         url={url}
@@ -239,7 +262,7 @@ function Game() {
                     <WebcamCapture
                         running={running}
                         setRunning={setRunning}
-                        time={time}
+                        setLossTime={setLossTime}
                     />
                 </div>
             </div>

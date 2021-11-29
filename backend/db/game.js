@@ -61,6 +61,31 @@ const getAllGames = async (userID) => {
   return games.results;
 };
 
+const updateGame = async (id, high, low) => {
+  try {
+      let game = await new Promise((resolve, reject) => {
+          global.connection.query(`
+              UPDATE game
+              SET winnerScore = "${high}", lowScore = "${low}"
+              WHERE gameID = "${id}";
+          `, (err, results, fields) => {
+              if (err) {
+                  reject(err);
+                  return;
+              }
+
+              resolve({
+                  results,
+                  fields,
+              });
+          });
+      });
+  } catch (err) {
+      console.error(err);
+      throw new BadRequestError(`Could not update game.`, 500);
+  }
+};
+
 /**
  * Lets a user join a game.
  * 
@@ -78,4 +103,5 @@ module.exports = {
   getGame,
   getAllGames,
   joinGame,
+  updateGame
 };

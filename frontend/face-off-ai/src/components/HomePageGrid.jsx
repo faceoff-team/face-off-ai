@@ -31,6 +31,7 @@ function videosList(numVideos, videoArray) {
         videoList.push(<Grid item xs={2} sm={4} md={4} key={i}>
             <HomePageBox videoID={videoArray[i].videoYoutubeID}
                          videoTitle={videoArray[i].videoTitle}
+                         videoKey={videoArray[i].videoID}
                         />
                         </Grid>)
     }

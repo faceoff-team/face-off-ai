@@ -49,15 +49,17 @@ const getUserScores = async (user) => {
  * @param {Number} score The score to update the user_game with. 
  */
 
-const addScoreToGame = async (id, score) => {
+const addScoreToGame = async (userid, gameid, score) => {
   let query = 
-    `UPDATE user_game 
-     SET score = ${score}
-     WHERE gameID = ${id}`;
+    `
+    INSERT INTO user_game (user, game, finalScore)
+    VALUES (${userid}, ${gameid}, ${score});
+    `;
 
   let game = await queryPromise(query);
 };
 
 module.exports = {
   getUserScores,
+  addScoreToGame
 };

@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
+import { http } from '../store'
 
 import {
     BrowserRouter as Router,
@@ -12,8 +13,19 @@ import {
     Link,
   } from "react-router-dom";
 
-function HomePageBox({videoID, videoTitle}) {
+function HomePageBox({videoID, videoTitle, videoKey}) {
     const thumbnailURL = `http://img.youtube.com/vi/${videoID}/hqdefault.jpg`
+
+    const handleClick = React.useCallback((videoKey) => {
+        try {
+            http.post('api/game/', {
+                videoID: videoKey
+            })
+         }
+         catch (err) {
+             console.log(err);
+         }
+    });
 
     return (
         <Link to={`game/${videoID}/${videoTitle}`} style={{textDecoration: 'none'}}>
@@ -38,6 +50,7 @@ function HomePageBox({videoID, videoTitle}) {
                             image={thumbnailURL}
                             alt={videoTitle}
                         />
+                        onClick={() => handleClick(videoKey)}
                     </CardActionArea>
                 </Card>
             </div>

@@ -96,6 +96,7 @@ function Home() {
 
               }
               else {
+                  setVideoTitle(resGet.data.video[0].videoTitle)
                   setVideoKey(resGet.data.video[0].videoID);
               }
           }

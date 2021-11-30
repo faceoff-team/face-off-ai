@@ -13,13 +13,13 @@ services:
       - test-db-data:/var/lib/mysql
       - test-db-config:/usr/src/
     environment:
-      MYSQL_ROOT_PASSWORD: FaceoffAIRocks
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: faceoff
       MYSQL_USER: faceoff
-      MYSQL_PASSWORD: FaceoffAIRocks
+      MYSQL_PASSWORD: password
 
   test-backend:
-    build: ./backend
+    build: ./
     container_name: test-faceoff-backend
     networks:
       - testing

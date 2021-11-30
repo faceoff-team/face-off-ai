@@ -13,20 +13,42 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  env:
+    EMAIL_PASS: ${{ secrets.password }}
+    OAUTHCLIENTID: ${{ secrets.OAUTHCLIENTID }}
+    OAUTHCLIENTSECRET: ${{ secrets.OAUTHCLIENTSECRET }}
+    REFRESH: ${{ secrets.REFRESH }}
+    YOUTUBE: ${{secrets.YOUTUBE}}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  test:
+    runs-on: [self-hosted, linux]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build new images
+        run: docker-compose build
+
+      - name: Run Database
+        run: docker-compose up -d test-db
+
+      - name: Clean database
+        run: |
+          docker cp test-faceoff-db:./db_config/config_tables.sql /config.sql
+          cd /backend/test
+          docker exec test-faceoff-db /bin/sh -c 'mysql -u root -ppassword < /config.sql'
+
+      - name: Stop containers
+        run: docker-compose down
+
+# This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: [self-hosted, linux]
 
-    env:
-      EMAIL_PASS: ${{ secrets.password }}
-      OAUTHCLIENTID: ${{ secrets.OAUTHCLIENTID }}
-      OAUTHCLIENTSECRET: ${{ secrets.OAUTHCLIENTSECRET }}
-      REFRESH: ${{ secrets.REFRESH }}
-      YOUTUBE: ${{secrets.YOUTUBE}}
-    # Steps represent a sequence of tasks that will be executed as part of the job
+   # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2

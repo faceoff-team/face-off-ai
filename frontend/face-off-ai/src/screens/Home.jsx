@@ -95,8 +95,7 @@ function Home() {
 
                   try {
                       const vidCount = await http.get(`/api/video/byID/${match[7]}`);
-                      console.log(`video found: ${JSON.stringify(vidCount.data)}`)
-                      key = (vidCount.data.video[0]);
+                      key = (vidCount.data.video[0].videoID);
                   }
                   catch (err) {
                       console.log(err);

@@ -66,7 +66,7 @@ function Home() {
 
           var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
           var match = value.match(regExp);
-          updateID(match[7]);
+          setVideoID(match[7]);
           
           
           try {
@@ -103,7 +103,7 @@ function Home() {
           catch (err) {
               console.log(err);
           }
-          handleOpenNewGame(videoKey);
+          await handleOpenNewGame(videoKey);
         } else {
             console.log("Does not match " + value)
             handleOpenWrongURL();

@@ -19,6 +19,9 @@ const checkUserExists = async (username, email) => {
     let usernameUser = await getUserbyUsername(username); 
     let emailUser = await getUserByEmail(email);
 
+    console.log(usernameUser);
+    console.log(emailUser);
+
     if (usernameUser.length != 0 || emailUser.length != 0) {
         return true;
     }

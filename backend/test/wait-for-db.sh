@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while true; do
-  docker exec -i test-faceoff-db /bin/sh -c 'mysqladmin ping; exit $?'
+  docker exec -i test-faceoff-db /bin/sh -c 'mysqladmin ping; echo $?; exit $?'
   echo $?
   if [ $? -eq 0 ]; then
     break

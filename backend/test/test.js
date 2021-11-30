@@ -185,7 +185,7 @@ describe('POST /api/user/register', () => {
   it(`should create a new user`, (done) => {
       post(done, app, `/api/user/register`, null, 200, {
           success: true,
-          msg: `New user created.`,
+          msg: `User created.`,
       }, null, {
           username: "test_user_1233kjdkfaoiei",
           password: "12345678",
@@ -196,7 +196,7 @@ describe('POST /api/user/register', () => {
   it(`should fail when making a user with the same username.`, (done) => {
       post(done, app, `/api/user/register`, null, 403, {
           success: false,
-          msg: `This username already in use.`,
+          msg: `Either username or email already in use.`,
       }, null, {
           username: "test_user_1233kjdkfaoiei",
           password: "12345678",
@@ -207,7 +207,7 @@ describe('POST /api/user/register', () => {
   it(`should fail when making a user with the same email.`, (done) => {
       post(done, app, `/api/user/register`, null, 403, {
           success: false,
-          msg: `This email already in use.`,
+          msg: `Either username or email already in use.`,
       }, null, {
           username: "some_test_user",
           password: "12345678",

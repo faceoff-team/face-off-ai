@@ -77,7 +77,7 @@ const handleRegisterRequest = async (req, res) => {
 
     //Check to see if the user exists and if it does, throw an error.
     if ((await checkUserExists(req.body.username, req.body.email))) {
-        throw new BadRequestError(`User already exists.`);
+        throw new BadRequestError(`Either username or email already exists.`, 403);
     };
 
     //Genereate a password hash for the user's password.

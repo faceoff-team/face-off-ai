@@ -162,7 +162,7 @@ describe('POST /api/user/register', () => {
   it(`should fail when password is less than 8 characters.`, (done) => {
       post(done, app, `/api/user/register`, null, 400, {
           success: false,
-          msg: `Password must have a length greater than 8 characters.`,
+          msg: `Password must have a length of at least 8 characters.`,
       }, null, {
           username: 'test_user_1233kjdkfaoiei',
           password: '',

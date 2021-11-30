@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import HomePageGrid from "../components/HomePageGrid.jsx";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -29,7 +29,6 @@ function Home() {
     const [openNewGame, setNewGame] = useState(false);
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
-    const [videoKey, setVideoKey] = useState(0);
 
 
     const updateID = (ID) => setVideoID(ID);
@@ -43,6 +42,14 @@ function Home() {
 
     const handleChange = (event) => {
         setValue(event.target.value)
+    }
+
+    const waitTitle = async (id) => {
+        setVideoTitle(id);
+    }
+
+    const waitID = async (id) => {
+        setVideoID(id);
     }
 
     const handleOpenNewGame = async (id) => {
@@ -61,33 +68,34 @@ function Home() {
 
     const handleSubmit = async (e) => {
         if (value.match(ytRegex) != null) {
+          let key = -1;
           console.log(value)
           handleCloseWrongURL();
 
           var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
           var match = value.match(regExp);
-          setVideoID(match[7]);
+          console.log(match[7]);
+          await waitID(match[7]);
           
           
           try {
-              console.log(videoID);
-              const resGet = await http.get(`/api/video/byID/${videoID}`);
+              const resGet = await http.get(`/api/video/byID/${match[7]}`);
               console.log(JSON.stringify(resGet.data));
               if (resGet.data.video.length == 0) {
                   try {
-                    const addVideo = http.post("/api/video/", {
-                        videoYoutubeID: videoID,
+                    const addVideo = await http.post("/api/video/", {
+                        videoYoutubeID: match[7],
                         emotion: 1
                     });
-                    setVideoTitle(addVideo.data.title);
+                    await waitTitle(addVideo.data.title);
                   }
                   catch (err) {
                       console.log(err);
                   }
 
                   try {
-                      const vidCount = await http.get("/api/video/");
-                      setVideoKey(vidCount.data.videos.length);
+                      const vidCount = await http.get(`/api/video/byID/${match[7]}`);
+                      key = (vidCount.data.videos[0]);
                   }
                   catch (err) {
                       console.log(err);
@@ -96,14 +104,15 @@ function Home() {
 
               }
               else {
-                  setVideoTitle(resGet.data.video[0].videoTitle)
-                  setVideoKey(resGet.data.video[0].videoID);
+                  await waitTitle(resGet.data.video[0].videoTitle)
+                  key = resGet.data.video[0].videoID;
               }
           }
           catch (err) {
               console.log(err);
           }
-          await handleOpenNewGame(videoKey);
+          console.log(`id=${videoID}\ntitle=${videoTitle}\nkey=${key}`);
+          await handleOpenNewGame(key);
         } else {
             console.log("Does not match " + value)
             handleOpenWrongURL();

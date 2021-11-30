@@ -69,6 +69,11 @@ jobs:
           cd ./backend/test
           docker exec -i test-faceoff-db /bin/sh -c 'mysql -u root -ppassword < /config.sql'
 
+      - name: Run tests
+        run: |
+          cd ./backend/test
+          docker-compose up --exit-code-from test-backend
+
       - name: Stop containers
         run: docker-compose down
 

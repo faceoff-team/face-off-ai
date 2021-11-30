@@ -12,7 +12,8 @@ const { get, getAll, getSad, getHappy, getByID } = require('./get');
 router.get('/sad', getSad);
 router.get('/happy', getHappy);
 router.get('/', getAll);
-router.get('/:id', getByID);
+router.get('/byID/:id', getByID);
+router.get('/:id', get);
 
 router.post('/', require('./create'));
 

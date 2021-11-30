@@ -6,7 +6,7 @@
 
 const { addVideo } = require("../../db/video");
 const BadRequestError = require("../../error/BadRequestError");
-const { http } = require("../../../frontend/face-off-ai/src/store");
+const http = require("axios");
 
 const validateCreateVideoRequest = (body) => {
   if (body.videoYoutubeID == undefined)

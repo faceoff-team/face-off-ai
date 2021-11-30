@@ -71,6 +71,7 @@ function Home() {
           
           try {
               const resGet = await http.get(`/api/video/${videoID}`);
+              console.log(JSON.stringify(resget.data));
               if (resGet.data.video.length == 0) {
                   try {
                     const addVideo = http.post("/api/video/", {

@@ -15,11 +15,11 @@ const validateCreateVideoRequest = (body) => {
   if (typeof body.videoYoutubeID !== 'string')
     throw new BadRequestError(`videoYoutubeID must be a string.`, 400);
 
-  if (body.videoTitle == undefined)
-    throw new BadRequestError(`videoTitle must be defined.`, 400);
+  // if (body.videoTitle == undefined)
+  //   throw new BadRequestError(`videoTitle must be defined.`, 400);
 
-  if (typeof body.videoTitle !== 'string')
-    throw new BadRequestError(`videoTitle must be a string.`, 400);
+  // if (typeof body.videoTitle !== 'string')
+  //   throw new BadRequestError(`videoTitle must be a string.`, 400);
 
   if (body.emotion == undefined) 
     throw new BadRequestError(`emotion must be defined.`, 400);

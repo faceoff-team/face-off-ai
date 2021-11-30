@@ -63,6 +63,11 @@ jobs:
           cd ./backend/test
           docker-compose up -d test-db
 
+      - name: Wait for Database to be up
+        run: |
+          cd ./backend/test
+          ./wait-for-db.sh
+
       - name: Clean database
         run: |
           docker cp ./db_config/config_tables.sql test-faceoff-db:/config.sql

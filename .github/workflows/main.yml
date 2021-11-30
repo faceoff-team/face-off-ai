@@ -68,7 +68,7 @@ jobs:
         run: docker run -v $PWD/backend/react/:/usr/app/build/ --name="build_frontend" build_frontend
 
       - name: Remove the build_frontend container
-      - run: docker rm -f build_frontend
+        run: docker rm -f build_frontend
 
       - name: build all images
         run: docker-compose build

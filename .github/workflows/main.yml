@@ -64,16 +64,16 @@ jobs:
           docker-compose down
           docker-compose up -d test-db
 
-#      - name: Wait for Database to be up
-#        run: |
-#          cd ./backend/test
-#          ./wait-for-db.sh
-
-      - name: Clean database
+      - name: Wait for Database and clean database
         run: |
-          docker cp ./db_config/config_tables.sql test-faceoff-db:/config.sql
           cd ./backend/test
-          while true; do docker exec -i test-faceoff-db /bin/sh -c 'mysql -u root -ppassword -h 127.0.0.1 < /config.sql; exit $?'; if [ $? -eq 0 ]; then break; fi; echo .; sleep 1; done;
+          ./wait-for-db.sh
+
+#     - name: Clean database
+#        run: |
+#          docker cp ./db_config/config_tables.sql test-faceoff-db:/config.sql
+#          cd ./backend/test
+#          while true; do docker exec -i test-faceoff-db /bin/sh -c 'mysql -u root -ppassword -h 127.0.0.1 < /config.sql; exit $?'; if [ $? -eq 0 ]; then break; fi; echo .; sleep 1; done;
 
       - name: Run tests
         run: |

@@ -34,11 +34,6 @@ jobs:
       - name: copy config files before build.
         run: cp -r db_config /home/faceoff/
 
-      - name: test backend
-        run: | 
-          cd backend
-          docker build -t test-faceoff-backend -f ./test/Dockerfile .
-      
       - name: make ./run.sh executable
         run: chmod 777 ./frontend/face-off-ai/run.sh
 

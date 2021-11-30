@@ -92,6 +92,7 @@ const { expect } = require('chai');
 */
 
 function _it_post (done, app, url, token, code, msg, extraData, body) {
+  console.log(url);
   if (token) {
     return request(app)
     .post(url)

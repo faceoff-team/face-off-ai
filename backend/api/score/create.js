@@ -4,7 +4,7 @@
  * 
  * 10/22/21
  */
-import { addScoreToGame } from "../../db/score"
+const { addScoreToGame } = require("../../db/score")
 
 const handleCreateScoreRequest = async (req, res) => {
   const score = await addScoreToGame(req.body.user, req.body.game, req.body.score);

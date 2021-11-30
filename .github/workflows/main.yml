@@ -61,6 +61,7 @@ jobs:
       - name: Run Database
         run: |
           cd ./backend/test
+          docker-compose down
           docker-compose up -d test-db
 
       - name: Wait for Database to be up

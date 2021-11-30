@@ -13,7 +13,7 @@ const { getGame, getAllGames } = require("../../db/game");
  */
 
 const handleGetAllUserGamesRequest = async (req, res) => {
-  let games = await getAllGames();
+  let games = await getAllUserGames(req.params.id);
 
   res.status(200).json({
     success: true,
@@ -21,6 +21,16 @@ const handleGetAllUserGamesRequest = async (req, res) => {
     games,
   });
 };
+
+const handleGetAllGamesRequest = async (req, res) => {
+  let games = await getAllGames();
+  res.status(200).json({
+    success: true,
+    msg: `Games retreived successfully.`,
+    games,
+  });
+
+}
 
 /**
  * Get a single game object from the database.
@@ -40,7 +50,7 @@ const handleGetGameRequest = async (req, res) => {
 };
 
 module.exports = {
-  async getAll(req, res, next) {
+  async getAllUser(req, res, next) {
     try {
       await handleGetAllUserGamesRequest(req, res);
     } catch (err) {
@@ -54,4 +64,13 @@ module.exports = {
       next(err);
     }
   },
+  async getAll(req, res, next) {
+    try {
+      await handleGetAllGamesRequest();
+    }
+    catch (err) {
+      next(err);
+    }
+  }
+
 }

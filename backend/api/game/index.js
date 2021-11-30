@@ -8,11 +8,13 @@ const express = require('express');
 const { authenticate } = require('../../db/auth');
 const router = express.Router();
 
-const { get, getAll } = require('./get');
+const { get, getAll, getAllUser } = require('./get');
 
-router.get('/', authenticate, getAll);
+router.get('/all/:id', getAllUser);
 
 router.get('/:id', get);
+
+router.get('/all/', getAll);
 
 router.post('/', require('./create'));
 

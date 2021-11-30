@@ -50,7 +50,7 @@ const getGame = async (id) => {
  * Retreives all games in database. 
  */
 
-const getAllGames = async (userID) => {
+const getAllUserGames = async (userID) => {
   let query = `
     SELECT * FROM user_game LIMIT 100
     WHERE userID = ${userID}
@@ -60,6 +60,16 @@ const getAllGames = async (userID) => {
 
   return games.results;
 };
+
+const getAllGames = async () => {
+  let query = `
+    SELECT * FROM game LIMIT 100
+  `;
+
+  let games = await queryPromise(query);
+
+  return games.results;
+}
 
 const updateGame = async (id, high, low) => {
   try {
@@ -102,6 +112,7 @@ module.exports = {
   createGame,
   getGame,
   getAllGames,
+  getAllUserGames,
   joinGame,
   updateGame
 };

@@ -52,16 +52,6 @@ CREATE TABLE friend (
     PRIMARY KEY (user1, user2)
 );
 
-CREATE TABLE challenge (
-    challengeID         INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    challengeName       VARCHAR(255),
-    difficulty          INT(10),
-    averageRating       INT(10),
-    highScore           INT(10),
-    videoID             INT(10),
-    FOREIGN KEY (videoID) REFERENCES video(videoID)
-);
-
 CREATE TABLE emotion (
     emotionID           INT(1) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     emotionName         VARCHAR(64)
@@ -75,6 +65,17 @@ CREATE TABLE video (
     emotionID           INT(1) NOT NULL,
     FOREIGN KEY(emotionID) REFERENCES emotion(emotionID)        
 );
+
+CREATE TABLE challenge (
+    challengeID         INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    challengeName       VARCHAR(255),
+    difficulty          INT(10),
+    averageRating       INT(10),
+    highScore           INT(10),
+    videoID             INT(10),
+    FOREIGN KEY (videoID) REFERENCES video(videoID)
+);
+
 
 CREATE TABLE game (
     gameID                  INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,

@@ -28,7 +28,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build new images
+      - name: Build new backend image
+        run: |
+          mkdir ./react
+          docker-compose build
+
+      - name: Build new testing image
         run: |
           cd ./backend/test
           docker-compose build

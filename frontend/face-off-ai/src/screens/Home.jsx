@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import { Link, withRouter } from 'react-router-dom';
 import { http, store } from '../store';
 
+
 const modalStyle = {
     position: 'absolute',
     top: '50%',
@@ -66,12 +67,9 @@ function Home() {
           var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
           var match = value.match(regExp);
           updateID(match[7]);
+          console.log(process.env.YOUTUBE);
           try {
-            const resVid = await http.get("https://youtube.googleapis.com/youtube/v3/videos", null, { params: {
-              part: "snippet",
-              id: videoID,
-              key: process.env.YOUTUBE
-            }});
+            const resVid = await http.get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${videoID}&key=${process.env.YOUTUBE}`);
             updateTitle(resVid.data.items.snippet.title);
           }
           catch (err) {

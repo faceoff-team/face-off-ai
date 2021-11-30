@@ -55,7 +55,7 @@ function Home() {
     const handleOpenNewGame = async (id) => {
         setNewGame(true);
          try {
-            http.post('api/game/', {
+            await http.post('api/game/', {
                 videoID: id
             })
          }
@@ -95,7 +95,8 @@ function Home() {
 
                   try {
                       const vidCount = await http.get(`/api/video/byID/${match[7]}`);
-                      key = (vidCount.data.videos[0]);
+                      console.log(`video found: ${JSON.stringify(vidCount.data)}`)
+                      key = (vidCount.data.video[0]);
                   }
                   catch (err) {
                       console.log(err);

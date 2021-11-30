@@ -70,7 +70,8 @@ function Home() {
           
           
           try {
-              const resGet = await http.get(`/api/video/${videoID}`);
+              console.log(videoID);
+              const resGet = await http.get(`/api/video/byID/${videoID}`);
               console.log(JSON.stringify(resGet.data));
               if (resGet.data.video.length == 0) {
                   try {

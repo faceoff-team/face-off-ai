@@ -66,7 +66,7 @@ jobs:
 
       - name: Clean database
         run: |
-          docker cp test-faceoff-db:./db_config/config_tables.sql /config.sql
+          docker cp ./db_config/config_tables.sql test-faceoff-db:/config.sql
           cd /backend/test
           docker exec test-faceoff-db /bin/sh -c 'mysql -u root -ppassword < /config.sql'
 

@@ -19,9 +19,11 @@ const checkUserExists = async (username, email) => {
     let usernameUser = await getUserbyUsername(username); 
     let emailUser = await getUserByEmail(email);
 
-    if (usernameUser.length != 0 || emailUser.length != 0) {
-        return true;
-    }
+    if (usernameUser.length != 0)
+      throw new BadRequestError(`Username already in use.`, 403);
+
+    if (emailUser.length != 0)
+      throw new BadRequestError(`Email already in use.`, 403);
 
     return false;
 }

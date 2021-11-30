@@ -27,16 +27,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build new backend image
-        run: |
-          mkdir ./react
-          docker-compose build
-
-      - name: Build new testing image
-        run: |
-          cd ./backend/test
-          docker-compose build
-
       - name: make ./run.sh executable
         run: chmod 777 ./frontend/face-off-ai/run.sh
 
@@ -50,6 +40,17 @@ jobs:
 
       - name: Remove the build_frontend container
         run: docker rm -f build_frontend
+
+
+      - name: Build new backend image
+        run: |
+          mkdir ./react
+          docker-compose build
+
+      - name: Build new testing image
+        run: |
+          cd ./backend/test
+          docker-compose build
 
   test:
     runs-on: [self-hosted, linux]

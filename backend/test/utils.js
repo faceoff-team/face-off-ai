@@ -4,7 +4,7 @@
  * 11/21/21
  */
 
-const request = require('request');
+const request = require('supertest');
 const { expect } = require('chai');
 
 /**

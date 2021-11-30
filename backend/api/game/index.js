@@ -16,6 +16,6 @@ router.get('/:id', get);
 
 router.post('/', require('./create'));
 
-router.put('/:id', require('./update'))
+//router.put('/:id', require('./update'))
 
 module.exports = router;

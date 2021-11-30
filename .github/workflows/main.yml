@@ -22,11 +22,10 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
+  build:
     runs-on: [self-hosted, linux]
-
     steps:
-      - uses: actions/checkout@v2
+      - uses actions/checkout@v2
 
       - name: Build new backend image
         run: |
@@ -37,33 +36,6 @@ jobs:
         run: |
           cd ./backend/test
           docker-compose build
-
-      - name: Run Database
-        run: |
-          cd ./backend/test
-          docker-compose up -d test-db
-
-      - name: Clean database
-        run: |
-          docker cp test-faceoff-db:./db_config/config_tables.sql /config.sql
-          cd /backend/test
-          docker exec test-faceoff-db /bin/sh -c 'mysql -u root -ppassword < /config.sql'
-
-      - name: Stop containers
-        run: docker-compose down
-
-# This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: [self-hosted, linux]
-
-   # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      - name: copy config files before build.
-        run: cp -r db_config /home/faceoff/
 
       - name: make ./run.sh executable
         run: chmod 777 ./frontend/face-off-ai/run.sh
@@ -79,8 +51,39 @@ jobs:
       - name: Remove the build_frontend container
         run: docker rm -f build_frontend
 
-      - name: build all images
-        run: docker-compose build
+  test:
+    runs-on: [self-hosted, linux]
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run Database
+        run: |
+          cd ./backend/test
+          docker-compose up -d test-db
+
+      - name: Clean database
+        run: |
+          docker cp test-faceoff-db:./db_config/config_tables.sql /config.sql
+          cd /backend/test
+          docker exec test-faceoff-db /bin/sh -c 'mysql -u root -ppassword < /config.sql'
+
+      - name: Stop containers
+        run: docker-compose down
+
+  run:
+    # The type of runner that the job will run on
+    runs-on: [self-hosted, linux]
+    needs: [build]
+
+   # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: copy config files before build.
+        run: cp -r db_config /home/faceoff/
 
       - name: spin docker-compose down.
         run: docker-compose down

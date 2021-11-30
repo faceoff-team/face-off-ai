@@ -62,7 +62,7 @@ const getAllUserGames = async (userID) => {
 };
 
 const getAllGames = async () => {
-  let query = `SELECT * FROM game LIMIT 100;`;
+  let query = `SELECT * FROM game;`;
 
   let games = await queryPromise(query);
 

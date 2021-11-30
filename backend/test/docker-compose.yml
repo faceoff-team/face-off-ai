@@ -29,6 +29,7 @@ services:
       OAUTHCLIENTID: ${OAUTHCLIENTID}
       OAUTHCLIENTSECRET: ${OAUTHCLIENTSECRET}
       REFRESH: ${REFRESH}
+      DB_HOST: test-faceoff-db
     ports:
       - 8081:8080
     volumes:

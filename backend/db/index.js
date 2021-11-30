@@ -8,7 +8,7 @@ const mysql = require('mysql2');
 //Create connection variable.
 
 var connection = mysql.createConnection({
-  host     : 'faceoff-db',
+  host     : process.env.DB_HOST,
   user     : 'faceoff',
   password : 'FaceoffAIRocks',
   database : 'faceoff'

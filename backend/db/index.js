@@ -10,7 +10,7 @@ const mysql = require('mysql2');
 var connection = mysql.createConnection({
   host     : process.env.DB_HOST,
   user     : 'faceoff',
-  password : 'FaceoffAIRocks',
+  password : process.env.DB_PASS,
   database : 'faceoff'
 });
 

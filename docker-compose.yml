@@ -32,6 +32,7 @@ services:
       OAUTHCLIENTSECRET: ${OAUTHCLIENTSECRET}
       REFRESH: ${REFRESH}
       DB_HOST: faceoff-db
+      DB_PASS: FaceoffAIRocks
     ports: 
       - 8080:8080
     volumes:

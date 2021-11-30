@@ -12,6 +12,8 @@ USE faceoff;
 
 -- Dropping Tables
 
+SET FOREIGN_KEY_CHECKS = 0;
+SET UNIQUE_CHECKS = 0;
 DROP TABLE IF EXISTS user_game;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS friend;
@@ -20,6 +22,8 @@ DROP TABLE IF EXISTS challenge;
 DROP TABLE IF EXISTS video;
 DROP TABLE IF EXISTS emotion;
 DROP TABLE IF EXISTS reset_password;
+SET UNIQUE_CHECKS = 1;
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- Creating Tables
 

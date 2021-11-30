@@ -41,7 +41,6 @@ jobs:
       - name: Remove the build_frontend container
         run: docker rm -f build_frontend
 
-
       - name: Build new backend image
         run: |
           mkdir ./react
@@ -67,7 +66,7 @@ jobs:
       - name: Clean database
         run: |
           docker cp ./db_config/config_tables.sql test-faceoff-db:/config.sql
-          cd /backend/test
+          cd ./backend/test
           docker exec test-faceoff-db /bin/sh -c 'mysql -u root -ppassword < /config.sql'
 
       - name: Stop containers

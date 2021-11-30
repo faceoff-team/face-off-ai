@@ -30,6 +30,7 @@ services:
       EMAIL_PASS: ${EMAIL_PASS}
       OAUTHCLIENTID: ${OAUTHCLIENTID}
       OAUTHCLIENTSECRET: ${OAUTHCLIENTSECRET}
+      YOUTUBE: ${YOUTUBE}
       REFRESH: ${REFRESH}
       DB_HOST: faceoff-db
       DB_PASS: FaceoffAIRocks

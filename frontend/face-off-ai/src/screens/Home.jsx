@@ -67,14 +67,6 @@ function Home() {
           var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
           var match = value.match(regExp);
           updateID(match[7]);
-          console.log(process.env.YOUTUBE);
-          try {
-            const resVid = await http.get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${videoID}&key=${process.env.YOUTUBE}`);
-            updateTitle(resVid.data.items.snippet.title);
-          }
-          catch (err) {
-              console.log(err);
-          }
           
           
           try {
@@ -83,9 +75,9 @@ function Home() {
                   try {
                     const addVideo = http.post("/api/video/", {
                         videoYoutubeID: videoID,
-                        videoTitle: videoTitle,
                         emotion: 1
                     });
+                    setVideoTitle(addVideo.data.title);
                   }
                   catch (err) {
                       console.log(err);

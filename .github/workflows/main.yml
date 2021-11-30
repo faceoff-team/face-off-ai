@@ -67,7 +67,7 @@ jobs:
         run: |
           docker cp ./db_config/config_tables.sql test-faceoff-db:/config.sql
           cd ./backend/test
-          docker exec test-faceoff-db /bin/sh -c 'mysql -u root -ppassword < /config.sql'
+          docker exec -i test-faceoff-db /bin/sh -c 'mysql -u root -ppassword < /config.sql'
 
       - name: Stop containers
         run: docker-compose down

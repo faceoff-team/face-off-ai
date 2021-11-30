@@ -53,7 +53,7 @@ const getVideo = async (id) => {
 const getVideoByID = async (id) => {
   let query = `
     SELECT * FROM video
-    WHERE videoYoutubeID = ${id};
+    WHERE videoYoutubeID = '${id}';
   `;
 
   let video = await queryPromise(query);

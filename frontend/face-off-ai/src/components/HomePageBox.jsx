@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import { http } from '../store'
+import { v4 as uuidv4 } from 'uuid';
 
 import {
     BrowserRouter as Router,
@@ -27,8 +28,10 @@ function HomePageBox({videoID, videoTitle, videoKey}) {
          }
     });
 
+    const gameID = uuidv4();
+
     return (
-        <Link to={`game/${videoID}/${videoTitle}`} style={{textDecoration: 'none'}}>
+        <Link to={`game/${videoID}/${videoTitle}/${gameID}`} style={{textDecoration: 'none'}}>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <Card sx={{ maxWidth: 345, 
                             borderRadius: '10px',

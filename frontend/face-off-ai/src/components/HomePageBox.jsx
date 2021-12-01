@@ -43,7 +43,7 @@ function HomePageBox({videoID, videoTitle, videoKey}) {
                         color: '#4cc0ad'
                     }}}
                     >
-                    <CardActionArea>
+                    <CardActionArea onClick={() => handleClick(videoKey)}>
                         <CardContent>
                             <p class="text-medium">{videoTitle}</p>
                         </CardContent>
@@ -53,7 +53,7 @@ function HomePageBox({videoID, videoTitle, videoKey}) {
                             image={thumbnailURL}
                             alt={videoTitle}
                         />
-                        onClick={() => handleClick(videoKey)}
+                        
                     </CardActionArea>
                 </Card>
             </div>

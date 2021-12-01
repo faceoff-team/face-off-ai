@@ -30,8 +30,8 @@ const modalStyle = {
 };
 
 //get url and title for parameter and API
-function Game() {
-    const { id, title, gameID } = useParams();
+function Game(gameID) {
+    const { id, title } = useParams();
 
     const avgTimeDict = {"r9SsqcT6heE" : "50 seconds", "YqaacQc6sho" : "1 minute 3 seconds"};
     const bestTimeDict = {"r9SsqcT6heE" : "2 minutes 10 seconds", "YqaacQc6sho" : "5 minutes 4 seconds"};

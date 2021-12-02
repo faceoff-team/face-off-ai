@@ -27,7 +27,7 @@ router.get(`/profile`, authenticate, getProfile);
 
 router.get('/profile/pic/:image', profilePicGet);
 
-router.get(`/profile/:id`, getProfile);
+router.get(`/profile/:username`, getProfile);
 
 router.put(`/profile`, authenticate, putProfile);
 

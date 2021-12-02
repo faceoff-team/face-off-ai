@@ -17,13 +17,13 @@ const handleGetProfile = async (req, res) => {
         delete user.hash;
         delete user.salt;
     } else {
-        user = await getUserByKey(req.params.id);
+        user = await getUserByUsername(req.params.username);
         delete user.hash;
         delete user.salt;
     }
     
     if (!user) {
-        throw BadRequestError(`No id provided.`);
+        throw BadRequestError(`No username provided.`);
     }
 
     res.status(200).json({
@@ -32,6 +32,7 @@ const handleGetProfile = async (req, res) => {
         user,
     });
 };
+
 
 const validatePutProfile = (body) => {
     if (typeof body.bio !== 'string') 

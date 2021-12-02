@@ -48,7 +48,7 @@ const getUser = async (user) => {
     //     throw new BadRequestError('Unknown Identifier.', 400);
 
     if (body.user === undefined)
-        throw new BadRequestError(`User property must be defined`, 400);
+        throw new BadRequestError(`User property must be defined.`, 400);
 
     if (typeof body.user !== 'string')
         throw new BadRequestError('user must be of type string.', 400);
@@ -65,7 +65,7 @@ const getUser = async (user) => {
     if (typeof body.password !== 'string')
         throw new BadRequestError('Password must be of type string.', 400);
 
-    if (body.password.length === 0) 
+    if (body.password.length === 0)
         throw new BadRequestError('password must not be an empty string.', 400);
 };
 

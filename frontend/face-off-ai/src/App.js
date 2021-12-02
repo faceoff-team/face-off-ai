@@ -93,7 +93,16 @@ function App() {
                         <Redirect to="/login" />
                     </Route>
                     <Route path="/login" exact component={() => <Login />} />
-                    <Route path="/game/:id/:title" exact component={() => <Game />} />
+                    <Route path="/game/:id/:gameid"
+                        exact
+                        component={({ match }) => {
+                            if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(match.params.gameid)) {
+                                return <Error404/>;
+                            } else {
+                                return <Game />;
+                            }
+                        }}
+                    />
                     <Route path="/home" exact component={() => <Home />} />
                     <Route path="/about" exact component={() => <About />} />
                     <Route path="/leaderboards" exact component ={() => <Leaderboard />} />

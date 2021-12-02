@@ -8,7 +8,7 @@ import HorizontalLine from "../components/HorizontalLine.jsx";
 import TextField from '@mui/material/TextField';
 import { Link, withRouter } from 'react-router-dom';
 import { http, store } from '../store';
-
+import { v4 as uuidv4 } from 'uuid';
 
 const modalStyle = {
     position: 'absolute',
@@ -148,7 +148,7 @@ function Home() {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Awesome! Do you want to play "{videoTitle}"?
                 </Typography>
-                <Link to={`game/${videoID}/${videoTitle}`}>
+                <Link to={`game/${videoID}/${uuidv4()}`}>
                     <Button size="medium" color="secondary" onClick={handleCloseNewGame}>
                         Go to game!
                     </Button>

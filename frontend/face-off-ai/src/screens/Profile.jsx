@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
 import { useParams } from 'react-router-dom';
 import store from "../store";
-import Unregistered from "./Unregistered"
 
 function Profile() {
     const { username } = useParams();
@@ -21,26 +20,29 @@ function Profile() {
         } catch (err) {
             console.error(err);
         }
+    };
+
+    const getPastGames = async() => {
+        try {
+            const id = user.userID;
+            const response = await axios.get(`https://ai.faceoff.cf/api/game/all/${id}`);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const getFriends = async() => {
+        try {
+            
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     useEffect(() => {
         getProfile(username);
-    }, []);
-
-    useEffect(() => {
         getPastGames();
     }, []);
-
-    const getPastGames = async() => {
-        /*try {
-            const response = await axios.get("https://ai.faceoff.cf/api/user/leaderboard");
-            setGames(response.data.leaderboard);
-            setNumGames(response.data.leaderboard.length);
-            
-        } catch (err) {
-            console.error(err);
-        }*/
-    };
 
     /*if (!store.getState().auth.isAuthenticated) {
         return <Unregistered/>

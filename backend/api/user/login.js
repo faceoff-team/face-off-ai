@@ -42,25 +42,31 @@ const getUser = async (user) => {
 
  const validateLoginBody = (body) => {
     //Get the number of identifiers in the object.
-    let numberOfIdentifiers = Object.keys(body).length;
+    // let numberOfIdentifiers = Object.keys(body).length;
 
-    if (numberOfIdentifiers !== 2) 
-        throw new BadRequestError('Unknown Identifier.', 400);
+    // if (numberOfIdentifiers !== 2) 
+    //     throw new BadRequestError('Unknown Identifier.', 400);
+
+    if (body.user === undefined)
+        throw new BadRequestError(`User property must be defined.`, 400);
 
     if (typeof body.user !== 'string')
-        throw new BadRequestError('user must be of type string.', 403);
+        throw new BadRequestError('User must be of type string.', 400);
 
     if (body.user.length === 0) 
-        throw new BadRequestError('user must not be an empty string.', 403);
+        throw new BadRequestError('User must not be an empty string.', 400);
 
-    if (body.user.match(/^\S*$/) == null)
-        throw new BadRequestError('user must not have whitespace.', 403);
+    // if (body.user.match(/^\S*$/) == null)
+    //     throw new BadRequestError('user must not have whitespace.', 403);
+
+    if (body.password === undefined)
+        throw new BadRequestError(`Password property must be defined.`, 400);
 
     if (typeof body.password !== 'string')
-        throw new BadRequestError('password must be of type string.', 403);
+        throw new BadRequestError('Password must be of type string.', 400);
 
-    if (body.password.length === 0) 
-        throw new BadRequestError('password must not be an empty string.', 403);
+    if (body.password.length === 0)
+        throw new BadRequestError('Password must not be an empty string.', 400);
 };
 
 const handleLoginRequest = async (req, res) => {
@@ -69,9 +75,9 @@ const handleLoginRequest = async (req, res) => {
 
     let user = await getUser(req.body.user);
 
-    if (!verifyPassword(req.body.password, user.salt, user.hash)) 
+    if (!verifyPassword(req.body.password, user.salt, user.hash))
         throw new AuthorizationError(`Username or password incorrect.`, 401);
-    
+
     let token = issueJWT(user.userID);
 
     res.status(200).json({

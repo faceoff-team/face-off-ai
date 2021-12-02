@@ -28,7 +28,7 @@ function Profile() {
     var userID;
 
     if (store.getState().auth.isAuthenticated) {
-        userID = store.getState().auth.user.id;
+        userID = store.getState().auth.user.userid;
     } else {
         userID = 0;
     }

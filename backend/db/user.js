@@ -60,8 +60,6 @@ const createUser = async (username, email, hash, salt) => {
 };
 
 const getUserByUsername = async (username) => {
-    console.log(`
-    SELECT * FROM user WHERE username = "${username}"`);
     try {
         let user = await new Promise((resolve, reject) => {
                 global.connection.query(`
@@ -124,7 +122,7 @@ const getUserByEmail = async (email) => {
                     });
         });
         return user.results;
-    } catch (err) { 
+    } catch (err) {
         console.error(err);
     }
 };
@@ -158,8 +156,8 @@ const getLeaderboard = async() => {
   try {
       let leaderboard = await new Promise((resolve, reject) => {
           global.connection.query(`
-              SELECT userID, worldRank, bestScore, username, imagePath 
-              FROM user 
+              SELECT userID, worldRank, bestScore, username, imagePath
+              FROM user
               ORDER BY worldRank
           `, (err, results, fields) => {
               if (err) {

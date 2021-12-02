@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "mocha -b --exit",
+    "test": "NODE_ENV=testing mocha -b --exit",
     "start": "nodemon main.js",
     "genKeys": "node auth/genKeys.js"
   },

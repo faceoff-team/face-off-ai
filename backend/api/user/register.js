@@ -4,7 +4,7 @@
  */
 
 const { generatePasswordHash, issueJWT } = require("../../db/auth");
-const { createUser, getUserByEmail, getUserbyUsername } = require("../../db/user");
+const { createUser, getUserByEmail, getUserByUsername } = require("../../db/user");
 const BadRequestError = require("../../error/BadRequestError");
 
 /**
@@ -16,7 +16,7 @@ const BadRequestError = require("../../error/BadRequestError");
  */
 
 const checkUserExists = async (username, email) => {
-    let usernameUser = await getUserbyUsername(username); 
+    let usernameUser = await getUserByUsername(username); 
     let emailUser = await getUserByEmail(email);
 
     if (usernameUser.length != 0)

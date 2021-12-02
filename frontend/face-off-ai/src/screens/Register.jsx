@@ -1,8 +1,8 @@
 import { React, Component } from 'react'
 import { Link, withRouter } from "react-router-dom";
-import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux'; 
 import { register } from '../actions/authActions';
+import store from '../store';
 
 class Register extends Component {
   constructor() {
@@ -44,14 +44,16 @@ class Register extends Component {
     await this.props.register(username, password, email);
 
     if (this.props.isAuthenticated) {
-        this.props.history.push('/profile');
+        const username = store.getState().auth.user.username;
+        this.props.history.push(`/profile/${username}`);
     }
 
   }
 
   render() {
     return (
-        <div className="content-center" class="basic-container" style={{marginRight: "25em", marginLeft: "25em"}}>
+        <div className="content-center" class="basic-container"
+            style={{marginRight: "max(20px, 25%)", marginLeft: "max(20px, 25%)"}}>
             <h2 class="font-weight-heavy">Sign Up</h2>
             <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
             <div className="formCenter">
@@ -120,15 +122,6 @@ class Register extends Component {
                     <Link to="/login" className="formFieldLink">
                     Already have an account? Sign in
                     </Link>
-                </div>
-            
-                <div className="socialMediaButtons">
-                    <FacebookLogin
-                        appId="372920357955526"
-                        autoLoad={true}
-                        fields="name,email,picture"
-                        scope="public_profile,user_friends"
-                        icon="fa-facebook" />
                 </div>
             </form>
          </div>

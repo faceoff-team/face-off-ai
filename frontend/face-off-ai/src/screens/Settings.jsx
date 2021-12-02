@@ -13,12 +13,14 @@ function Settings() {
     const password2Ref = React.useRef(null);
 
     const handleSubmit = async () => {
-        console.log(`state: ${store.getState().auth.token}`)
         let params = {
             photo: photoRef.current.value,
             user: userRef.current.value,
             bio: bioRef.current.value,
         }
+
+        alert(params.bio);
+        
         if (!photoRef.current.value) {
             params.photo = store.getState().auth.user.photo
         }

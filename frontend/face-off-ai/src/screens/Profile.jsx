@@ -7,9 +7,6 @@ import { useParams } from 'react-router-dom';
 import store from "../store";
 import Unregistered from "./Unregistered"
 
-// This picture is a placeholder for our presentation
-import Picture3 from "../assets/profile-picture-2.jpg";
-
 function Profile() {
     const { username } = useParams();
 
@@ -17,25 +14,14 @@ function Profile() {
     const [numGames, setNumGames] = useState(0);
     const [user, setUser] = useState(0);
 
-
-
     const getProfile = async(username) => {
         try {
             const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
-            setUser(response.data.user);
-            console.log(response);
+            setUser(response.data.user[0]);
         } catch (err) {
             console.error(err);
         }
     }
-
-    /*var userID;
-
-    if (store.getState().auth.isAuthenticated) {
-        userID = store.getState().auth.user.userid;
-    } else {
-        userID = 0;
-    }*/
 
     useEffect(() => {
         getProfile(username);
@@ -70,7 +56,7 @@ function Profile() {
                 <Grid item xs={4} sm={6} md={8}>
                     <div class="basic-container col">
                         <ProfileHeader username={username} 
-                                       picture={Picture3} 
+                                       picture={user.imagePath} 
                                        bio={user.bio}/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
                         <ProfileBody username={username} highScore={user.bestScore} lowScore={user.worstScore}/>

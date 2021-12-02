@@ -78,7 +78,7 @@ function suite(app) {
   it(`should log in a user`, (done) => {
     post(done, app, `/api/user/login`, null, 200, {
       success: true,
-      msg: `User created.`,
+      msg: `User successfully logged in.`,
     }, null, {
       user: "test_user_1233kjdkfaoiei",
       password: "12345678",

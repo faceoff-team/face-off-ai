@@ -15,26 +15,29 @@ function Profile() {
 
     const [games, setGames] = useState(0);
     const [numGames, setNumGames] = useState(0);
+    const [user, setUser] = useState(0);
+
 
     const getProfile = async(username) => {
         try {
             const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
+            setUser(response.data.user);
             console.log(response);
         } catch (err) {
             console.error(err);
         }
     }
 
-    var userID;
+    /*var userID;
 
     if (store.getState().auth.isAuthenticated) {
         userID = store.getState().auth.user.userid;
     } else {
         userID = 0;
-    }
+    }*/
 
     useEffect(() => {
-        getProfile();
+        getProfile(username);
     }, []);
 
     useEffect(() => {
@@ -67,7 +70,7 @@ function Profile() {
                     <div class="basic-container col">
                         <ProfileHeader username={username} 
                                        picture={Picture3} 
-                                       bio="Howdy yall I'm mr. musterd man"/>
+                                       bio={user.bio}/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
                         <ProfileBody username={username} />
                     </div>

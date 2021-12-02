@@ -5,10 +5,6 @@ import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
 import { useParams } from 'react-router-dom';
 import store from "../store";
-import Unregistered from "./Unregistered"
-
-// This picture is a placeholder for our presentation
-import Picture3 from "../assets/profile-picture-2.jpg";
 
 function Profile() {
     const { username } = useParams();
@@ -17,48 +13,40 @@ function Profile() {
     const [numGames, setNumGames] = useState(0);
     const [user, setUser] = useState(0);
 
-
-
     const getProfile = async(username) => {
         try {
             const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
-            setUser(response.data.user);
-            console.log(response);
+            setUser(response.data.user[0]);
         } catch (err) {
             console.error(err);
         }
+    };
+
+    const getPastGames = async() => {
+        try {
+            const id = user.userID;
+            const response = await axios.get(`https://ai.faceoff.cf/api/game/all/${id}`);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const getFriends = async() => {
+        try {
+            
+        } catch (err) {
+            console.log(err);
+        }
     }
-
-    /*var userID;
-
-    if (store.getState().auth.isAuthenticated) {
-        userID = store.getState().auth.user.userid;
-    } else {
-        userID = 0;
-    }*/
 
     useEffect(() => {
         getProfile(username);
-    }, []);
-
-    useEffect(() => {
         getPastGames();
     }, []);
 
-    const getPastGames = async() => {
-        /*try {
-            const response = await axios.get("https://ai.faceoff.cf/api/user/leaderboard");
-            setGames(response.data.leaderboard);
-            setNumGames(response.data.leaderboard.length);
-            
-        } catch (err) {
-            console.error(err);
-        }*/
-    };
-
-    if (!store.getState().auth.isAuthenticated) {
+    /*if (!store.getState().auth.isAuthenticated) {
         return <Unregistered/>
-    }
+    }*/
 
     return (
         <div className="Profile" class="container">
@@ -70,7 +58,7 @@ function Profile() {
                 <Grid item xs={4} sm={6} md={8}>
                     <div class="basic-container col">
                         <ProfileHeader username={username} 
-                                       picture={Picture3} 
+                                       picture={user.imagePath} 
                                        bio={user.bio}/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
                         <ProfileBody username={username} highScore={user.bestScore} lowScore={user.worstScore}/>

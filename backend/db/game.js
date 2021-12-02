@@ -52,8 +52,10 @@ const getGame = async (id) => {
 
 const getAllUserGames = async (userID) => {
   let query = `
-    SELECT * FROM user_game LIMIT 100
-    WHERE userID = ${userID}
+    SELECT * FROM game
+    INNER JOIN user_game
+    ON game.gameID = user_game.game
+    WHERE user_game.user = ${userID};
   `;
 //TODO do a join here.
   let games = await queryPromise(query);
@@ -62,7 +64,7 @@ const getAllUserGames = async (userID) => {
 };
 
 const getAllGames = async () => {
-  let query = `SELECT * FROM game`;
+  let query = `SELECT * FROM game;`;
 
   let games = await queryPromise(query);
 

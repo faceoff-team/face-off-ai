@@ -32,7 +32,12 @@ function a11yProps(index) {
     };
 }
 
-export default function ProfileBody(username, highScore, lowScore) {
+export default function ProfileBody(props) {
+
+    const username = props.username;
+    const highScore = props.highScore;
+    const lowScore = props.lowScore;
+    
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {

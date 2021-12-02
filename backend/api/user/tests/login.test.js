@@ -8,7 +8,7 @@ const { post } = require('../../../test/utils');
 
 function suite(app) {
   it(`should fail when user is not defined`, (done) => {
-    post(done, app, `/api/user/register`, null, 400, {
+    post(done, app, `/api/user/login`, null, 400, {
       success: false,
       msg: `User property must be defined.`,
     }, null, {
@@ -17,7 +17,7 @@ function suite(app) {
   });
 
   it(`should fail when user is not a string`, (done) => {
-    post(done, app, `/api/user/register`, null, 400, {
+    post(done, app, `/api/user/login`, null, 400, {
       success: false,
       msg: `Username must be of type string.`,
     }, null, {
@@ -27,7 +27,7 @@ function suite(app) {
   });
 
   it(`should fail when user is an empty string.`, (done) => {
-    post(done, app, `/api/user/register`, null, 400, {
+    post(done, app, `/api/user/login`, null, 400, {
       success: false,
       msg: `Username must not be an empty string.`,
     }, null, {
@@ -37,7 +37,7 @@ function suite(app) {
   });
 
   it(`should fail when password is not defined`, (done) => {
-    post(done, app, `/api/user/register`, null, 400, {
+    post(done, app, `/api/user/login`, null, 400, {
       success: false,
       msg: `Password property must be defined.`,
     }, null, {
@@ -46,7 +46,7 @@ function suite(app) {
   });
 
   it(`should fail when password is not a string`, (done) => {
-    post(done, app, `/api/user/register`, null, 400, {
+    post(done, app, `/api/user/login`, null, 400, {
       success: false,
       msg: `Password must be of type string.`,
     }, null, {
@@ -56,7 +56,7 @@ function suite(app) {
   });
 
   it(`should log in a user`, (done) => {
-    post(done, app, `/api/user/register`, null, 200, {
+    post(done, app, `/api/user/login`, null, 200, {
       success: true,
       msg: `User created.`,
     }, null, {
@@ -66,7 +66,7 @@ function suite(app) {
   });
 
   it(`should login with an emaiil.`, (done) => {
-    post(done, app, `/api/user/register`, null, 403, {
+    post(done, app, `/api/user/login`, null, 403, {
       success: false,
       msg: `Username already in use.`,
     }, null, {

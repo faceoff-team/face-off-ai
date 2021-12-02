@@ -43,7 +43,7 @@ class Forgot extends Component {
 
   render() {
     return (
-        <div className="basic-container" style={{marginRight: "25em", marginLeft: "25em"}}>
+        <div className="basic-container" style={{marginRight: "max(20px, 25%)", marginLeft: "max(20px, 25%)"}}>
         <h2 class="font-weight-heavy">Forgot Password</h2>
         <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
         <div className="formCenter">

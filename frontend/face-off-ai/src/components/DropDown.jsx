@@ -17,6 +17,8 @@ function DropDown(props) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
 
+    const username = props.username;
+
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
@@ -60,21 +62,17 @@ function DropDown(props) {
     }, [open]);
 
     return(
-        <li
-            class={`nav-item ${props.location.pathname === "/profile" ? "active" : ""
-                }`}
-        >
-        <Link class="nav-link" to={props.location.pathname} onClick={handleToggle} ref={anchorRef}>
-            <Tooltip 
-                title="Profile"
-                TransitionComponent={Fade}
-                TransitionProps={{ timeout: 300 }}>
-            <AccountCircleIcon>
-                <span class="sr-only">(current)</span>
-            </AccountCircleIcon>
-            </Tooltip>
-            
-        </Link>
+        <li class={`nav-item ${props.location.pathname === `/profile/${username}` ? "active" : ""}`}>
+            <Link class="nav-link" to={props.location.pathname} onClick={handleToggle} ref={anchorRef}>
+                <Tooltip 
+                    title="Profile"
+                    TransitionComponent={Fade}
+                    TransitionProps={{ timeout: 300 }}>
+                <AccountCircleIcon>
+                    <span class="sr-only">(current)</span>
+                </AccountCircleIcon>
+                </Tooltip>
+            </Link>
     <Popper
         open={open}
         anchorEl={anchorRef.current}
@@ -125,7 +123,7 @@ function DropDown(props) {
                             },
                         }}
                 >
-                    <Link to="/profile" 
+                    <Link to={`/profile/${username}`}
                         style={{ 
                             textDecoration: "none",
                             color: "white"}}>

@@ -66,12 +66,6 @@ function HomePageGrid({emotionID}) {
         }
     };
 
-    /*let history = useHistory();*/
-
-    /*const redirect = () => {
-      history.push('/game')
-    }*/
-
     return (
         <Grid container spacing={10} columns={{ xs: 4, sm: 8, md: 12 }}>
             {videosList(numVideos, videos)}

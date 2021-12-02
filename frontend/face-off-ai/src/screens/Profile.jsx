@@ -27,14 +27,14 @@ function Profile() {
     }, []);
 
     const getPastGames = async() => {
-        try {
+        /*try {
             const response = await axios.get("https://ai.faceoff.cf/api/user/leaderboard");
             setGames(response.data.leaderboard);
             setNumGames(response.data.leaderboard.length);
             
         } catch (err) {
             console.error(err);
-        }
+        }*/
     };
 
     if (!store.getState().auth.isAuthenticated) {

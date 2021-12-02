@@ -1,6 +1,5 @@
 import { React, Component } from 'react'
 import { Link, withRouter } from "react-router-dom";
-import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux'; 
 import { login } from '../actions/authActions';
 
@@ -42,27 +41,10 @@ class Login extends Component {
     }
   }
 
-
-responseFacebook(response) {
-    console.log(response);
-        const authResponse = new Promise(window.FB.login);
-        if (!authResponse) {
-            this.props.history.push('/profile');
-        }
-        
-        /*setData(response);
-        setPicture(response.picture.data.url);*/
-        if (response.accessToken) {
-            /*setLogin(true);*/
-        } else {
-            /*setLogin(false);*/
-        }
-}
-
   render() {
 
     return (
-    <div class="basic-container" style={{marginRight: "25em", marginLeft: "25em"}}>
+    <div class="basic-container" style={{marginRight: "max(20px, 25%)", marginLeft: "max(20px, 25%)"}}>
         <h2 class="font-weight-heavy">Sign in</h2>
         <p style={{ color: "#cbcbcb"}}>Please enter your details to continue.</p>
         <div className="formCenter">
@@ -114,16 +96,6 @@ responseFacebook(response) {
                     Create an account
                   </Link>
                 </div>
-            </div>
-
-            <div className="socialMediaButtons">
-              <FacebookLogin
-                appId="372920357955526"
-                autoLoad={true}
-                fields="name,email,picture"
-                scope="public_profile,user_friends"
-                callback={() => this.responseFacebook.bind(this)}
-                icon="fa-facebook" />
             </div>
             </form>
         </div>

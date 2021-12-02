@@ -67,7 +67,7 @@ function suite(app) {
 
   it(`should fail on an incorrect password`, (done) => {
     post(done, app, `/api/user/login`, null, 401, {
-      success: true,
+      success: false,
       msg: `Username or password incorrect.`,
     }, null, {
       user: "test_user_1233kjdkfaoiei",

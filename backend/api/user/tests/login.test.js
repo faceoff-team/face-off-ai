@@ -98,7 +98,7 @@ function suite(app) {
   after(() => {
     data = global.data;
     console.log(data);
-    global.playerToken = data;
+    global.playerToken = data.token;
   });
 }
 

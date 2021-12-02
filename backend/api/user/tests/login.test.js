@@ -85,9 +85,9 @@ function suite(app) {
     });
   });
 
-  it(`should login with an emaiil.`, (done) => {
+  it(`should login with an email.`, (done) => {
     post(done, app, `/api/user/login`, null, 200, {
-      success: false,
+      success: true,
       msg: `User successfully logged in.`,
     }, null, {
       user: "testusersemail@thisisamadeupdomain.com",

@@ -66,7 +66,8 @@ const createUser = async (username, email, hash, salt) => {
 
 const getUserByUsername = async (username) => {
     console.log(`
-    SELECT * FROM user WHERE username = "${username}"`);
+        SELECT username, email, bio, imagePath, worldRank, bestscore, worstScore
+        FROM user WHERE username = "${username}"`);
     try {
         let user = await new Promise((resolve, reject) => {
                 global.connection.query(`

@@ -64,7 +64,7 @@ const createUser = async (username, email, hash, salt) => {
     }
 };
 
-const getUserbyUsername = async (username) => {
+const getUserByUsername = async (username) => {
     console.log(`
     SELECT * FROM user WHERE username = "${username}"`);
     try {
@@ -241,7 +241,7 @@ const changePassword = async (userID, hash, salt) => {
 
 module.exports = {
   getUserByKey,
-  getUserbyUsername,
+  getUserByUsername,
   getUserByEmail,
   getFriendsByUsername,
   createUser,

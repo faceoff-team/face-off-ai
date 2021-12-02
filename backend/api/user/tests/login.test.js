@@ -79,7 +79,7 @@ function suite(app) {
     post(done, app, `/api/user/login`, null, 200, {
       success: true,
       msg: `User successfully logged in.`,
-    }, null, {
+    }, token, {
       user: "test_user_1233kjdkfaoiei",
       password: "12345678",
     });
@@ -97,7 +97,8 @@ function suite(app) {
 
   after(() => {
     data = global.data;
-    global.playerToken = data.token;
+    console.log(data);
+    global.playerToken = data;
   });
 }
 

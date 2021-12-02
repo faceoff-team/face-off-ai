@@ -12,6 +12,10 @@ const { updateProfile, getUserByUsername } = require("../../db/user");
 const handleGetProfile = async (req, res) => {
     let user = {};
     
+    if (req.params.username)
+        if (req.params.username === '')
+            throw new BadRequestError('Username cannot be an empty string.', 400)
+
     if (req.user) {    
         user = req.user;
         delete user.hash;
@@ -23,7 +27,7 @@ const handleGetProfile = async (req, res) => {
     }
     
     if (!user) {
-        throw BadRequestError(`No username provided.`);
+        throw BadRequestError(`No username provided.`, 400);
     }
 
     res.status(200).json({

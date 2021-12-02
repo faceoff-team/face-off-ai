@@ -6,6 +6,7 @@
 
 const register = require('./register.test');
 const login = require('./login.test');
+const { getProfileToken } = require('./profile.test');
 
 function suite(app) {
   describe('POST /api/user/register', () => {
@@ -14,6 +15,10 @@ function suite(app) {
 
   describe('POST /api/user/login', () => {
     login(app);
+  });
+
+  describe('GET /api/user/profile WITH Token', () => {
+    getProfileToken(app);
   });
 }
 

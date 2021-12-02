@@ -1,33 +1,36 @@
 /**
  * @author Nic Ballesteros
- * @description This file tests the login function.
- * 12/1/21
+ * @description This file tests the profile function of the user folder.
+ * 12/2/21
  */
 
-const { post } = require('../../../test/utils');
+const { get } = require('../../../test/utils');
 
-function suite(app) {
-  it(`should fail when user is not defined`, (done) => {
-    post(done, app, `/api/user/login`, null, 400, {
-      success: false,
-      msg: `User property must be defined.`,
-    }, null, {
-      password: "12345678",
-    });
+let playerToken;
+
+function getProfileToken(app) {
+  before(() => {
+    playerToken = global.playerToken;
   });
 
-  it(`should fail when user is not a string`, (done) => {
-    post(done, app, `/api/user/login`, null, 400, {
+  it(`should fail if no token is provided`, (done) => {
+    get(done, app, `/api/user/profile`, null, 400, {
+      success: false,
+      msg: `No usename provided.`,
+    }, null);
+  });
+
+  it(`should return the profile`, (done) => {
+    get(done, app, `/api/user/profile`, playerToken, 400, {
       success: false,
       msg: `User must be of type string.`,
-    }, null, {
-      user: 1,
-      password: "12345678",
-    });
+    }, user);
   });
+}
 
+function getProfileWOToken(app) {
   it(`should fail when user is an empty string.`, (done) => {
-    post(done, app, `/api/user/login`, null, 400, {
+    get(done, app, `/api/user/profile`, null, 400, {
       success: false,
       msg: `User must not be an empty string.`,
     }, null, {
@@ -37,7 +40,7 @@ function suite(app) {
   });
 
   it(`should fail when password is not defined`, (done) => {
-    post(done, app, `/api/user/login`, null, 400, {
+    get(done, app, `/api/user/profile`, null, 400, {
       success: false,
       msg: `Password property must be defined.`,
     }, null, {
@@ -46,7 +49,7 @@ function suite(app) {
   });
 
   it(`should fail when password is not a string`, (done) => {
-    post(done, app, `/api/user/login`, null, 400, {
+    get(done, app, `/api/user/profile`, null, 400, {
       success: false,
       msg: `Password must be of type string.`,
     }, null, {
@@ -56,7 +59,7 @@ function suite(app) {
   });
 
   it(`should fail when password is an empty string`, (done) => {
-    post(done, app, `/api/user/login`, null, 400, {
+    get(done, app, `/api/user/profile`, null, 400, {
       success: false,
       msg: `Password must not be an empty string.`,
     }, null, {
@@ -66,7 +69,7 @@ function suite(app) {
   });
 
   it(`should fail on an incorrect password`, (done) => {
-    post(done, app, `/api/user/login`, null, 401, {
+    get(done, app, `/api/user/profile`, null, 401, {
       success: false,
       msg: `Username or password incorrect.`,
     }, null, {
@@ -76,7 +79,7 @@ function suite(app) {
   });
 
   it(`should log in a user`, (done) => {
-    post(done, app, `/api/user/login`, null, 200, {
+    get(done, app, `/api/user/profile`, null, 200, {
       success: true,
       msg: `User successfully logged in.`,
     }, null, {
@@ -85,8 +88,8 @@ function suite(app) {
     });
   });
 
-  it(`should login with an email.`, (done) => {
-    post(done, app, `/api/user/login`, null, 200, {
+  it(`should profile with an email.`, (done) => {
+    get(done, app, `/api/user/profile`, null, 200, {
       success: true,
       msg: `User successfully logged in.`,
     }, null, {
@@ -94,11 +97,8 @@ function suite(app) {
       password: "12345678",
     });
   });
-
-  after(() => {
-    data = global.data;
-    global.playerToken = data.token;
-  });
 }
 
-module.exports = suite;
+module.exports = {
+  getProfileToken,
+};

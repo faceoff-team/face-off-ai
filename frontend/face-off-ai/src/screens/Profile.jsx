@@ -16,9 +16,9 @@ function Profile() {
     const [games, setGames] = useState(0);
     const [numGames, setNumGames] = useState(0);
 
-    const getProfile = async(userID) => {
+    const getProfile = async(username) => {
         try {
-            const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${userID}`);
+            const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
             console.log(response);
         } catch (err) {
             console.error(err);

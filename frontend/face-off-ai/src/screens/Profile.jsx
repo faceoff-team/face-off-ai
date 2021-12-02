@@ -18,6 +18,7 @@ function Profile() {
     const [user, setUser] = useState(0);
 
 
+
     const getProfile = async(username) => {
         try {
             const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);

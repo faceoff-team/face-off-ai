@@ -57,10 +57,11 @@ function Home() {
         setVideoID(id);
     }
 
-    const handleEmotionToggle = (newMode) => {
+    const handleEmotionToggle = (event, newMode) => {
         if (newMode != null) {
             setEmotionKey(newMode);
         }
+        console.log(newMode);
     }
 
     const handleOpenNewGame = async (id) => {
@@ -193,12 +194,15 @@ function Home() {
                 >
                     <ToggleButton value={0} aria-label="fear">
                         <MoodBadIcon />
+                         Fear
                     </ToggleButton>
                     <ToggleButton value={1} aria-label="happy">
                         <SentimentVerySatisfiedIcon />
+                         Happy
                     </ToggleButton>
                     <ToggleButton value={2} aria-label="sad">
                         <SentimentDissatisfiedIcon />
+                         Sad
                     </ToggleButton>
                 </ToggleButtonGroup>
                 <Button

@@ -20,7 +20,7 @@ router.post(`/login`, require('./login.js'));
  * Profile
  */
 
-const { getProfile, putProfile } = require('./profile');
+const { getProfile, putProfile, putProfileScores } = require('./profile');
 const { profilePicPost, profilePicGet } = require('./profilePic');
 
 router.get(`/profile`, authenticate, getProfile);
@@ -30,6 +30,7 @@ router.get('/profile/pic/:image', profilePicGet);
 router.get(`/profile/:username`, getProfile);
 
 router.put(`/profile`, authenticate, putProfile);
+router.put("/profile/scores", authenticate, putProfileScores)
 
 
 router.post(`/profile/pic`, authenticate, profilePicPost);

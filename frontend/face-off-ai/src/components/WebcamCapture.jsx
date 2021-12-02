@@ -37,7 +37,7 @@ const WebcamCapture = ({running, setRunning, setLossTime}) => {
                             console.log(res.prediction);
                             console.log(res.confidence);
                             setLossTime(currentElapsed);
-                            if (res.prediction == 'happy' && res.confidence > 0.7) {
+                            if (res.prediction == 'happy' && parseFloat(res.confidence) > 0.7) {
                                 setRunning(false);
                                 return;
                                 

@@ -32,7 +32,7 @@ function a11yProps(index) {
     };
 }
 
-export default function ProfileBody() {
+export default function ProfileBody(username, highScore, lowScore) {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -55,18 +55,16 @@ export default function ProfileBody() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <GameList username="MustardMan900" title="Past Games"/>
+                <GameList username={username} title="Past Games"/>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <div>
-                    High Score: 230203
+                    High Score: {highScore}
                 </div>
                 <div>
-                    Low Score: 903
+                    Low Score: {lowScore}
                 </div>
-                <div>
-                    Average Score: 12030
-                </div>
+                
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <AccountList />

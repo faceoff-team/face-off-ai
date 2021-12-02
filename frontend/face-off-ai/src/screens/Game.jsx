@@ -31,7 +31,8 @@ const modalStyle = {
 
 //get url and title for parameter and API
 function Game(gameID) {
-    const { id, title } = useParams();
+    const { id, gameid } = useParams();
+    const title = "test"
 
     fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&key=${process.env.YOUTUBE}`)
         .then( response => {

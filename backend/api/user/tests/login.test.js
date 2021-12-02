@@ -19,7 +19,7 @@ function suite(app) {
   it(`should fail when user is not a string`, (done) => {
     post(done, app, `/api/user/login`, null, 400, {
       success: false,
-      msg: `Username must be of type string.`,
+      msg: `User must be of type string.`,
     }, null, {
       user: 1,
       password: "12345678",
@@ -29,7 +29,7 @@ function suite(app) {
   it(`should fail when user is an empty string.`, (done) => {
     post(done, app, `/api/user/login`, null, 400, {
       success: false,
-      msg: `Username must not be an empty string.`,
+      msg: `User must not be an empty string.`,
     }, null, {
       user: '',
       password: "1234",
@@ -55,6 +55,26 @@ function suite(app) {
     });
   });
 
+  it(`should fail when password is an empty string`, (done) => {
+    post(done, app, `/api/user/login`, null, 400, {
+      success: false,
+      msg: `Password must not be an empty string.`,
+    }, null, {
+      user: 'test_user_1233kjdkfaoiei',
+      password: 1234,
+    });
+  });
+
+  it(`should fail on an incorrect password`, (done) => {
+    post(done, app, `/api/user/login`, null, 401, {
+      success: true,
+      msg: `Username or password incorrect.`,
+    }, null, {
+      user: "test_user_1233kjdkfaoiei",
+      password: "87654321",
+    });
+  });
+
   it(`should log in a user`, (done) => {
     post(done, app, `/api/user/login`, null, 200, {
       success: true,
@@ -66,9 +86,9 @@ function suite(app) {
   });
 
   it(`should login with an emaiil.`, (done) => {
-    post(done, app, `/api/user/login`, null, 403, {
+    post(done, app, `/api/user/login`, null, 200, {
       success: false,
-      msg: `Username already in use.`,
+      msg: `User successfully logged in.`,
     }, null, {
       user: "testusersemail@thisisamadeupdomain.com",
       password: "12345678",

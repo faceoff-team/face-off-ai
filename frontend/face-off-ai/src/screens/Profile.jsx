@@ -42,9 +42,9 @@ function Profile() {
         }*/
     };
 
-    if (!store.getState().auth.isAuthenticated) {
+    /*if (!store.getState().auth.isAuthenticated) {
         return <Unregistered/>
-    }
+    }*/
 
     return (
         <div className="Profile" class="container">

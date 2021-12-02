@@ -4,7 +4,7 @@
  * 11/3/21
  */
 
-const { getGame, getAllGames } = require("../../db/game");
+const { getGame, getAllGames, getAllUserGames } = require("../../db/game");
 
 /**
  * This function retreives all games the user owns.

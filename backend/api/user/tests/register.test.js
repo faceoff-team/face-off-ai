@@ -4,7 +4,7 @@
  * 12/1/21
  */
 
-const { post } = require('../../test/utils.js');
+const { post } = require('../../../test/utils');
 
 function suite(app) {
   it('should fail when email is not a string', (done) => {

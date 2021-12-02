@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
 
     //For debugging. All errors end up here.
     if (process.env.NODE_ENV === undefined)
-        console.log(err);
+        console.error(err);
 
     global.last_err = err;
 

@@ -335,6 +335,86 @@ function Game() {
                             <ThumbDownOffAltIcon/>
                         }
                     </IconButton>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Ratings</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>96% like this video!</h4>
+                    </div>
+                    <IconButton aria-label="like-video" size="large" onClick={() => handleLikeVideo()}>
+                        {rateVideo === 1 &&
+                            <ThumbUpAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== 1) &&
+                            <ThumbUpOffAltIcon/>
+                        }
+                    </IconButton>
+                    <IconButton aria-label="dislike-video" size="large" onClick={() => handleDislikeVideo()}>
+                        {rateVideo === -1 &&
+                            <ThumbDownAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== -1) &&
+                            <ThumbDownOffAltIcon/>
+                        }
+                    </IconButton>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Ratings</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>96% like this video!</h4>
+                    </div>
+                    <IconButton aria-label="like-video" size="large" onClick={() => handleLikeVideo()}>
+                        {rateVideo === 1 &&
+                            <ThumbUpAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== 1) &&
+                            <ThumbUpOffAltIcon/>
+                        }
+                    </IconButton>
+                    <IconButton aria-label="dislike-video" size="large" onClick={() => handleDislikeVideo()}>
+                        {rateVideo === -1 &&
+                            <ThumbDownAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== -1) &&
+                            <ThumbDownOffAltIcon/>
+                        }
+                    </IconButton>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Ratings</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>96% like this video!</h4>
+                    </div>
+                    <IconButton aria-label="like-video" size="large" onClick={() => handleLikeVideo()}>
+                        {rateVideo === 1 &&
+                            <ThumbUpAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== 1) &&
+                            <ThumbUpOffAltIcon/>
+                        }
+                    </IconButton>
+                    <IconButton aria-label="dislike-video" size="large" onClick={() => handleDislikeVideo()}>
+                        {rateVideo === -1 &&
+                            <ThumbDownAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== -1) &&
+                            <ThumbDownOffAltIcon/>
+                        }
+                    </IconButton>
+                    <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
+                        <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Ratings</h2>
+                        <h4 class="font-weight-normal" style={{marginTop: "10px"}}>96% like this video!</h4>
+                    </div>
+                    <IconButton aria-label="like-video" size="large" onClick={() => handleLikeVideo()}>
+                        {rateVideo === 1 &&
+                            <ThumbUpAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== 1) &&
+                            <ThumbUpOffAltIcon/>
+                        }
+                    </IconButton>
+                    <IconButton aria-label="dislike-video" size="large" onClick={() => handleDislikeVideo()}>
+                        {rateVideo === -1 &&
+                            <ThumbDownAltIcon color="primary"/>
+                        }
+                        {(rateVideo !== -1) &&
+                            <ThumbDownOffAltIcon/>
+                        }
+                    </IconButton>
                 </Card>
             </div>
         </div>

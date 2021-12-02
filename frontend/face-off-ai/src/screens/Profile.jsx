@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {ProfileHeader, ProfileBody, HorizontalLine, AccountList} from "../components/";
+import Error404 from "../screens/Error404";
 import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
 import { useParams } from 'react-router-dom';
@@ -10,7 +11,6 @@ function Profile() {
     const { username } = useParams();
 
     const [games, setGames] = useState(0);
-    const [numGames, setNumGames] = useState(0);
     const [user, setUser] = useState(0);
 
     const getProfile = async(username) => {
@@ -26,6 +26,7 @@ function Profile() {
         try {
             const id = user.userID;
             const response = await axios.get(`https://ai.faceoff.cf/api/game/all/${id}`);
+            setGames(response.data.games);
         } catch (err) {
             console.log(err);
         }
@@ -41,6 +42,9 @@ function Profile() {
 
     useEffect(() => {
         getProfile(username);
+        if (user == null) {
+            return <Error404 message="Oops, no profile found" />
+        }
         getPastGames();
     }, []);
 
@@ -61,7 +65,11 @@ function Profile() {
                                        picture={user.imagePath} 
                                        bio={user.bio}/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
-                        <ProfileBody username={username} highScore={user.bestScore} lowScore={user.worstScore}/>
+                        <ProfileBody 
+                                username={username} 
+                                highScore={user.bestScore}
+                                lowScore={user.worstScore}
+                                pastGames={games}/>
                     </div>
                 </Grid>
                 <Box

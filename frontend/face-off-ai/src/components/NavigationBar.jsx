@@ -7,9 +7,16 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Tooltip from '@mui/material/Tooltip';
 import Fade from '@mui/material/Fade';
 import DropDown from "./DropDown";
+import store from '../store'
 
 
 function NavigationBar(props) {
+
+    var username = "";
+
+    if (store.getState().auth.isAuthenticated) {
+        username = store.getState().auth.user.username;
+    }
 
     return (
             <div className="navBar">
@@ -51,7 +58,7 @@ function NavigationBar(props) {
                                         </Tooltip>
                                     </Link>
                                 </li>
-                                <DropDown username=""/>
+                                <DropDown username={username}/>
                                 <li
                                     class={`nav-item ${props.location.pathname === "/settings" ? "active" : ""
                                         }`}

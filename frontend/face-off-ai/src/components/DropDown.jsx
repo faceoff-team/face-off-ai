@@ -123,7 +123,7 @@ function DropDown(props) {
                             },
                         }}
                 >
-                    <Link to="/profile" 
+                    <Link to={`/profile/${username}`}
                         style={{ 
                             textDecoration: "none",
                             color: "white"}}>

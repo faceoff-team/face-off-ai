@@ -109,6 +109,10 @@ function Game(gameID) {
                 game: gameID,
                 score: time * 10
             })
+            const userUpdate = await http.put('api/user/profile/scores', {
+                id: store.getState().auth.user.userid,
+                score: time * 10
+            })
         }
         
 

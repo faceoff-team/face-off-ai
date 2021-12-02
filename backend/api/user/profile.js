@@ -7,7 +7,7 @@
 
 const BadRequestError = require("../../error/BadRequestError");
 
-const { updateProfile, getUserByUsername } = require("../../db/user");
+const { updateProfile, getUserByUsername, updateProfileScores } = require("../../db/user");
 
 const handleGetProfile = async (req, res) => {
     let user = {};
@@ -66,6 +66,17 @@ const handlePutProfile = async (req, res) => {
     });
 };
 
+const handleUpdateUserRank = async (req, res) => {
+    let id = req.body.id;
+    let score = req.body.score;
+
+    let profile = await updateProfileScores(id, score);
+    res.status(200).json({
+        success: true,
+        msg: "Scores updated."
+    });
+}
+
 module.exports = {
     getProfile: async (req, res, next) => {
         try {
@@ -78,6 +89,14 @@ module.exports = {
         try {
             await handlePutProfile(req, res);
         } catch (err) {
+            next(err);
+        }
+    },
+    putProfileScores: async (req, res, next) => {
+        try {
+            await handleUpdateUserRank(req, res);
+        }
+        catch (err) {
             next(err);
         }
     }

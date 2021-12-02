@@ -9,6 +9,11 @@ import TextField from '@mui/material/TextField';
 import { Link, withRouter } from 'react-router-dom';
 import { http, store } from '../store';
 import { v4 as uuidv4 } from 'uuid';
+import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import MoodBadIcon from '@mui/icons-material/MoodBad';
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
+import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+
 
 const modalStyle = {
     position: 'absolute',
@@ -29,6 +34,7 @@ function Home() {
     const [openNewGame, setNewGame] = useState(false);
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
+    const [emotionKey, setEmotionKey] = useState("1");
 
 
     const updateID = (ID) => setVideoID(ID);
@@ -50,6 +56,13 @@ function Home() {
 
     const waitID = async (id) => {
         setVideoID(id);
+    }
+
+    const handleEmotionToggle = (event, newMode) => {
+        if (newMode != null) {
+            setEmotionKey(newMode);
+        }
+        console.log(newMode);
     }
 
     const handleOpenNewGame = async (id) => {
@@ -85,7 +98,7 @@ function Home() {
                   try {
                     const addVideo = await http.post("/api/video/", {
                         videoYoutubeID: match[7],
-                        emotion: 1
+                        emotion: emotionKey
                     });
                     await waitTitle(addVideo.data.title);
                   }
@@ -173,6 +186,26 @@ function Home() {
                     onChange={handleChange}
                     error={(value.length > 0 && value.match(ytRegex) == null)}
                 />
+                <ToggleButtonGroup
+                    color="secondary"
+                    value={emotionKey}
+                    exclusive
+                    onChange={handleEmotionToggle}
+                    aria-label="emotion mode"
+                >
+                    <ToggleButton value={0} aria-label="fear">
+                        <MoodBadIcon />
+                         Fear
+                    </ToggleButton>
+                    <ToggleButton value={1} aria-label="happy">
+                        <SentimentVerySatisfiedIcon />
+                         Happy
+                    </ToggleButton>
+                    <ToggleButton value={2} aria-label="sad">
+                        <SentimentDissatisfiedIcon />
+                         Sad
+                    </ToggleButton>
+                </ToggleButtonGroup>
                 <Button
                     size="large"
                     variant="contained"

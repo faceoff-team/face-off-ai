@@ -18,6 +18,7 @@ function Profile() {
     const [user, setUser] = useState(0);
 
 
+
     const getProfile = async(username) => {
         try {
             const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
@@ -72,7 +73,7 @@ function Profile() {
                                        picture={Picture3} 
                                        bio={user.bio}/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
-                        <ProfileBody username={username} highScore={10/*bestScore*/} lowScore={3/*worstScore*/}/>
+                        <ProfileBody username={username} highScore={user.bestScore} lowScore={user.worstScore}/>
                     </div>
                 </Grid>
                 <Box

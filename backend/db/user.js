@@ -10,8 +10,6 @@ const DatabaseError = require('../error/DatabaseError');
 //connection is defined globally.
 
 const getUserByKey = async (key) => {
-    console.log(`
-    SELECT * FROM user WHERE userID = "${key}"`);
     try {
         let user = await new Promise((resolve, reject) => {
                 global.connection.query(`
@@ -39,9 +37,6 @@ const getUserByKey = async (key) => {
 };
 
 const createUser = async (username, email, hash, salt) => {
-    console.log(`
-    INSERT INTO user (username, email, hash, salt, worldRank, bestScore) 
-    VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1});`);
     try {
         let newUser = await new Promise((resolve, reject) => {
                 global.connection.query(`
@@ -65,8 +60,6 @@ const createUser = async (username, email, hash, salt) => {
 };
 
 const getUserbyUsername = async (username) => {
-    console.log(`
-    SELECT * FROM user WHERE username = "${username}"`);
     try {
         let user = await new Promise((resolve, reject) => {
                 global.connection.query(`
@@ -89,10 +82,6 @@ const getUserbyUsername = async (username) => {
 };
 
 const getFriendsByUsername = async (user, username) => {
-    console.log(`
-    SELECT * FROM user 
-    RIGHT JOIN friend ON friend.user2 = user.userID
-    WHERE username == "${username}"`);
     try {
         let user = await new Promise((resolve, reject) => {
             global.connection.query(`
@@ -117,8 +106,6 @@ const getFriendsByUsername = async (user, username) => {
 };
 
 const getUserByEmail = async (email) => {
-    console.log(`
-    SELECT * FROM user WHERE email = "${email}"`);
     try {
         let user = await new Promise((resolve, reject) => {
                 global.connection.query(`
@@ -167,9 +154,6 @@ const updateProfile = async (userid, username, bio) => {
 
 const getLeaderboard = async() => {
   try {
-      console.log(`SELECT userID, worldRank, bestScore, username, imagePath 
-      FROM user 
-      ORDER BY worldRank`);
       let leaderboard = await new Promise((resolve, reject) => {
           global.connection.query(`
               SELECT userID, worldRank, bestScore, username, imagePath 

@@ -104,6 +104,7 @@ function App() {
                     <Route path="/forgot/" exect component = {() => <Forgot />} />
                     <Route path="/settings" exact component={() => <Settings />} />
                     <Route path="/profile" exact component={() => <Profile />} />
+                    <Route path="/profile/:username" exact component={() => <Profile />} />
 
                     <Route component={() => <Error404 />} />
                 </Switch>

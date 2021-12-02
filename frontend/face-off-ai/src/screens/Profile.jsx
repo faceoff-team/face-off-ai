@@ -1,16 +1,13 @@
 import React, { useEffect, useState, Linking } from "react";
-import axios from "axios";
-
 import ProfileHeader from "../components/ProfileHeader.jsx";
 import ProfileBody from "../components/ProfileBody.jsx"
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import AccountList from "../components/AccountList.jsx";
 import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
-
+import { useParams } from 'react-router-dom';
 import store from "../store";
 import Unregistered from "./Unregistered"
-
 
 // This picture is a placeholder for our presentation
 import Picture3 from "../assets/profile-picture-2.jpg";
@@ -18,6 +15,7 @@ import { Button } from "@mui/material";
 
 
 function Profile() {
+    const { username } = useParams();
 
     const [games, setGames] = useState(0);
     const [numGames, setNumGames] = useState(0);
@@ -40,6 +38,7 @@ function Profile() {
     if (!store.getState().auth.isAuthenticated) {
         return <Unregistered/>
     }
+
     return (
         <div className="Profile" class="container">
             <Grid container 
@@ -49,7 +48,7 @@ function Profile() {
             >
                 <Grid item xs={4} sm={6} md={8}>
                     <div class="basic-container col">
-                        <ProfileHeader username="MustardMan900" picture={Picture3} bio="Howdy yall I'm mr. musterd man"/>
+                        <ProfileHeader username={username} picture={Picture3} bio="Howdy yall I'm mr. musterd man"/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
                         <ProfileBody username="MustardMan900" />
                     </div>

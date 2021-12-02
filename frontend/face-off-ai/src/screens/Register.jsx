@@ -2,6 +2,7 @@ import { React, Component } from 'react'
 import { Link, withRouter } from "react-router-dom";
 import { connect } from 'react-redux'; 
 import { register } from '../actions/authActions';
+import store from '../store';
 
 class Register extends Component {
   constructor() {
@@ -43,7 +44,8 @@ class Register extends Component {
     await this.props.register(username, password, email);
 
     if (this.props.isAuthenticated) {
-        this.props.history.push('/profile');
+        const username = store.getState().auth.user.username;
+        this.props.history.push(`/profile/${username}`);
     }
 
   }

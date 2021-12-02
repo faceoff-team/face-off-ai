@@ -14,9 +14,9 @@ function getProfileToken(app) {
   });
 
   it(`should fail if no token is provided`, (done) => {
-    get(done, app, `/api/user/profile`, null, 400, {
+    get(done, app, `/api/user/profile`, null, 401, {
       success: false,
-      msg: `No usename provided.`,
+      msg: `No token provided for protected API.`,
     }, null);
   });
 

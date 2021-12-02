@@ -4,7 +4,7 @@
  */
 
 const { verifyPassword, issueJWT } = require("../../db/auth");
-const { getUserbyUsername, getUserByEmail } = require("../../db/user");
+const { getUserByUsername, getUserByEmail } = require("../../db/user");
 const AuthorizationError = require("../../error/AuthorizationError");
 const BadRequestError = require("../../error/BadRequestError");
 
@@ -16,7 +16,7 @@ const BadRequestError = require("../../error/BadRequestError");
  */
 
 const getUser = async (user) => {
-    let promises = [getUserbyUsername(user), getUserByEmail(user)];
+    let promises = [getUserByUsername(user), getUserByEmail(user)];
     let users = await Promise.all(promises);
 
     if (users[0].length == 0 && users[1].length == 0)

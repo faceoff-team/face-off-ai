@@ -4,7 +4,7 @@
  * 11/15/21
  */
 
-const { getUserByEmail, getUserbyUsername } = require('../../db/user');
+const { getUserByEmail, getUserByUsername } = require('../../db/user');
 const { sendMail } = require('../../email');
 const BadRequestError = require('../../error/BadRequestError');
 const crypto = require('crypto');
@@ -19,7 +19,7 @@ const handleChangePasswordRequest = async (req, res) => {
   if (req.body.user.includes('@')) {
     user = await getUserByEmail(req.body.user);
   } else {
-    user = await getUserbyUsername(req.body.user);
+    user = await getUserByUsername(req.body.user);
   }
 
   //TODO change the return value of getUserByEmail from array to object.

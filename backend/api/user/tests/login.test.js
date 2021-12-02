@@ -79,7 +79,7 @@ function suite(app) {
     post(done, app, `/api/user/login`, null, 200, {
       success: true,
       msg: `User successfully logged in.`,
-    }, token, {
+    }, 'token', {
       user: "test_user_1233kjdkfaoiei",
       password: "12345678",
     });
@@ -89,7 +89,7 @@ function suite(app) {
     post(done, app, `/api/user/login`, null, 200, {
       success: true,
       msg: `User successfully logged in.`,
-    }, token, {
+    }, 'token', {
       user: "testusersemail@thisisamadeupdomain.com",
       password: "12345678",
     });

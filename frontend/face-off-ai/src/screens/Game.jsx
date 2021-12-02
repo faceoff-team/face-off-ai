@@ -32,14 +32,15 @@ const modalStyle = {
 //get url and title for parameter and API
 function Game(gameID) {
     const { id, gameid } = useParams();
-    const title = "test"
 
-    fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&key=${process.env.YOUTUBE}`)
-        .then( response => {
-            // Do something with response.
-            console.log(response);
+    
 
-    });
+    const gameRes = async () => {
+        return await http.get(`https://ai.faceoff.cf/api/video/byID/${id}`)
+    };
+    const currentVideo = gameRes();
+    console.log("test" + currentVideo);
+    const title = "Test"//currentVideo.video[0].videoTitle;
 
     const avgTimeDict = {"r9SsqcT6heE" : "50 seconds", "YqaacQc6sho" : "1 minute 3 seconds"};
     const bestTimeDict = {"r9SsqcT6heE" : "2 minutes 10 seconds", "YqaacQc6sho" : "5 minutes 4 seconds"};
@@ -70,14 +71,6 @@ function Game(gameID) {
     const redirect = () => {
       history.push('/home')
     }
-
-    const neutralizeBack = (callback) => {
-        window.history.pushState(null, "", window.location.href);
-        window.onpopstate = () => {
-          window.history.pushState(null, "", window.location.href);
-          callback();
-        };
-    };
     
     const handleRunning = useCallback(() => {
         if (running) {

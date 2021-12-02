@@ -72,7 +72,7 @@ function Profile() {
                                        picture={Picture3} 
                                        bio={user.bio}/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
-                        <ProfileBody username={username} highScore={bestScore} lowScore={worstScore}/>
+                        <ProfileBody username={username} highScore={user.bestScore} lowScore={user.worstScore}/>
                     </div>
                 </Grid>
                 <Box

@@ -61,7 +61,7 @@ function suite(app) {
       msg: `Password must not be an empty string.`,
     }, null, {
       user: 'test_user_1233kjdkfaoiei',
-      password: 1234,
+      password: '',
     });
   });
 

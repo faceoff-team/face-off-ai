@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import Webcam from "react-webcam";
 import Button from '@mui/material/Button';
@@ -16,6 +16,7 @@ import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import { http } from '../store';
 import store from '../store'
+import axios from "axios";
 
 const modalStyle = {
     position: 'absolute',
@@ -32,14 +33,13 @@ const modalStyle = {
 //get url and title for parameter and API
 function Game(gameID) {
     const { id, gameid } = useParams();
+    const [videoTitle, setVideoTitle] = useState(0);
 
+    axios.get(`https://ai.faceoff.cf/api/video/byID/${id}`).then((response) => {
+        console.log(response)
+        setVideoTitle(response.data.video[0].videoTitle);
+    });
     
-
-    const gameRes = async () => {
-        return await http.get(`https://ai.faceoff.cf/api/video/byID/${id}`)
-    };
-    const currentVideo = gameRes();
-    console.log("test" + currentVideo);
     const title = "Test"//currentVideo.video[0].videoTitle;
 
     const avgTimeDict = {"r9SsqcT6heE" : "50 seconds", "YqaacQc6sho" : "1 minute 3 seconds"};
@@ -214,7 +214,7 @@ function Game(gameID) {
                     Back
                 </Button>
             </div>
-            <h1 class="font-weight-heavy" style={{marginTop: "10px"}}>{title}</h1>
+            <h1 class="font-weight-heavy" style={{marginTop: "10px"}}>{videoTitle}</h1>
             <div className="game" class="gameRow">
                 <div className="game" class="gameColumn">   
                     <ReactPlayer class="react-player"

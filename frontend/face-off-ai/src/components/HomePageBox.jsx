@@ -17,10 +17,11 @@ import {
 function HomePageBox({videoID, videoTitle, videoKey}) {
     const thumbnailURL = `http://img.youtube.com/vi/${videoID}/hqdefault.jpg`
 
-    const handleClick = React.useCallback((videoKey) => {
+    const handleClick = React.useCallback((videoKey, gameKey) => {
         try {
             http.post('api/game/', {
-                videoID: videoKey
+                videoID: videoKey,
+                gameUUID: gameKey
             })
          }
          catch (err) {
@@ -28,8 +29,10 @@ function HomePageBox({videoID, videoTitle, videoKey}) {
          }
     });
 
+    const newGameKey = uuidv4();
+
     return (
-        <Link to={`game/${videoID}/${uuidv4()}`} style={{textDecoration: 'none'}}>
+        <Link to={`game/${videoID}/${newGameKey}`} style={{textDecoration: 'none'}}>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <Card sx={{ maxWidth: 345, 
                             borderRadius: '10px',
@@ -41,7 +44,7 @@ function HomePageBox({videoID, videoTitle, videoKey}) {
                         color: '#4cc0ad'
                     }}}
                     >
-                    <CardActionArea onClick={() => handleClick(videoKey)}>
+                    <CardActionArea onClick={() => handleClick(videoKey, newGameKey)}>
                         <CardContent>
                             <p class="text-medium">{videoTitle}</p>
                         </CardContent>

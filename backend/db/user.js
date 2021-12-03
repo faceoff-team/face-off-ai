@@ -299,6 +299,8 @@ const changePassword = async (userID, hash, salt) => {
      SET salt = "${salt}"
      WHERE userID = ${userID}`;
 
+    console.log(query);
+
   await queryPromise(query);
 };
 

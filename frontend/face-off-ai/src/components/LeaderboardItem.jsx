@@ -7,31 +7,6 @@ import Box from "@mui/material/Box";
 
 function LeaderboardItem({ username, picture, highscore, position}) {
 
-    const [img, setImg] = useState(0);
-
-    useEffect(() => {
-        getImage();
-    }, []);
-
-    const getImage = async() => {
-        try {
-            var imageURL = "/usr/src/app/profilePics/" + picture;
-            setImg(imageURL);
-
-            /*var baseURL = "https://ai.faceoff.cf/api/user/profile/pic/" + picture;
-
-            const response = await axios.get(baseURL);/*, {
-                responseType: 'arraybuffer'
-              })
-              .then(response => new Buffer(response.data, 'binary').toString('base64'));
-
-            setImg(response);*/
-            
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
     return (
         <div class="small-profile">
             <div class="row">
@@ -64,7 +39,7 @@ function LeaderboardItem({ username, picture, highscore, position}) {
                     </Box>
                     <Grid>
                         <Avatar
-                            src={img}
+                            src={picture}
                             imageProps = {{ width: 100}}
                             sx={{ bgcolor: "#23430", marginRight: "20px" }}>
                             

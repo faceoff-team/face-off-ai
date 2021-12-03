@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import HorizontalLine from "../components/HorizontalLine.jsx";
 
 const modalStyle = {
     position: 'absolute',
@@ -37,14 +38,9 @@ function ProfileHeader({ username, picture, bio }) {
                 <h1 class="font-weight-heavy">{username}</h1>
                 <span class="font-small">{bio}</span>
                 </Grid>
-                <Grid alignItems="right">
-                    <div class="edit-profile-box">
-                        <div class="top-left-box">
-                            <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
-                        </div>
-                    </div>
-                </Grid>
             </Grid>
+            <HorizontalLine color="#f7f7f7" width="100%"/>
+            <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
             <Modal
                 open={open}
                 onClose={handleClose}

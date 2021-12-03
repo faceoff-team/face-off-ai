@@ -30,7 +30,7 @@ function ResultIcon(props) {
     }
 }
 
-function SmallGame({ date, gamehighscore, result }) {
+function SmallGame({ date, gamehighscore, score, result }) {
     if (date.length >= 10) {
         date = date.substring(0, 10);
     }
@@ -54,6 +54,19 @@ function SmallGame({ date, gamehighscore, result }) {
                         </Box>
                         <Grid>
                             <div> High Score: {gamehighscore}</div>
+                        </Grid>
+                        <Box 
+                            sx={{
+                                display: 'flex',
+                                borderRight: '0.05em solid #303134',
+                                marginRight: '10px',
+                                marginLeft: '10px'
+                            }}
+                        >
+                            <Divider orientation="vertical" flexItem />
+                        </Box>
+                        <Grid>
+                            <div> Score: {score}</div>
                         </Grid>
                         <Box
                             sx={{

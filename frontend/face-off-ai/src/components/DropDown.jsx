@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {MenuList, MenuItem} from '@mui/material';
 import {Link, withRouter} from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
@@ -8,6 +8,8 @@ import Logout from '@mui/icons-material/Logout';
 import {Grow, Paper, Popper, Tooltip, Fade} from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logout } from '../actions/authActions';
+import axios from 'axios';
+import store from "../store";
 
 import { ClickAwayListener } from '@mui/material';
 
@@ -15,6 +17,7 @@ import { ClickAwayListener } from '@mui/material';
 function DropDown(props) {
 
     const [open, setOpen] = React.useState(false);
+    const [profilePic, setProfilePic] = useState(0);
     const anchorRef = React.useRef(null);
 
     const username = props.username;
@@ -47,6 +50,22 @@ function DropDown(props) {
             setOpen(false);
         }
     }
+
+    useEffect(() => {
+        getProfile(username);
+    });
+
+    const getProfile = async(username) => {
+        try {
+            if (store.getState().auth.isAuthenticated) {
+                const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
+                setProfilePic(response.data.user[0].imagePath);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
 
     // return focus to the button when we transitioned from !open -> open
     const prevOpen = React.useRef(open);
@@ -85,7 +104,7 @@ function DropDown(props) {
             {...TransitionProps}
             style={{
                 transformOrigin:
-                placement === 'top-start',
+                placement === 'bottom-start' ? 'left top' : 'left bottom',
             }}
             >
             <Paper sx={{ borderRadius: "11px"}}>
@@ -109,18 +128,6 @@ function DropDown(props) {
                             ml: -0.5,
                             mr: 1,
                             },
-                            '&:before': {
-                            content: '""',
-                            display: 'block',
-                            position: 'absolute',
-                            top: 0,
-                            right: 14,
-                            width: 10,
-                            height: 10,
-                            bgcolor: "#414246",
-                            transform: 'translateY(-50%) rotate(45deg)',
-                            zIndex: 0,
-                            },
                         }}
                 >
                     <Link to={`/profile/${username}`}
@@ -128,7 +135,7 @@ function DropDown(props) {
                             textDecoration: "none",
                             color: "white"}}>
                         <MenuItem>
-                            <Avatar /> Profile
+                            <Avatar src={profilePic}/> Profile
                         </MenuItem>
                     </Link>
                     <Link to="/register"

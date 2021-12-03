@@ -20,7 +20,8 @@ function getGamesList(games) {
         gamesListItems.push(<div className="row" >
             <SmallGame date={games[i].gameDate ? games[i].gameDate : "-"}
                        gamehighscore={games[i].winnerScore}
-                       result="true"
+                       score={games[i].finalScore}
+                       result={games[i].finalScore === games[i].winnerScore ? "true" : "false"}
                                 />
                                 </div>)
         

@@ -34,7 +34,7 @@ function Home() {
     const [openNewGame, setNewGame] = useState(false);
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
-    const [emotionKey, setEmotionKey] = useState(1);
+    const [emotionKey, setEmotionKey] = useState(-1);
     const [currentUUID, setCurrentUUID] = useState("");
 
 
@@ -87,7 +87,7 @@ function Home() {
     
 
     const handleSubmit = async (e) => {
-        if (value.match(ytRegex) != null) {
+        if (value.match(ytRegex) != null && emotionKey >= 0) {
           let key = -1;
           console.log(value)
           handleCloseWrongURL();
@@ -182,19 +182,19 @@ function Home() {
 
             <HorizontalLine color="#f7f7f7" width="100%"/>
             <br/>
-            <div class="searchContainer">
+            <div class="searchContainer basic-container" style={{backgroundColor: "grey"}}>
                 <TextField
                     id="outlined-basic"
                     label="Paste link here"
                     variant="outlined"
-                    color="secondary"
+                    color="primary"
                     style={{ width: "75%"}}
                     value={value}
                     onChange={handleChange}
                     error={(value.length > 0 && value.match(ytRegex) == null)}
                 />
                 <ToggleButtonGroup
-                    color="secondary"
+                    color="primary"
                     value={emotionKey}
                     exclusive
                     onChange={handleEmotionToggle}
@@ -216,7 +216,7 @@ function Home() {
                 <Button
                     size="large"
                     variant="contained"
-                    color="secondary"
+                    color="primary"
                     style={{ height: "50px", marginLeft: "30px"}}
                     onClick={() => { handleSubmit(); }}
                 >

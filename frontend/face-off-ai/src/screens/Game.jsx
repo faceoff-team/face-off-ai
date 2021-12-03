@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import ReactPlayer from "react-player";
-import Webcam from "react-webcam";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 import Card from '@mui/material/Card';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -47,8 +47,6 @@ function Game() {
         console.log(response)
         setVideoTitle(response.data.video[0].videoTitle);
     });
-    
-    const title = "Test"//currentVideo.video[0].videoTitle;
 
     const avgTimeDict = {"r9SsqcT6heE" : "50 seconds", "YqaacQc6sho" : "1 minute 3 seconds"};
     const bestTimeDict = {"r9SsqcT6heE" : "2 minutes 10 seconds", "YqaacQc6sho" : "5 minutes 4 seconds"};
@@ -67,11 +65,12 @@ function Game() {
     const [running, setRunning] = React.useState(false);
     const [time, setLossTime] = React.useState(0);
     const [openLoss, setOpenLoss] = React.useState(false);
-    
+    const [guestName, setGuestName] = React.useState(store.getState().auth.isAuthenticated ? store.getState().auth.user.userid : "");
+    const [openGuestName, setGuestNameMode] = React.useState(false);
 
     let history = useHistory();
 
-    if( id == null || title == null) {
+    if( id == null || gameid == null) {
         history.push('/error');
     }
 
@@ -149,6 +148,13 @@ function Game() {
     const handleOpenMulti = () => setOpenMulti(true);
     const handleCloseMulti = () => setOpenMulti(false);
 
+    const handleOpenGuest = () => setGuestNameMode(true);
+    const handleCloseGuest = () => setGuestNameMode(false);
+
+    const handleNameChange = (event) => {
+        setGuestName(event.target.value);
+    }
+
     const handleLikeVideo = () => {
         if (rateVideo === 1) {
             setRateVideo(0);
@@ -177,10 +183,10 @@ function Game() {
                     Are you sure you want to Quit?
                 </Typography>
                 <Button size="medium" color="secondary" onClick={redirect}>
-                    yes
+                    Yes
                 </Button>
                 <Button size="medium" color="secondary" onClick={handleClose}>
-                    no
+                    No
                 </Button>
                 </Box>
             </Modal>
@@ -216,6 +222,41 @@ function Game() {
                     
                     <Button size="medium" color="secondary" onClick={handleCloseMulti}>
                         Single Device
+                    </Button>
+                    <Button size="medium" color="secondary" onClick={() => {
+                        handleCloseMulti();
+                        handleOpenGuest();
+                    }}>
+                        Multi Device
+                    </Button>
+                </Box>
+            </Modal>
+            <Modal
+                open={openGuestName}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Please enter a name
+                    </Typography>
+                    <br/>
+                    <TextField
+                        id="outlined-basic"
+                        label="Put your name here"
+                        variant="outlined"
+                        color="secondary"
+                        style={{ width: "75%"}}
+                        value={guestName}
+                        onChange={(event) => handleNameChange(event)}
+                        error={guestName.length < 1}
+                    />
+                    <Button size="medium" color="secondary" onClick={() => {
+                        if (guestName.length >= 1) {
+                            handleCloseGuest();
+                        }
+                    }}>
+                        Lets Go!
                     </Button>
                 </Box>
             </Modal>

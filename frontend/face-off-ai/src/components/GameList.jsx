@@ -39,24 +39,6 @@ function GameList({ title, username, games }) {
             <HorizontalLine color="#f7f7f7" width="100%" />
             <div className="column">
                 {getGamesList(games)}
-                <div className="row">
-                    <SmallGame date="09/14/2021" gamehighscore="23000" result="true" />
-                </div>
-                <div className="row">
-                    <SmallGame date="09/12/2021" gamehighscore="19400" result="false" />
-                </div>
-                <div className="row">
-                    <SmallGame date="08/10/2021" gamehighscore="19493" result="false" />
-                </div>
-                <div className="row">
-                    <SmallGame date="02/23/2021" gamehighscore="12000" result="true"/>
-                </div>
-                <div class="row">
-                    <SmallGame date="10/23/2020" gamehighscore="14200" result="false"/>
-                </div>
-                <div className="row">
-                    <SmallGame date="10/19/2020" gamehighscore="12300" result="true"/>
-                </div>
             </div>
         </div>
     );

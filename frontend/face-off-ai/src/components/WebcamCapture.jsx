@@ -40,6 +40,7 @@ const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
                         image: imageSrc
                     })
                     .then((res) => {
+                        console.log("reached then clause")
                         if (res.success == 'true') {
                             console.log(res.prediction);
                             console.log(res.confidence);

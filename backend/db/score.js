@@ -115,5 +115,7 @@ const addScoreToGame = async (userid, gameid, score) => {
 module.exports = {
   getUserScores,
   addScoreToGame,
-  getScoresForGame
+  getScoresForGame,
+  addScoreToGuestGame,
+  getGuestScoresForGame
 };

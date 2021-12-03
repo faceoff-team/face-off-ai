@@ -79,6 +79,10 @@ function Game() {
     const redirect = () => {
       history.push('/home')
     }
+
+    const waitTime = (time) => {
+        setLossTime(time);
+    }
     
     const handleRunning = () => {
         console.log(`handling running: current state: ${running}`);
@@ -309,7 +313,7 @@ function Game() {
                     <WebcamCapture
                         running={running}
                         setRunning={setRunning}
-                        setLossTime={setLossTime}
+                        setLossTime={waitTime}
                         emotion={emotion}
                     />
                 </div>

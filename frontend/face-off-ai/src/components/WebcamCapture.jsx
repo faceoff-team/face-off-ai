@@ -34,6 +34,7 @@ const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
                     imageSrc = imageSrc.substring(imageSrc.indexOf(",") + 1);
                     //TODO: process image, send information back to game
                     let currentElapsed = elapsed;
+                    console.log(`current elapsed time: ${currentElapsed}`);
                     elapsed++;
                     axios.post('https://ai.faceoff.cf/predict', {
                         image: imageSrc

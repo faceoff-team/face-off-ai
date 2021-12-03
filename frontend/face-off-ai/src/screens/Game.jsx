@@ -50,7 +50,10 @@ function Game() {
         await emoGetter();
     }, [])
     const [videoTitle, setVideoTitle] = useState(0);
-    const [gameResults, setGameResults] = React.useState([]);
+    const [gameResults, setGameResults] = React.useState([{
+        "username": "No Scores Found!",
+        "finalScore": ""
+    }]);
 
     axios.get(`https://ai.faceoff.cf/api/video/byID/${id}`).then((response) => {
         console.log(response)
@@ -58,7 +61,7 @@ function Game() {
     });
     axios.get(`https://ai.faceoff.cf/api/score/${gameid}`).then((response) => {
         console.log(response)
-        setGameResults(response.scores)
+        setGameResults(response.data.scores)
     });
     const scoreList = [];
     for (var i = 0; i < gameResults.length; i++) {

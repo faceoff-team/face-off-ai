@@ -17,22 +17,24 @@ function getLeaders(numUsers, leaderboardUsers) {
     }
 
     for (var i = 0; i < numUsers; i++) {
-        if (leaderboardUsers[i].bestScore < 0) {
-            leaderboarditems.push(<Grid item xs={8} >
-                <LeaderboardItem position={i + 1} 
-                                 highscore={"0"}
-                                 username={leaderboardUsers[i].username}
-                                 picture={leaderboardUsers[i].imagePath}
-                                 />
-                                 </Grid>)
-        } else {
-            leaderboarditems.push(<Grid item xs={8} >
-                <LeaderboardItem position={i + 1} 
-                                highscore={leaderboardUsers[i].bestScore}
-                                username={leaderboardUsers[i].username}
-                                picture={leaderboardUsers[i].imagePath}
-                                />
-                                </Grid>)
+        if (leaderboardUsers[i].worldRank > 0) {
+            if (leaderboardUsers[i].bestScore < 0) {
+                leaderboarditems.push(<Grid item xs={8} >
+                    <LeaderboardItem position={i + 1} 
+                                    highscore={"0"}
+                                    username={leaderboardUsers[i].username}
+                                    picture={leaderboardUsers[i].imagePath}
+                                    />
+                                    </Grid>)
+            } else {
+                leaderboarditems.push(<Grid item xs={8} >
+                    <LeaderboardItem position={i + 1} 
+                                    highscore={leaderboardUsers[i].bestScore}
+                                    username={leaderboardUsers[i].username}
+                                    picture={leaderboardUsers[i].imagePath}
+                                    />
+                                    </Grid>)
+            }
         }
         
         

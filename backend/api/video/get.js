@@ -4,7 +4,7 @@
  * 11/4/21
  */
 
-const { getAllVideos, getAllHappyVideos, getAllSadVideos, getVideo, getVideoByID } = require("../../db/video");
+const { getAllVideos, getAllHappyVideos, getAllSadVideos, getAllScaryVideos, getVideo, getVideoByID } = require("../../db/video");
 
 /**
  * This function handles a get video request based on the id passed in params.
@@ -110,6 +110,13 @@ module.exports = {
   async getSad(req, res, next) {
     try {
       await handleGetSadVideosRequest(req, res);
+    } catch (err) {
+      next (err);  
+    }
+  },
+  async getScary(req, res, next) {
+    try {
+      await handleGetScaryVideosRequest(req, res);
     } catch (err) {
       next (err);  
     }

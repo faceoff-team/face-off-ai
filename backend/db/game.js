@@ -39,7 +39,7 @@ const createGame = async (video, gameUUID) => {
 const getGame = async (id) => {
   let query = `
     SELECT * FROM game
-    WHERE gameUUID = ${id}`;
+    WHERE gameUUID = "${id}"`;
 
   let game = await queryPromise(query);
 

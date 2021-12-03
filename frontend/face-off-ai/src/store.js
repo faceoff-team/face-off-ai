@@ -7,7 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 export const http = require('axios');
 
 http.defaults.headers.post['Content-Type'] = 'application/json';
- 
+
 http.defaults.baseURL = "https://ai.faceoff.cf";
 
 const initialState = {};

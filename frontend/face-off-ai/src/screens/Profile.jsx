@@ -12,15 +12,10 @@ function Profile() {
 
     const [games, setGames] = useState(0);
     const [user, setUser] = useState(0);
-    const [validUser, setValidUser] = useState(true);
 
-    useEffect( async() => {
-        await getProfile(username);
-    }, []);
-
-    useEffect( async() => {
-       
-    }, []);
+    useEffect(() => {
+        getProfile(username);
+    });
     
 
     const getProfile = async(username) => {
@@ -32,6 +27,7 @@ function Profile() {
             const response2 = await axios.get(`https://ai.faceoff.cf/api/game/all/${username}`);
             const newGames = response2.data.games;
             setGames(newGames);
+            console.log(setGames);
         } catch (err) {
             console.error(err);
         }

@@ -5,11 +5,10 @@ import SmallGame from "../components/SmallGame.jsx";
 const MAX_PAST_GAMES = 10;
 
 function getGamesList(games) {
-    console.log("gang")
-    console.log(games);
     const gamesListItems = [];
-    var numGames = 0;
-    if (games.length > MAX_PAST_GAMES) {
+    console.log(games);
+    var numGames = games.length;
+    if (numGames > MAX_PAST_GAMES) {
         numGames = MAX_PAST_GAMES;
     } else if (numGames == 0) {
         gamesListItems.push(<div item xs={8} >

@@ -38,12 +38,12 @@ const modalStyle = {
 //get url and title for parameter and API
 //TODO: figure out how to parse emotions
 function Game() {
-    let emotion = 1;
+    const [emotion, setEmotion] = React.useState(1);
     const { id, gameid } = useParams();
     const emoGetter = async () => {
         const emo = await http.get(`/api/video/byID/${id}`);
         console.log(JSON.stringify(emo.data))
-        emotion = emo.data.video[0].emotionID;
+        setEmotion(emo.data.video[0].emotionID);
         
     }
     const hook = React.useEffect(async () => {

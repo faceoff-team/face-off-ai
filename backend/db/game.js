@@ -13,7 +13,7 @@ const { queryPromise } = require('.');
  */
 
 const createGame = async (video, gameUUID) => {
-  let date = Date.now();
+  let date = new Date();
   let query = `
     INSERT INTO game (videoID, gameUUID, winnerScore, lowScore, gameDate)
     VALUES (${video}, "${gameUUID}", 0, 9999999999, "${date.toISOString().slice(0, 19).replace('T', ' ')}");

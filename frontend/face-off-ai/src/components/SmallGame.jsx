@@ -31,6 +31,10 @@ function ResultIcon(props) {
 }
 
 function SmallGame({ date, gamehighscore, result }) {
+    if (date.length >= 10) {
+        date = date.substring(0, 10);
+    }
+
     return (
         <div class="small-game">
             <div class="row">

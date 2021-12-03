@@ -36,11 +36,7 @@ const modalStyle = {
 function Game() {
     let emotion = 1;
     const { id, gameid } = useParams();
-<<<<<<< Updated upstream
     const emoGetter = useEffect(async () => {
-=======
-    const emoGetter = useEffect(() => {
->>>>>>> Stashed changes
         const emo = await http.get(`/api/video/byID/${id}`);
         emotion = emo.data.video[0].emotionID;
         

@@ -113,7 +113,7 @@ function App() {
                     <Route path="/forgot/" exect component = {() => <Forgot />} />
                     <Route path="/settings" exact component={() => <Settings />} />
                     <Route path="/profile/:username" exact component={() => <Profile />} />
-                    <Route path="/profile/" exact component={() => <Error404 message=" Oops, no profile found"
+                    <Route path="/profile/" exact component={() => <Error404 message=" Oops, no profile found."
                                                                              link="/login" linkText="Sign In" />} />
 
 

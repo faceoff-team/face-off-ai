@@ -31,7 +31,7 @@ function getGamesList(games) {
 
 function GameList({ title, username, games }) {
     let list = null;
-    const hook = React.useEffect((games) => {
+    const hook = React.useEffect(async (games) => {
         list = await getGamesList2(games);
     }, []);
     

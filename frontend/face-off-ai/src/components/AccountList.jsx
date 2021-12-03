@@ -2,28 +2,42 @@ import React from "react";
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import SmallProfile from "../components/SmallProfile.jsx";
 
-/* These pictures are placeholders for our presentation */
-import Picture from "../assets/joker-picture-1.jpg";
-import Picture2 from "../assets/profile-picture-1.jpg";
 
-function AccountList({title}) {
+function getFriends(friendList, limit) {
+    const friendListItems = [];
+    try {
+        var numUsers = friendList.length;
+        if (numUsers > limit) {
+            numUsers = limit;
+        } else if (numUsers == 0) {
+            friendListItems.push(<div class="row">
+                <div>There are no users to display.</div>
+            </div>)
+        }
+
+        for (var i = 0; i < numUsers; i++) {
+            friendListItems.push(<div class="row">
+                    <SmallProfile 
+                                    username={friendList[i].username}
+                                    picture={friendList[i].imagePath}
+                                    />
+                                    </div>);
+        }
+        return friendListItems;
+    } catch (err) {
+
+    }
+    
+}
+
+
+function AccountList({title, userList, limit}) {
     return (
             <div>
                 <h1 class="font-weight-heavy-small">{title}</h1>
                 <HorizontalLine color="#f7f7f7" width="100%" />
                 <div class="column">
-                    <div class="row">
-                        <SmallProfile username="sri29323" picture={Picture} />
-                    </div>
-                    <div class="row">
-                        <SmallProfile username="ashtonS" />
-                    </div>
-                    <div class="row">
-                        <SmallProfile username="lokiFlex23" picture={Picture2} />
-                    </div>
-                    <div class="row">
-                        <SmallProfile username="byorne" />
-                    </div>
+                    {getFriends(userList, limit)}
                 </div>
             </div>
     );

@@ -48,6 +48,7 @@ const handlePutProfile = async (req, res) => {
     let bio = req.body.bio;
     let username = req.body.username;
     let id = req.body.id;
+    let pic = req.body.photo;
 
     if (!req.body.bio) {
         bio = req.user.bio;
@@ -57,7 +58,7 @@ const handlePutProfile = async (req, res) => {
         username = req.user.username;
     }
 
-    let profile = await updateProfile(id, username, bio);
+    let profile = await updateProfile(id, username, bio, pic);
 
     res.status(200).json({
         success: true,

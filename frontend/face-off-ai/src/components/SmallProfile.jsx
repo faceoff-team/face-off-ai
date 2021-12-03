@@ -13,7 +13,11 @@ import { Link, withRouter} from "react-router-dom";
 
 function SmallProfile({ username, picture }) {
     return (
-        
+        <Link to={`/profile/${username}`} style={{ textDecoration: 'none', color: "#FFFFFF",
+        '&:hover': {
+            backgroundColor: '#3a3b3f',
+            color: '#4cc0ad',
+        }}}>
             <div class="small-profile">
                 <div class="row">
                     <Grid container >
@@ -29,7 +33,7 @@ function SmallProfile({ username, picture }) {
                     </Grid>
                 </div>
             </div>
-        
+        </Link>
     );
 }
 

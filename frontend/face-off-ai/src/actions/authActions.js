@@ -101,12 +101,13 @@ export const register = (username, password, email) => async (dispatch) => {
     }
 }
 
-export const update = (username_input, bio_input, id_input, token_input) => async (dispatch) => {
+export const update = (username_input, bio_input, id_input, token_input, photo_input) => async (dispatch) => {
     try {
         const res = await http.put("/api/user/profile", {
             username: username_input,
             bio: bio_input,
-            id: id_input
+            id: id_input, 
+            photo: photo_input
         }, {
             headers: {
                 authorization: token_input
@@ -121,7 +122,7 @@ export const update = (username_input, bio_input, id_input, token_input) => asyn
                     userid: id_input,
                     username: username_input,
                     bio: bio_input,
-                    photo: null
+                    photo: photo_input
                 }
             }
         });

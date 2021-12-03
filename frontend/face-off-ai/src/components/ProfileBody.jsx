@@ -33,7 +33,7 @@ function a11yProps(index) {
     };
 }
 
-export default function ProfileBody({username, highScore, lowScore, pastGames}) {
+export default function ProfileBody({username, highScore, lowScore, pastGames, friendsList}) {
 
     const [value, setValue] = React.useState(0);
 
@@ -71,7 +71,7 @@ export default function ProfileBody({username, highScore, lowScore, pastGames}) 
                 
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <AccountList title={`${username}'s Friends`}/>
+                <AccountList title={`${username}'s Friends`} userList={friendsList} limit={10}/>
             </TabPanel>
         </Box>
     );

@@ -40,8 +40,8 @@ const createUser = async (username, email, hash, salt) => {
     try {
         let newUser = await new Promise((resolve, reject) => {
                 global.connection.query(`
-                    INSERT INTO user (username, email, hash, salt, worldRank, bestScore, worstScore) 
-                    VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1}, ${-1});`, (err, results, fields) => {
+                    INSERT INTO user (username, email, hash, salt, bestScore, worstScore) 
+                    VALUES ("${username}", "${email}", "${hash}", "${salt}", ${-1}, ${-1});`, (err, results, fields) => {
                         if (err) {
                             reject(err);
                             return;
@@ -105,6 +105,32 @@ const getFriendsByUsername = async (username) => {
     }
 };
 
+const getOthersByUsername = async (username) => {
+    try {
+        let others = await new Promise((resolve, reject) => {
+            global.connection.query(`
+                SELECT * FROM user
+                WHERE userID NOT IN (SELECT user2 FROM friend WHERE user1 = 
+                        (SELECT userID FROM user WHERE username = "${username}"))
+                        AND userID NOT IN (SELECT userID FROM user WHERE username = "${username}")
+                        AND userID != -1`, (err, results, fields) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve({
+                    results,
+                    fields,
+                });
+            });
+        });
+        return others.results;
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 const getUserByEmail = async (email) => {
     try {
         let user = await new Promise((resolve, reject) => {
@@ -127,12 +153,12 @@ const getUserByEmail = async (email) => {
     }
 };
 
-const updateProfile = async (userid, username, bio) => {
+const updateProfile = async (userid, username, bio, photo) => {
     try {
         let user = await new Promise((resolve, reject) => {
             global.connection.query(`
                 UPDATE user
-                SET username = "${username}", bio = "${bio}"
+                SET username = "${username}", bio = "${bio}", imagePath = "${photo}"
                 WHERE userID = "${userid}";
             `, (err, results, fields) => {
                 if (err) {
@@ -281,6 +307,7 @@ module.exports = {
   getUserByUsername,
   getUserByEmail,
   getFriendsByUsername,
+  getOthersByUsername,
   createUser,
   updateProfile,
   updateProfileScores,

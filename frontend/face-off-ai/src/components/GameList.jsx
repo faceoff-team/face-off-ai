@@ -6,7 +6,7 @@ const MAX_PAST_GAMES = 10;
 
 function getGamesList(games) {
     const gamesListItems = [];
-    //console.log(games);
+    console.log(games);
     var numGames = games.length;
     if (numGames > MAX_PAST_GAMES) {
         numGames = MAX_PAST_GAMES;
@@ -30,41 +30,12 @@ function getGamesList(games) {
 }
 
 function GameList({ title, username, games }) {
-    let list = null;
-    const hook = React.useEffect(async (games) => {
-        list = await getGamesList2(games);
-    }, []);
-    
-    const getGamesList2 = async (games) => {
-        const gamesListItems = [];
-        //console.log(games);
-        var numGames = games.length;
-        if (numGames > MAX_PAST_GAMES) {
-            numGames = MAX_PAST_GAMES;
-        } else if (numGames == 0) {
-            gamesListItems.push(<div item xs={8} >
-                <div>There are no games to display</div>
-                                </div>)
-        }
-
-        for (var i = 0; i < numGames; i++) {
-            gamesListItems.push(<div className="row" >
-                <SmallGame date={games[i].gameDate ? games[i].gameDate : "-"}
-                        gamehighscore={games[i].winnerScore}
-                        score={games[i].finalScore}
-                        result={games[i].finalScore === games[i].winnerScore ? "true" : "false"}
-                                    />
-                                    </div>)
-            
-        }
-        return gamesListItems;
-    }
     return (
         <div>
             <h1 className="font-weight-heavy-small">{username}'s {title}</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
             <div className="column">
-                {list}
+                {getGamesList(games)}
             </div>
         </div>
     );

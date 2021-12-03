@@ -9,7 +9,6 @@ function Settings() {
     const photoRef = React.useRef(null);
     const userRef = React.useRef(null);
     const bioRef = React.useRef(null);
-    const photoRef = React.useRef(null);
     const password1Ref = React.useRef(null);
     const password2Ref = React.useRef(null);
 

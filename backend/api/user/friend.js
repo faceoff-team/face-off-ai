@@ -16,7 +16,7 @@ const validateGetFriendsBody = ( body ) => {
 }
 
 const handleGetFriends = async (req, res) => {
-  let username = req.username;
+  let username = req.params.username;
 
   let friends = await getFriendsByUsername(username);
 

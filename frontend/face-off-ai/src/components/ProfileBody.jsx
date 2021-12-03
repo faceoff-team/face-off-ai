@@ -71,7 +71,7 @@ export default function ProfileBody({username, highScore, lowScore, pastGames, f
                 
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <AccountList title={`${username}'s Friends`} userList={friendsList}/>
+                <AccountList title={`${username}'s Friends`} userList={friendsList} limit={10}/>
             </TabPanel>
         </Box>
     );

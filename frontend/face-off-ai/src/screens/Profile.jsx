@@ -13,6 +13,7 @@ function Profile() {
     const [games, setGames] = useState(0);
     const [user, setUser] = useState(0);
     const [friends, setFriends] = useState(0);
+    const [others, setOthers] = useState(0);
 
     useEffect(() => {
         getProfile(username);
@@ -30,6 +31,9 @@ function Profile() {
             const response3 = await axios.get(`https://ai.faceoff.cf/api/user/friends/${username}`);
             const newFriends = response3.data.friends;
             setFriends(newFriends);
+            const response4 = await axios.get(`https://ai.faceoff.cf/api/user/others/${username}`);
+            const newOthers= response4.data.others;
+            setOthers(newOthers);
         } catch (err) {
             console.error(err);
         }
@@ -77,7 +81,7 @@ function Profile() {
                 >
                     <div>
                         <div class="basic-container">
-                            <AccountList title="You might know" />
+                            <AccountList title="You might know" userList={others} limit={5}/>
                         </div>
                     </div>
                 </Box>

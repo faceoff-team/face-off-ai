@@ -58,7 +58,8 @@ const getAllUserGames = async (usrnm) => {
         ON game.gameID = user_game.game
         INNER JOIN user
         ON user_game.user = user.userID
-        WHERE user.username = "${usrnm}";
+        WHERE user.username = "${usrnm}"
+        LIMIT 10;
     `;
 
     let games = await queryPromise(query);

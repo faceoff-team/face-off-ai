@@ -80,6 +80,7 @@ CREATE TABLE challenge (
 CREATE TABLE game (
     gameID                  INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     videoID                 INT(10) NOT NULL,
+    gameMode                VARCHAR(20),
     FOREIGN KEY (videoID)   REFERENCES video(videoID),
     winnerScore             INT(10) DEFAULT -1,
     lowScore                INT(10) DEFAULT 360000,

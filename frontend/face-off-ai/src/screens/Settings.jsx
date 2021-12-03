@@ -3,6 +3,7 @@ import {Grid, Stack, Button, TextField } from "@mui/material";
 import store from "../store";
 import { update } from "../actions/authActions";
 import Unregistered from "./Unregistered"
+import { http } from '../store';
 
 function Settings() {
 

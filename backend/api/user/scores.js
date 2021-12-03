@@ -8,7 +8,7 @@
 const { getUserScores, getScoresForGame } = require(`../../db/score`);
 
 const handleGetGameScores = async (req, res) => {
-  let scores = await getScoresForGame()
+  let scores = await getScoresForGame(req.params.gameid)
   
   res.status(200).json({
     success: true,

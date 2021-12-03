@@ -38,11 +38,12 @@ const modalStyle = {
 //get url and title for parameter and API
 //TODO: figure out how to parse emotions
 function Game() {
-    let emotion = 1;
+    const [emotion, setEmotion] = React.useState(1);
     const { id, gameid } = useParams();
     const emoGetter = async () => {
         const emo = await http.get(`/api/video/byID/${id}`);
-        emotion = emo.data.video[0].emotionID;
+        console.log(JSON.stringify(emo.data))
+        setEmotion(emo.data.video[0].emotionID);
         
     }
     const hook = React.useEffect(async () => {
@@ -132,6 +133,7 @@ function Game() {
         }
 
         if (store.getState().auth.isAuthenticated) {
+            console.log(store.getState().auth.token)
             const gameKeyRes = await http.get(`/api/game/${gameid}`);
             console.log(JSON.stringify(gameKeyRes));
             const gameKey = gameKeyRes.data.game[0].gameID;
@@ -149,6 +151,9 @@ function Game() {
             }, {headers: {
                 Authorization: store.getState().auth.token
             }});
+            axios.get(`https://ai.faceoff.cf/api/score/${gameid}`).then((response) => {
+                console.log(response)
+            });
         }
     }
 

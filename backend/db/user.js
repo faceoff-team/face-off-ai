@@ -63,9 +63,7 @@ const getUserByUsername = async (username) => {
     try {
         let user = await new Promise((resolve, reject) => {
             global.connection.query(`
-                SELECT userID, username, email, bio, imagePath,
-                bestScore, worstScore
-                FROM user WHERE username = "${username}"`, (err, results, fields) => {
+                SELECT * FROM user WHERE username = "${username}"`, (err, results, fields) => {
                         if (err) {
                             reject(err);
                             return;

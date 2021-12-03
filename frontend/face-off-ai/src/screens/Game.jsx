@@ -59,35 +59,8 @@ function Game() {
         console.log(response)
         setVideoTitle(response.data.video[0].videoTitle);
     });
-    axios.get(`https://ai.faceoff.cf/api/user/scores/${gameid}`).then((response) => {
-        const data = response;
-        console.log(data);
-        setGameResults(data.data.scores)
-        if (gameResults === undefined) {
-            setGameResults([{
-                "username": "No Scores Found!",
-                "finalScore": ""
-            }]);
-        }
-    });
     const scoreList = [];
-    if (gameResults !== undefined) {
-        for (var i = 0; i < gameResults.length; i++) {
-            scoreList.push(                            <ListItem>
-                <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-                    <ListItemText
-                        primary={gameResults[i].username}
-                    />
-                    <div style={{ textAlign: "right" }}>
-                        <ListItemText
-                            secondary={gameResults[i].finalScore}
-                        />
-                    </div>
-                </div>
-            </ListItem>)
-        }
-    }
-    if (scoreList.length == 0) {
+    if (scoreList.length === 0) {
         scoreList.push(                            
         <ListItem>
             <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>

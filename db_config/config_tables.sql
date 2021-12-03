@@ -43,6 +43,20 @@ CREATE TABLE user (
     worstScore          INT(10) NOT NULL
 );
 
+CREATE TABLE guest (
+    guestID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username            VARCHAR(255),
+);
+
+CREATE TABLE guest_game (
+    guest             INT NOT NULL,
+    game              INT NOT NULL,
+    finalScore        INT(10) NOT NULL,
+    FOREIGN KEY (guest) REFERENCES guest(guestID),
+    FOREIGN KEY (game) REFERENCES game(gameID),
+    PRIMARY KEY (guest, game)          
+);
+
 CREATE TABLE friend (
     user1               INT(10) NOT NULL,
     user2               INT(10) NOT NULL,
@@ -80,6 +94,7 @@ CREATE TABLE challenge (
 CREATE TABLE game (
     gameID                  INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     videoID                 INT(10) NOT NULL,
+    -- "Singleplayer" or "Multiplayer"
     gameMode                VARCHAR(20),
     FOREIGN KEY (videoID)   REFERENCES video(videoID),
     winnerScore             INT(10) DEFAULT -1,

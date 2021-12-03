@@ -18,6 +18,8 @@ router.get('/all/', getAll);
 
 router.post('/', require('./create'));
 
+router.put('/:gameID', require('./update'))
+
 //router.put('/:id', require('./update'))
 
 module.exports = router;

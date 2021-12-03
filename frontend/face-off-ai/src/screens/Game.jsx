@@ -98,7 +98,7 @@ function Game() {
         let winnerScore = Math.max(gameRes.data.winnerScore, time * 10);
         let lowScore = Math.min(gameRes.data.lowScore, time * 10);
         try {
-            const updateGame = await http.put(`api/game/${gameid}`, {
+            const updateGame = await http.put(`/api/game/${gameid}`, {
                 high: winnerScore,
                 low: lowScore
             });

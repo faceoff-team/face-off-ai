@@ -44,7 +44,7 @@ CREATE TABLE user (
 
 CREATE TABLE guest (
     guestID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username            VARCHAR(255),
+    username            VARCHAR(255)
 );
 
 CREATE TABLE guest_game (

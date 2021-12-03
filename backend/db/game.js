@@ -59,8 +59,7 @@ const getAllUserGames = async (usrnm) => {
     ON user_game.user = user.userID
     WHERE user.username = ${usrnm};
   `;
-
-  console.log(query);
+  
   let games = await queryPromise(query);
 
   return games.results;

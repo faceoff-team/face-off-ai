@@ -322,7 +322,7 @@ function Game() {
                         Game Ended
                     </Typography>
                     <Typography id="modal-modal-description" variant="h7" component="h2">
-                        You scored {10 * time} points!
+                        You scored {10 * lossTime} points!
                     </Typography>
                     <Button component={Link} to="/home" size="medium" color="secondary">
                         Return Home

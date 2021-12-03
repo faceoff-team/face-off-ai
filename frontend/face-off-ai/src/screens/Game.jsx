@@ -60,8 +60,9 @@ function Game() {
         setVideoTitle(response.data.video[0].videoTitle);
     });
     axios.get(`https://ai.faceoff.cf/api/score/${gameid}`).then((response) => {
-        console.log(response)
-        setGameResults(response.data.scores)
+        const data = JSON.stringify(response);
+        console.log(data);
+        setGameResults(data.data.scores)
         if (gameResults === undefined) {
             setGameResults([{
                 "username": "No Scores Found!",

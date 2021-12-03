@@ -3,7 +3,7 @@
  * @description this module handles all friend related requests
  */
 
-const { getFriendsByUsername } = require("../../db/user");
+const { getFriendsByUsername, getOthersByUsername } = require("../../db/user");
 const BadRequestError = require("../../error/BadRequestError");
 
 const validateGetFriendsBody = ( body ) => {
@@ -27,6 +27,20 @@ const handleGetFriends = async (req, res) => {
   });
 };
 
+const handleGetOthers = async (req, res) => {
+    let username = req.params.username;
+  
+    let others = await getOthersByUsername(username);
+  
+    res.status(200).json({
+      success: true,
+      msg: "Others retreived.",
+      others,
+    });
+  };
+  
+
+
 const handlePostFriend = async (async, res) => {
 
   res.status(200).json({
@@ -48,6 +62,13 @@ module.exports = {
   getFriendsByUser: async (req, res, next) => {
     try {
         await handleGetFriends(req, res);
+    } catch (err) {
+        next(err);
+    }
+  },
+  getOthersByUser: async (req, res, next) => {
+    try {
+        await handleGetOthers(req, res);
     } catch (err) {
         next(err);
     }

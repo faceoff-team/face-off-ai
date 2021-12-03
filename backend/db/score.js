@@ -87,9 +87,11 @@ const addScoreToGame = async (userid, gameid, score) => {
  const getScoresForGame = async (gameid) => {
   let query = 
     `
-    SELECT user.username, user_game.finalScore FROM user_game
-    INNER JOIN game ON user_game.game = game.gameID AND user_game.user = user.userID
-    WHERE user_game.gameUUID == "${gameid}"
+    SELECT user.username, user_game.finalScore FROM user 
+    INNER JOIN user_game ON user.userID = user_game.user 
+    INNER JOIN game ON user_game.game = game.gameID 
+    WHERE game.gameUUID = "${gameid}" 
+    ORDER BY user_game.finalScore DESC
     `;
 
   let game = await queryPromise(query);

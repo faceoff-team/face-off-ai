@@ -36,12 +36,13 @@ router.post(`/profile/pic`, authenticate, profilePicPost);
  * Friends
  */
 
-const { getFriends, getFriendsByUser, postFriend } = require('./friend');
+const { getFriends, getFriendsByUser, getOthersByUser, postFriend } = require('./friend');
 
 router.post(`/friend`, authenticate, postFriend);
 
 router.get(`/friend`, authenticate, getFriends);
 router.get(`/friends/:username`, getFriendsByUser);
+router.get(`/others/:username`, getOthersByUser)
 
 /**
  * User scores
@@ -50,6 +51,7 @@ router.get(`/friends/:username`, getFriendsByUser);
 const {userScoreGet, scoresForGameGet} = require('./scores');
 
 router.get(`/scores`, authenticate, userScoreGet);
+router.get(`/scores/:gameid`, authenticate, scoresForGameGet);
 router.get(`/leaderboard`, require('./leaderboard'));
 
 /**

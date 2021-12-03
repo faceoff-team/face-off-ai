@@ -85,7 +85,7 @@ CREATE TABLE game (
     winnerScore             INT(10) DEFAULT -1,
     lowScore                INT(10) DEFAULT -1,
     gameUUID                VARCHAR(255),
-    gameDate                DATETIME DEFAULT NOW()
+    gameDate                DATETIME
 );
 
 CREATE TABLE user_game (

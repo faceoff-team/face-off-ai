@@ -26,6 +26,7 @@ const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
     
     React.useEffect(() => {
         console.log(running);
+        console.log(emotion);
         if (running) {
             const interval = setInterval(() => {
                 if (running) {

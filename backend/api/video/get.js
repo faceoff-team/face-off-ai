@@ -83,6 +83,22 @@ const handleGetHappyVideosRequest = async (req, res) => {
     });
   };
 
+/**
+ * This function handles all get all happy emotion video requests from the user. 
+ * 
+ * @param {Object} req 
+ * @param {Object} res  
+ */
+ const handleGetScaryVideosRequest = async (req, res) => {
+    let videos = await getAllScaryVideos();
+  
+    res.status(200).json({
+      success: true,
+      msg: `Videos retreived successfully.`,
+      videos,
+    });
+  };
+
 module.exports = {
   async getAll(req, res, next) {
     try {

@@ -22,6 +22,8 @@ DROP TABLE IF EXISTS challenge;
 DROP TABLE IF EXISTS video;
 DROP TABLE IF EXISTS emotion;
 DROP TABLE IF EXISTS reset_password;
+DROP TABLE IF EXISTS guest;
+DROP TABLE IF EXISTS guest_game;
 SET UNIQUE_CHECKS = 1;
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -40,20 +42,6 @@ CREATE TABLE user (
     bestScore           INT(10) NOT NULL,
     -- Worst performance for this user
     worstScore          INT(10) NOT NULL
-);
-
-CREATE TABLE guest (
-    guestID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username            VARCHAR(255),
-);
-
-CREATE TABLE guest_game (
-    guest             INT NOT NULL,
-    game              INT NOT NULL,
-    finalScore        INT(10) NOT NULL,
-    FOREIGN KEY (guest) REFERENCES guest(guestID),
-    FOREIGN KEY (game) REFERENCES game(gameID),
-    PRIMARY KEY (guest, game)          
 );
 
 CREATE TABLE friend (
@@ -107,6 +95,20 @@ CREATE TABLE reset_password (
     expires           INT(15) NOT NULL,
     FOREIGN KEY (user) REFERENCES user(userID),
     PRIMARY KEY (user)
+);
+
+CREATE TABLE guest (
+    guestID             INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username            VARCHAR(255)
+);
+
+CREATE TABLE guest_game (
+    guest             INT NOT NULL,
+    game              INT NOT NULL,
+    finalScore        INT(10) NOT NULL,
+    FOREIGN KEY (guest) REFERENCES guest(guestID),
+    FOREIGN KEY (game) REFERENCES game(gameID),
+    PRIMARY KEY (guest, game)
 );
 
 INSERT INTO emotion (emotionID, emotionName)

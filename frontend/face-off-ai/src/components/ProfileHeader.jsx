@@ -28,13 +28,20 @@ function GetProfileButtonType(pageUsername) {
     }
 
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+        const handleOpen = () => setOpen(true);
+        const handleClose = () => setOpen(false);
 
-    if (name.localeCompare(pageUsername) == 0) {
+    try {
+        if (name.localeCompare(pageUsername) == 0) {
+            return <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
+        } else {
+            return  <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Add to Friends</Button>
+        }
+    } catch (err) {
         
-        <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
     }
+
+   
 
 }
 

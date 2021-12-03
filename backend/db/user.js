@@ -127,12 +127,12 @@ const getUserByEmail = async (email) => {
     }
 };
 
-const updateProfile = async (userid, username, bio) => {
+const updateProfile = async (userid, username, bio, photo) => {
     try {
         let user = await new Promise((resolve, reject) => {
             global.connection.query(`
                 UPDATE user
-                SET username = "${username}", bio = "${bio}"
+                SET username = "${username}", bio = "${bio}", imagePath = "${photo}"
                 WHERE userID = "${userid}";
             `, (err, results, fields) => {
                 if (err) {

@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import store from "../store.js";
+import { update } from "../actions/authActions";
 
 const modalStyle = {
     position: 'absolute',
@@ -44,6 +45,35 @@ function GetProfileButtonType(pageUsername) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const photoRef = React.useRef(null);
+    const userRef = React.useRef(null);
+    const bioRef = React.useRef(null);
+    const handleSubmit = async () => {
+        let params = {
+            photo: photoRef.current.value,
+            user: userRef.current.value,
+            bio: bioRef.current.value,
+        }
+
+        alert(params.bio);
+        
+        if (!photoRef.current.value) {
+            params.photo = store.getState().auth.user.photo
+        }
+        if (!userRef.current.value) {
+            params.user = store.getState().auth.user.username
+        }
+        if (!bioRef.current.value) {
+            params.bio = store.getState().auth.user.bio
+        }
+
+        const res = update(params.user, params.bio, store.getState().auth.user.bio, store.getState().auth.token, params.photo);
+        if (res) {
+            alert("profile updated")
+        }
+        handleClose();
+    }
+
 
     
 
@@ -62,39 +92,33 @@ function GetProfileButtonType(pageUsername) {
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                         <Grid item xs={6}>
                             <Button size="medium">
-                                Change Profile Picture
-                            </Button>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField label="Pic link" variant="filled" />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Button size="medium">
                                 Change Username
                             </Button>
                         </Grid>
                         <Grid item xs={6}>
-                            <TextField label="Name" variant="filled" />
+                            <TextField label="Name" variant="filled" inputRef={userRef}/>
                         </Grid>
                         <Grid item xs={6}>
                             <Button size="medium">
                                 Change Bio
                             </Button>
                         </Grid>
+                        <Grid item xs={6}>
+                            <Button size="medium">
+                                Change Profile Picture Link
+                            </Button>
+                        </Grid>
                         <Grid>
-                            <form action="/api/user/profile/pic" method="post" enctype="multipart/form-data">
-                                <input type="file" name="profile" id="profilePicture" />
-                                <input type="submit" value="Update Picture"/>
-                            </form>
+                            <TextField label="Pic" variant="filled" inputRef={photoRef}/>
                         </Grid>
                         <Grid item xs={6}>
-                            <TextField label="Bio" variant="filled" />
+                            <TextField label="Bio" variant="filled" inputRef={bioRef}/>
                         </Grid>
                     </Grid>
                     <br/>
                     <br/>
                     <Stack direction="row" spacing={2}>
-                        <Button size="medium" variant="contained" color="secondary" onClick={handleClose}>
+                        <Button size="medium" variant="contained" color="secondary" onClick={handleSubmit}>
                             Confirm Changes
                         </Button>
                         <Button size="medium" variant="contained" color="secondary" onClick={handleClose}>

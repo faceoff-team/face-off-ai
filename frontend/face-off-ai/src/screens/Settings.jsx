@@ -9,6 +9,7 @@ function Settings() {
     const photoRef = React.useRef(null);
     const userRef = React.useRef(null);
     const bioRef = React.useRef(null);
+    const photoRef = React.useRef(null);
     const password1Ref = React.useRef(null);
     const password2Ref = React.useRef(null);
 
@@ -31,7 +32,7 @@ function Settings() {
             params.bio = store.getState().auth.user.bio
         }
 
-        const res = update(params.user, params.bio, store.getState().auth.user.bio, store.getState().auth.token);
+        const res = update(params.user, params.bio, store.getState().auth.user.bio, store.getState().auth.token, params.photo);
         if (res) {
             alert("Profile update success!");
         }
@@ -74,7 +75,7 @@ function Settings() {
                     <Grid item xs={6}>
                         <TextField label="Bio" variant="filled" inputRef={bioRef} />
                     </Grid>
-                    <Grid item xs={6}>
+                    {/* <Grid item xs={6}>
                         <Button size="medium">
                             New Password
                         </Button>
@@ -89,7 +90,7 @@ function Settings() {
                     </Grid>
                     <Grid item xs={6}>
                         <TextField label="Confirm new Password" variant="filled" inputRef={password2Ref}/>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
                 <br /><br />
                 <Stack direction="row" spacing={2}>

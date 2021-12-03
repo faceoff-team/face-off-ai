@@ -30,7 +30,6 @@ function Profile() {
             const response3 = await axios.get(`https://ai.faceoff.cf/api/user/friends/${username}`);
             const newFriends = response3.data.friends;
             setFriends(newFriends);
-            console.log(friends);
         } catch (err) {
             console.error(err);
         }
@@ -64,7 +63,8 @@ function Profile() {
                                 username={username} 
                                 highScore={user.bestScore}
                                 lowScore={user.worstScore}
-                                pastGames={games}/>
+                                pastGames={games}
+                                friendsList={friends}/>
                     </div>
                 </Grid>
                 <Box

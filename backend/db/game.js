@@ -12,10 +12,10 @@ const { queryPromise } = require('.');
  * @returns 
  */
 
-const createGame = async (video) => {
+const createGame = async (video, gameUUID) => {
   let query = `
-    INSERT INTO game (videoID)
-    VALUES (${video});
+    INSERT INTO game (videoID, gameUUID)
+    VALUES (${video}, "${gameUUID}");
   `;
 
   let game = await queryPromise(query)

@@ -13,6 +13,7 @@ import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import MoodBadIcon from '@mui/icons-material/MoodBad';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const modalStyle = {
@@ -34,7 +35,8 @@ function Home() {
     const [openNewGame, setNewGame] = useState(false);
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
-    const [emotionKey, setEmotionKey] = useState("1");
+    const [emotionKey, setEmotionKey] = useState(1);
+    const [currentUUID, setCurrentUUID] = useState("");
 
 
     const updateID = (ID) => setVideoID(ID);
@@ -58,6 +60,10 @@ function Home() {
         setVideoID(id);
     }
 
+    const waitUUID = async (id) => {
+        setCurrentUUID(id);
+    }
+
     const handleEmotionToggle = (event, newMode) => {
         if (newMode != null) {
             setEmotionKey(newMode);
@@ -67,9 +73,11 @@ function Home() {
 
     const handleOpenNewGame = async (id) => {
         setNewGame(true);
+        await waitUUID(uuidv4());
          try {
             await http.post('api/game/', {
-                videoID: id
+                videoID: id,
+                gameUUID: {currentUUID}
             })
          }
          catch (err) {
@@ -161,7 +169,7 @@ function Home() {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Awesome! Do you want to play "{videoTitle}"?
                 </Typography>
-                <Link to={`game/${videoID}/${uuidv4()}`}>
+                <Link to={`game/${videoID}/${currentUUID}`}>
                     <Button size="medium" color="secondary" onClick={handleCloseNewGame}>
                         Go to game!
                     </Button>

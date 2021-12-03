@@ -18,7 +18,7 @@ const validateCreateGameRequest = (body) => {
 const handleCreateGameRequest = async (req, res) => {
   validateCreateGameRequest(req.body);
   
-  let game = await createGame(req.body.videoID);
+  let game = await createGame(req.body.videoID, req.body.gameUUID);
   
   res.status(200).json({
     success: true,

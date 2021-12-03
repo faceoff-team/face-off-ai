@@ -35,6 +35,11 @@ const modalStyle = {
 function Game() {
     let emotion = 1;
     const { id, gameid } = useParams();
+    const emoGetter = useEffect(() => {
+        const emo = await http.get(`/api/video/byID/${id}`);
+        emotion = emo.data.video[0].emotionID;
+        
+    }, [])
 
     
 

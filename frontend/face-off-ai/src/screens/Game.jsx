@@ -67,11 +67,12 @@ function Game() {
     const [openMulti, setOpenMulti] = React.useState(false);
     const [rateVideo, setRateVideo] = React.useState(0);
     const [running, setRunning] = React.useState(false);
-    const [time, setLossTime] = React.useState(0);
+    // const [time, setLossTime] = React.useState(0);
     const [openLoss, setOpenLoss] = React.useState(false);
     const [guestInputName, setGuestName] = React.useState(store.getState().auth.isAuthenticated ? store.getState().auth.user.userid : "");
     const [openGuestName, setGuestNameMode] = React.useState(!store.getState().auth.isAuthenticated);
     const [openLeaderboard, setLeaderboard] = React.useState(false);
+    let lossTime = 0;
 
     let history = useHistory();
 
@@ -86,8 +87,7 @@ function Game() {
     }
 
     const waitTime = async (time) => {
-        console.log(`Time is about to be ${time}`);
-        setLossTime(time);
+        lossTime = time
     }
     
     const handleRunning = () => {
@@ -107,10 +107,10 @@ function Game() {
         const gameRes = await http.get(`/api/game/${gameid}`);
         console.log(JSON.stringify(gameRes.data));
         console.log(gameRes.data.game[0].winnerScore);
-        console.log(time * 10);
+        console.log(lossTime * 10);
         console.log(gameRes.data.game[0].lowScore);
-        let winnerScore = Math.max(gameRes.data.game[0].winnerScore, time * 10);
-        let lowScore = Math.min(gameRes.data.game[0].lowScore, time * 10);
+        let winnerScore = Math.max(gameRes.data.game[0].winnerScore, lossTime * 10);
+        let lowScore = Math.min(gameRes.data.game[0].lowScore, lossTime * 10);
         console.log(winnerScore);
         console.log(lowScore);
         try {
@@ -127,11 +127,11 @@ function Game() {
             const userGame = await http.post('api/score/create', {
                 user: store.getState().auth.user.userid,
                 game: gameid,
-                score: time * 10
+                score: lossTime * 10
             })
             const userUpdate = await http.put('api/user/profile/scores', {
                 id: store.getState().auth.user.userid,
-                score: time * 10
+                score: lossTime * 10
             })
         }
     }
@@ -363,7 +363,7 @@ function Game() {
                         handleRunning={handleRunning}
                         setLossTime={waitTime}
                         emotion={emotion}
-                        time={time}
+                        time={lossTime}
                     />
                 </div>
             </div>

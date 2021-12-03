@@ -59,7 +59,7 @@ function Game() {
         console.log(response)
         setVideoTitle(response.data.video[0].videoTitle);
     });
-    axios.get(`https://ai.faceoff.cf/api/score/${gameid}`).then((response) => {
+    axios.get(`https://ai.faceoff.cf/api/user/scores/${gameid}`).then((response) => {
         const data = JSON.stringify(response);
         console.log(data);
         setGameResults(data.data.scores)

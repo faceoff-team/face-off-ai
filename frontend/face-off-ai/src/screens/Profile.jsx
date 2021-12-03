@@ -12,6 +12,7 @@ function Profile() {
 
     const [games, setGames] = useState(0);
     const [user, setUser] = useState(0);
+    const [friends, setFriends] = useState(0);
 
     useEffect(() => {
         getProfile(username);
@@ -23,31 +24,24 @@ function Profile() {
             const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
             const newUser = response.data.user[0];
             setUser(newUser);
-            console.log(user);
             const response2 = await axios.get(`https://ai.faceoff.cf/api/game/all/${username}`);
             const newGames = response2.data.games;
             setGames(newGames);
-            console.log(setGames);
+            const response3 = await axios.get(`https://ai.faceoff.cf/api/user/friends/${username}`);
+            const newFriends = response3.data.friends;
+            setFriends(newFriends);
+            console.log(friends);
         } catch (err) {
             console.error(err);
         }
     };
 
-    const getFriends = async() => {
-        try {
-            
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    
     /*if (!store.getState().auth.isAuthenticated) {
         return <Unregistered/>
     }*/
 
     try {
-        if (user.username == 0) {
+        if (user.username === 0) {
         }
     } catch (err) {
         return <Error404 message=" Oops, no profile found " />

@@ -36,15 +36,12 @@ const modalStyle = {
 function Game() {
     let emotion = 1;
     const { id, gameid } = useParams();
-<<<<<<< HEAD
-    const emoGetter = useEffect(() => {
+    const emoGetter = useEffect(async () => {
         const emo = await http.get(`/api/video/byID/${id}`);
         emotion = emo.data.video[0].emotionID;
         
     }, [])
-=======
     const [videoTitle, setVideoTitle] = useState(0);
->>>>>>> 8a24d67dbeceb75f7ec0124f269791f0222002e6
 
     axios.get(`https://ai.faceoff.cf/api/video/byID/${id}`).then((response) => {
         console.log(response)

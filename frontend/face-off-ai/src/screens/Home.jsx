@@ -13,7 +13,6 @@ import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import MoodBadIcon from '@mui/icons-material/MoodBad';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import { v4 as uuidv4 } from 'uuid';
 
 
 const modalStyle = {

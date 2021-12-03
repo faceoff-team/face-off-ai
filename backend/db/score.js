@@ -68,11 +68,11 @@ const addScoreToGame = async (userid, gameid, score) => {
  * @param {Number} score The score to update the guest_game with. 
  */
 
- const addScoreToGuestGame = async (name, gameid, score) => {
+ const addScoreToGuestGame = async (guestid, gameid, score) => {
   let query = 
     `
     INSERT INTO guest_game (user, game, finalScore)
-    VALUES (${name}, ${gameid}, ${score});
+    VALUES (${guestid}, ${gameid}, ${score});
     `;
 
   let game = await queryPromise(query);
@@ -87,7 +87,7 @@ const addScoreToGame = async (userid, gameid, score) => {
  const getScoresForGame = async (gameid) => {
   let query = 
     `
-    SELECT game.gameDate, user.username, user_game.finalScore FROM user_game
+    SELECT user.username, user_game.finalScore FROM user_game
     INNER JOIN game ON user_game.game = game.gameID AND user_game.user = user.userID
     WHERE user_game.gameUUID == "${gameid}"
     `;
@@ -104,9 +104,9 @@ const addScoreToGame = async (userid, gameid, score) => {
  const getGuestScoresForGame = async (gameid) => {
   let query = 
     `
-    SELECT game.gameDate, guest.guestName, guest_game.finalScore FROM guest_game
-    INNER JOIN game ON guest_game.game = game.gameID AND guest_game.guest = guest.guestName
-    WHERE guest_game.gameUUID == "${gameid}"
+    SELECT guest.username, guest_game.finalScore FROM guest_game
+    INNER JOIN game ON guest_game.game = game.gameID AND guest_game.guest = guest.guestID
+    WHERE user_game.gameUUID == "${gameid}"
     `;
 
   let game = await queryPromise(query);

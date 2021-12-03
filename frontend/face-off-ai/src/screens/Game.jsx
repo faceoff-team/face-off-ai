@@ -81,7 +81,8 @@ function Game() {
       history.push('/home')
     }
     
-    const handleRunning = useCallback(() => {
+    const handleRunning = () => {
+        console.log(`handling running: current state: ${running}`);
         if (running) {
             setRunning(false);
             handleLoss();
@@ -89,7 +90,7 @@ function Game() {
         else {
             setRunning(true);
         }
-    }, [])
+    }
 
     const handleLoss = async () => {
         setOpenLoss(true);

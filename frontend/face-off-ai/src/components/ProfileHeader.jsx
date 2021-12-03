@@ -21,13 +21,18 @@ const modalStyle = {
     p: 4,
 };
 
-function getProfileButtonType(pageUsername) {
+function GetProfileButtonType(pageUsername) {
     var name; 
     if (store.getState().auth.isAuthenticated) {
         name = store.getState().auth.user.username;
     }
 
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     if (name.localeCompare(pageUsername) == 0) {
+        
         <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
     }
 
@@ -53,7 +58,7 @@ function ProfileHeader({ username, picture, bio }) {
                 </Grid>
             </Grid>
             <HorizontalLine color="#f7f7f7" width="100%"/>
-            {getProfileButtonType(username)}
+            {GetProfileButtonType(username)}
             <Modal
                 open={open}
                 onClose={handleClose}

@@ -61,7 +61,7 @@ const handleResetUserPassword = async (req, res) => {
 
   let row = rows[0];
 
-  if (Date.now() > row.expires) {
+  if (Date.now() > row.expires * 1000) {
     let query = 
       `DELETE FROM reset_password
        WHERE hash = "${row.hash}"`;

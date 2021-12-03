@@ -51,42 +51,42 @@ jobs:
           cd ./backend/test
           docker-compose build
 
-  test:
-    runs-on: [self-hosted, linux]
-    needs: build
+#   test:
+#     runs-on: [self-hosted, linux]
+#     needs: build
 
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Run Database
-        run: |
-          cd ./backend/test
-          docker-compose down
-          docker-compose up -d test-db
+#       - name: Run Database
+#         run: |
+#           cd ./backend/test
+#           docker-compose down
+#           docker-compose up -d test-db
 
-      - name: Wait for Database and clean database
-        run: |
-          cd ./backend/test
-          ./wait-for-db.sh
+#       - name: Wait for Database and clean database
+#         run: |
+#           cd ./backend/test
+#           ./wait-for-db.sh
 
-#     - name: Clean database
-#        run: |
-#          docker cp ./db_config/config_tables.sql test-faceoff-db:/config.sql
-#          cd ./backend/test
-#          while true; do docker exec -i test-faceoff-db /bin/sh -c 'mysql -u root -ppassword -h 127.0.0.1 < /config.sql; exit $?'; if [ $? -eq 0 ]; then break; fi; echo .; sleep 1; done;
+# #     - name: Clean database
+# #        run: |
+# #          docker cp ./db_config/config_tables.sql test-faceoff-db:/config.sql
+# #          cd ./backend/test
+# #          while true; do docker exec -i test-faceoff-db /bin/sh -c 'mysql -u root -ppassword -h 127.0.0.1 < /config.sql; exit $?'; if [ $? -eq 0 ]; then break; fi; echo .; sleep 1; done;
 
-      - name: Run tests
-        run: |
-          cd ./backend/test
-          docker-compose up --exit-code-from test-backend
+#       - name: Run tests
+#         run: |
+#           cd ./backend/test
+#           docker-compose up --exit-code-from test-backend
 
-      - name: Stop containers
-        run: docker-compose down
+#       - name: Stop containers
+#         run: docker-compose down
 
   run:
     # The type of runner that the job will run on
     runs-on: [self-hosted, linux]
-    needs: [build, test]
+    needs: [build]
 
    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

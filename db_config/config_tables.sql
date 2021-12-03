@@ -36,7 +36,6 @@ CREATE TABLE user (
     bio                 VARCHAR(256),
     -- Path to the user's profile page
     imagePath           VARCHAR(128),
-    worldRank           INT(10) NOT NULL,
     -- Best all-time score ever recorded for this user
     bestScore           INT(10) NOT NULL,
     -- Worst performance for this user

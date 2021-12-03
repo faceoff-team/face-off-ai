@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {ProfileHeader, ProfileBody, HorizontalLine, AccountList} from "../components/";
+import Error404 from "../screens/Error404";
 import Grid from '@mui/material/Grid';
 import Box from "@mui/material/Box";
 import { useParams } from 'react-router-dom';
@@ -10,13 +11,22 @@ function Profile() {
     const { username } = useParams();
 
     const [games, setGames] = useState(0);
-    const [numGames, setNumGames] = useState(0);
     const [user, setUser] = useState(0);
+
+    useEffect(() => {
+        getProfile(username);
+        if (user == null) {
+            return <Error404 message=" Oops, no profile found" />
+        }
+        getPastGames();
+    }, []);
+
 
     const getProfile = async(username) => {
         try {
             const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
             setUser(response.data.user[0]);
+            alert(user.userID);
         } catch (err) {
             console.error(err);
         }
@@ -25,7 +35,9 @@ function Profile() {
     const getPastGames = async() => {
         try {
             const id = user.userID;
+            alert(id);
             const response = await axios.get(`https://ai.faceoff.cf/api/game/all/${id}`);
+            setGames(response.data.games);
         } catch (err) {
             console.log(err);
         }
@@ -39,11 +51,7 @@ function Profile() {
         }
     }
 
-    useEffect(() => {
-        getProfile(username);
-        getPastGames();
-    }, []);
-
+    
     /*if (!store.getState().auth.isAuthenticated) {
         return <Unregistered/>
     }*/
@@ -61,7 +69,11 @@ function Profile() {
                                        picture={user.imagePath} 
                                        bio={user.bio}/>
                         <HorizontalLine color="#f7f7f7" width="100%" />
-                        <ProfileBody username={username} highScore={user.bestScore} lowScore={user.worstScore}/>
+                        <ProfileBody 
+                                username={username} 
+                                highScore={user.bestScore}
+                                lowScore={user.worstScore}
+                                pastGames={games}/>
                     </div>
                 </Grid>
                 <Box

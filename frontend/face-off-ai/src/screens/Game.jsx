@@ -17,6 +17,7 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import { http } from '../store';
 import store from '../store'
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const modalStyle = {
     position: 'absolute',
@@ -31,7 +32,9 @@ const modalStyle = {
 };
 
 //get url and title for parameter and API
-function Game(gameID) {
+//TODO: figure out how to parse emotions
+function Game() {
+    let emotion = 1;
     const { id, gameid } = useParams();
     const [videoTitle, setVideoTitle] = useState(0);
 
@@ -58,6 +61,7 @@ function Game(gameID) {
     const [rateVideo, setRateVideo] = React.useState(0);
     const [running, setRunning] = React.useState(false);
     const [time, setLossTime] = React.useState(0);
+    const [openLoss, setOpenLoss] = React.useState(false);
     
 
     let history = useHistory();
@@ -83,11 +87,12 @@ function Game(gameID) {
     }, [])
 
     const handleLoss = async () => {
-        const gameRes = await http.get(`/api/game/${gameID}`);
+        setOpenLoss(true);
+        const gameRes = await http.get(`/api/game/${gameid}`);
         let winnerScore = Math.max(gameRes.data.winnerScore, time * 10);
         let lowScore = Math.min(gameRes.data.lowScore, time * 10);
         try {
-            const updateGame = await http.put(`api/game/${gameID}`, {
+            const updateGame = await http.put(`api/game/${gameid}`, {
                 high: winnerScore,
                 low: lowScore
             });
@@ -99,7 +104,7 @@ function Game(gameID) {
         if (store.getState().auth.isAuthenticated) {
             const userGame = await http.post('api/score/create', {
                 user: store.getState().auth.user.userid,
-                game: gameID,
+                game: gameid,
                 score: time * 10
             })
             const userUpdate = await http.put('api/user/profile/scores', {
@@ -201,11 +206,26 @@ function Game(gameID) {
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Which multiplayer mode do you want to play?
                     </Typography>
+                    
                     <Button size="medium" color="secondary" onClick={handleCloseMulti}>
                         Single Device
                     </Button>
-                    <Button size="medium" color="secondary" onClick={handleCloseMulti}>
-                        Multi Device
+                </Box>
+            </Modal>
+            <Modal
+                open={openLoss}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Game Ended
+                    </Typography>
+                    <Typography id="modal-modal-description" variant="h7" component="h2">
+                        You scored {10 * time} points!
+                    </Typography>
+                    <Button component={Link} to="/home" size="medium" color="secondary">
+                        Return Home
                     </Button>
                 </Box>
             </Modal>
@@ -223,7 +243,7 @@ function Game(gameID) {
                         className="videoFrame"
                         onStart={handleRunning}
                         // onPlay={handleRunning}
-                        // onPause={handleRunning}
+                        onPause={handleRunning}
                         onEnded={handleRunning}
                         playing={running}
                         url={url}
@@ -242,6 +262,7 @@ function Game(gameID) {
                         running={running}
                         setRunning={setRunning}
                         setLossTime={setLossTime}
+                        emotion={emotion}
                     />
                 </div>
             </div>

@@ -89,7 +89,7 @@ const getFriendsByUsername = async (username) => {
                 WHERE userID IN
                     (SELECT user2 FROM friend
                      WHERE user1 = 
-                        (SELECT userID FROM user WHERE username = "${username}"));`, (err, results, fields) => {
+                        (SELECT userID FROM user WHERE username = "${username}"))`, (err, results, fields) => {
                 if (err) {
                     reject(err);
                     return;
@@ -101,7 +101,7 @@ const getFriendsByUsername = async (username) => {
                 });
             });
         });
-        return users;
+        return users.results;
     } catch (err) {
         console.error(err);
     }
@@ -211,7 +211,7 @@ const getLeaderboard = async() => {
   try {
       let leaderboard = await new Promise((resolve, reject) => {
           global.connection.query(`
-              SELECT userID, worldRank, bestScore, username, imagePath
+              SELECT userID, bestScore, username, imagePath
               FROM user
               ORDER BY bestScore DESC;
           `, (err, results, fields) => {

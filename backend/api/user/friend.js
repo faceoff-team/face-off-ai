@@ -23,9 +23,8 @@ const handleGetFriends = async (req, res) => {
 
   res.status(200).json({
     success: true,
-    msg: "Friends retreived.",
+    msg: "Friends retreived. HEDRE",
     friends,
-    username,
   });
 };
 

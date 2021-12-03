@@ -45,6 +45,7 @@ function Game() {
         const emo = await http.get(`/api/video/byID/${id}`);
         emotion = emo.data.video[0].emotionID;
         const gameKeyRes = await http.get(`/api/game/${gameid}`);
+        console.log(JSON.stringify(gameKeyRes));
         gameKey = gameKeyRes.data.game[0].gameID;
         
     }, [])
@@ -132,6 +133,7 @@ function Game() {
         }
 
         if (store.getState().auth.isAuthenticated) {
+            console.log(gameKey);
             const userGame = await http.post('api/score/create', {
                 user: store.getState().auth.user.userid,
                 game: gameKey,

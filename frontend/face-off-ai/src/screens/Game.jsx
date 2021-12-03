@@ -94,6 +94,7 @@ function Game() {
 
     const handleLoss = async () => {
         setOpenLoss(true);
+        console.log(gameid)
         const gameRes = await http.get(`/api/game/${gameid}`);
         let winnerScore = Math.max(gameRes.data.winnerScore, time * 10);
         let lowScore = Math.min(gameRes.data.lowScore, time * 10);

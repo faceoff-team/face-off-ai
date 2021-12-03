@@ -40,11 +40,13 @@ const modalStyle = {
 function Game() {
     let emotion = 1;
     const { id, gameid } = useParams();
-    const emoGetter = useEffect(async () => {
+    const emoGetter = async () => {
         const emo = await http.get(`/api/video/byID/${id}`);
         emotion = emo.data.video[0].emotionID;
         
-        
+    }
+    const hook = React.useEffect(async () => {
+        await emoGetter();
     }, [])
     const [videoTitle, setVideoTitle] = useState(0);
 

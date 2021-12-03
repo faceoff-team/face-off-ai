@@ -12,10 +12,10 @@ const { queryPromise } = require('.');
  * @returns 
  */
 
-const createGame = async (video) => {
+const createGame = async (video, gameUUID) => {
   let query = `
-    INSERT INTO game (videoID)
-    VALUES (${video});
+    INSERT INTO game (videoID, gameUUID)
+    VALUES (${video}, "${gameUUID}");
   `;
 
   let game = await queryPromise(query)
@@ -39,7 +39,7 @@ const createGame = async (video) => {
 const getGame = async (id) => {
   let query = `
     SELECT * FROM game
-    WHERE gameID = ${id}`;
+    WHERE gameUUID = "${id}"`;
 
   let game = await queryPromise(query);
 
@@ -50,14 +50,17 @@ const getGame = async (id) => {
  * Retreives all games in database. 
  */
 
-const getAllUserGames = async (userID) => {
+const getAllUserGames = async (usrnm) => {
   let query = `
     SELECT * FROM game
     INNER JOIN user_game
     ON game.gameID = user_game.game
-    WHERE user_game.user = ${userID};
+    INNER JOIN user
+    ON user_game.user = user.userID
+    WHERE user.username = ${usrnm};
   `;
-//TODO do a join here.
+
+  console.log(query);
   let games = await queryPromise(query);
 
   return games.results;
@@ -77,7 +80,7 @@ const updateGame = async (id, high, low) => {
           global.connection.query(`
               UPDATE game
               SET winnerScore = "${high}", lowScore = "${low}"
-              WHERE gameID = "${id}";
+              WHERE gameUUID = "${id}";
           `, (err, results, fields) => {
               if (err) {
                   reject(err);

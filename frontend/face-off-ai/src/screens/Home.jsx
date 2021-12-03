@@ -35,6 +35,7 @@ function Home() {
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
     const [emotionKey, setEmotionKey] = useState(-1);
+    const [currentUUID, setCurrentUUID] = useState("");
 
 
     const updateID = (ID) => setVideoID(ID);
@@ -58,6 +59,10 @@ function Home() {
         setVideoID(id);
     }
 
+    const waitUUID = async (id) => {
+        setCurrentUUID(id);
+    }
+
     const handleEmotionToggle = (event, newMode) => {
         if (newMode != null) {
             setEmotionKey(newMode);
@@ -67,9 +72,11 @@ function Home() {
 
     const handleOpenNewGame = async (id) => {
         setNewGame(true);
+        await waitUUID(uuidv4());
          try {
             await http.post('api/game/', {
-                videoID: id
+                videoID: id,
+                gameUUID: {currentUUID}
             })
          }
          catch (err) {
@@ -161,7 +168,7 @@ function Home() {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                     Awesome! Do you want to play "{videoTitle}"?
                 </Typography>
-                <Link to={`game/${videoID}/${uuidv4()}`}>
+                <Link to={`game/${videoID}/${currentUUID}`}>
                     <Button size="medium" color="secondary" onClick={handleCloseNewGame}>
                         Go to game!
                     </Button>
@@ -226,7 +233,7 @@ function Home() {
             <HomePageGrid emotionID="2"/>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Scary Videos</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
-            <HomePageGrid emotionID="3"/>
+            <HomePageGrid emotionID="0"/>
         </div>
     );
 }

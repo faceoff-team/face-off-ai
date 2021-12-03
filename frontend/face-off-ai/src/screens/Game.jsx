@@ -36,6 +36,11 @@ const modalStyle = {
 function Game() {
     let emotion = 1;
     const { id, gameid } = useParams();
+    const emoGetter = useEffect(async () => {
+        const emo = await http.get(`/api/video/byID/${id}`);
+        emotion = emo.data.video[0].emotionID;
+        
+    }, [])
     const [videoTitle, setVideoTitle] = useState(0);
 
     axios.get(`https://ai.faceoff.cf/api/video/byID/${id}`).then((response) => {
@@ -75,7 +80,8 @@ function Game() {
       history.push('/home')
     }
     
-    const handleRunning = useCallback(() => {
+    const handleRunning = () => {
+        console.log(`handling running: current state: ${running}`);
         if (running) {
             setRunning(false);
             handleLoss();
@@ -83,10 +89,11 @@ function Game() {
         else {
             setRunning(true);
         }
-    }, [])
+    }
 
     const handleLoss = async () => {
         setOpenLoss(true);
+        console.log(gameid)
         const gameRes = await http.get(`/api/game/${gameid}`);
         let winnerScore = Math.max(gameRes.data.winnerScore, time * 10);
         let lowScore = Math.min(gameRes.data.lowScore, time * 10);

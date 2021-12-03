@@ -10,7 +10,7 @@ const router = express.Router();
 
 const { get, getAll, getAllUser } = require('./get');
 
-router.get('/all/:id', getAllUser);
+router.get('/all/:username', getAllUser);
 
 router.get('/:id', get);
 

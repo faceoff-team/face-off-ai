@@ -53,7 +53,7 @@ CREATE TABLE friend (
 );
 
 CREATE TABLE emotion (
-    emotionID           INT(1) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    emotionID           INT(1) NOT NULL PRIMARY KEY,
     emotionName         VARCHAR(64)
 );
 

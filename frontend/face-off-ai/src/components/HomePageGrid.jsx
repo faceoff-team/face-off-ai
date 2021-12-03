@@ -50,7 +50,10 @@ function HomePageGrid({emotionID}) {
     const getVideoAPI = async() => {
         try {
             var baseURL = "https://ai.faceoff.cf/api/video/"
-            if (emotionID == 1) {
+            if (emotionID == 0) {
+                // This is a try not to be afraid video set
+                baseURL += "scary"
+            } if (emotionID == 1) {
                 // This is a try not to laugh video set
                 baseURL += "happy";
             } else if (emotionID == 2) {

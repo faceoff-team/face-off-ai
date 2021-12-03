@@ -93,6 +93,16 @@ const getAllSadVideos = async () => {
     return videos.results;
 };
 
+const getAllScaryVideos = async () => {
+    let query = `SELECT * FROM video 
+                 WHERE emotionID = 0
+                 ORDER BY videoRank`;
+  
+    let videos = await queryPromise(query);
+  
+    return videos.results;
+};
+
 
 /**
  * This function returns all the happy videos in the database.
@@ -131,6 +141,7 @@ module.exports = {
   getVideo,
   getAllVideos,
   getAllSadVideos,
+  getAllScaryVideos,
   getAllHappyVideos, 
   getVideoByID
 };

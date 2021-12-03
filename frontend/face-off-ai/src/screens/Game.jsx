@@ -136,7 +136,9 @@ function Game() {
                 user: store.getState().auth.user.userid,
                 game: gameKey,
                 score: lossTime * 10
-            })
+            }, {headers: {
+                Authorization: store.getState().auth.token
+            }})
             const userUpdate = await http.put('api/user/profile/scores', {
                 id: store.getState().auth.user.userid,
                 score: lossTime * 10

@@ -11,8 +11,14 @@ const videoConstraints = {
     height: '200',
 };
 
+const emotions = {
+    "fear": 0,
+    "happy": 1,
+    "sad": 2,
+    "neutral": 3
+};
 
-const WebcamCapture = ({running, setRunning, setLossTime}) => {
+const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
     const webcamRef = React.useRef(null);
     let elapsed = 0;
 
@@ -37,7 +43,8 @@ const WebcamCapture = ({running, setRunning, setLossTime}) => {
                             console.log(res.prediction);
                             console.log(res.confidence);
                             setLossTime(currentElapsed);
-                            if (res.prediction == 'happy' && parseFloat(res.confidence) > 0.7) {
+                            if (emotions[res.prediction]== emotion && parseFloat(res.confidence) > 0.7) {
+                                console.log("loss detected")
                                 setRunning(false);
                                 return;
                                 

@@ -101,7 +101,7 @@ const getFriendsByUsername = async (username) => {
                 });
             });
         });
-        return users.results;
+        return users;
     } catch (err) {
         console.error(err);
     }

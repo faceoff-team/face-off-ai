@@ -39,14 +39,11 @@ const modalStyle = {
 //TODO: figure out how to parse emotions
 function Game() {
     let emotion = 1;
-    let gameKey = 0;
     const { id, gameid } = useParams();
     const emoGetter = useEffect(async () => {
         const emo = await http.get(`/api/video/byID/${id}`);
         emotion = emo.data.video[0].emotionID;
-        const gameKeyRes = await http.get(`/api/game/${gameid}`);
-        console.log(JSON.stringify(gameKeyRes));
-        gameKey = gameKeyRes.data.game[0].gameID;
+        
         
     }, [])
     const [videoTitle, setVideoTitle] = useState(0);
@@ -133,7 +130,9 @@ function Game() {
         }
 
         if (store.getState().auth.isAuthenticated) {
-            console.log(gameKey);
+            const gameKeyRes = await http.get(`/api/game/${gameid}`);
+            console.log(JSON.stringify(gameKeyRes));
+            const gameKey = gameKeyRes.data.game[0].gameID;
             const userGame = await http.post('api/score/create', {
                 user: store.getState().auth.user.userid,
                 game: gameKey,

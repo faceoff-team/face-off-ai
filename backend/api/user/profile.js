@@ -66,7 +66,7 @@ const handlePutProfile = async (req, res) => {
     });
 };
 
-const handleUpdateUserRank = async (req, res) => {
+const handleUpdateUserScores = async (req, res) => {
     let id = req.body.id;
     let score = req.body.score;
 
@@ -94,7 +94,7 @@ module.exports = {
     },
     putProfileScores: async (req, res, next) => {
         try {
-            await handleUpdateUserRank(req, res);
+            await handleUpdateUserScores(req, res);
         }
         catch (err) {
             next(err);

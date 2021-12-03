@@ -153,36 +153,13 @@ const updateProfile = async (userid, username, bio) => {
 };
 
 const updateProfileScores = async (userid, score) => {
-    try {
-        let user = await new Promise((resolve, reject) => {
-            global.connection.query(`
-                UPDATE user
-                SET worldRank = worldRank + ${score}
-                WHERE userID = "${userid}";
-            `, (err, results, fields) => {
-                if (err) {
-                    reject(err);
-                    return;
-                }
-
-                resolve({
-                    results,
-                    fields,
-                });
-            });
-        })
-    }
-    catch (err) {
-        console.error(err);
-        throw new BadRequestError('Could not update profile scores', 500);
-    }
 
     try {
         let user = await new Promise((resolve, reject) => {
             global.connection.query(`
                 UPDATE user
                 SET bestScore = ${score}
-                WHERE userID = "${userid}"
+                WHERE userID = ${userid}
                 AND bestScore < ${score};
             `, (err, results, fields) => {
                 if (err) {
@@ -207,7 +184,7 @@ const updateProfileScores = async (userid, score) => {
             global.connection.query(`
                 UPDATE user
                 SET worstScore = ${score}
-                WHERE userID = "${userid}"
+                WHERE userID = ${userid}
                 AND worstScore > ${score};
             `, (err, results, fields) => {
                 if (err) {
@@ -306,6 +283,7 @@ module.exports = {
   getFriendsByUsername,
   createUser,
   updateProfile,
+  updateProfileScores,
   getLeaderboard,
   updateProfilePicture,
   getUserProfilePicName,

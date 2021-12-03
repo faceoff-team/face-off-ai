@@ -312,7 +312,7 @@ function Game() {
                 <div className="game" class="gameColumn">
                     <WebcamCapture
                         running={running}
-                        setRunning={setRunning}
+                        handleRunning={handleRunning}
                         setLossTime={waitTime}
                         emotion={emotion}
                     />

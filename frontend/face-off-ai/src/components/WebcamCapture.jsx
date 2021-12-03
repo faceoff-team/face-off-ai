@@ -18,7 +18,7 @@ const emotions = {
     "Neutral": 3
 };
 
-const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
+const WebcamCapture = ({running, handleRunning, setLossTime, emotion}) => {
     const webcamRef = React.useRef(null);
     let elapsed = 0;
 
@@ -46,10 +46,10 @@ const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
                             let conf = parseFloat(res.data.confidence);
                             console.log(res.data.prediction);
                             console.log(typeof(conf));
+                            setLossTime(currentElapsed);
                             if (emotions[res.data.prediction]== emotion && conf >= 0.5) {
-                                setLossTime(currentElapsed);
                                 console.log("loss detected")
-                                setRunning(false);
+                                handleRunning();
                                 return;
                                 
                             }

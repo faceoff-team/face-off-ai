@@ -60,10 +60,10 @@ export default function ProfileBody({username, highScore, lowScore, pastGames}) 
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <div>
-                    High Score: {highScore}
+                    High Score: {highScore >= 0 ? highScore : "No games played yet"}
                 </div>
                 <div>
-                    Low Score: {lowScore}
+                    Low Score: {lowScore >= 0 ? highScore : "No games played yet"}
                 </div>
                 
             </TabPanel>

@@ -104,10 +104,10 @@ CREATE TABLE reset_password (
 );
 
 INSERT INTO emotion (emotionID, emotionName)
+VALUES (0, "Scary");
+
+INSERT INTO emotion (emotionID, emotionName)
 VALUES (1, "Happy");
 
 INSERT INTO emotion (emotionID, emotionName)
 VALUES (2, "Sad");
-
-INSERT INTO emotion (emotionID, emotionName)
-VALUES (3, "Funny");

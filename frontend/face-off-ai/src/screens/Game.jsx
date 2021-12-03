@@ -295,7 +295,7 @@ function Game() {
                         className="videoFrame"
                         onStart={handleRunning}
                         // onPlay={handleRunning}
-                        onPause={handleRunning}
+                        // onPause={handleRunning}
                         onEnded={handleRunning}
                         playing={running}
                         url={url}

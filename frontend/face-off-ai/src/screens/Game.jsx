@@ -50,11 +50,31 @@ function Game() {
         await emoGetter();
     }, [])
     const [videoTitle, setVideoTitle] = useState(0);
+    const [gameResults, setGameResults] = React.useState([]);
 
     axios.get(`https://ai.faceoff.cf/api/video/byID/${id}`).then((response) => {
         console.log(response)
         setVideoTitle(response.data.video[0].videoTitle);
     });
+    axios.get(`https://ai.faceoff.cf/api/score/${gameid}`).then((response) => {
+        console.log(response)
+        setGameResults(response.scores)
+    });
+    const scoreList = [];
+    for (var i = 0; i < gameResults.length; i++) {
+        scoreList.push(                            <ListItem>
+            <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                <ListItemText
+                    primary={gameResults[i].username}
+                />
+                <div style={{ textAlign: "right" }}>
+                    <ListItemText
+                        secondary={gameResults[i].finalScore}
+                    />
+                </div>
+            </div>
+        </ListItem>)
+    }
 
     const avgTimeDict = {"r9SsqcT6heE" : "50 seconds", "YqaacQc6sho" : "1 minute 3 seconds"};
     const bestTimeDict = {"r9SsqcT6heE" : "2 minutes 10 seconds", "YqaacQc6sho" : "5 minutes 4 seconds"};
@@ -151,9 +171,6 @@ function Game() {
             }, {headers: {
                 Authorization: store.getState().auth.token
             }});
-            axios.get(`https://ai.faceoff.cf/api/score/${gameid}`).then((response) => {
-                console.log(response)
-            });
         }
     }
 
@@ -283,20 +300,7 @@ function Game() {
                         Game Leaderboard
                     </Typography>
                     <List>
-                        {generate(
-                            <ListItem>
-                                <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-                                    <ListItemText
-                                        primary="Single-line item"
-                                    />
-                                    <div style={{ textAlign: "right" }}>
-                                        <ListItemText
-                                            secondary="Score"
-                                        />
-                                    </div>
-                                </div>
-                            </ListItem>,
-                        )}
+                        {scoreList}
                     </List>
                     <Button size="medium" color="secondary" onClick={() => handleCloseLeaderboard()}>
                         Close

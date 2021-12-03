@@ -216,7 +216,7 @@ function Home() {
                 <Button
                     size="large"
                     variant="contained"
-                    color="primary"
+                    color="secondary"
                     style={{ height: "50px", marginLeft: "30px"}}
                     onClick={() => { handleSubmit(); }}
                 >

@@ -234,7 +234,7 @@ const getLeaderboard = async() => {
           global.connection.query(`
               SELECT userID, worldRank, bestScore, username, imagePath
               FROM user
-              ORDER BY worldRank ASC;
+              ORDER BY bestScore DESC;
           `, (err, results, fields) => {
               if (err) {
                   reject(err);

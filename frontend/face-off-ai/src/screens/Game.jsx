@@ -19,6 +19,9 @@ import { http } from '../store';
 import store from '../store'
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText';
 
 const modalStyle = {
     position: 'absolute',
@@ -177,6 +180,14 @@ function Game() {
         }
     }
 
+    function generate(element) {
+        return [0, 1, 2].map((value) =>
+          React.cloneElement(element, {
+            key: value,
+          }),
+        );
+      }
+
     return (
         <div className="gamePage" class="container">
             <Modal
@@ -244,7 +255,22 @@ function Game() {
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Game Leaderboard
                     </Typography>
-
+                    <List>
+                        {generate(
+                            <ListItem>
+                                <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                                    <ListItemText
+                                        primary="Single-line item"
+                                    />
+                                    <div style={{ textAlign: "right" }}>
+                                        <ListItemText
+                                            secondary="Score"
+                                        />
+                                    </div>
+                                </div>
+                            </ListItem>,
+                        )}
+                    </List>
                     <Button size="medium" color="secondary" onClick={() => handleCloseLeaderboard()}>
                         Close
                     </Button>
@@ -356,10 +382,10 @@ function Game() {
                         <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Ratings</h2>
                         <h4 class="font-weight-normal" style={{marginTop: "10px"}}>96% like this video!</h4>
                     </div>
-                    <div>
+                    <div style={{ width: '100%', justifyContent: "center", display: "flex" }}>
                         <IconButton aria-label="like-video" size="large" onClick={() => handleLikeVideo()}>
                             {rateVideo === 1 &&
-                                <ThumbUpAltIcon color="primary"/>
+                                <ThumbUpAltIcon color="primary" size="large"/>
                             }
                             {(rateVideo !== 1) &&
                                 <ThumbUpOffAltIcon/>
@@ -367,7 +393,7 @@ function Game() {
                         </IconButton>
                         <IconButton aria-label="dislike-video" size="large" onClick={() => handleDislikeVideo()}>
                             {rateVideo === -1 &&
-                                <ThumbDownAltIcon color="primary"/>
+                                <ThumbDownAltIcon color="primary" size="large"/>
                             }
                             {(rateVideo !== -1) &&
                                 <ThumbDownOffAltIcon/>

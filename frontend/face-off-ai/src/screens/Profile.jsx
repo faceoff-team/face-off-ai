@@ -18,7 +18,6 @@ function Profile() {
         if (user == null) {
             return <Error404 message=" Oops, no profile found" />
         }
-        await getPastGames();
     }, []);
 
 

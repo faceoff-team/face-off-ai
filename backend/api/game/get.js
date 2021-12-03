@@ -13,7 +13,7 @@ const { getGame, getAllGames, getAllUserGames } = require("../../db/game");
  */
 
 const handleGetAllUserGamesRequest = async (req, res) => {
-  let games = await getAllUserGames(req.params.id);
+  let games = await getAllUserGames(req.params.username);
 
   res.status(200).json({
     success: true,

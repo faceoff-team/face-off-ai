@@ -67,7 +67,7 @@ function Game() {
     const [openMulti, setOpenMulti] = React.useState(false);
     const [rateVideo, setRateVideo] = React.useState(0);
     const [running, setRunning] = React.useState(false);
-    // const [time, setLossTime] = React.useState(0);
+    const [lossState, setlossState] = React.useState(0);
     const [openLoss, setOpenLoss] = React.useState(false);
     const [guestInputName, setGuestName] = React.useState(store.getState().auth.isAuthenticated ? store.getState().auth.user.userid : "");
     const [openGuestName, setGuestNameMode] = React.useState(!store.getState().auth.isAuthenticated);
@@ -89,6 +89,10 @@ function Game() {
     const waitTime = async (time) => {
         lossTime = time
     }
+
+    const waitTimeState = async (time) => {
+        setlossState(time);
+    }
     
     const handleRunning = () => {
         console.log(`handling running: current state: ${running}`);
@@ -102,6 +106,7 @@ function Game() {
     }
 
     const handleLoss = async () => {
+        await waitTimeState(lossTime);
         setOpenLoss(true);
         console.log(gameid)
         const gameRes = await http.get(`/api/game/${gameid}`);
@@ -322,7 +327,7 @@ function Game() {
                         Game Ended
                     </Typography>
                     <Typography id="modal-modal-description" variant="h7" component="h2">
-                        You scored {10 * lossTime} points!
+                        You scored {10 * lossState} points!
                     </Typography>
                     <Button component={Link} to="/home" size="medium" color="secondary">
                         Return Home

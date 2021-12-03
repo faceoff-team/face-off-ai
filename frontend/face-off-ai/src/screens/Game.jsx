@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import Modal from '@mui/material/Modal';
 import Card from '@mui/material/Card';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Leaderboard from '@mui/icons-material/Leaderboard';
 import { useHistory, useParams } from 'react-router-dom';
 import WebcamCapture from '../components/WebcamCapture';
 import IconButton from '@mui/material/IconButton';
@@ -59,14 +60,15 @@ function Game() {
     const userBestTime = userBestTimeDict[id] === undefined ? "N/A" : userBestTimeDict[id];
 
     const [open, setOpen] = React.useState(false);
-    const [openMode, setOpenMode] = React.useState(true);
+    const [openMode, setOpenMode] = React.useState(store.getState().auth.isAuthenticated);
     const [openMulti, setOpenMulti] = React.useState(false);
     const [rateVideo, setRateVideo] = React.useState(0);
     const [running, setRunning] = React.useState(false);
     const [time, setLossTime] = React.useState(0);
     const [openLoss, setOpenLoss] = React.useState(false);
-    const [guestName, setGuestName] = React.useState(store.getState().auth.isAuthenticated ? store.getState().auth.user.userid : "");
-    const [openGuestName, setGuestNameMode] = React.useState(false);
+    const [guestInputName, setGuestName] = React.useState(store.getState().auth.isAuthenticated ? store.getState().auth.user.userid : "");
+    const [openGuestName, setGuestNameMode] = React.useState(!store.getState().auth.isAuthenticated);
+    const [openLeaderboard, setLeaderboard] = React.useState(false);
 
     let history = useHistory();
 
@@ -99,6 +101,7 @@ function Game() {
         setOpenLoss(true);
         console.log(gameid)
         const gameRes = await http.get(`/api/game/${gameid}`);
+        console.log(gameRes)
         let winnerScore = Math.max(gameRes.data.winnerScore, time * 10);
         let lowScore = Math.min(gameRes.data.lowScore, time * 10);
         try {
@@ -122,9 +125,6 @@ function Game() {
                 score: time * 10
             })
         }
-        
-
-        
     }
 
     const revivalBack = () => {
@@ -154,6 +154,9 @@ function Game() {
 
     const handleOpenGuest = () => setGuestNameMode(true);
     const handleCloseGuest = () => setGuestNameMode(false);
+
+    const handleOpenLeaderboard = () => setLeaderboard(true);
+    const handleCloseLeaderboard = () => setLeaderboard(false);
 
     const handleNameChange = (event) => {
         setGuestName(event.target.value);
@@ -227,11 +230,23 @@ function Game() {
                     <Button size="medium" color="secondary" onClick={handleCloseMulti}>
                         Single Device
                     </Button>
-                    <Button size="medium" color="secondary" onClick={() => {
-                        handleCloseMulti();
-                        handleOpenGuest();
-                    }}>
+                    <Button size="medium" color="secondary" onClick={() => handleCloseMulti()}>
                         Multi Device
+                    </Button>
+                </Box>
+            </Modal>
+            <Modal
+                open={openLeaderboard}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Game Leaderboard
+                    </Typography>
+
+                    <Button size="medium" color="secondary" onClick={() => handleCloseLeaderboard()}>
+                        Close
                     </Button>
                 </Box>
             </Modal>
@@ -251,13 +266,14 @@ function Game() {
                         variant="outlined"
                         color="secondary"
                         style={{ width: "75%"}}
-                        value={guestName}
+                        value={guestInputName}
                         onChange={(event) => handleNameChange(event)}
-                        error={guestName.length < 1}
+                        error={guestInputName.length < 1}
                     />
                     <Button size="medium" color="secondary" onClick={() => {
-                        if (guestName.length >= 1) {
+                        if (guestInputName.length >= 1) {
                             handleCloseGuest();
+                            handleOpenMode();
                         }
                     }}>
                         Lets Go!
@@ -317,6 +333,12 @@ function Game() {
                         emotion={emotion}
                     />
                 </div>
+            </div>
+            <br/>
+            <div class="backButtonContainer" style={{marginTop: "20px"}}>
+                <Button color="secondary" size="medium" startIcon={<Leaderboard />} onClick={() => handleOpenLeaderboard()}>
+                    Leaderboard
+                </Button>
             </div>
             <br/>
             <div className="statsRow" class="gameRow">

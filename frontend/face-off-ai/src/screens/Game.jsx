@@ -106,6 +106,9 @@ function Game() {
         console.log(gameid)
         const gameRes = await http.get(`/api/game/${gameid}`);
         console.log(JSON.stringify(gameRes.data));
+        console.log(gameRes.data.game[0].winnerScore);
+        console.log(time * 10);
+        console.log(gameRes.data.game[0].lowScore);
         let winnerScore = Math.max(gameRes.data.game[0].winnerScore, time * 10);
         let lowScore = Math.min(gameRes.data.game[0].lowScore, time * 10);
         console.log(winnerScore);

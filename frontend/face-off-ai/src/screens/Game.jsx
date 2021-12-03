@@ -81,6 +81,10 @@ function Game() {
     const redirect = () => {
       history.push('/home')
     }
+
+    const waitTime = (time) => {
+        setLossTime(time);
+    }
     
     const handleRunning = () => {
         console.log(`handling running: current state: ${running}`);
@@ -101,7 +105,7 @@ function Game() {
         let winnerScore = Math.max(gameRes.data.winnerScore, time * 10);
         let lowScore = Math.min(gameRes.data.lowScore, time * 10);
         try {
-            const updateGame = await http.put(`api/game/${gameid}`, {
+            const updateGame = await http.put(`/api/game/${gameid}`, {
                 high: winnerScore,
                 low: lowScore
             });
@@ -307,7 +311,7 @@ function Game() {
                         className="videoFrame"
                         onStart={handleRunning}
                         // onPlay={handleRunning}
-                        onPause={handleRunning}
+                        // onPause={handleRunning}
                         onEnded={handleRunning}
                         playing={running}
                         url={url}
@@ -324,8 +328,8 @@ function Game() {
                 <div className="game" class="gameColumn">
                     <WebcamCapture
                         running={running}
-                        setRunning={setRunning}
-                        setLossTime={setLossTime}
+                        handleRunning={handleRunning}
+                        setLossTime={waitTime}
                         emotion={emotion}
                     />
                 </div>

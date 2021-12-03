@@ -62,7 +62,7 @@ const createUser = async (username, email, hash, salt) => {
 const getUserByUsername = async (username) => {
     try {
         let user = await new Promise((resolve, reject) => {
-                global.connection.query(`
+            global.connection.query(`
                 SELECT * FROM user WHERE username = "${username}"`, (err, results, fields) => {
                         if (err) {
                             reject(err);

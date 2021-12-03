@@ -13,9 +13,10 @@ const { queryPromise } = require('.');
  */
 
 const createGame = async (video, gameUUID) => {
+  let date = new Date();
   let query = `
-    INSERT INTO game (videoID, gameUUID)
-    VALUES (${video}, "${gameUUID}");
+    INSERT INTO game (videoID, gameUUID, winnerScore, lowScore, gameDate)
+    VALUES (${video}, "${gameUUID}", 0, 2147483647, "${date.toISOString().slice(0, 19).replace('T', ' ')}");
   `;
 
   let game = await queryPromise(query)
@@ -51,19 +52,18 @@ const getGame = async (id) => {
  */
 
 const getAllUserGames = async (usrnm) => {
-  let query = `
-    SELECT * FROM game
-    INNER JOIN user_game
-    ON game.gameID = user_game.game
-    INNER JOIN user
-    ON user_game.user = user.userID
-    WHERE user.username = ${usrnm};
-  `;
+    let query = `
+        SELECT * FROM game
+        INNER JOIN user_game
+        ON game.gameID = user_game.game
+        INNER JOIN user
+        ON user_game.user = user.userID
+        WHERE user.username = "${usrnm}";
+    `;
 
-  console.log(query);
-  let games = await queryPromise(query);
+    let games = await queryPromise(query);
 
-  return games.results;
+    return games.results;
 };
 
 const getAllGames = async () => {
@@ -79,7 +79,7 @@ const updateGame = async (id, high, low) => {
       let game = await new Promise((resolve, reject) => {
           global.connection.query(`
               UPDATE game
-              SET winnerScore = "${high}", lowScore = "${low}"
+              SET winnerScore = ${high}, lowScore = ${low}
               WHERE gameUUID = "${id}";
           `, (err, results, fields) => {
               if (err) {

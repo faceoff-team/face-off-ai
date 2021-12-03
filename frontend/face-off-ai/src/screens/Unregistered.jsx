@@ -13,7 +13,7 @@ function Unregistered() {
                 <br/>
                 <h3 class="font-weight-heavy" style={{ marginTop: "10px" }}>
                     Don't worry! To start saving your progress, sign up for a free account&nbsp;
-                    <Link to={`/register`}>
+                    <Link to={`/login`}>
                         here
                     </Link>
                 </h3>

@@ -9,6 +9,7 @@ const { authenticate } = require('../../db/auth');
 const router = express.Router();
 
 const { get, getAll, getAllUser } = require('./get');
+const { handleUpdateGameRequest } = require("./update");
 
 router.get('/all/:username', getAllUser);
 
@@ -18,6 +19,6 @@ router.get('/all/', getAll);
 
 router.post('/', require('./create'));
 
-//router.put('/:id', require('./update'))
+router.put('/:gameID', handleUpdateGameRequest);
 
 module.exports = router;

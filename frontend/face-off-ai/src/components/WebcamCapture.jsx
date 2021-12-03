@@ -12,13 +12,13 @@ const videoConstraints = {
 };
 
 const emotions = {
-    "fear": 0,
-    "happy": 1,
-    "sad": 2,
-    "neutral": 3
+    "Fear": 0,
+    "Happy": 1,
+    "Sad": 2,
+    "Neutral": 3
 };
 
-const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
+const WebcamCapture = ({running, handleRunning, setLossTime, emotion}) => {
     const webcamRef = React.useRef(null);
     let elapsed = 0;
 
@@ -26,6 +26,7 @@ const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
     
     React.useEffect(() => {
         console.log(running);
+        console.log(emotion);
         if (running) {
             const interval = setInterval(() => {
                 if (running) {
@@ -34,18 +35,21 @@ const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {
                     imageSrc = imageSrc.substring(imageSrc.indexOf(",") + 1);
                     //TODO: process image, send information back to game
                     let currentElapsed = elapsed;
+                    console.log(`current elapsed time: ${currentElapsed}`);
                     elapsed++;
                     axios.post('https://ai.faceoff.cf/predict', {
                         image: imageSrc
                     })
                     .then((res) => {
-                        if (res.success == 'true') {
-                            console.log(res.prediction);
-                            console.log(res.confidence);
-                            if (emotions[res.prediction]== emotion && parseFloat(res.confidence) > 0.7) {
-                                setLossTime(currentElapsed);
+                        console.log(res)
+                        if (res.data.success == 'true') {
+                            let conf = parseFloat(res.data.confidence);
+                            console.log(res.data.prediction);
+                            console.log(typeof(conf));
+                            setLossTime(currentElapsed);
+                            if (emotions[res.data.prediction]== emotion && conf >= 0.5) {
                                 console.log("loss detected")
-                                setRunning(false);
+                                handleRunning();
                                 return;
                                 
                             }

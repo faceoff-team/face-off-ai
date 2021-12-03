@@ -94,7 +94,8 @@ const addScoreToGame = async (userid, gameid, score) => {
     ORDER BY user_game.finalScore DESC
     `;
 
-  return await queryPromise(query);
+  const result = await queryPromise(query);
+  return result.results;
 };
 
 /**

@@ -105,6 +105,30 @@ const getFriendsByUsername = async (username) => {
     }
 };
 
+const getOthersByUsername = async (username) => {
+    try {
+        let others = await new Promise((resolve, reject) => {
+            global.connection.query(`
+                SELECT * FROM user
+                WHERE userID NOT IN (SELECT user2 FROM friend WHERE user1 = 
+                        (SELECT userID FROM user WHERE username = "${username}"))`, (err, results, fields) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+
+                resolve({
+                    results,
+                    fields,
+                });
+            });
+        });
+        return others.results;
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 const getUserByEmail = async (email) => {
     try {
         let user = await new Promise((resolve, reject) => {
@@ -281,6 +305,7 @@ module.exports = {
   getUserByUsername,
   getUserByEmail,
   getFriendsByUsername,
+  getOthersByUsername,
   createUser,
   updateProfile,
   updateProfileScores,

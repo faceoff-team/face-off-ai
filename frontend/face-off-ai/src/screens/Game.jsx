@@ -62,21 +62,44 @@ function Game() {
     axios.get(`https://ai.faceoff.cf/api/score/${gameid}`).then((response) => {
         console.log(response)
         setGameResults(response.data.scores)
+        if (gameResults === undefined) {
+            setGameResults([{
+                "username": "No Scores Found!",
+                "finalScore": ""
+            }]);
+        }
     });
     const scoreList = [];
-    for (var i = 0; i < gameResults.length; i++) {
-        scoreList.push(                            <ListItem>
+    if (gameResults !== undefined) {
+        for (var i = 0; i < gameResults.length; i++) {
+            scoreList.push(                            <ListItem>
+                <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+                    <ListItemText
+                        primary={gameResults[i].username}
+                    />
+                    <div style={{ textAlign: "right" }}>
+                        <ListItemText
+                            secondary={gameResults[i].finalScore}
+                        />
+                    </div>
+                </div>
+            </ListItem>)
+        }
+    }
+    if (scoreList.length == 0) {
+        scoreList.push(                            
+        <ListItem>
             <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
                 <ListItemText
-                    primary={gameResults[i].username}
+                    primary={"No Scores Found!"}
                 />
                 <div style={{ textAlign: "right" }}>
                     <ListItemText
-                        secondary={gameResults[i].finalScore}
+                        secondary={""}
                     />
                 </div>
             </div>
-        </ListItem>)
+        </ListItem>);
     }
 
     const avgTimeDict = {"r9SsqcT6heE" : "50 seconds", "YqaacQc6sho" : "1 minute 3 seconds"};
@@ -369,10 +392,10 @@ function Game() {
                         width={"750px"}
                         height={"400px"}
                         className="videoFrame"
-                        onStart={handleRunning}
+                        onStart={() => handleRunning}
                         // onPlay={handleRunning}
                         // onPause={handleRunning}
-                        onEnded={handleRunning}
+                        onEnded={() => handleRunning}
                         playing={running}
                         url={url}
                         light={true}
@@ -388,7 +411,7 @@ function Game() {
                 <div className="game" class="gameColumn">
                     <WebcamCapture
                         running={running}
-                        handleRunning={handleRunning}
+                        handleRunning={() => handleRunning}
                         setLossTime={waitTime}
                         emotion={emotion}
                         time={lossTime}

@@ -12,10 +12,10 @@ const videoConstraints = {
 };
 
 const emotions = {
-    "fear": 0,
-    "happy": 1,
-    "sad": 2,
-    "neutral": 3
+    "Fear": 0,
+    "Happy": 1,
+    "Sad": 2,
+    "Neutral": 3
 };
 
 const WebcamCapture = ({running, setRunning, setLossTime, emotion}) => {

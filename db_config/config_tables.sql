@@ -66,17 +66,6 @@ CREATE TABLE video (
     FOREIGN KEY(emotionID) REFERENCES emotion(emotionID)        
 );
 
-CREATE TABLE challenge (
-    challengeID         INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    challengeName       VARCHAR(255),
-    difficulty          INT(10),
-    averageRating       INT(10),
-    highScore           INT(10),
-    videoID             INT(10),
-    FOREIGN KEY (videoID) REFERENCES video(videoID)
-);
-
-
 CREATE TABLE game (
     gameID                  INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     videoID                 INT(10) NOT NULL,

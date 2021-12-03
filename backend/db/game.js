@@ -16,7 +16,7 @@ const createGame = async (video, gameUUID) => {
   let date = new Date();
   let query = `
     INSERT INTO game (videoID, gameUUID, winnerScore, lowScore, gameDate)
-    VALUES (${video}, "${gameUUID}", 0, 2294967294, "${date.toISOString().slice(0, 19).replace('T', ' ')}");
+    VALUES (${video}, "${gameUUID}", 0, 2147483647, "${date.toISOString().slice(0, 19).replace('T', ' ')}");
   `;
 
   let game = await queryPromise(query)

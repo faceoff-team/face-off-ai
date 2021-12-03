@@ -17,8 +17,6 @@ function getGamesList(games) {
                              </div>)
     }
 
-    console.log(numGames);
-
     for (var i = 0; i < numGames; i++) {
         gamesListItems.push(<div className="row" >
             <SmallGame date={games[i].gameDate ? games[i].gameDate : "-"}
@@ -34,7 +32,6 @@ function getGamesList(games) {
 function GameList({ title, username, games }) {
     return (
         <div>
-
             <h1 className="font-weight-heavy-small">{username}'s {title}</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
             <div className="column">

@@ -12,25 +12,30 @@ function Profile() {
 
     const [games, setGames] = useState(0);
     const [user, setUser] = useState(0);
+    const [validUser, setValidUser] = useState(true);
 
     useEffect( async() => {
         await getProfile(username);
-        if (user == null) {
-            return <Error404 message=" Oops, no profile found" />
-        }
     }, []);
+
+    useEffect( async() => {
+       
+    }, []);
+    
 
     const getProfile = async(username) => {
         try {
             const response = await axios.get(`https://ai.faceoff.cf/api/user/profile/${username}`);
-            setUser(response.data.user[0]);
+            const newUser = response.data.user[0];
+            setUser(newUser);
+            console.log(user);
             const response2 = await axios.get(`https://ai.faceoff.cf/api/game/all/${username}`);
-            setGames(response2.data.games);
+            const newGames = response2.data.games;
+            setGames(newGames);
         } catch (err) {
             console.error(err);
         }
     };
-
 
     const getFriends = async() => {
         try {
@@ -45,6 +50,13 @@ function Profile() {
         return <Unregistered/>
     }*/
 
+    try {
+        if (user.username == 0) {
+        }
+    } catch (err) {
+        return <Error404 message=" Oops, no profile found " />
+    }
+    
     return (
         <div className="Profile" class="container">
             <Grid container 

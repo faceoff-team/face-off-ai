@@ -79,7 +79,7 @@ const updateGame = async (id, high, low) => {
           global.connection.query(`
               UPDATE game
               SET winnerScore = "${high}", lowScore = "${low}"
-              WHERE gameID = "${id}";
+              WHERE gameUUID = "${id}";
           `, (err, results, fields) => {
               if (err) {
                   reject(err);

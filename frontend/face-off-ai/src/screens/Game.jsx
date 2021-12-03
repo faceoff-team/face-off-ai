@@ -42,6 +42,7 @@ function Game() {
     const { id, gameid } = useParams();
     const emoGetter = async () => {
         const emo = await http.get(`/api/video/byID/${id}`);
+        console.log(JSON.stringify(emo.data))
         emotion = emo.data.video[0].emotionID;
         
     }

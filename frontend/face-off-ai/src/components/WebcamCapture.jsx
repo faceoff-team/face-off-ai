@@ -18,7 +18,7 @@ const emotions = {
     "Neutral": 3
 };
 
-const WebcamCapture = ({running, handleRunning, setLossTime, emotion}) => {
+const WebcamCapture = ({running, handleRunning, setLossTime, emotion, time}) => {
     const webcamRef = React.useRef(null);
     let elapsed = 0;
 

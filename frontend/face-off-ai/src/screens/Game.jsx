@@ -363,6 +363,7 @@ function Game() {
                         handleRunning={handleRunning}
                         setLossTime={waitTime}
                         emotion={emotion}
+                        time={time}
                     />
                 </div>
             </div>

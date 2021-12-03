@@ -234,7 +234,7 @@ function Home() {
             <HomePageGrid emotionID="2"/>
             <h1 class="font-weight-heavy" style={{marginTop: "20px"}}>Scary Videos</h1>
             <HorizontalLine color="#f7f7f7" width="100%" />
-            <HomePageGrid emotionID="3"/>
+            <HomePageGrid emotionID="0"/>
         </div>
     );
 }

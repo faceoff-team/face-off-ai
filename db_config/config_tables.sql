@@ -82,7 +82,8 @@ CREATE TABLE game (
     videoID                 INT(10) NOT NULL,
     FOREIGN KEY (videoID)   REFERENCES video(videoID),
     winnerScore             INT(10) DEFAULT -1,
-    lowScore                INT(10) DEFAULT 360000,
+    lowScore                INT(10) DEFAULT -1,
+    gameUUID                VARCHAR(255),
     gameDate                DATETIME DEFAULT NOW()
 );
 
@@ -90,6 +91,7 @@ CREATE TABLE user_game (
     user              INT NOT NULL,
     game              INT NOT NULL,
     finalScore        INT(10) NOT NULL,
+    likeStatus        INT(1) DEFAULT 0,
     FOREIGN KEY (user) REFERENCES user(userID),
     FOREIGN KEY (game) REFERENCES game(gameID),
     PRIMARY KEY (user, game)

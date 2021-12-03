@@ -133,6 +133,7 @@ function Game() {
             const gameKeyRes = await http.get(`/api/game/${gameid}`);
             console.log(JSON.stringify(gameKeyRes));
             const gameKey = gameKeyRes.data.game[0].gameID;
+            console.log(`GAMEKEY: ${gameKey}`);
             const userGame = await http.post('api/score/create', {
                 user: store.getState().auth.user.userid,
                 game: gameKey,

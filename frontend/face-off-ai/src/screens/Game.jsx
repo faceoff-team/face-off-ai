@@ -303,7 +303,7 @@ function Game() {
             >
                 <Box sx={modalStyle}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Please enter a name
+                        Please enter a name (At least 2 characters)
                     </Typography>
                     <br/>
                     <TextField
@@ -314,10 +314,10 @@ function Game() {
                         style={{ width: "75%"}}
                         value={guestInputName}
                         onChange={(event) => handleNameChange(event)}
-                        error={guestInputName.length < 1}
+                        error={guestInputName.length < 2}
                     />
                     <Button size="medium" color="secondary" onClick={() => {
-                        if (guestInputName.length >= 1) {
+                        if (guestInputName.length >= 2) {
                             handleCloseGuest();
                             handleOpenMode();
                         }

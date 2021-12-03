@@ -295,8 +295,8 @@ const getUserProfilePicName = async (id) => {
 const changePassword = async (userID, hash, salt) => {
   let query = 
     `UPDATE user
-     SET hash = "${hash}
-     SET salt = "${salt}
+     SET hash = "${hash}"
+     SET salt = "${salt}"
      WHERE userID = ${userID}`;
 
   await queryPromise(query);

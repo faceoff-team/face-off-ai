@@ -133,6 +133,7 @@ function Game() {
         }
 
         if (store.getState().auth.isAuthenticated) {
+            console.log(store.getState().auth.token)
             const gameKeyRes = await http.get(`/api/game/${gameid}`);
             console.log(JSON.stringify(gameKeyRes));
             const gameKey = gameKeyRes.data.game[0].gameID;
@@ -150,6 +151,9 @@ function Game() {
             }, {headers: {
                 Authorization: store.getState().auth.token
             }});
+            axios.get(`https://ai.faceoff.cf/api/score/${gameid}`).then((response) => {
+                console.log(response)
+            });
         }
     }
 

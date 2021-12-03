@@ -51,7 +51,7 @@ router.get(`/others/:username`, getOthersByUser)
 const {userScoreGet, scoresForGameGet} = require('./scores');
 
 router.get(`/scores`, authenticate, userScoreGet);
-router.get(`/scores/:gameid`, authenticate, scoresForGameGet);
+router.get(`/scores/:gameid`, scoresForGameGet);
 router.get(`/leaderboard`, require('./leaderboard'));
 
 /**

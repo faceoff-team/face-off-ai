@@ -40,13 +40,13 @@ const WebcamCapture = ({running, handleRunning, setLossTime, emotion}) => {
                     axios.post('https://ai.faceoff.cf/predict', {
                         image: imageSrc
                     })
-                    .then((res) => {
+                    .then(async (res) => {
                         console.log(res)
                         if (res.data.success == 'true') {
                             let conf = parseFloat(res.data.confidence);
                             console.log(res.data.prediction);
                             console.log(typeof(conf));
-                            setLossTime(currentElapsed);
+                            await setLossTime(currentElapsed);
                             if (emotions[res.data.prediction]== emotion && conf >= 0.5) {
                                 console.log("loss detected")
                                 handleRunning();

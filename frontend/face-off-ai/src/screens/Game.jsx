@@ -82,7 +82,7 @@ function Game() {
       history.push('/home')
     }
 
-    const waitTime = (time) => {
+    const waitTime = async (time) => {
         setLossTime(time);
     }
     
@@ -104,6 +104,7 @@ function Game() {
         console.log(JSON.stringify(gameRes.data));
         let winnerScore = Math.max(gameRes.data.game[0].winnerScore, time * 10);
         let lowScore = Math.min(gameRes.data.game[0].lowScore, time * 10);
+        console.log(time)
         console.log(winnerScore);
         console.log(lowScore);
         try {

@@ -31,7 +31,8 @@ function Settings() {
             params.bio = store.getState().auth.user.bio
         }
 
-        const res = update(params.user, params.bio, store.getState().auth.user.bio, store.getState().auth.token, params.photo);
+        const res = update(params.user, params.bio, store.getState().auth.user.userid, store.getState().auth.token, params.photo);
+
         if (res) {
             alert("Profile update success!");
         }

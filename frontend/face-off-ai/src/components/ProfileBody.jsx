@@ -1,6 +1,7 @@
 import React from "react";
 import { Tabs, Tab, Box } from "@mui/material/";
 import Typography from "@mui/material/Typography";
+import HorizontalLine from "../components/HorizontalLine.jsx";
 
 import AccountList from "../components/AccountList.jsx";
 import GameList from "../components/GameList.jsx";
@@ -59,6 +60,8 @@ export default function ProfileBody({username, highScore, lowScore, pastGames}) 
                 <GameList username={username} title="Past Games" games={pastGames}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
+                <h1 className="font-weight-heavy-small">{username}'s Statistics</h1>
+                <HorizontalLine color="#f7f7f7" width="100%" />
                 <div>
                     High Score: {highScore >= 0 ? highScore : "No games played yet"}
                 </div>
@@ -68,7 +71,7 @@ export default function ProfileBody({username, highScore, lowScore, pastGames}) 
                 
             </TabPanel>
             <TabPanel value={value} index={2}>
-                <AccountList />
+                <AccountList title={`${username}'s Friends`}/>
             </TabPanel>
         </Box>
     );

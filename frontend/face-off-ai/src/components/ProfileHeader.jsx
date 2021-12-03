@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Avatar from "@mui/material/Avatar";
@@ -21,6 +22,19 @@ const modalStyle = {
     p: 4,
 };
 
+const handleAddFriend = async(pageUsername) => {
+    try {
+        var name; 
+        if (store.getState().auth.isAuthenticated) {
+            name = store.getState().auth.user.username;
+        }
+        const response = await axios.post(`https://ai.faceoff.cf/api/user/profile/${pageUsername}`);
+
+    } catch (err) {
+        console.error(err);
+    }
+};
+
 function GetProfileButtonType(pageUsername) {
     var name; 
     if (store.getState().auth.isAuthenticated) {
@@ -28,44 +42,14 @@ function GetProfileButtonType(pageUsername) {
     }
 
     const [open, setOpen] = React.useState(false);
-        const handleOpen = () => setOpen(true);
-        const handleClose = () => setOpen(false);
-
-    try {
-        if (name.localeCompare(pageUsername) == 0) {
-            return <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
-        } else {
-            return  <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Add to Friends</Button>
-        }
-    } catch (err) {
-        
-    }
-
-   
-
-}
-
-function ProfileHeader({ username, picture, bio }) {
-    const [open, setOpen] = React.useState(false);
-    
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    return (
-        <div>
-            <Grid container row>
-                <Grid>
-                <Avatar 
-                    variant="circular" 
-                    src={picture}
-                    style={{ height: '100px', width: '100px' }}
-                />
-                <h1 class="font-weight-heavy">{username}</h1>
-                <span class="font-small">{bio}</span>
-                </Grid>
-            </Grid>
-            <HorizontalLine color="#f7f7f7" width="100%"/>
-            {GetProfileButtonType(username)}
+    
+
+    try {
+        if (name.localeCompare(pageUsername) == 0) {
+            return (<div><Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -119,6 +103,37 @@ function ProfileHeader({ username, picture, bio }) {
                     </Stack>
                 </Box>
             </Modal>
+            </div>);
+        } else {
+            return  (<Button variant="contained" size="small" color="secondary" onClick={handleAddFriend}>Add to Friends</Button>);
+        }
+    } catch (err) {
+        
+    }
+
+}
+
+function ProfileHeader({ username, picture, bio }) {
+    const [open, setOpen] = React.useState(false);
+    
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    return (
+        <div>
+            <Grid container row>
+                <Grid>
+                <Avatar 
+                    variant="circular" 
+                    src={picture}
+                    style={{ height: '100px', width: '100px' }}
+                />
+                <h1 class="font-weight-heavy">{username}</h1>
+                <span class="font-small">{bio}</span>
+                </Grid>
+            </Grid>
+            <HorizontalLine color="#f7f7f7" width="100%"/>
+            {GetProfileButtonType(username)}
         </div>
     );
 }

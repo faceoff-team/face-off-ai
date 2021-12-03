@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import HorizontalLine from "../components/HorizontalLine.jsx";
+import store from "../store.js";
 
 const modalStyle = {
     position: 'absolute',
@@ -19,6 +20,18 @@ const modalStyle = {
     boxShadow: 24,
     p: 4,
 };
+
+function getProfileButtonType(pageUsername) {
+    var name; 
+    if (store.getState().auth.isAuthenticated) {
+        name = store.getState().auth.user.username;
+    }
+
+    if (name.localeCompare(pageUsername) == 0) {
+        <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
+    }
+
+}
 
 function ProfileHeader({ username, picture, bio }) {
     const [open, setOpen] = React.useState(false);
@@ -40,7 +53,7 @@ function ProfileHeader({ username, picture, bio }) {
                 </Grid>
             </Grid>
             <HorizontalLine color="#f7f7f7" width="100%"/>
-            <Button variant="contained" size="small" color="secondary" onClick={handleOpen}>Edit Profile</Button>
+            {getProfileButtonType(username)}
             <Modal
                 open={open}
                 onClose={handleClose}

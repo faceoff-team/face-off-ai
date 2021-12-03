@@ -84,12 +84,12 @@ const getUserByUsername = async (username) => {
 const getFriendsByUsername = async (username) => {
     try {
         let users = await new Promise((resolve, reject) => {
-            global.connection.query(`
+            global.connection.query(` SELECT * FROM user;`)/*`
                 SELECT * FROM user
                 WHERE userID IN
                     (SELECT user2 FROM friend
                      WHERE user1 = 
-                        (SELECT userID FROM user WHERE username = "${username}"))`, (err, results, fields) => {
+                        (SELECT userID FROM user WHERE username = "${username}"))`*/, (err, results, fields) => {
                 if (err) {
                     reject(err);
                     return;
@@ -101,10 +101,7 @@ const getFriendsByUsername = async (username) => {
                 });
             });
         });
-        return `SELECT * FROM user WHERE userID IN
-            (SELECT user2 FROM friend WHERE user1 = 
-                (SELECT userID FROM user WHERE username = "${username}"))`;
-        /*return users.results;*/
+        return users.results;
     } catch (err) {
         console.error(err);
     }

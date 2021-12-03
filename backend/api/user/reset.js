@@ -73,7 +73,7 @@ const handleResetUserPassword = async (req, res) => {
 
   await changePassword(row.user, hash, salt);
 
-  let query = 
+  query = 
     `DELETE FROM reset_password
     WHERE hash = "${row.hash}"`;
   await queryPromise(query);

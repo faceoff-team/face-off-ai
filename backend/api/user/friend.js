@@ -16,9 +16,10 @@ const validateGetFriendsBody = ( body ) => {
 }
 
 const handleGetFriends = async (req, res) => {
-  validateGetFriendsBody(req.body);
+  //validateGetFriendsBody(req.body);
+  let username = req.username;
 
-  let friends = await getFriendsByUsername(req.user, req.body.username);
+  let friends = await getFriendsByUsername(username);
 
   res.status(200).json({
     success: true,
@@ -43,6 +44,13 @@ module.exports = {
       await handleGetFriends(req, res);
     } catch (err) {
       next(err);
+    }
+  },
+  getFriendsByUser: async (req, res, next) => {
+    try {
+        await handleGetFriends(req, res);
+    } catch (err) {
+        next(err);
     }
   },
   postFriend: async (req, res, next) => {

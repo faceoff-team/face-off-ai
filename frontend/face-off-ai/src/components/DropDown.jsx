@@ -38,7 +38,8 @@ function DropDown(props) {
     };
 
     const handleLogout = async (event) => {
-        await logout();
+        window.location.reload(false);
+        //await logout();
     }
     
 

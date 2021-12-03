@@ -81,13 +81,15 @@ const getUserByUsername = async (username) => {
     }
 };
 
-const getFriendsByUsername = async (user, username) => {
+const getFriendsByUsername = async (username) => {
     try {
-        let user = await new Promise((resolve, reject) => {
+        let users = await new Promise((resolve, reject) => {
             global.connection.query(`
                 SELECT * FROM user
-                RIGHT JOIN friend ON friend.user2 = user.userID
-                WHERE username == "${username}"`, (err, results, fields) => {
+                WHERE userID IN
+                    (SELECT user2 FROM friend
+                     WHERE user1 = 
+                        (SELECT userID FROM user WHERE username = ${username}));`, (err, results, fields) => {
                 if (err) {
                     reject(err);
                     return;
@@ -99,7 +101,7 @@ const getFriendsByUsername = async (user, username) => {
                 });
             });
         });
-        return user.results;
+        return users.results;
     } catch (err) {
         console.error(err);
     }

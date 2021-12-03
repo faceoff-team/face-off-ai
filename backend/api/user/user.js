@@ -36,11 +36,12 @@ router.post(`/profile/pic`, authenticate, profilePicPost);
  * Friends
  */
 
-const { getFriends, postFriend } = require('./friend');
+const { getFriends, getFriendsByUser, postFriend } = require('./friend');
 
 router.post(`/friend`, authenticate, postFriend);
 
 router.get(`/friend`, authenticate, getFriends);
+router.get(`/friends/:username`, getFriendsByUser);
 
 /**
  * User scores

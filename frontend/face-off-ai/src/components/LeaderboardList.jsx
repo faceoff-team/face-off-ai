@@ -16,10 +16,16 @@ function getLeaders(numUsers, leaderboardUsers) {
                              </Grid>)
     }
 
+    var index = 0;
     for (var i = 0; i < numUsers; i++) {
-        if (leaderboardUsers[i].bestScore < 0) {
+        if (leaderboardUsers[i].userID == -1) {
+            continue;
+            index--;
+        }
+
+        if (leaderboardUsers[index].bestScore < 0) {
             leaderboarditems.push(<Grid item xs={8} >
-                <LeaderboardItem position={i + 1} 
+                <LeaderboardItem position={index + 1} 
                                 highscore={"0"}
                                 username={leaderboardUsers[i].username}
                                 picture={leaderboardUsers[i].imagePath}
@@ -27,13 +33,15 @@ function getLeaders(numUsers, leaderboardUsers) {
                                 </Grid>)
         } else {
             leaderboarditems.push(<Grid item xs={8} >
-                <LeaderboardItem position={i + 1} 
+                <LeaderboardItem position={index + 1} 
                                 highscore={leaderboardUsers[i].bestScore}
                                 username={leaderboardUsers[i].username}
                                 picture={leaderboardUsers[i].imagePath}
                                 />
                                 </Grid>)
         }
+
+        index++;
     }
     return leaderboarditems;
 }

@@ -3,16 +3,21 @@ import Avatar from "@mui/material/Avatar";
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import Box from "@mui/material/Box";
-// import { http } from "../store";
+import { Link, withRouter } from "react-router-dom";
 
 function LeaderboardItem({ username, picture, highscore, position}) {
 
     return (
-        <div class="small-profile">
+        <Link to={`/profile/${username}`} style={{ textDecoration: 'none', color: "#FFFFFF",
+        '&:hover': {
+            backgroundColor: '#3a3b3f',
+            color: '#4cc0ad',
+        }}}>
+        <div class="small-profile" >
             <div class="row">
                 <Grid container>
                     <Grid>
-                        <div>{position}</div>
+                        <div style={{ textDecoration: 'none'}}>{position}</div>
                     </Grid>
                     <Box
                         sx={{
@@ -51,7 +56,8 @@ function LeaderboardItem({ username, picture, highscore, position}) {
                 </Grid>
             </div>
         </div>
+        </Link>
     );
 }
 
-export default LeaderboardItem;
+export default withRouter(LeaderboardItem);

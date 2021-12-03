@@ -101,7 +101,10 @@ const getFriendsByUsername = async (username) => {
                 });
             });
         });
-        return users.results;
+        return `SELECT * FROM user WHERE userID IN
+            (SELECT user2 FROM friend WHERE user1 = 
+                (SELECT userID FROM user WHERE username = "${username}"))`;
+        /*return users.results;*/
     } catch (err) {
         console.error(err);
     }

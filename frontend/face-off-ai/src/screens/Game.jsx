@@ -171,6 +171,11 @@ function Game() {
         let kingVal = null;
         let loserVal = null;
         if (winnerScore == lossTime * 10) {
+            if (loser == "N/A") {
+                loserVal = king;
+                setLoser(king);
+                lowScore = high;
+            }
             if (store.getState().auth.isAuthenticated) {
                 kingVal = store.getState().auth.user.username;
             } else {

@@ -76,7 +76,31 @@ const getAllGames = async () => {
 }
 
 const updateGame = async (id, high, low, king, loser) => {
-  if (king) {
+  if (king && loser) {
+    try {
+      let game = await new Promise((resolve, reject) => {
+          global.connection.query(`
+              UPDATE game
+              SET winnerScore = ${high}, lowScore = ${low}, heldByWin = "${king}", heldByLoss = "${loser}"
+              WHERE gameUUID = "${id}";
+          `, (err, results, fields) => {
+              if (err) {
+                  reject(err);
+                  return;
+              }
+
+              resolve({
+                  results,
+                  fields,
+              });
+          });
+      });
+    } catch (err) {
+        console.error(err);
+        throw new BadRequestError(`Could not update game.`, 500);
+    }
+  }
+  else if (king) {
     try {
       let game = await new Promise((resolve, reject) => {
           global.connection.query(`

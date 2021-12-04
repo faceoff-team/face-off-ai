@@ -7,7 +7,8 @@ import Modal from '@mui/material/Modal';
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import TextField from '@mui/material/TextField';
 import { Link, withRouter } from 'react-router-dom';
-import { http, store } from '../store';
+import http from '../store';
+import store from '../store'
 import { v4 as uuidv4 } from 'uuid';
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import MoodBadIcon from '@mui/icons-material/MoodBad';
@@ -30,12 +31,14 @@ const modalStyle = {
 function Home() {
 
     const [value, setValue] = useState("");
+    const [valueMulti, setValueMulti] = useState("");
     const [openWrongURL, setWrongURL] = useState(false);
     const [openNewGame, setNewGame] = useState(false);
     const [videoID, setVideoID] = useState("");
     const [videoTitle, setVideoTitle] = useState("");
     const [emotionKey, setEmotionKey] = useState(-1);
     const [currentUUID, setCurrentUUID] = useState("");
+    const [multiOpen, setMultiOpen] = useState(false);
 
 
     const updateID = (ID) => setVideoID(ID);
@@ -49,6 +52,9 @@ function Home() {
 
     const handleChange = (event) => {
         setValue(event.target.value)
+    }
+    const handleMultiChange = (event) => {
+        setValueMulti(event.target.value);
     }
 
     const waitTitle = async (id) => {
@@ -83,6 +89,15 @@ function Home() {
              console.log(err);
          }
 
+    }
+
+    const handleSubmitMulti = async (e) => {
+        if (!store.getState().auth.token) {
+            alert("Multiplayer is only available for signed in users")
+        }
+         else {
+            setMultiOpen(true);
+         }
     }
     
 
@@ -178,6 +193,26 @@ function Home() {
                 </Button>
                 </Box>
             </Modal>
+             <Modal
+                open={multiOpen}
+                onClose={() => setMultiOpen(!multiOpen)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Awesome! Do you want to Join this multiplayer game?
+                </Typography>
+                <Link to={`game/${videoID}/${valueMulti}`}>
+                    <Button size="medium" color="secondary" onClick={() => setMultiOpen(!multiOpen)}>
+                        Go to game!
+                    </Button>
+                </Link>
+                <Button size="medium" color="secondary" onClick={() => setMultiOpen(!multiOpen)}>
+                    Cancel
+                </Button>
+                </Box>
+            </Modal> 
             <h1 class="font-weight-heavy" style={{ marginTop: "20px" }}>Welcome! Paste in a YouTube video link or click a video below:</h1>
 
             <HorizontalLine color="#f7f7f7" width="100%"/>
@@ -193,6 +228,7 @@ function Home() {
                     onChange={handleChange}
                     error={(value.length > 0 && value.match(ytRegex) == null)}
                 />
+                
                 <ToggleButtonGroup
                     color="primary"
                     value={emotionKey}
@@ -221,6 +257,28 @@ function Home() {
                     onClick={() => { handleSubmit(); }}
                 >
                     Search
+                </Button>
+            </div>
+            <br/>
+            <div class="searchContainer basic-container" style={{backgroundColor: "grey"}}>
+                <TextField
+                        id="outlined-basic"
+                        label="Have a multiplayer link? Paste it here."
+                        variant="outlined"
+                        color="primary"
+                        style={{ width: "75%"}}
+                        value={valueMulti}
+                        onChange={handleMultiChange}
+                        // error={(value.length > 0 && value.match(ytRegex) == null)}
+                />
+                <Button
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    style={{height: "50px", marginLeft: "30px"}}
+                    onClick={() => {handleSubmitMulti();}}
+                >
+                    Play multiplayer
                 </Button>
             </div>
             <br/>

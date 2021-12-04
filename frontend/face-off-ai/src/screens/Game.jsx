@@ -40,20 +40,41 @@ const modalStyle = {
 function Game() {
     const [emotion, setEmotion] = React.useState(1);
     const { id, gameid } = useParams();
+    const [high, setHigh] = useState(0);
+    const [low, setLow] = useState(1000000);
+    const [king, setKing] = useState("N/A");
+    const [loser, setLoser] = useState("N/A");
     const emoGetter = async () => {
         const emo = await http.get(`/api/video/byID/${id}`);
         console.log(JSON.stringify(emo.data))
         setEmotion(emo.data.video[0].emotionID);
         
     }
+    const gameStatsGetter = async() => {
+        const game = await http.get(`/api/game/${gameid}`);
+        if (game.data.game[0].winnerScore > -1) {
+            setHigh(game.data.game[0].winnerScore);
+        }
+        if (game.data.game[0].lowScore > -1) {
+            setLow(game.data.game[0].lowScore);
+        }
+        if (game.data.game[0].heldByWin) {
+            setKing(game.data.game[0].heldByWin);
+        }
+        if (game.data.game[0].heldByLoss) {
+            setLoser(game.data.game[0].heldByLoss);
+        }
+        
+    }
     const hook = React.useEffect(async () => {
         await emoGetter();
+        await gameStatsGetter();
     }, [])
     const [videoTitle, setVideoTitle] = useState(0);
-    const [gameResults, setGameResults] = React.useState([{
-        "username": "No Scores Found!",
-        "finalScore": ""
-    }]);
+    // const [gameResults, setGameResults] = React.useState([{
+    //     "username": "No Scores Found!",
+    //     "finalScore": ""
+    // }]);
 
     axios.get(`https://ai.faceoff.cf/api/video/byID/${id}`).then((response) => {
         console.log(response)
@@ -140,12 +161,24 @@ function Game() {
         console.log(gameRes.data.game[0].lowScore);
         let winnerScore = Math.max(gameRes.data.game[0].winnerScore, lossTime * 10);
         let lowScore = Math.min(gameRes.data.game[0].lowScore, lossTime * 10);
+        let kingVal = null;
+        let loserVal = null;
+        if (winnerScore == lossTime * 10 && store.getState().auth.isAuthenticated) {
+            kingVal = store.getState().auth.user.username;
+            setKing(store.getState().auth.user.username)
+        }
+        if (lowScore == lossTime * 10 && store.getState().auth.isAuthenticated) {
+            loserVal = store.getState().auth.user.username;
+            setLoser(store.getState().auth.user.username)
+        }
         console.log(winnerScore);
         console.log(lowScore);
         try {
             const updateGame = await http.put(`/api/game/${gameid}`, {
                 high: winnerScore,
-                low: lowScore
+                low: lowScore,
+                king: kingVal,
+                loser: loserVal
             });
         }
         catch (err) {
@@ -404,9 +437,10 @@ function Game() {
                     <div className="stats" class="gameColumn" style={{marginLeft: '30px'}}>
                         <h2 class="font-weight-heavy" style={{marginTop: "10px"}}>Statistics</h2>
                         <h4 class="font-weight-normal" style={{marginTop: "10px"}}>{avgTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Best time: {bestTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your last time: {userLastTime}</h4>
-                        <h4 style={{marginTop: "10px"}}>Your best time: {userBestTime}</h4>
+                        <h4 style={{marginTop: "10px"}}>Best score: {high}</h4>
+                        <h4 style={{marginTop: "10px"}}>Held by: {king}</h4>
+                        <h4 style={{marginTop: "10px"}}>Worst score: {low}</h4>
+                        <h4 style={{marginTop: "10px"}}>Held by: {loser}</h4>
                     </div>
                 </Card>
                 <Card style={{width: '50%', margin: "20px"}}>

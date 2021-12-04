@@ -75,8 +75,57 @@ const getAllGames = async () => {
   return games.results;
 }
 
-const updateGame = async (id, high, low) => {
-  try {
+const updateGame = async (id, high, low, king, loser) => {
+  if (king) {
+    try {
+      let game = await new Promise((resolve, reject) => {
+          global.connection.query(`
+              UPDATE game
+              SET winnerScore = ${high}, lowScore = ${low}, heldByWinner = "${king}"
+              WHERE gameUUID = "${id}";
+          `, (err, results, fields) => {
+              if (err) {
+                  reject(err);
+                  return;
+              }
+
+              resolve({
+                  results,
+                  fields,
+              });
+          });
+      });
+    } catch (err) {
+        console.error(err);
+        throw new BadRequestError(`Could not update game.`, 500);
+    }
+  }
+  else if (loser) {
+    try {
+      let game = await new Promise((resolve, reject) => {
+          global.connection.query(`
+              UPDATE game
+              SET winnerScore = ${high}, lowScore = ${low}, heldByLoser = "${loser}"
+              WHERE gameUUID = "${id}";
+          `, (err, results, fields) => {
+              if (err) {
+                  reject(err);
+                  return;
+              }
+
+              resolve({
+                  results,
+                  fields,
+              });
+          });
+      });
+    } catch (err) {
+        console.error(err);
+        throw new BadRequestError(`Could not update game.`, 500);
+    }
+  }
+  else {
+    try {
       let game = await new Promise((resolve, reject) => {
           global.connection.query(`
               UPDATE game
@@ -94,10 +143,13 @@ const updateGame = async (id, high, low) => {
               });
           });
       });
-  } catch (err) {
-      console.error(err);
-      throw new BadRequestError(`Could not update game.`, 500);
+    } catch (err) {
+        console.error(err);
+        throw new BadRequestError(`Could not update game.`, 500);
+    }
+
   }
+  
 };
 
 /**

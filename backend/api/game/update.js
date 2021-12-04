@@ -12,7 +12,7 @@ const validateCreateGameRequest = (body) => {
 const handleUpdateGameRequest = async (req, res) => {
   validateCreateGameRequest(req.params);
   
-  let game = await updateGame(req.params.gameID, req.body.high, req.body.low);
+  let game = await updateGame(req.params.gameID, req.body.high, req.body.low, req.body.king, req.body.loser);
   
   res.status(200).json({
     success: true,

@@ -366,10 +366,10 @@ function Game() {
                         width={"750px"}
                         height={"400px"}
                         className="videoFrame"
-                        onStart={() => handleRunning}
+                        onStart={handleRunning}
                         // onPlay={handleRunning}
                         // onPause={handleRunning}
-                        onEnded={() => handleRunning}
+                        onEnded={handleRunning}
                         playing={running}
                         url={url}
                         light={true}
@@ -385,7 +385,7 @@ function Game() {
                 <div className="game" class="gameColumn">
                     <WebcamCapture
                         running={running}
-                        handleRunning={() => handleRunning}
+                        handleRunning={handleRunning}
                         setLossTime={waitTime}
                         emotion={emotion}
                         time={lossTime}

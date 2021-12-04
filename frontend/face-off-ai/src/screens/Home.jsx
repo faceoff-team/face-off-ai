@@ -92,6 +92,14 @@ function Home() {
     }
 
     const handleSubmitMulti = async (e) => {
+        const g = await http.get(`api/game/${valueMulti}`);
+        if (g.data.game[0]) {
+            const vid = await http.get(`api/video/${g.data.game[0].videoID}`);
+            setVideoID(vid.data.video[0].videoYoutubeID);
+        }
+        else {
+            alert("This is not a valid game code");
+        }
         if (!store.getState().auth.token) {
             alert("Multiplayer is only available for signed in users")
         }

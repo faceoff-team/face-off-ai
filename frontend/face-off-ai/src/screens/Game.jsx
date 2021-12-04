@@ -190,6 +190,8 @@ function Game() {
         }
         console.log(winnerScore);
         console.log(lowScore);
+        console.log(kingVal);
+        console.log(loserVal)
         try {
             const updateGame = await http.put(`/api/game/${gameid}`, {
                 high: winnerScore,

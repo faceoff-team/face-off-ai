@@ -81,7 +81,7 @@ const updateGame = async (id, high, low, king, loser) => {
       let game = await new Promise((resolve, reject) => {
           global.connection.query(`
               UPDATE game
-              SET winnerScore = ${high}, lowScore = ${low}, heldByWinner = "${king}"
+              SET winnerScore = ${high}, lowScore = ${low}, heldByWin = "${king}"
               WHERE gameUUID = "${id}";
           `, (err, results, fields) => {
               if (err) {
@@ -105,7 +105,7 @@ const updateGame = async (id, high, low, king, loser) => {
       let game = await new Promise((resolve, reject) => {
           global.connection.query(`
               UPDATE game
-              SET winnerScore = ${high}, lowScore = ${low}, heldByLoser = "${loser}"
+              SET winnerScore = ${high}, lowScore = ${low}, heldByLoss = "${loser}"
               WHERE gameUUID = "${id}";
           `, (err, results, fields) => {
               if (err) {

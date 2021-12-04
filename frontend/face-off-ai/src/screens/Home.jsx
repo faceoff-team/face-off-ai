@@ -7,7 +7,7 @@ import Modal from '@mui/material/Modal';
 import HorizontalLine from "../components/HorizontalLine.jsx";
 import TextField from '@mui/material/TextField';
 import { Link, withRouter } from 'react-router-dom';
-import http from '../store';
+import { http } from '../store'
 import store from '../store'
 import { v4 as uuidv4 } from 'uuid';
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
@@ -92,6 +92,7 @@ function Home() {
     }
 
     const handleSubmitMulti = async (e) => {
+        console.log("Here");
         const g = await http.get(`api/game/${valueMulti}`);
         if (g.data.game[0]) {
             const vid = await http.get(`api/video/${g.data.game[0].videoID}`);

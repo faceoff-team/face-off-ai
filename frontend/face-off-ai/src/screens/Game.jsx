@@ -116,7 +116,14 @@ function Game() {
     const [openLoss, setOpenLoss] = React.useState(false);
     const [guestInputName, setGuestName] = React.useState(store.getState().auth.isAuthenticated ? store.getState().auth.user.userid : "");
     const [openGuestName, setGuestNameMode] = React.useState(!store.getState().auth.isAuthenticated);
+
     const [openLeaderboard, setLeaderboard] = React.useState(false);
+    /*<div class="backButtonContainer" style={{marginTop: "20px"}}>
+        <Button color="secondary" size="medium" startIcon={<Leaderboard />} onClick={() => handleOpenLeaderboard()}>
+            Leaderboard
+        </Button>
+    </div>*/
+
     let lossTime = 0;
 
     let history = useHistory();
@@ -163,12 +170,22 @@ function Game() {
         let lowScore = Math.min(gameRes.data.game[0].lowScore, lossTime * 10);
         let kingVal = null;
         let loserVal = null;
-        if (winnerScore == lossTime * 10 && store.getState().auth.isAuthenticated) {
-            kingVal = store.getState().auth.user.username;
+        if (winnerScore == lossTime * 10) {
+            if (store.getState().auth.isAuthenticated) {
+                kingVal = store.getState().auth.user.username;
+            } else {
+                kingVal = guestInputName;
+            }
+            
             setKing(store.getState().auth.user.username)
         }
-        if (lowScore == lossTime * 10 && store.getState().auth.isAuthenticated) {
-            loserVal = store.getState().auth.user.username;
+        if (lowScore == lossTime * 10) {
+            if (store.getState().auth.isAuthenticated) {
+                loserVal = store.getState().auth.user.username;
+            } else {
+                loserVal = guestInputName;
+            }
+
             setLoser(store.getState().auth.user.username)
         }
         console.log(winnerScore);
@@ -292,34 +309,15 @@ function Game() {
             >
                 <Box sx={modalStyle}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Which mode do you want to play?
+                        To play multiplayer, share this code!
                     </Typography>
-                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
-                        Single Player
-                    </Button>
-                    <Button size="medium" color="secondary" onClick={() => {
-                        handleCloseMode();
-                        handleOpenMulti();
-                    }}>
-                        Multi Player
-                    </Button>
-                </Box>
-            </Modal>
-            <Modal
-                open={openMulti}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={modalStyle}>
+                    <br/>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Which multiplayer mode do you want to play?
+                        {gameid}
                     </Typography>
-                    
-                    <Button size="medium" color="secondary" onClick={handleCloseMulti}>
-                        Single Device
-                    </Button>
-                    <Button size="medium" color="secondary" onClick={() => handleCloseMulti()}>
-                        Multi Device
+                    <br/>
+                    <Button size="medium" color="secondary" onClick={handleCloseMode}>
+                        Sounds good!
                     </Button>
                 </Box>
             </Modal>
@@ -426,11 +424,6 @@ function Game() {
                 </div>
             </div>
             <br/>
-            <div class="backButtonContainer" style={{marginTop: "20px"}}>
-                <Button color="secondary" size="medium" startIcon={<Leaderboard />} onClick={() => handleOpenLeaderboard()}>
-                    Leaderboard
-                </Button>
-            </div>
             <br/>
             <div className="statsRow" class="gameRow">
                 <Card style={{width: '50%', margin: "20px"}}>

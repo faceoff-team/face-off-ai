@@ -101,12 +101,7 @@ function Home() {
         else {
             alert("This is not a valid game code");
         }
-        if (!store.getState().auth.token) {
-            alert("Multiplayer is only available for signed in users")
-        }
-         else {
-            setMultiOpen(true);
-         }
+        setMultiOpen(true);
     }
     
 

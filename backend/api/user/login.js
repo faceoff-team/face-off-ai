@@ -50,7 +50,7 @@ const getUser = async (user) => {
     if (body.user === undefined)
         throw new BadRequestError(`User property must be defined.`, 400);
 
-    if (typeof body.user !== 'string')
+    if (typeof body.user !== 'number')
         throw new BadRequestError('User must be of type string.', 400);
 
     if (body.user.length === 0) 

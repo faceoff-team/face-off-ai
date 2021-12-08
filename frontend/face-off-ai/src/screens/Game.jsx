@@ -170,7 +170,16 @@ function Game() {
         let lowScore = Math.min(gameRes.data.game[0].lowScore, lossTime * 10);
         let kingVal = null;
         let loserVal = null;
+<<<<<<< HEAD
+        if (winnerScore == lossTime * 10) {
+            if (loser == "N/A") {
+                loserVal = king;
+                setLoser(king);
+                lowScore = high;
+            }
+=======
         if (winnerScore === (lossTime * 10)) {
+>>>>>>> cab3a0b14935cc66fdce79a6d4e74a915384738a
             if (store.getState().auth.isAuthenticated) {
                 kingVal = store.getState().auth.user.username;
             } else {

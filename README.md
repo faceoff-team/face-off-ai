@@ -10,3 +10,6 @@ An emotion recognition "try not to laugh" style online game. Play by yourself or
 <strong>Other details</strong>
 * Fully functioning backend, complete with mySQL database, API to interact with said database, complete with necessary docker containers
 * Fully functioning React.js frontend, with profiles, leaderboards, gameplay pages, and more
+<br><br>
+
+<i>This project was created by Nic Ballesteros, Dom Miller, Sri Potturu, and Ashton Statz for CS 30700 at Purdue University, Fall Semester 2021</i>
